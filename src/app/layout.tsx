@@ -23,7 +23,10 @@ export default async function RootLayout({
           <meta name="google-adsense-account" content={googleAdsenseCode} />
         )}
 
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/detect-ai-icon.svg" />
+        <meta name="theme-color" content="#1E40AF" />
 
         {locales &&
           locales.map((loc) => (

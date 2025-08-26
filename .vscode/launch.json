@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Next.js Client",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+      "args": ["dev"],
+      "env": {
+        "NODE_OPTIONS": "--inspect",
+        "NODE_NO_WARNINGS": "1"
+      },
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "- Local:.*?(https?://.*?)(\\s|$)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      },
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
+    }
+  ]
+}
