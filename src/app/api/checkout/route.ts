@@ -150,7 +150,7 @@ export async function POST(req: Request) {
     return respData(result);
   } catch (e: any) {
     console.log("checkout failed: ", e);
-    return respErr("checkout failed: " + e.message);
+    return respErr("checkout failed: " + e.message + e?.stack);
   }
 }
 
