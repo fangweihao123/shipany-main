@@ -6,10 +6,6 @@
     "description": "获取 ShipAny 的所有功能，快速启动您的 AI SaaS 项目。",
     "groups": [
       {
-        "name": "one-time",
-        "title": "一次性付费"
-      },
-      {
         "name": "monthly",
         "title": "月付",
         "is_featured": true,
@@ -21,107 +17,6 @@
       }
     ],
     "items": [
-      {
-        "title": "入门版",
-        "description": "开始您的第一个 SaaS 创业项目。",
-        "features_title": "包含功能",
-        "features": [
-          "100 积分，有效期 1 个月",
-          "NextJS 模板",
-          "SEO 友好结构",
-          "Stripe 支付集成",
-          "Supabase 数据存储",
-          "Google OAuth 和 One-Tap 登录",
-          "国际化支持"
-        ],
-        "interval": "one-time",
-        "amount": 9900,
-        "cn_amount": 69900,
-        "currency": "USD",
-        "price": "$99",
-        "original_price": "$199",
-        "unit": "一次性",
-        "is_featured": false,
-        "tip": "一次性付费，无限构建项目！",
-        "button": {
-          "title": "获取 ShipAny",
-          "url": "/#pricing",
-          "icon": "RiFlashlightFill"
-        },
-        "product_id": "starter",
-        "product_name": "ShipAny 模板入门版",
-        "credits": 100,
-        "valid_months": 1,
-        "group": "one-time"
-      },
-      {
-        "title": "标准版",
-        "description": "快速启动您的 SaaS 创业项目。",
-        "label": "热门",
-        "features_title": "包含入门版所有功能，另加",
-        "features": [
-          "200 积分，有效期 3 个月",
-          "Vercel 或 Cloudflare 部署",
-          "隐私政策和条款生成",
-          "Google Analytics 集成",
-          "Google Search Console 集成",
-          "Discord 社区",
-          "首次发布技术支持",
-          "终身更新"
-        ],
-        "interval": "one-time",
-        "amount": 19900,
-        "cn_amount": 139900,
-        "currency": "USD",
-        "price": "$199",
-        "original_price": "$299",
-        "unit": "一次性",
-        "is_featured": true,
-        "tip": "一次性付费，无限构建项目！",
-        "button": {
-          "title": "获取 ShipAny",
-          "url": "/#pricing",
-          "icon": "RiFlashlightFill"
-        },
-        "product_id": "standard",
-        "product_name": "ShipAny 模板标准版",
-        "credits": 200,
-        "valid_months": 3,
-        "group": "one-time"
-      },
-      {
-        "title": "高级版",
-        "description": "启动任何 AI SaaS 创业项目。",
-        "features_title": "包含标准版所有功能，另加",
-        "features": [
-          "300 积分，有效期 1 年",
-          "AI 商业功能",
-          "用户中心",
-          "积分系统",
-          "SaaS API 销售",
-          "管理系统",
-          "优先技术支持"
-        ],
-        "interval": "one-time",
-        "amount": 29900,
-        "cn_amount": 199900,
-        "currency": "USD",
-        "price": "$299",
-        "original_price": "$399",
-        "unit": "一次性",
-        "is_featured": false,
-        "tip": "一次性付费，无限构建项目！",
-        "button": {
-          "title": "获取 ShipAny",
-          "url": "/#pricing",
-          "icon": "RiFlashlightFill"
-        },
-        "product_id": "premium",
-        "product_name": "ShipAny 模板高级版",
-        "credits": 300,
-        "valid_months": 12,
-        "group": "one-time"
-      },
       {
         "title": "入门版",
         "description": "开始您的第一个 SaaS 创业项目。",

@@ -21,14 +21,14 @@ export const PROVIDER_CONFIGS = {
     description: 'Advanced AI detection with high accuracy',
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/detect',
-    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'],
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
   },
   sightengine: {
     name: 'Sightengine',
     description: 'Fast and reliable AI content detection',
     maxFileSize: 50 * 1024 * 1024, // 50MB
     endpoint: '/api/detect/sightengine',
-    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'tiff'],
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'tiff'] as const,
   },
 } as const;
 
@@ -43,14 +43,22 @@ export class DetectionError extends Error {
   }
 }
 
-export async function detectImage(file: File, provider: DetectionProvider = 'undetectable'): Promise<UnifiedDetectionResponse> {
+// Get default provider from environment or fallback to sightengine
+export function getDefaultProvider(): DetectionProvider {
+  const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as DetectionProvider;
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'sightengine';
+}
+
+export async function detectImage(file: File, provider?: DetectionProvider): Promise<UnifiedDetectionResponse> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
   // Validate file with provider-specific limits
-  const validation = validateFile(file, provider);
+  const validation = validateFile(file, selectedProvider);
   if (!validation.isValid) {
     throw new DetectionError(validation.error || 'Invalid file', 400);
   }
 
-  const config = PROVIDER_CONFIGS[provider];
+  const config = PROVIDER_CONFIGS[selectedProvider];
   const formData = new FormData();
   formData.append('file', file);
 
@@ -85,12 +93,14 @@ export async function detectImage(file: File, provider: DetectionProvider = 'und
   }
 }
 
-export function validateFile(file: File, provider: DetectionProvider = 'undetectable'): { isValid: boolean; error?: string } {
-  const config = PROVIDER_CONFIGS[provider];
+export function validateFile(file: File, provider?: DetectionProvider): { isValid: boolean; error?: string } {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  const config = PROVIDER_CONFIGS[selectedProvider];
   
   // Check file type
-  const fileExtension = file.name.split('.').pop()?.toLowerCase() as SupportedImageFormat;
-  if (!fileExtension || !config.supportedFormats.includes(fileExtension)) {
+  const fileExtension = file.name.split('.').pop()?.toLowerCase();
+  if (!fileExtension || !(config.supportedFormats as readonly string[]).includes(fileExtension)) {
     return {
       isValid: false,
       error: `Unsupported file format for ${config.name}. Supported formats: ${config.supportedFormats.join(', ')}`,

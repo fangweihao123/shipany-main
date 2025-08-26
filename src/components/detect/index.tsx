@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle, Settings } from 'lucide-react';
+import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import {
   DetectionState,
   FileUploadState,
@@ -18,7 +18,7 @@ import {
   formatFileSize,
   getConfidenceColor,
   getConfidenceDescription,
-  PROVIDER_CONFIGS
+  getDefaultProvider
 } from '@/services/detect';
 import { DetectionResult } from './result';
 import { FileUpload } from './upload';
@@ -38,7 +38,7 @@ export default function Detect() {
     result: null,
     error: null,
     uploadProgress: 0,
-    provider: 'sightengine', // Default to Sightengine
+    provider: getDefaultProvider(),
   });
 
   const handleFileSelect = useCallback(async (file: File) => {
@@ -53,8 +53,8 @@ export default function Detect() {
       uploadProgress: 0,
     }));
 
-    // Validate file with current provider
-    const validation = validateFile(file, detectionState.provider);
+    // Validate file
+    const validation = validateFile(file);
     if (!validation.isValid) {
       setFileState({
         file: null,
@@ -95,7 +95,7 @@ export default function Detect() {
     }));
 
     try {
-      const result = await detectImage(fileState.file, detectionState.provider);
+      const result = await detectImage(fileState.file);
       setDetectionState(prev => ({
         ...prev,
         isLoading: false,
@@ -132,32 +132,6 @@ export default function Detect() {
     }));
   }, []);
 
-  const handleProviderChange = useCallback((provider: DetectionProvider) => {
-    setDetectionState(prev => ({
-      ...prev,
-      provider,
-      result: null,
-      error: null,
-    }));
-
-    // Re-validate current file with new provider
-    if (fileState.file) {
-      const validation = validateFile(fileState.file, provider);
-      if (!validation.isValid) {
-        setFileState(prev => ({
-          ...prev,
-          isValid: false,
-          error: validation.error || 'Invalid file for selected provider',
-        }));
-      } else {
-        setFileState(prev => ({
-          ...prev,
-          isValid: true,
-          error: null,
-        }));
-      }
-    }
-  }, [fileState.file]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
@@ -173,41 +147,6 @@ export default function Detect() {
           </p>
         </div>
 
-        {/* Provider Selection */}
-        <div className="mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center text-lg">
-                <Settings className="mr-2 h-5 w-5" />
-                Detection Provider
-              </CardTitle>
-              <CardDescription>
-                Choose the AI detection service to use for analysis
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.entries(PROVIDER_CONFIGS).map(([key, config]) => (
-                  <Button
-                    key={key}
-                    variant={detectionState.provider === key ? "default" : "outline"}
-                    className="h-auto p-4 text-left justify-start"
-                    onClick={() => handleProviderChange(key as DetectionProvider)}
-                    disabled={detectionState.isLoading}
-                  >
-                    <div>
-                      <div className="font-semibold">{config.name}</div>
-                      <div className="text-sm opacity-70 mt-1">{config.description}</div>
-                      <div className="text-xs opacity-60 mt-1">
-                        Max size: {formatFileSize(config.maxFileSize)}
-                      </div>
-                    </div>
-                  </Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

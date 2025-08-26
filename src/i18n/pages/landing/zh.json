@@ -5,7 +5,7 @@
     "brand": {
       "title": "ShipAny",
       "logo": {
-        "src": "/logo.png",
+        "src": "/detect-ai-icon.svg",
         "alt": "ShipAny"
       },
       "url": "/"
@@ -394,7 +394,7 @@
       "title": "ShipAny",
       "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板。通过丰富的模板和组件快速启动。",
       "logo": {
-        "src": "/logo.png",
+        "src": "/detect-ai-icon.svg",
         "alt": "ShipAny"
       },
       "url": "/"

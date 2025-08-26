@@ -6,10 +6,6 @@
     "description": "Choose the perfect plan for your AI image detection needs. Protect against fake images at an affordable price.",
     "groups": [
       {
-        "name": "one-time",
-        "title": "Pay as you go"
-      },
-      {
         "name": "monthly",
         "title": "Monthly",
         "is_featured": true,
@@ -22,108 +18,6 @@
       }
     ],
     "items": [
-      {
-        "title": "Basic",
-        "description": "Perfect for individuals and small teams.",
-        "features_title": "Includes",
-        "features": [
-          "1,000 image detections per month",
-          "Real-time AI analysis",
-          "95% accuracy rate",
-          "Basic reporting",
-          "Email support",
-          "Web dashboard access",
-          "File upload (JPG, PNG, GIF)"
-        ],
-        "interval": "one-time",
-        "amount": 990,
-        "cn_amount": 6990,
-        "currency": "USD",
-        "price": "$9.9",
-        "original_price": "$19.9",
-        "unit": "one-time",
-        "is_featured": false,
-        "tip": "Pay once, detect up to 1,000 images!",
-        "button": {
-          "title": "Get Started",
-          "url": "/checkout?plan=basic",
-          "icon": "RiScanLine"
-        },
-        "product_id": "standard",
-        "product_name": "AI Image Detector Basic",
-        "credits": 1000,
-        "valid_months": 1,
-        "group": "one-time"
-      },
-      {
-        "title": "Professional",
-        "description": "Best for businesses and security teams.",
-        "label": "Popular",
-        "features_title": "Everything in Basic, plus",
-        "features": [
-          "5,000 image detections per month",
-          "Batch processing up to 100 images",
-          "Advanced reporting & analytics",
-          "API access with documentation",
-          "Priority email support",
-          "Custom detection thresholds",
-          "Export results to CSV/PDF",
-          "White-label option"
-        ],
-        "interval": "one-time",
-        "amount": 1990,
-        "cn_amount": 13990,
-        "currency": "USD",
-        "price": "$19.9",
-        "original_price": "$29.9",
-        "unit": "one-time",
-        "is_featured": true,
-        "tip": "Most popular! Perfect for businesses!",
-        "button": {
-          "title": "Get Professional",
-          "url": "/checkout?plan=professional",
-          "icon": "RiVipCrownLine"
-        },
-        "product_id": "premium",
-        "product_name": "AI Image Detector Professional",
-        "credits": 5000,
-        "valid_months": 3,
-        "group": "one-time"
-      },
-      {
-        "title": "Enterprise",
-        "description": "For large organizations and high-volume usage.",
-        "features_title": "Everything in Professional, plus",
-        "features": [
-          "25,000 image detections per month",
-          "Unlimited batch processing",
-          "Custom AI model training",
-          "Dedicated API endpoint",
-          "24/7 phone & chat support",
-          "SLA guarantee (99.9% uptime)",
-          "Integration consulting",
-          "Custom deployment options"
-        ],
-        "interval": "one-time",
-        "amount": 2990,
-        "cn_amount": 19990,
-        "currency": "USD",
-        "price": "$29.9",
-        "original_price": "$39.9",
-        "unit": "one-time",
-        "is_featured": false,
-        "tip": "Best value for enterprises!",
-        "button": {
-          "title": "Contact Sales",
-          "url": "/contact-sales",
-          "icon": "RiCustomerService2Line"
-        },
-        "product_id": "enterprise",
-        "product_name": "AI Image Detector Enterprise",
-        "credits": 25000,
-        "valid_months": 12,
-        "group": "one-time"
-      },
       {
         "title": "Basic",
         "description": "Perfect for individuals and small teams.",

@@ -9,13 +9,13 @@ export function baseOptions(locale: string): BaseLayoutProps {
       title: (
         <>
           <Image
-            src="/logo.png"
+            src="/detect-ai-icon.svg"
             alt="Logo"
             width={28}
             height={28}
             className=""
           />
-          <span className="text-lg text-primary font-bold">ShipAny</span>
+          <span className="text-lg text-primary font-bold">Detect AI</span>
         </>
       ),
       transparentMode: "top",

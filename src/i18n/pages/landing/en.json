@@ -5,7 +5,7 @@
     "brand": {
       "title": "AI Image Detector",
       "logo": {
-        "src": "/logo.png",
+        "src": "/detect-ai-icon.svg",
         "alt": "AI Image Detector"
       },
       "url": "/"
@@ -387,7 +387,7 @@
       "title": "AI Image Detector",
       "description": "Advanced AI technology to identify artificial images and protect against fake content, deepfakes, and image fraud.",
       "logo": {
-        "src": "/logo.png",
+        "src": "/detect-ai-icon.svg",
         "alt": "AI Image Detector"
       },
       "url": "/"
