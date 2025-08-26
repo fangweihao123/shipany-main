@@ -44,7 +44,7 @@
           "url": "/checkout?plan=basic-monthly",
           "icon": "RiScanLine"
         },
-        "product_id": "standard",
+        "product_id": "basic",
         "product_name": "AI Image Detector Basic Monthly",
         "credits": 1000,
         "valid_months": 1,
@@ -78,7 +78,7 @@
           "url": "/checkout?plan=professional-monthly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "premium",
+        "product_id": "Professional",
         "product_name": "AI Image Detector Professional Monthly",
         "credits": 5000,
         "valid_months": 1,
@@ -111,7 +111,7 @@
           "url": "/contact-sales",
           "icon": "RiCustomerService2Line"
         },
-        "product_id": "enterprise-monthly",
+        "product_id": "Enterprise",
         "product_name": "AI Image Detector Enterprise Monthly",
         "credits": 25000,
         "valid_months": 1,
@@ -143,7 +143,7 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "standard",
+        "product_id": "basic-annually",
         "product_name": "AI Image Detector Basic Annually",
         "credits": 12000,
         "valid_months": 12,
@@ -177,7 +177,7 @@
           "url": "/checkout?plan=professional-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "premium",
+        "product_id": "Professional-annually",
         "product_name": "AI Image Detector Professional Annually",
         "credits": 60000,
         "valid_months": 12,
@@ -210,7 +210,7 @@
           "url": "/contact-sales",
           "icon": "RiCustomerService2Line"
         },
-        "product_id": "enterprise-yearly",
+        "product_id": "Enterprise-annually",
         "product_name": "AI Image Detector Enterprise Annually",
         "credits": 300000,
         "valid_months": 12,
