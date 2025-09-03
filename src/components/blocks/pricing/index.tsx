@@ -203,6 +203,25 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
                           </span>
                         )}
                       </div>
+                      {item.interval === "year" && item.price && item.unit?.includes("month") && (
+                        <div className="mb-4 text-left">
+                          <p className="text-base text-muted-foreground">
+                            {locale === "zh" ? (
+                              <>
+                                年度总价：<span className="font-semibold text-primary">
+                                  ￥{(parseFloat(item.price.replace(/[￥$]/g, '')) * 12).toFixed(0)}
+                                </span> / 年
+                              </>
+                            ) : (
+                              <>
+                                Annual total: <span className="font-semibold text-primary">
+                                  ${(parseFloat(item.price.replace('$', '')) * 12).toFixed(0)}
+                                </span> / year
+                              </>
+                            )}
+                          </p>
+                        </div>
+                      )}
                       {item.description && (
                         <p className="text-muted-foreground">
                           {item.description}

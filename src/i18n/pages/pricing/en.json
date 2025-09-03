@@ -44,7 +44,7 @@
         },
         "product_id": "basic",
         "product_name": "AI Image Detector Basic Monthly",
-        "credits": 1000,
+        "credits": 100,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -75,7 +75,7 @@
         },
         "product_id": "Professional",
         "product_name": "AI Image Detector Professional Monthly",
-        "credits": 5000,
+        "credits": 200,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -84,7 +84,7 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "200 credits detections per month",
+          "1200 credits detections per month",
           "High quality, legible content",
           "Priority email support",
           "Custom detection thresholds",
@@ -105,7 +105,7 @@
         },
         "product_id": "basic-annually",
         "product_name": "AI Image Detector Basic Annually",
-        "credits": 12000,
+        "credits": 1200,
         "valid_months": 12,
         "group": "yearly"
       },
@@ -115,7 +115,7 @@
         "label": "Popular",
         "features_title": "Everything in Basic, plus",
         "features": [
-          "200 credits detections per month",
+          "3000 credits detections per month",
           "High quality, legible content",
           "Priority email support",
           "Custom detection thresholds",
@@ -136,7 +136,7 @@
         },
         "product_id": "Professional-annually",
         "product_name": "AI Image Detector Professional Annually",
-        "credits": 60000,
+        "credits": 3000,
         "valid_months": 12,
         "group": "yearly"
       }
