@@ -5,7 +5,7 @@ import {
   ApiErrorResponse
 } from '@/types/detect';
 
-const API_BASE_URL = 'https://api.sightengine.com/1.0/check.json';
+const API_BASE_URL = 'https://api.sightengine.com/1.0/audio/check.json';
 const API_USER = process.env.SIGHTENGINE_API_USER;
 const API_SECRET = process.env.SIGHTENGINE_API_SECRET;
 
@@ -50,7 +50,7 @@ function transformSightengineResponse(
   
   return {
     success: true,
-    provider: 'sightengineimg',
+    provider: 'sightenginemp3',
     result: {
       prediction: isAIGenerated ? "AI Generated" : "Not AI Generated",
       confidence: isAIGenerated ? confidence : 100 - confidence,

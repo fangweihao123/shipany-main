@@ -23,13 +23,11 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "1,000 image detections per month",
-          "Real-time AI analysis",
-          "95% accuracy rate",
-          "Basic reporting",
-          "Email support",
-          "Web dashboard access",
-          "File upload (JPG, PNG, GIF)"
+          "100 credits detections per month",
+          "High quality, legible content",
+          "Priority email support",
+          "Custom detection thresholds",
+          "Passes AI detectors"
         ],
         "interval": "month",
         "amount": 890,
@@ -56,14 +54,11 @@
         "label": "Popular",
         "features_title": "Everything in Basic, plus",
         "features": [
-          "5,000 image detections per month",
-          "Batch processing up to 100 images",
-          "Advanced reporting & analytics",
-          "API access with documentation",
+          "200 credits detections per month",
+          "High quality, legible content",
           "Priority email support",
           "Custom detection thresholds",
-          "Export results to CSV/PDF",
-          "White-label option"
+          "Passes AI detectors"
         ],
         "interval": "month",
         "amount": 1690,
@@ -85,50 +80,15 @@
         "group": "monthly"
       },
       {
-        "title": "Enterprise",
-        "description": "For large organizations and high-volume usage.",
-        "features_title": "Everything in Professional, plus",
-        "features": [
-          "25,000 image detections per month",
-          "Unlimited batch processing",
-          "Custom AI model training",
-          "Dedicated API endpoint",
-          "24/7 phone & chat support",
-          "SLA guarantee (99.9% uptime)",
-          "Integration consulting",
-          "Custom deployment options"
-        ],
-        "interval": "month",
-        "amount": 2490,
-        "currency": "USD",
-        "price": "$24.9",
-        "original_price": "$29.9",
-        "unit": "/ month",
-        "is_featured": false,
-        "tip": "For enterprise-scale detection needs!",
-        "button": {
-          "title": "Contact Sales",
-          "url": "/contact-sales",
-          "icon": "RiCustomerService2Line"
-        },
-        "product_id": "Enterprise",
-        "product_name": "AI Image Detector Enterprise Monthly",
-        "credits": 25000,
-        "valid_months": 1,
-        "group": "monthly"
-      },
-      {
         "title": "Basic",
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "12,000 image detections per year",
-          "Real-time AI analysis",
-          "95% accuracy rate",
-          "Basic reporting",
-          "Email support",
-          "Web dashboard access",
-          "File upload (JPG, PNG, GIF)"
+          "200 credits detections per month",
+          "High quality, legible content",
+          "Priority email support",
+          "Custom detection thresholds",
+          "Passes AI detectors"
         ],
         "interval": "year",
         "amount": 8280,
@@ -155,14 +115,11 @@
         "label": "Popular",
         "features_title": "Everything in Basic, plus",
         "features": [
-          "60,000 image detections per year",
-          "Batch processing up to 100 images",
-          "Advanced reporting & analytics",
-          "API access with documentation",
+          "200 credits detections per month",
+          "High quality, legible content",
           "Priority email support",
           "Custom detection thresholds",
-          "Export results to CSV/PDF",
-          "White-label option"
+          "Passes AI detectors"
         ],
         "interval": "year",
         "amount": 15480,
@@ -180,39 +137,6 @@
         "product_id": "Professional-annually",
         "product_name": "AI Image Detector Professional Annually",
         "credits": 60000,
-        "valid_months": 12,
-        "group": "yearly"
-      },
-      {
-        "title": "Enterprise",
-        "description": "For large organizations and high-volume usage.",
-        "features_title": "Everything in Professional, plus",
-        "features": [
-          "300,000 image detections per year",
-          "Unlimited batch processing",
-          "Custom AI model training",
-          "Dedicated API endpoint",
-          "24/7 phone & chat support",
-          "SLA guarantee (99.9% uptime)",
-          "Integration consulting",
-          "Custom deployment options"
-        ],
-        "interval": "year",
-        "amount": 22680,
-        "currency": "USD",
-        "price": "$18.9",
-        "original_price": "$24.9",
-        "unit": "/ month",
-        "is_featured": false,
-        "tip": "Best value for enterprises! Save 20%!",
-        "button": {
-          "title": "Contact Sales",
-          "url": "/contact-sales",
-          "icon": "RiCustomerService2Line"
-        },
-        "product_id": "Enterprise-annually",
-        "product_name": "AI Image Detector Enterprise Annually",
-        "credits": 300000,
         "valid_months": 12,
         "group": "yearly"
       }

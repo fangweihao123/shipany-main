@@ -1,7 +1,7 @@
 // AI Image Detection Types
 
 // API Provider Types
-export type DetectionProvider = 'undetectable' | 'sightengine';
+export type DetectionProvider = 'undetectableimg' | 'undetectablemp3' | 'sightengineimg' | 'sightenginemp3';
 
 // Undetectable AI Types
 export interface PreSignedUrlRequest {
@@ -11,16 +11,65 @@ export interface PreSignedUrlRequest {
 }
 
 export interface PreSignedUrlResponse {
-  success: boolean;
+  status: string;
   presigned_url: string;
-  image_url: string;
-  upload_id: string;
+  file_path: string;
 }
 
-export interface DetectionRequest {
-  image_url: string;
-  generate_preview?: boolean;
-  document_type?: string;
+export interface DetectionImgRequest {
+    key: string;
+    url: string;
+    generate_preview: boolean;
+}
+
+export interface DetectionImgResponse{
+  id: string;
+  status: string;
+}
+
+export interface DetectionAudRequest {
+  key: string;
+  url: string;
+  document_type: string;
+  analyzeUpToSeconds: number;
+}
+
+export interface DetectionAudioResponse{
+  id: string;
+  status: string;
+}
+
+export interface DetectionQueryRequest{
+  type: string;
+  id: string;
+}
+
+export interface DetectionAudioQueryResponse{
+  id: string;
+  status: string;
+  result: number;
+  result:{
+    is_valid: boolean;
+    message: string;
+    original_duration: number;
+    is_truncated: boolean;
+    truncated_duration: number;
+    mean_ai_prob: number;
+    individual_chunks_ai_prob: number[];
+  }
+}
+
+export interface DetectionImageQueryResponse{
+  id: string;
+  status: string;
+  result: number;
+  result_details:{
+    is_valid: boolean;
+    detection_step: number;
+    final_result: string;
+    confidence: number;
+  }
+  preview_url: string;
 }
 
 export interface DetectionResponse {
@@ -36,7 +85,7 @@ export interface DetectionResponse {
   processing_time: number;
 }
 
-export interface DetectionQueryResponse {
+export interface DetectionAudioQueryResponse {
   success: boolean;
   status: "pending" | "completed" | "failed";
   result?: {
@@ -108,10 +157,12 @@ export interface DetectionState {
   isLoading: boolean;
   isUploading: boolean;
   isDetecting: boolean;
-  result: UnifiedDetectionResponse | null;
+  isFinished: boolean;
+  result: any;
   error: string | null;
   uploadProgress: number;
   provider: DetectionProvider;
+  detectionId?: string;
 }
 
 export interface FileUploadState {

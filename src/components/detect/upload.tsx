@@ -11,9 +11,19 @@ interface FileUploadProps {
   onFileSelect: (file: File) => void;
   fileState: FileUploadState;
   isLoading: boolean;
+  title?: string;
+  hint?: string;
+  supportType?: string[];
 }
 
-export function FileUpload({ onFileSelect, fileState, isLoading }: FileUploadProps) {
+export function FileUpload({ 
+    onFileSelect, 
+    fileState, 
+    isLoading,
+    title = 'Upload an image',
+    hint = 'Select image',
+    supportType = ['JPG', 'PNG', 'WebP', 'HEIC', 'AVIF', 'BMP']
+  }: FileUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -59,6 +69,8 @@ export function FileUpload({ onFileSelect, fileState, isLoading }: FileUploadPro
     onFileSelect(null as any);
   }, [onFileSelect]);
 
+  const supportText = `Supports ${supportType.join(', ')}`;
+
   return (
     <Card>
       <CardContent className="p-6">
@@ -77,7 +89,7 @@ export function FileUpload({ onFileSelect, fileState, isLoading }: FileUploadPro
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept="image/*,audio/*"
             onChange={handleFileInputChange}
             className="hidden"
             disabled={isLoading}
@@ -120,20 +132,20 @@ export function FileUpload({ onFileSelect, fileState, isLoading }: FileUploadPro
               
               <div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  Upload an image
+                  {title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4">
                   Drag and drop your image here, or click to select
                 </p>
                 <p className="text-xs text-gray-500">
-                  Supports JPG, PNG, WebP, HEIC, AVIF, BMP, TIFF (max 10MB)
+                  {supportText}
                 </p>
               </div>
 
               {!isLoading && (
                 <Button variant="outline" size="sm">
                   <ImageIcon className="mr-2 h-4 w-4" />
-                  Select Image
+                  {hint}
                 </Button>
               )}
             </div>

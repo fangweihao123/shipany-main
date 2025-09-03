@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   PreSignedUrlRequest,
   PreSignedUrlResponse,
-  DetectionRequest,
+  DetectionAudRequest,
   DetectionResponse,
   UnifiedDetectionResponse,
-  ApiErrorResponse
+  ApiErrorResponse,
+  DetectionAudioResponse
 } from '@/types/detect';
 
-const API_BASE_URL = 'https://ai-image-detect.undetectable.ai';
+const API_BASE_URL = 'https://ai-audio-detect.undetectable.ai';
 const API_KEY = process.env.UNDETECTABLE_AI_API_KEY;
 
 if (!API_KEY) {
@@ -16,13 +17,11 @@ if (!API_KEY) {
 }
 
 async function getPreSignedUrl(data: PreSignedUrlRequest): Promise<PreSignedUrlResponse> {
-  const response = await fetch(`${API_BASE_URL}/get-presigned-url`, {
-    method: 'POST',
+  const response = await fetch(`${API_BASE_URL}/get-presigned-url?file_name=${data.file_name}`, {
+    method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-    },
-    body: JSON.stringify(data),
+      'apikey': `${API_KEY}`,
+    }
   });
 
   if (!response.ok) {
@@ -32,49 +31,36 @@ async function getPreSignedUrl(data: PreSignedUrlRequest): Promise<PreSignedUrlR
   return response.json();
 }
 
-async function uploadImage(presignedUrl: string, file: ArrayBuffer, contentType: string): Promise<void> {
+async function uploadAudio(presignedUrl: string, file: ArrayBuffer, contentType: string): Promise<void> {
   const response = await fetch(presignedUrl, {
     method: 'PUT',
     headers: {
-      'Content-Type': contentType,
+      'Content-Type': `${contentType}`,
+      'x-amz-acl': 'private'
     },
     body: file,
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to upload image: ${response.statusText}`);
+    throw new Error(`Failed to upload audio: ${response.statusText}`);
   }
 }
 
-async function detectImage(data: DetectionRequest): Promise<DetectionResponse> {
+async function detectAudio(data: DetectionAudRequest): Promise<DetectionAudioResponse> {
   const response = await fetch(`${API_BASE_URL}/detect`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
+      'accept': `application/json`,
     },
     body: JSON.stringify(data),
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to detect image: ${response.statusText}`);
+    throw new Error(`Failed to detect audio: ${response.statusText}`);
   }
 
   return response.json();
-}
-
-function transformUndetectableResponse(
-  undetectableResponse: DetectionResponse
-): UnifiedDetectionResponse {
-  return {
-    success: undetectableResponse.success,
-    provider: 'undetectable',
-    result: undetectableResponse.result,
-    upload_id: undetectableResponse.upload_id,
-    image_url: undetectableResponse.image_url,
-    preview_url: undetectableResponse.preview_url,
-    processing_time: undetectableResponse.processing_time,
-  };
 }
 
 export async function POST(request: NextRequest) {
@@ -109,7 +95,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file type
-    const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/avif', 'image/bmp', 'image/tiff'];
+    const supportedTypes = [
+      // MP3
+      'audio/mpeg', 'audio/mp3',
+      // WAV
+      'audio/wav', 'audio/x-wav', 'audio/x-pn-wav',
+      // M4A / AAC
+      'audio/mp4', 'audio/x-m4a', 'audio/aac',
+      // FLAC
+      'audio/flac', 'audio/x-flac',
+      // OGG
+      'audio/ogg', 'application/ogg',
+    ];
     if (!supportedTypes.includes(file.type)) {
       return NextResponse.json(
         {
@@ -148,27 +145,27 @@ export async function POST(request: NextRequest) {
 
     const presignedResponse = await getPreSignedUrl(presignedData);
 
-    if (!presignedResponse.success) {
+    if (presignedResponse.status !== "success") {
       throw new Error('Failed to get presigned URL');
     }
 
-    // Step 2: Upload image
+    // Step 2: Upload image 
     const fileBuffer = await file.arrayBuffer();
-    await uploadImage(presignedResponse.presigned_url, fileBuffer, file.type);
+    await uploadAudio(presignedResponse.presigned_url, fileBuffer, file.type);
 
     // Step 3: Detect image
-    const detectionData: DetectionRequest = {
-      image_url: presignedResponse.image_url,
-      generate_preview: true,
-      document_type: 'image',
+    const detectURL = `https://ai-audio-detector-prod.nyc3.digitaloceanspaces.com/${presignedResponse.file_path}`;
+
+    const detectionData: DetectionAudRequest = {
+      key: API_KEY,
+      url: presignedResponse.file_path,
+      document_type: 'Audio',
+      analyzeUpToSeconds: 60
     };
 
-    const detectionResponse = await detectImage(detectionData);
+    const detectionResponse = await detectAudio(detectionData);
     
-    // Transform response to unified format
-    const unifiedResponse = transformUndetectableResponse(detectionResponse);
-
-    return NextResponse.json(unifiedResponse);
+    return NextResponse.json(detectionResponse);
 
   } catch (error) {
     console.error('Detection API error:', error);

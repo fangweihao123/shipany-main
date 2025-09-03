@@ -64,27 +64,7 @@ export default function Feature3({ section }: { section: SectionType }) {
                 );
               })}
             </TabsList>
-            <div className="mt-8 hidden rounded-xl lg:block">
-              {section.items?.map((item, index) => {
-                if (!item.image) return null;
-
-                return (
-                  <TabsContent
-                    key={index}
-                    value={`tab-${index + 1}`}
-                    className="aspect-video"
-                  >
-                    {item.image && (
-                      <img
-                        src={item.image.src}
-                        alt={item.image.alt || item.title}
-                        className="h-full w-full rounded-xl border object-cover shadow-sm"
-                      />
-                    )}
-                  </TabsContent>
-                );
-              })}
-            </div>
+            
           </Tabs>
         </div>
       </div>

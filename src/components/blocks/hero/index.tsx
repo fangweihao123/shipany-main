@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import HappyUsers from "./happy-users";
@@ -5,8 +6,10 @@ import HeroBg from "./bg";
 import { Hero as HeroType } from "@/types/blocks/hero";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
+import DetectionTabs from "./detectiontabs"; 
 
 export default function Hero({ hero }: { hero: HeroType }) {
+
   if (hero.disabled) {
     return null;
   }
@@ -85,6 +88,9 @@ export default function Hero({ hero }: { hero: HeroType }) {
                 })}
               </div>
             )}
+            <div className="mt-12">
+              <DetectionTabs/>
+            </div>
             {hero.tip && (
               <p className="mt-8 text-md text-muted-foreground">{hero.tip}</p>
             )}

@@ -110,7 +110,7 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
             <div className="flex h-12 mb-12 items-center rounded-md bg-muted p-1 text-lg">
               <RadioGroup
                 value={group}
-                className={`h-full grid-cols-${pricing.groups.length}`}
+                className={`h-full grid ${pricing.groups.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}
                 onValueChange={(value) => {
                   setGroup(value);
                 }}
@@ -159,6 +159,7 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
               }
 
               return (
+                
                 <div
                   key={index}
                   className={`rounded-lg p-6 ${
@@ -283,6 +284,33 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
                 </div>
               );
             })}
+          </div>
+          
+          {/* User Notice Section */}
+          <div className="mt-16 flex justify-center">
+            <div className="max-w-3xl mx-auto border-2 border-primary/20 bg-primary/5 rounded-xl p-6">
+              <div className="text-center space-y-3">
+                <p className="text-foreground text-base leading-relaxed">
+                  {locale === "zh" ? (
+                    <>
+                      💡 <strong className="text-primary">积分消费说明：</strong>每检测一张图片或一个音频文件消耗 1 个积分。
+                      <br />
+                      🔄 <strong className="text-primary">取消政策：</strong>随时可以取消订阅，无任何违约金。
+                      <br />
+                      🎁 <strong className="text-primary">新用户福利：</strong>注册即送 3 个免费积分体验服务。
+                    </>
+                  ) : (
+                    <>
+                      💡 <strong className="text-primary">Credits Usage:</strong> Each image or audio detection consumes 1 credit.
+                      <br />
+                      🔄 <strong className="text-primary">Cancellation:</strong> Cancel anytime without any penalties or fees.
+                      <br />
+                      🎁 <strong className="text-primary">New User Bonus:</strong> Get 3 free credits upon registration to try our service.
+                    </>
+                  )}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

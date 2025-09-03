@@ -1,12 +1,17 @@
 {
   "template": "shipany-template-one",
   "theme": "light",
+  "meta": {
+    "title": "AI检测器 - 秒级识别AI生成内容 | detect-ai.me",
+    "description": "专业AI检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI检测器，立即试用。",
+    "keywords": "AI检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
+  },
   "header": {
     "brand": {
-      "title": "ShipAny",
+      "title": "AI检测器",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "ShipAny"
+        "alt": "AI检测器"
       },
       "url": "/"
     },
@@ -18,14 +23,14 @@
           "icon": "RiSparkling2Line"
         },
         {
-          "title": "定价",
+          "title": "定价方案",
           "url": "/pricing",
           "icon": "RiMoneyDollarCircleLine"
         },
         {
-          "title": "案例展示",
-          "url": "/showcase",
-          "icon": "RiApps2Line"
+          "title": "使用方法",
+          "url": "/#usage",
+          "icon": "RiSearchLine"
         },
         {
           "title": "博客",
@@ -33,19 +38,19 @@
           "icon": "RiArticleLine"
         },
         {
-          "title": "文档",
+          "title": "API文档",
           "url": "/docs",
-          "icon": "RiBookOpenLine"
+          "icon": "RiCodeLine"
         }
       ]
     },
     "buttons": [
       {
-        "title": "获取 ShipAny",
-        "url": "https://shipany.ai",
-        "target": "_blank",
+        "title": "立即试用",
+        "url": "/detect",
+        "target": "_self",
         "variant": "link",
-        "icon": "RiArrowRightUpLine"
+        "icon": "RiScanLine"
       }
     ],
     "show_sign": true,
@@ -53,337 +58,201 @@
     "show_locale": true
   },
   "hero": {
-    "title": "几小时内快速构建 AI 创业项目，而不是几天",
-    "highlight_text": "快速构建",
-    "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板。<br/>通过丰富的模板和组件快速启动。",
+    "title": "秒级检测AI生成内容",
+    "highlight_text": "AI生成内容",
+    "description": "先进的AI检测器技术，识别人工智能内容并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
     "announcement": {
-      "label": "2025",
-      "title": "🎉 新年快乐",
-      "url": "/pricing"
+      "label": "测试版",
+      "title": "🤖 AI检测器现已全球服务",
+      "url": "/#feature"
     },
-    "tip": "🎁 2025年前五折优惠",
-    "buttons": [
-      {
-        "title": "立即开始",
-        "icon": "RiFlashlightFill",
-        "url": "/pricing",
-        "target": "_self",
-        "variant": "default"
-      },
-      {
-        "title": "阅读文档",
-        "icon": "RiBookOpenLine",
-        "url": "https://docs.shipany.ai",
-        "target": "_blank",
-        "variant": "outline"
-      }
-    ],
+    "tip": "🔒 您的内容绝不会被存储",
     "show_happy_users": true,
     "show_badge": false
   },
-  "branding": {
-    "title": "ShipAny 建立在巨人的肩膀上",
-    "items": [
-      {
-        "title": "Next.js",
-        "image": {
-          "src": "/imgs/logos/nextjs.svg",
-          "alt": "Next.js"
-        }
-      },
-      {
-        "title": "React",
-        "image": {
-          "src": "/imgs/logos/react.svg",
-          "alt": "React"
-        }
-      },
-      {
-        "title": "TailwindCSS",
-        "image": {
-          "src": "/imgs/logos/tailwindcss.svg",
-          "alt": "TailwindCSS"
-        }
-      },
-      {
-        "title": "Shadcn/UI",
-        "image": {
-          "src": "/imgs/logos/shadcn.svg",
-          "alt": "Shadcn/UI"
-        }
-      },
-      {
-        "title": "Vercel",
-        "image": {
-          "src": "/imgs/logos/vercel.svg",
-          "alt": "Vercel"
-        }
-      }
-    ]
-  },
   "introduce": {
     "name": "introduce",
-    "title": "什么是 ShipAny",
-    "label": "介绍",
-    "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板，内置多种模板和组件。",
+    "title": "什么是AI检测器",
+    "label": "产品介绍",
+    "description": "AI检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
     "image": {
-      "src": "/imgs/features/1.png"
+      "src": "/imgs/features/detector.png",
+      "alt": "男子在电脑屏幕上检查内容是否为AI生成的插图"
     },
     "items": [
       {
-        "title": "即用型模板",
-        "description": "从数十个生产就绪的 AI SaaS 模板中选择，快速启动您的项目。",
-        "icon": "RiNextjsFill"
+        "title": "即时检测",
+        "description": "上传任何内容，通过实时AI分析技术在几秒内获得结果。",
+        "icon": "RiFlashlightLine"
       },
       {
-        "title": "基础设施配置",
-        "description": "立即获取内置最佳实践的可扩展基础设施。",
-        "icon": "RiDatabase2Line"
+        "title": "先进算法",
+        "description": "使用在数百万样本上训练的最先进机器学习模型进行精确检测。",
+        "icon": "RiBrainLine"
       },
       {
-        "title": "快速部署",
-        "description": "在几小时内将您的 AI SaaS 应用部署到生产环境，而不是几天。",
-        "icon": "RiCloudyFill"
+        "title": "隐私优先",
+        "description": "您上传的内容经过安全处理，绝不会存储在我们的服务器上。",
+        "icon": "RiShieldCheckLine"
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么选择 ShipAny",
+    "title": "为什么选择AI检测器",
     "label": "优势",
-    "description": "获取启动 AI 创业所需的一切 - 从即用型模板到技术支持。",
+    "description": "使用我们行业领先的AI检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
     "items": [
       {
-        "title": "完整框架",
-        "description": "基于 Next.js 构建，集成身份验证、支付和 AI 功能 - 一切开箱即用。",
-        "icon": "RiNextjsFill",
+        "title": "打击虚假新闻",
+        "description": "识别用于虚假信息传播活动的AI生成图片，防范假新闻宣传。",
+        "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/2.png"
+          "src": "/imgs/features/fake-news.png",
+          "alt": "显示通过网站和扬声器图标打击虚假新闻的插图"
         }
       },
       {
-        "title": "丰富的模板库",
-        "description": "选择各种 AI SaaS 模板来启动您的项目 - 聊天机器人、图像生成等。",
-        "icon": "RiClapperboardAiLine",
+        "title": "防范艺术盗用",
+        "description": "检测未经授权的AI复制原创艺术作品，保护知识产权权利。",
+        "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/3.png"
+          "src": "/imgs/features/art-protection.png",
+          "alt": "防范艺术盗用的简约图形，带有框架艺术品和小偷图标"
         }
       },
       {
-        "title": "技术指导",
-        "description": "获得专门支持并加入我们的开发者社区，确保您成功启动。",
-        "icon": "RiCodeFill",
+        "title": "阻止身份欺诈",
+        "description": "识别深度伪造头像和AI生成的身份文件，防范欺诈和诈骗。",
+        "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/4.png"
+          "src": "/imgs/features/identity-protection.png",
+          "alt": "阻止身份欺诈的简单插图，带有身份证和蒙面人物图标"
         }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "如何使用 ShipAny 启动项目",
-    "description": "通过三个简单步骤启动您的 AI SaaS 创业项目：",
+    "title": "如何使用AI检测器",
+    "description": "通过三个简单步骤识别AI生成内容：",
     "image": {
-      "src": "/imgs/features/1.png"
+      "src": "/imgs/features/detection-process.png",
+      "alt": "AI检测器处理流程工作图"
     },
     "image_position": "left",
     "text_align": "center",
     "items": [
       {
-        "title": "获取 ShipAny",
-        "description": "一次性付款购买 ShipAny。查收邮件获取代码和文档。",
+        "title": "上传您的内容",
+        "description": "拖放任何文件或粘贴URL。支持图片、文本和其他常见格式。",
         "image": {
-          "src": "/imgs/features/5.png"
+          "src": "/imgs/features/upload.png",
+          "alt": "AI检测器内容分析上传界面"
         }
       },
       {
-        "title": "开始您的项目",
-        "description": "阅读文档并克隆 ShipAny 代码。开始构建您的 AI SaaS 创业项目。",
+        "title": "AI分析",
+        "description": "我们的先进算法在几秒内分析内容中AI生成的明显特征。",
         "image": {
-          "src": "/imgs/features/6.png"
+          "src": "/imgs/features/analyze.png",
+          "alt": "显示检测过程的AI检测器分析仪表板"
         }
       },
       {
-        "title": "定制您的项目",
-        "description": "使用您的数据和内容修改模板。满足特定的 AI 功能需求。",
+        "title": "获取结果",
+        "description": "收到置信度评分和详细分析，说明内容被标记为AI或人类创作的原因。",
         "image": {
-          "src": "/imgs/features/7.png"
-        }
-      },
-      {
-        "title": "部署到生产环境",
-        "description": "通过几个步骤将项目部署到生产环境，立即开始服务客户。",
-        "image": {
-          "src": "/imgs/features/8.png"
+          "src": "/imgs/features/results.png",
+          "alt": "带有置信度评分和分析的AI检测器结果屏幕"
         }
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "ShipAny 核心功能",
-    "description": "快速高效启动 AI SaaS 创业所需的一切。",
+    "title": "AI检测器核心功能",
+    "description": "精准快速识别AI生成内容的先进技术。",
     "items": [
       {
-        "title": "Next.js 模板",
-        "description": "生产就绪的 Next.js 模板，支持 SEO 友好结构和国际化。",
-        "icon": "RiNextjsFill"
+        "title": "实时检测",
+        "description": "通过闪电般快速的分析在几秒内处理内容并获得即时结果。",
+        "icon": "RiFlashlightLine"
       },
       {
-        "title": "身份验证和支付",
-        "description": "集成 Google OAuth、一键登录和 Stripe 支付处理。",
-        "icon": "RiKey2Fill"
+        "title": "高准确率",
+        "description": "行业领先的检测准确率，基于数百万AI和人类生成内容训练。",
+        "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "数据基础设施",
-        "description": "内置 Supabase 集成，提供可靠和可扩展的数据存储。",
-        "icon": "RiDatabase2Line"
+        "title": "多种上传方式",
+        "description": "支持拖放、文件上传、URL输入和剪贴板粘贴，最大便利性。",
+        "icon": "RiUploadLine"
       },
       {
-        "title": "一键部署",
-        "description": "无缝部署到 Vercel 或 Cloudflare，自动化设置。",
-        "icon": "RiCloudy2Fill"
+        "title": "批量处理",
+        "description": "同时分析多个文件，提高工作流效率，节省时间。",
+        "icon": "RiStackLine"
       },
       {
-        "title": "业务分析",
-        "description": "集成 Google Analytics 和 Search Console 追踪增长。",
-        "icon": "RiBarChart2Line"
+        "title": "详细报告",
+        "description": "全面的分析报告，包含置信度评分和检测推理。",
+        "icon": "RiFileTextLine"
       },
       {
-        "title": "AI 就绪基础设施",
-        "description": "预配置 AI 集成，内置积分系统和 API 销售。",
-        "icon": "RiRobot2Line"
-      }
-    ]
-  },
-  "stats": {
-    "name": "stats",
-    "label": "统计",
-    "title": "用户喜爱 ShipAny",
-    "description": "因为它易于使用且快速发布。",
-    "icon": "FaRegHeart",
-    "items": [
-      {
-        "title": "信任",
-        "label": "99+",
-        "description": "客户"
-      },
-      {
-        "title": "内置",
-        "label": "20+",
-        "description": "组件"
-      },
-      {
-        "title": "快速发布",
-        "label": "5",
-        "description": "分钟"
-      }
-    ]
-  },
-  "testimonial": {
-    "name": "testimonial",
-    "label": "用户评价",
-    "title": "用户如何评价 ShipAny",
-    "description": "听听使用 ShipAny 启动 AI 创业项目的开发者和创始人怎么说。",
-    "icon": "GoThumbsup",
-    "items": [
-      {
-        "title": "陈大卫",
-        "label": "AIWallpaper.shop 创始人",
-        "description": "ShipAny 为我们节省了数月的开发时间。我们仅用 2 天就启动了 AI 壁纸业务，一周内就获得了第一个付费客户！",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "金瑞秋",
-        "label": "HeyBeauty.ai 技术总监",
-        "description": "预构建的 AI 基础设施是一个游戏规则改变者。我们无需担心架构 - 只需专注于 AI 美容技术并快速上线。",
-        "image": {
-          "src": "/imgs/users/2.png"
-        }
-      },
-      {
-        "title": "马库斯",
-        "label": "独立开发者",
-        "description": "作为独立开发者，ShipAny 给了我所需的一切 - 身份验证、支付、AI 集成和漂亮的 UI。一个周末就启动了我的 SaaS！",
-        "image": {
-          "src": "/imgs/users/3.png"
-        }
-      },
-      {
-        "title": "索菲亚",
-        "label": "Melodisco CEO",
-        "description": "这些模板可直接用于生产且高度可定制。我们用几小时而不是几个月就建立了 AI 音乐平台。上市时间令人难以置信！",
-        "image": {
-          "src": "/imgs/users/4.png"
-        }
-      },
-      {
-        "title": "詹姆斯",
-        "label": "GPTs.works 技术主管",
-        "description": "ShipAny 的基础设施非常稳固。我们从 0 扩展到 1 万用户都没碰后端。这是我们 AI 创业最好的投资。",
-        "image": {
-          "src": "/imgs/users/5.png"
-        }
-      },
-      {
-        "title": "张安娜",
-        "label": "创业者",
-        "description": "从想法到上线只用了 3 天！ShipAny 的模板和部署工具让我们能够以令人难以置信的速度测试 AI 业务概念。",
-        "image": {
-          "src": "/imgs/users/6.png"
-        }
+        "title": "API集成",
+        "description": "RESTful API无缝集成到您现有的应用程序和工作流程中。",
+        "icon": "RiCodeLine"
       }
     ]
   },
   "faq": {
     "name": "faq",
     "label": "常见问题",
-    "title": "关于 ShipAny 的常见问题",
-    "description": "还有其他问题？通过 Discord 或电子邮件联系我们。",
+    "title": "AI检测器常见问题解答",
+    "description": "还有其他问题？请通过邮件联系我们或查看我们的文档。",
     "items": [
       {
-        "title": "ShipAny 究竟是什么，它是如何工作的？",
-        "description": "ShipAny 是一个专门为构建 AI SaaS 创业项目设计的综合性 NextJS 模板。它提供即用型模板、基础设施设置和部署工具，帮助您在几小时内而不是几天内启动 AI 业务。"
+        "title": "AI检测器的准确率如何？",
+        "description": "我们的AI检测器在识别AI生成内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
       },
       {
-        "title": "使用 ShipAny 需要高级技术技能吗？",
-        "description": "虽然基本的编程知识会有帮助，但 ShipAny 设计得非常开发者友好。我们的模板和文档使您即使不是 AI 或云基础设施专家也能轻松入门。"
+        "title": "可以检测哪些类型的AI生成内容？",
+        "description": "我们可以检测由流行AI工具创建的内容，包括DALL-E、Midjourney、Stable Diffusion、ChatGPT等。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
       },
       {
-        "title": "我可以用 ShipAny 构建什么类型的 AI SaaS？",
-        "description": "ShipAny 支持广泛的 AI 应用，从内容生成到数据分析工具。我们的模板涵盖流行用例，如 AI 聊天机器人、内容生成器、图像处理应用等。"
+        "title": "我的上传数据会被存储或共享吗？",
+        "description": "不会，我们优先保护您的隐私。上传的内容经过实时处理后立即删除。我们绝不会存储、共享或将您的内容用于任何其他目的。"
       },
       {
-        "title": "使用 ShipAny 通常需要多长时间才能启动？",
-        "description": "使用 ShipAny，您可以在几小时内完成工作原型，并在几小时内完成生产就绪的应用。我们的一键部署和预配置基础设施显著缩短了传统的数月开发周期。"
+        "title": "支持哪些文件格式和大小？",
+        "description": "我们支持JPG、PNG、GIF和WebP格式，文件大小最大8MB，分辨率不超过10,000x10,000像素。截图可能会降低检测准确性。"
       },
       {
-        "title": "ShipAny 的基础设施包括什么？",
-        "description": "ShipAny 提供完整的基础设施栈，包括身份验证、数据库设置、API 集成、支付处理和可扩展的云部署。一切都按照行业最佳实践预先配置。"
+        "title": "可以将此功能集成到我的应用程序中吗？",
+        "description": "可以！我们提供RESTful API，允许您将AI检测器集成到应用程序、网站或工作流程中。查看我们的API文档了解实施详情。"
       },
       {
-        "title": "我可以自定义模板以匹配我的品牌吗？",
-        "description": "当然可以！所有 ShipAny 模板都完全可定制。您可以修改设计、功能和功能性以匹配您的品牌标识和特定业务需求，同时保持强大的底层基础设施。"
+        "title": "如果结果不正确怎么办？",
+        "description": "虽然我们的系统非常准确，但没有检测方法是100%完美的。我们目前处于测试版阶段，正在持续改进。您可以报告不正确的结果帮助我们增强算法。"
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "启动您的第一个 AI SaaS 创业项目",
-    "description": "从这里开始，使用 ShipAny 启动。",
+    "title": "立即开始使用AI检测器",
+    "description": "保护您免受AI生成内容欺诈和虚假信息的侵害。",
     "buttons": [
       {
-        "title": "获取 ShipAny",
-        "url": "https://shipany.ai",
-        "target": "_blank",
-        "icon": "GoArrowUpRight"
+        "title": "试用检测器",
+        "url": "/detect",
+        "target": "_self",
+        "icon": "RiScanLine"
       },
       {
-        "title": "阅读文档",
-        "url": "https://docs.shipany.ai",
-        "target": "_blank",
+        "title": "查看API文档",
+        "url": "/api-docs",
+        "target": "_self",
         "variant": "outline"
       }
     ]
@@ -391,19 +260,19 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "ShipAny",
-      "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板。通过丰富的模板和组件快速启动。",
+      "title": "AI检测器",
+      "description": "先进的AI检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "ShipAny"
+        "alt": "AI检测器"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • ShipAny 保留所有权利。",
+    "copyright": "© 2025 • AI检测器 版权所有。",
     "nav": {
       "items": [
         {
-          "title": "关于",
+          "title": "产品",
           "children": [
             {
               "title": "功能特点",
@@ -411,13 +280,13 @@
               "target": "_self"
             },
             {
-              "title": "案例展示",
-              "url": "/#showcase",
+              "title": "使用方法",
+              "url": "/#usage",
               "target": "_self"
             },
             {
-              "title": "定价",
-              "url": "/#pricing",
+              "title": "定价方案",
+              "url": "/pricing",
               "target": "_self"
             }
           ]
@@ -426,39 +295,39 @@
           "title": "资源",
           "children": [
             {
-              "title": "文档",
-              "url": "https://docs.shipany.ai",
-              "target": "_blank"
+              "title": "API文档",
+              "url": "/api-docs",
+              "target": "_self"
             },
             {
-              "title": "组件",
-              "url": "https://shipany.ai/components",
-              "target": "_blank"
+              "title": "检测指南",
+              "url": "/guide",
+              "target": "_self"
             },
             {
-              "title": "模板",
-              "url": "https://shipany.ai/templates",
-              "target": "_blank"
+              "title": "博客",
+              "url": "/posts",
+              "target": "_self"
             }
           ]
         },
         {
-          "title": "友情链接",
+          "title": "应用场景",
           "children": [
             {
-              "title": "ThinkAny",
-              "url": "https://thinkany.ai",
-              "target": "_blank"
+              "title": "安全团队",
+              "url": "/security",
+              "target": "_self"
             },
             {
-              "title": "HeyBeauty",
-              "url": "https://heybeauty.ai",
-              "target": "_blank"
+              "title": "新闻记者",
+              "url": "/journalism",
+              "target": "_self"
             },
             {
-              "title": "Pagen",
-              "url": "https://pagen.so",
-              "target": "_blank"
+              "title": "法律专业人士",
+              "url": "/legal",
+              "target": "_self"
             }
           ]
         }
@@ -469,25 +338,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/shipanyai",
+          "url": "https://x.com/aidetectorai",
           "target": "_blank"
         },
         {
           "title": "Github",
           "icon": "RiGithubFill",
-          "url": "https://github.com/shipanyai",
+          "url": "https://github.com/aidetector",
           "target": "_blank"
         },
         {
-          "title": "Discord",
-          "icon": "RiDiscordFill",
-          "url": "https://discord.gg/HQNnrzjZQS",
+          "title": "LinkedIn",
+          "icon": "RiLinkedinFill",
+          "url": "https://linkedin.com/company/aidetector",
           "target": "_blank"
         },
         {
           "title": "邮箱",
           "icon": "RiMailLine",
-          "url": "mailto:support@shipany.codes",
+          "url": "mailto:support@detect-ai.me",
           "target": "_self"
         }
       ]

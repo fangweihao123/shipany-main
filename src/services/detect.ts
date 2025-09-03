@@ -1,12 +1,13 @@
 import {
-  DetectionResponse,
-  UnifiedDetectionResponse,
   ApiErrorResponse,
-  UserCreditsResponse,
   ImageDetectionConfig,
-  SupportedImageFormat,
-  DetectionProvider
+  DetectionImgResponse,
+  DetectionProvider,
+  DetectionAudioResponse,
+  DetectionQueryRequest
 } from '@/types/detect';
+import { stat } from 'fs';
+import { resolve } from 'path';
 
 export const DETECTION_CONFIG: ImageDetectionConfig = {
   maxFileSize: 10 * 1024 * 1024, // 10MB
@@ -16,19 +17,33 @@ export const DETECTION_CONFIG: ImageDetectionConfig = {
 };
 
 export const PROVIDER_CONFIGS = {
-  undetectable: {
-    name: 'Undetectable AI',
+  undetectableimg: {
+    name: 'Undetectable AI Img',
     description: 'Advanced AI detection with high accuracy',
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/detect',
+    endpoint: '/api/detect/undetectable/img',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
   },
-  sightengine: {
-    name: 'Sightengine',
+  undetectablemp3: {
+    name: 'Undetectable AI Mp3',
+    description: 'Advanced AI detection with high accuracy',
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/detect/undetectable/mp3',
+    supportedFormats: ['mp3', 'wav','m4a','flac','ogg'] as const,
+  },
+  sightengineimg: {
+    name: 'Sightengine Img',
     description: 'Fast and reliable AI content detection',
     maxFileSize: 50 * 1024 * 1024, // 50MB
     endpoint: '/api/detect/sightengine',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'tiff'] as const,
+  },
+  sightenginemp3: {
+    name: 'Sightengine mp3',
+    description: 'Fast and reliable AI content detection',
+    maxFileSize: 50 * 1024 * 1024, // 50MB
+    endpoint: '/api/detect/sightengine/mp3',
+    supportedFormats: ['mp3', 'wav'] as const,
   },
 } as const;
 
@@ -46,10 +61,11 @@ export class DetectionError extends Error {
 // Get default provider from environment or fallback to sightengine
 export function getDefaultProvider(): DetectionProvider {
   const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as DetectionProvider;
-  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'sightengine';
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'undetectableimg';
 }
 
-export async function detectImage(file: File, provider?: DetectionProvider): Promise<UnifiedDetectionResponse> {
+//调用放在client
+export async function detectMusic(file: File, provider?: DetectionProvider): Promise<DetectionAudioResponse> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   // Validate file with provider-specific limits
@@ -70,7 +86,7 @@ export async function detectImage(file: File, provider?: DetectionProvider): Pro
 
     const data = await response.json();
 
-    if (!response.ok || !data.success) {
+    if (!response.ok) {
       const errorData = data as ApiErrorResponse;
       throw new DetectionError(
         errorData.error.message,
@@ -79,7 +95,86 @@ export async function detectImage(file: File, provider?: DetectionProvider): Pro
       );
     }
 
-    return data as UnifiedDetectionResponse;
+    return data as DetectionAudioResponse;
+  } catch (error) {
+    if (error instanceof DetectionError) {
+      throw error;
+    }
+    
+    throw new DetectionError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+export async function queryDetectionStatus(request:DetectionQueryRequest):Promise<any>{
+  const response = await fetch('/api/detect/undetectable/query',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({request}),
+  });
+
+  if(!response.ok){
+    throw new Error(`Query failed: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  return result;
+}
+
+export async function pollDetectionResult(request:DetectionQueryRequest): Promise<any>{
+  const maxAttempts = 30;
+  const interval = 2000;
+
+  for(let attempt = 0; attempt < maxAttempts; attempt++){
+    const status = await queryDetectionStatus(request);
+    if(status.status === 'done'){
+      return status;
+    }
+    if(status.status === 'error'){
+      throw new Error('Detection failed');
+    }
+    await new Promise(resolve => setTimeout(resolve, interval));
+  }
+
+  throw new Error('Detection timeout');
+}
+
+export async function detectImage(file: File, provider?: DetectionProvider): Promise<DetectionImgResponse> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  // Validate file with provider-specific limits
+  const validation = validateFile(file, selectedProvider);
+  if (!validation.isValid) {
+    throw new DetectionError(validation.error || 'Invalid file', 400);
+  }
+
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new DetectionError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data as DetectionImgResponse;
   } catch (error) {
     if (error instanceof DetectionError) {
       throw error;

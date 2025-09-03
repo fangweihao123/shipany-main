@@ -14,17 +14,18 @@ import {
   AlertTriangle,
   Info
 } from 'lucide-react';
-import { UnifiedDetectionResponse } from '@/types/detect';
+import { DetectionImageQueryResponse } from '@/types/detect';
 import { getConfidenceColor, getConfidenceDescription } from '@/services/detect';
 
 interface DetectionResultProps {
-  result: UnifiedDetectionResponse;
+  result: DetectionImageQueryResponse;
   imagePreview: string | null;
   onReset: () => void;
 }
 
-export function DetectionResult({ result, imagePreview, onReset }: DetectionResultProps) {
-  const { prediction, confidence, confidence_percentage } = result.result;
+export function DetectionImageResult({ result, imagePreview, onReset }: DetectionResultProps) {
+  const confidence: number = result.result;
+  const prediction: string = result.result_details.final_result;
   const isAIGenerated = prediction === "AI Generated";
   
   const confidenceColor = getConfidenceColor(confidence);
@@ -34,7 +35,7 @@ export function DetectionResult({ result, imagePreview, onReset }: DetectionResu
     if (isAIGenerated) {
       return confidence >= 70 ? 'text-red-600' : 'text-orange-600';
     } else {
-      return confidence >= 70 ? 'text-green-600' : 'text-yellow-600';
+      return confidence >= 70 ? 'text-yellow-600' : 'text-green-600' ;
     }
   };
 
@@ -71,9 +72,6 @@ export function DetectionResult({ result, imagePreview, onReset }: DetectionResu
               <span className="text-sm font-medium text-gray-700">
                 Confidence Level
               </span>
-              <Badge variant={confidence >= 70 ? "default" : "secondary"}>
-                {confidence_percentage}
-              </Badge>
             </div>
             <Progress 
               value={confidence} 
@@ -97,47 +95,6 @@ export function DetectionResult({ result, imagePreview, onReset }: DetectionResu
               />
             </div>
           )}
-
-          {/* Result Details */}
-          <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-            <h4 className="font-medium text-gray-900 flex items-center">
-              <Shield className="w-4 h-4 mr-2" />
-              Analysis Details
-            </h4>
-            
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-gray-600">Processing Time:</span>
-                <div className="font-medium flex items-center">
-                  <Clock className="w-3 h-3 mr-1" />
-                  {result.processing_time ? `${Math.round(result.processing_time)}s` : 'N/A'}
-                </div>
-              </div>
-              
-              <div>
-                <span className="text-gray-600">Provider:</span>
-                <div className="font-medium capitalize">
-                  {result.provider === 'sightengine' ? 'Sightengine' : 'Undetectable AI'}
-                </div>
-              </div>
-              
-              <div className="col-span-2">
-                <span className="text-gray-600">Request ID:</span>
-                <div className="font-mono text-xs truncate">
-                  {result.upload_id || result.request_id || 'N/A'}
-                </div>
-              </div>
-              
-              {result.result.raw_score !== undefined && (
-                <div className="col-span-2">
-                  <span className="text-gray-600">Raw Score:</span>
-                  <div className="font-medium">
-                    {result.result.raw_score.toFixed(3)} (Sightengine scale)
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* Interpretation Guide */}
           <Alert>

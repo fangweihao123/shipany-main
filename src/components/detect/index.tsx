@@ -20,7 +20,7 @@ import {
   getConfidenceDescription,
   getDefaultProvider
 } from '@/services/detect';
-import { DetectionResult } from './result';
+import { DetectionResult } from './detimgresult';
 import { FileUpload } from './upload';
 
 export default function Detect() {
@@ -35,6 +35,7 @@ export default function Detect() {
     isLoading: false,
     isUploading: false,
     isDetecting: false,
+    isFinished: false,
     result: null,
     error: null,
     uploadProgress: 0,
