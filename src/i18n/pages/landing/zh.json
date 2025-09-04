@@ -36,22 +36,10 @@
           "title": "博客",
           "url": "/posts",
           "icon": "RiArticleLine"
-        },
-        {
-          "title": "API文档",
-          "url": "/docs",
-          "icon": "RiCodeLine"
         }
       ]
     },
     "buttons": [
-      {
-        "title": "立即试用",
-        "url": "/detect",
-        "target": "_self",
-        "variant": "link",
-        "icon": "RiScanLine"
-      }
     ],
     "show_sign": true,
     "show_theme": true,
@@ -190,19 +178,9 @@
         "icon": "RiUploadLine"
       },
       {
-        "title": "批量处理",
-        "description": "同时分析多个文件，提高工作流效率，节省时间。",
-        "icon": "RiStackLine"
-      },
-      {
         "title": "详细报告",
         "description": "全面的分析报告，包含置信度评分和检测推理。",
         "icon": "RiFileTextLine"
-      },
-      {
-        "title": "API集成",
-        "description": "RESTful API无缝集成到您现有的应用程序和工作流程中。",
-        "icon": "RiCodeLine"
       }
     ]
   },
@@ -214,23 +192,15 @@
     "items": [
       {
         "title": "AI检测器的准确率如何？",
-        "description": "我们的AI检测器在识别AI生成内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
+        "description": "我们的AI检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
       },
       {
         "title": "可以检测哪些类型的AI生成内容？",
-        "description": "我们可以检测由流行AI工具创建的内容，包括DALL-E、Midjourney、Stable Diffusion、ChatGPT等。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
+        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
       },
       {
-        "title": "我的上传数据会被存储或共享吗？",
-        "description": "不会，我们优先保护您的隐私。上传的内容经过实时处理后立即删除。我们绝不会存储、共享或将您的内容用于任何其他目的。"
-      },
-      {
-        "title": "支持哪些文件格式和大小？",
-        "description": "我们支持JPG、PNG、GIF和WebP格式，文件大小最大8MB，分辨率不超过10,000x10,000像素。截图可能会降低检测准确性。"
-      },
-      {
-        "title": "可以将此功能集成到我的应用程序中吗？",
-        "description": "可以！我们提供RESTful API，允许您将AI检测器集成到应用程序、网站或工作流程中。查看我们的API文档了解实施详情。"
+        "title": "我的上传内容数据会被存储或共享吗？",
+        "description": "不会，我们优先保护您的隐私。上传的图片和音频文件经过实时处理后立即删除。我们绝不会存储、共享或将您的内容用于任何其他目的。"
       },
       {
         "title": "如果结果不正确怎么办？",
@@ -248,12 +218,6 @@
         "url": "/detect",
         "target": "_self",
         "icon": "RiScanLine"
-      },
-      {
-        "title": "查看API文档",
-        "url": "/api-docs",
-        "target": "_self",
-        "variant": "outline"
       }
     ]
   },
@@ -336,28 +300,11 @@
     "social": {
       "items": [
         {
-          "title": "X",
-          "icon": "RiTwitterXFill",
-          "url": "https://x.com/aidetectorai",
-          "target": "_blank"
-        },
-        {
-          "title": "Github",
-          "icon": "RiGithubFill",
-          "url": "https://github.com/aidetector",
-          "target": "_blank"
-        },
-        {
-          "title": "LinkedIn",
-          "icon": "RiLinkedinFill",
-          "url": "https://linkedin.com/company/aidetector",
-          "target": "_blank"
-        },
-        {
           "title": "邮箱",
           "icon": "RiMailLine",
           "url": "mailto:support@detect-ai.me",
-          "target": "_self"
+          "target": "_self",
+          "description": "support@detect-ai.me"
         }
       ]
     },

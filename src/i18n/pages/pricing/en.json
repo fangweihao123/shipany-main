@@ -103,7 +103,7 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic-annually",
+        "product_id": "basicannually",
         "product_name": "AI Image Detector Basic Annually",
         "credits": 1200,
         "valid_months": 12,
@@ -134,7 +134,7 @@
           "url": "/checkout?plan=professional-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional-annually",
+        "product_id": "Professionalannually",
         "product_name": "AI Image Detector Professional Annually",
         "credits": 3000,
         "valid_months": 12,

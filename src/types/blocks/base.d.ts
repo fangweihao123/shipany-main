@@ -83,6 +83,7 @@ export interface SocialItem {
   icon?: string;
   url?: string;
   target?: string;
+  description?: string;
 }
 
 export interface Social {

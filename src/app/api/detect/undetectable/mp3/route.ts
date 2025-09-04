@@ -8,6 +8,8 @@ import {
   ApiErrorResponse,
   DetectionAudioResponse
 } from '@/types/detect';
+import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { getUserUuid } from '@/services/user';
 
 const API_BASE_URL = 'https://ai-audio-detect.undetectable.ai';
 const API_KEY = process.env.UNDETECTABLE_AI_API_KEY;
@@ -165,6 +167,16 @@ export async function POST(request: NextRequest) {
 
     const detectionResponse = await detectAudio(detectionData);
     
+    const user_uuid = await getUserUuid();
+    if (!user_uuid){
+      throw new Error("Please Login First");
+    }
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 1,
+    });
+
     return NextResponse.json(detectionResponse);
 
   } catch (error) {

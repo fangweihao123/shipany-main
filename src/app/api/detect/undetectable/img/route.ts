@@ -6,6 +6,8 @@ import {
   DetectionImgRequest,
   DetectionImgResponse
 } from '@/types/detect';
+import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { getUserUuid } from '@/services/user';
 
 const API_BASE_URL = 'https://ai-image-detect.undetectable.ai';
 const API_KEY = process.env.UNDETECTABLE_AI_API_KEY;
@@ -56,7 +58,15 @@ async function detectImage(data: DetectionImgRequest): Promise<DetectionImgRespo
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
-
+  const user_uuid = await getUserUuid();
+  if (!user_uuid){
+    throw new Error("Please Login First");
+  }
+  await decreaseCredits({
+    user_uuid,
+    trans_type: CreditsTransType.Ping,
+    credits: 1,
+  });
   return response.json();
 }
 
@@ -148,6 +158,7 @@ export async function POST(request: NextRequest) {
 
     const detectionResponse = await detectImage(detectionData);
     
+
     return NextResponse.json(detectionResponse);
 
   } catch (error) {

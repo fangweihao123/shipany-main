@@ -17,7 +17,7 @@ export default function Feature({ section }: { section: SectionType }) {
             {section.description}
           </p>
         </div>
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-2">
           {section.items?.map((item, i) => (
             <div key={i} className="flex flex-col">
               {item.icon && (
