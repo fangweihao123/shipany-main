@@ -20,7 +20,7 @@ import {
   getConfidenceDescription,
   getDefaultProvider
 } from '@/services/detect';
-import { DetectionResult } from './detimgresult';
+import { DetectionImageResult } from './detimgresult';
 import { FileUpload } from './upload';
 
 export default function Detect() {
@@ -211,7 +211,7 @@ export default function Detect() {
           {/* Results Section */}
           <div className="space-y-6">
             {detectionState.result ? (
-              <DetectionResult
+              <DetectionImageResult
                 result={detectionState.result}
                 imagePreview={fileState.preview}
                 onReset={handleReset}
