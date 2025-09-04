@@ -2,7 +2,7 @@
 import { useState } from "react";
 import DetectImageInline from "@/components/detect/deimginline";
 import DetectMusicInline from "@/components/detect/detmusicinline";
-import { Scan } from "lucide-react";
+import { Scan, Volume2 } from "lucide-react";
 
 export default function DetectionTabs(){
   const [activeTab, setActiveTab] = useState<'image' | 'music'>('image');
@@ -28,7 +28,7 @@ export default function DetectionTabs(){
               className={`px-4 py-2 rounded-md flex items-center ${activeTab === 'music' ? 'bg-primary text-primary-foreground'
                   : 'text-muted-foreground hover:text-foreground'}`}
             >
-              <Scan className="w-4 h-4 mr-2" />
+              <Volume2 className="w-4 h-4 mr-2" />
               Audio Detection
             </button>
           </div>

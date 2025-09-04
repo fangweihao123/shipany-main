@@ -91,16 +91,48 @@ export default function DetectInline() {
 
     setDetectionState(prev => ({
       ...prev,
-      isLoading: true,
+      isUploading: true,
       isDetecting: false,
+      isFinished: false,
       error: null,
     }));
+
+    // Check credits before detection
+    try {
+      const creditsResponse = await fetch('/api/get-user-credits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const creditsData = await creditsResponse.json();
+      
+      if (creditsData.message !== "ok" || creditsData.data?.left_credits < 1) {
+        setDetectionState(prev => ({
+          ...prev,
+          isLoading: false,
+          isUploading: false,
+          isDetecting: false,
+          isFinished: false,
+          error: 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
+        }));
+        return;
+      }
+    } catch (error) {
+      setDetectionState(prev => ({
+        ...prev,
+        isLoading: false,
+        isUploading: false,
+        isDetecting: false,
+        isFinished: false,
+        error: 'Unable to verify credits. Please try again.',
+      }));
+      return;
+    }
 
     try {
       const result = await detectImage(fileState.file, "undetectableimg");
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: true,
         isFinished: false,
         result: result,
@@ -113,7 +145,7 @@ export default function DetectInline() {
       const queryResult = await pollDetectionResult(request);
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: false,
         isFinished: true,
         result: queryResult,
@@ -122,7 +154,7 @@ export default function DetectInline() {
     } catch (error) {
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: false,
         result: null,
         error: error instanceof Error ? error.message : 'Detection failed',
@@ -166,10 +198,10 @@ export default function DetectInline() {
                 <div className="flex items-center space-x-3">
                 <ImageIcon className="h-5 w-5 text-blue-600" />
                 <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                    <p className="text-sm font-medium text-foreground truncate">
                     {fileState.file.name}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                     {formatFileSize(fileState.file.size)}
                     </p>
                 </div>
@@ -182,14 +214,20 @@ export default function DetectInline() {
         {fileState.isValid && (
             <Button
             onClick={handleDetection}
-            disabled={detectionState.isLoading}
+            disabled={detectionState.isUploading || detectionState.isDetecting}
             className="w-full"
             size="lg"
             >
-            {detectionState.isLoading ? (
+            {detectionState.isUploading || detectionState.isDetecting ? (
                 <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {detectionState.isDetecting ? 'Detecting...' : 'Processing...'}
+                {detectionState.isUploading ? 'Uploading...' : 
+                 detectionState.isDetecting ? 'Analyzing...' : 'Processing...'}
+                </>
+            ) : detectionState.isFinished ? (
+                <>
+                <CheckCircle className="mr-2 h-4 w-4" />
+                Detection Complete
                 </>
             ) : (
                 'Detect AI Generation'
@@ -221,7 +259,7 @@ export default function DetectInline() {
             <CardContent className="pt-12 pb-12">
                 <div className="text-center">
                 <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                <p className="mt-4 text-sm text-gray-500">
+                <p className="mt-4 text-sm text-muted-foreground">
                     Detection results will appear here
                 </p>
                 </div>

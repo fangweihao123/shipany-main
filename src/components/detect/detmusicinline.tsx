@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent} from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Upload, Music, Volume2, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import {
   DetectionState,
   FileUploadState,
@@ -49,6 +49,7 @@ export default function DetectMusicInline() {
       isLoading: false,
       isUploading: false,
       isDetecting: false,
+      isFinished: false,
       result: null,
       error: null,
       uploadProgress: 0,
@@ -77,19 +78,53 @@ export default function DetectMusicInline() {
   const handleDetection = useCallback(async () => {
     if (!fileState.file || !fileState.isValid) return;
 
+
     setDetectionState(prev => ({
       ...prev,
-      isLoading: true,
+      isUploading: true,
       isDetecting: false,
+      isFinished: false,
       error: null,
     }));
+
+    // Check credits before detection
+    try {
+      const creditsResponse = await fetch('/api/get-user-credits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const creditsData = await creditsResponse.json();
+      
+      if (creditsData.message !== "ok" || creditsData.data?.left_credits < 1) {
+        setDetectionState(prev => ({
+          ...prev,
+          isLoading: false,
+          isUploading: false,
+          isDetecting: false,
+          isFinished: false,
+          error: 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
+        }));
+        return;
+      }
+    } catch (error) {
+      setDetectionState(prev => ({
+        ...prev,
+        isLoading: false,
+        isUploading: false,
+        isDetecting: false,
+        isFinished: false,
+        error: 'Unable to verify credits. Please try again.',
+      }));
+      return;
+    }
 
     try {
       const result = await detectMusic(fileState.file, 'undetectablemp3');
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: true,
+        isFinished: false,
         result,
         error: null,
         detectionId: result.id
@@ -101,7 +136,7 @@ export default function DetectMusicInline() {
       const queryResult = await pollDetectionResult(request);
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: false,
         isFinished: true,
         queryResult,
@@ -110,7 +145,7 @@ export default function DetectMusicInline() {
     } catch (error) {
       setDetectionState(prev => ({
         ...prev,
-        isLoading: false,
+        isUploading: false,
         isDetecting: false,
         result: null,
         error: error instanceof Error ? error.message : 'Detection failed',
@@ -136,25 +171,6 @@ export default function DetectMusicInline() {
     }));
   }, []);
 
-  const getButtonContent = () => {
-    if(detectionState.isLoading) return "Uploading...";
-    if(detectionState.isDetecting) return "Detecting...";
-    if(detectionState.isFinished) return "Detection finished";
-    return "Start Detect";
-  }
-  
-  const getButtonVariant = () => {
-    if(detectionState.isFinished) return "default";
-    if(detectionState.isLoading) return "secondary";
-    return "default";
-  }
-
-  const getButtonClassName = () => {
-    if(detectionState.isFinished) return "bg-green-600 hover:bg-green-700";
-    return "";
-  }
-
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Upload Section */}
@@ -163,8 +179,8 @@ export default function DetectMusicInline() {
             onFileSelect={handleFileSelect}
             fileState={fileState}
             isLoading={detectionState.isLoading}
-            title="Upload a music"
-            hint="Select music"
+            title="Upload an audio file"
+            hint="Select audio file"
             supportType={["mp3","wav"]}
         />
 
@@ -173,12 +189,12 @@ export default function DetectMusicInline() {
             <Card>
             <CardContent className="pt-6">
                 <div className="flex items-center space-x-3">
-                <ImageIcon className="h-5 w-5 text-blue-600" />
+                <Music className="h-5 w-5 text-blue-600" />
                 <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                    <p className="text-sm font-medium text-foreground truncate">
                     {fileState.file.name}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                     {formatFileSize(fileState.file.size)}
                     </p>
                 </div>
@@ -191,12 +207,24 @@ export default function DetectMusicInline() {
         {fileState.isValid && (
             <Button
             onClick={handleDetection}
-            disabled={detectionState.isLoading}
-            variant={getButtonVariant()}
-            className={getButtonClassName()}
+            disabled={detectionState.isUploading || detectionState.isDetecting}
+            className="w-full"
             size="lg"
             >
-            {getButtonContent()}
+            {detectionState.isUploading || detectionState.isDetecting ? (
+                <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {detectionState.isUploading ? 'Uploading...' : 
+                 detectionState.isDetecting ? 'Analyzing...' : 'Processing...'}
+                </>
+            ) : detectionState.isFinished ? (
+                <>
+                <CheckCircle className="mr-2 h-4 w-4" />
+                Detection Complete
+                </>
+            ) : (
+                'Detect AI Generation'
+            )}
             </Button>
         )}
 
@@ -223,8 +251,8 @@ export default function DetectMusicInline() {
             <Card className="border-dashed">
             <CardContent className="pt-12 pb-12">
                 <div className="text-center">
-                <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                <p className="mt-4 text-sm text-gray-500">
+                <Volume2 className="mx-auto h-12 w-12 text-muted-foreground" />
+                <p className="mt-4 text-sm text-muted-foreground">
                     Detection results will appear here
                 </p>
                 </div>
