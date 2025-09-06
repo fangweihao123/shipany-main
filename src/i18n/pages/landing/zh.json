@@ -66,7 +66,7 @@
         "select_tip": "选择图片",
         "drag_drop_text": "拖拽文件到此处，或点击选择",
         "click_different_file": "点击选择不同的文件",
-        "supports_format": "支持 {formats} 格式"
+        "support_format": "支持 {formats} 格式"
       },
       {
         "upload_tab": "音频检测",
@@ -74,7 +74,8 @@
         "select_tip": "选择音频文件",
         "drag_drop_text": "拖拽文件到此处，或点击选择",
         "click_different_file": "点击选择不同的文件",
-        "supports_format": "支持 {formats} 格式"
+        "support_format": "支持 {formats} 格式",
+        "duration_limit_tip": "支持最长 {seconds} 秒的音频"
       }
     ],
     "state": {
@@ -100,7 +101,8 @@
       "confidence_score_desc": "置信度分数:表示AI模型对其预测结果的确定程度。分数越高,代表模型越有信心。",
       "ai_generated_desc": "AI生成:该图像呈现出典型的AI生成特征,例如特定的伪影、模式或不一致之处。",
       "human_created_desc": "人工创作：该图像看起来是拍摄的、手绘的，或通过传统数字艺术方法创作的。",
-      "note": "注意:没有任何检测方法可以做到100%准确。在判断图像真实性时，结果应结合其他证据一并考虑。"
+      "note": "注意:没有任何检测方法可以做到100%准确。在判断图像真实性时，结果应结合其他证据一并考虑。",
+      "audio_too_long": "音频时长超出限制。请上传不超过 {seconds} 秒的音频文件。"
     }
   },
   "introduce": {
@@ -296,46 +298,6 @@
             {
               "title": "定价方案",
               "url": "/pricing",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "资源",
-          "children": [
-            {
-              "title": "API文档",
-              "url": "/api-docs",
-              "target": "_self"
-            },
-            {
-              "title": "检测指南",
-              "url": "/guide",
-              "target": "_self"
-            },
-            {
-              "title": "博客",
-              "url": "/posts",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "应用场景",
-          "children": [
-            {
-              "title": "安全团队",
-              "url": "/security",
-              "target": "_self"
-            },
-            {
-              "title": "新闻记者",
-              "url": "/journalism",
-              "target": "_self"
-            },
-            {
-              "title": "法律专业人士",
-              "url": "/legal",
               "target": "_self"
             }
           ]

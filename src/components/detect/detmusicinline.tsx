@@ -27,8 +27,15 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 
+interface DetectMusicInlineProps {
+  _upload?: DetectUpload;
+  _state?: State;
+  _detectResult?: DetectResult;
+  max_audio_length: number;
+}
 
-export default function DetectMusicInline({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
+
+export default function DetectMusicInline({ _upload, _state, _detectResult, max_audio_length }: DetectMusicInlineProps) {
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
@@ -38,7 +45,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
     isValid: false,
     error: null,
   });
-
+  
   const [detectionState, setDetectionState] = useState<DetectionState>({
     isLoading: false,
     isUploading: false,
@@ -75,12 +82,40 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
       return;
     }
 
-    setFileState({
-      file: file,
-      preview: null,
-      isValid: true,
-      error: ""
-    });
+    // Load audio metadata to get duration
+    try {
+      const url = URL.createObjectURL(file);
+      const audio = new Audio();
+      const duration = await new Promise<number>((resolve) => {
+        audio.preload = 'metadata';
+        audio.onloadedmetadata = () => {
+          const d = Number.isFinite(audio.duration) ? audio.duration : 0;
+          URL.revokeObjectURL(url);
+          resolve(d);
+        };
+        audio.onerror = () => {
+          URL.revokeObjectURL(url);
+          resolve(0);
+        };
+        audio.src = url;
+      });
+
+      setFileState({
+        file: file,
+        preview: null,
+        isValid: true,
+        error: "",
+        duration
+      });
+    } catch {
+      setFileState({
+        file: file,
+        preview: null,
+        isValid: true,
+        error: "",
+        duration: undefined
+      });
+    }
   }, []);
 
   const handleDetection = useCallback(async () => {
@@ -93,6 +128,18 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
       return;
     }
 
+    // Duration limit check (30s)
+    if (fileState.duration !== undefined && fileState.duration > max_audio_length) {
+      setDetectionState(prev => ({
+        ...prev,
+        isLoading: false,
+        isUploading: false,
+        isDetecting: false,
+        isFinished: false,
+        error: _detectResult?.audio_too_long?.replace('{seconds}', String(max_audio_length)) || ''
+      }));
+      return;
+    }
 
     setDetectionState(prev => ({
       ...prev,
@@ -166,7 +213,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
         error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
       }));
     }
-  }, [fileState.file, fileState.isValid, status, router, _state?.auth_required]);
+  }, [fileState.file, fileState.isValid, fileState.duration, status, router, _state?.auth_required, _detectResult?.audio_too_long]);
 
   const handleReset = useCallback(() => {
     setFileState({
@@ -202,9 +249,9 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
             fileState={fileState}
             isLoading={detectionState.isLoading}
             upload={_upload}
+            fileDuration={max_audio_length}
             supportType={["mp3","wav"]}
         />
-
         {/* File Info */}
         {fileState.file && fileState.isValid && (
             <Card>

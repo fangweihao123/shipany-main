@@ -170,6 +170,7 @@ export interface FileUploadState {
   preview: string | null;
   isValid: boolean;
   error: string | null;
+  duration?: number
 }
 
 // Supported file types

@@ -5,6 +5,7 @@ export interface Upload{
   drag_drop_text?: string;
   click_different_file?: string;
   support_format?: string;
+  duration_limit_tip?: string;
 }
 
 export interface State{
@@ -32,6 +33,7 @@ export interface DetectResult{
   ai_generated_desc?: string;
   human_created_desc?: string;
   note?: string;
+  audio_too_long?: string;
 }
 
 export interface Detection{

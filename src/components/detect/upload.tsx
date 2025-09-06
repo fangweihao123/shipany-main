@@ -13,6 +13,7 @@ interface FileUploadProps {
   fileState: FileUploadState;
   isLoading: boolean;
   upload?: DetectUpload;
+  fileDuration?: number;
   supportType?: string[];
 }
 
@@ -21,6 +22,7 @@ export function FileUpload({
     fileState, 
     isLoading,
     upload,
+    fileDuration,
     supportType = ['JPG', 'PNG', 'WebP', 'HEIC', 'AVIF', 'BMP']
   }: FileUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -69,6 +71,7 @@ export function FileUpload({
   }, [onFileSelect]);
 
   const supportText =(upload?.support_format || 'Supports {formats}').replace('{formats}', supportType.join(', '));
+  const durationTips =(upload?.duration_limit_tip || 'Supports {seconds} seconds duration file').replace('{seconds}', String(fileDuration ?? 10));
   return (
     <Card>
       <CardContent className="p-6">
@@ -135,9 +138,14 @@ export function FileUpload({
                 <p className="text-sm text-gray-600 mb-4">
                   {upload?.drag_drop_text ?? "Drag and drop your image here, or click to select"} 
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500 mb-2">
                   {supportText}
                 </p>
+                {fileDuration && (
+                  <p className="text-xs text-gray-500">
+                    {durationTips}
+                  </p>
+                )}
               </div>
 
               {!isLoading && (

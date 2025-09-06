@@ -66,7 +66,7 @@
         "select_tip": "Select image",
         "drag_drop_text": "Drag and drop your image here, or click to select",
         "click_different_file": "Click to select a different image",
-        "supports_format": "Supports {formats}"
+        "support_format": "Supports {formats}"
       },
       {
         "upload_tab": "Audio Detection",
@@ -74,7 +74,8 @@
         "select_tip": "Select audio file",
         "drag_drop_text": "Drag and drop your audio here, or click to select",
         "click_different_file": "Click to select a different image",
-        "supports_format": "Supports {formats}"
+        "support_format": "Supports {formats}",
+        "duration_limit_tip": "Supports up to {seconds}s audio"
       }
     ],
     "state": {
@@ -100,7 +101,8 @@
       "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
       "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
       "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
-      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity."
+      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity.",
+      "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
     }
   },
   "introduce": {
