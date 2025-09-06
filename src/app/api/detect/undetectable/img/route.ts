@@ -41,7 +41,7 @@ async function uploadImage(presignedUrl: string, file: ArrayBuffer, contentType:
     body: file,
   });
   if (!response.ok) {
-    throw new Error(`Failed to upload image: ${response.statusText}`);
+    throw new Error(`${response.status} Failed to upload image: ${response.statusText}}`);
   }
 }
 
