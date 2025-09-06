@@ -88,13 +88,6 @@ export default function Hero({ hero }: { hero: HeroType }) {
                 })}
               </div>
             )}
-            <div className="mt-12">
-              <DetectionTabs/>
-            </div>
-            {hero.tip && (
-              <p className="mt-8 text-md text-muted-foreground">{hero.tip}</p>
-            )}
-            {hero.show_happy_users && <HappyUsers />}
           </div>
         </div>
       </section>

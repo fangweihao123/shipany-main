@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Upload, Image as ImageIcon, X } from 'lucide-react';
 import { FileUploadState } from '@/types/detect';
 import { cn } from '@/lib/utils';
+import { Upload as DetectUpload} from '@/types/blocks/detect';
 
 interface FileUploadProps {
   onFileSelect: (file: File) => void;
   fileState: FileUploadState;
   isLoading: boolean;
-  title?: string;
-  hint?: string;
+  upload?: DetectUpload;
   supportType?: string[];
 }
 
@@ -20,8 +20,7 @@ export function FileUpload({
     onFileSelect, 
     fileState, 
     isLoading,
-    title = 'Upload an image',
-    hint = 'Select image',
+    upload,
     supportType = ['JPG', 'PNG', 'WebP', 'HEIC', 'AVIF', 'BMP']
   }: FileUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -69,8 +68,7 @@ export function FileUpload({
     onFileSelect(null as any);
   }, [onFileSelect]);
 
-  const supportText = `Supports ${supportType.join(', ')}`;
-
+  const supportText =(upload?.support_format || 'Supports {formats}').replace('{formats}', supportType.join(', '));
   return (
     <Card>
       <CardContent className="p-6">
@@ -117,7 +115,7 @@ export function FileUpload({
               
               {!isLoading && (
                 <p className="text-sm text-gray-600">
-                  Click to select a different image
+                  {upload?.click_different_file ?? "Click to select a different image"} 
                 </p>
               )}
             </div>
@@ -132,10 +130,10 @@ export function FileUpload({
               
               <div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  {title}
+                  {upload?.upload_title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Drag and drop your image here, or click to select
+                  {upload?.drag_drop_text ?? "Drag and drop your image here, or click to select"} 
                 </p>
                 <p className="text-xs text-gray-500">
                   {supportText}
@@ -145,7 +143,7 @@ export function FileUpload({
               {!isLoading && (
                 <Button variant="outline" size="sm">
                   <ImageIcon className="mr-2 h-4 w-4" />
-                  {hint}
+                  {upload?.select_tip}
                 </Button>
               )}
             </div>

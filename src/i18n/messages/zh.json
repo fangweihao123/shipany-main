@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "几小时内构建任何 AI SaaS 创业项目 | ShipAny",
-    "description": "ShipAny 是一个用于构建 AI SaaS 创业项目的 NextJS 模板，提供各种模板和组件，帮助您快速启动。",
-    "keywords": "ShipAny, AI SaaS 模板, NextJS 模板"
+    "title": "AI检测器 - 即时检测AI内容 | detect-ai.me",
+    "description": "专业的AI检测工具，支持图像、文本和媒体。95%以上准确率检测深度伪造和AI内容。免费工具，实时结果，帮助防范AI欺诈。",
+    "keywords": "AI检测器, AI检测, 深度伪造检测, AI内容验证, 虚假内容检测"
   },
   "user": {
     "sign_in": "登录",

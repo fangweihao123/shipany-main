@@ -22,8 +22,9 @@ import {
 
 import { DetectionImageResult } from './detimgresult';
 import { FileUpload } from './upload';
+import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
 
-export default function DetectInline() {
+export default function DetectInline({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
   const [fileState, setFileState] = useState<FileUploadState>({
     file: null,
     preview: null,
@@ -62,7 +63,7 @@ export default function DetectInline() {
         file: null,
         preview: null,
         isValid: false,
-        error: validation.error || 'Invalid file',
+        error: validation.error || (_detectResult?.invalid_file ?? 'Invalid file'),
       });
       return;
     }
@@ -81,7 +82,7 @@ export default function DetectInline() {
         file: null,
         preview: null,
         isValid: false,
-        error: 'Failed to generate image preview',
+        error: _detectResult?.preview_failed ?? 'Failed to generate image preview',
       });
     }
   }, []);
@@ -112,7 +113,7 @@ export default function DetectInline() {
           isUploading: false,
           isDetecting: false,
           isFinished: false,
-          error: 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
+          error: _detectResult?.insufficient_credits ?? 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
         }));
         return;
       }
@@ -123,7 +124,7 @@ export default function DetectInline() {
         isUploading: false,
         isDetecting: false,
         isFinished: false,
-        error: 'Unable to verify credits. Please try again.',
+        error: _detectResult?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
       }));
       return;
     }
@@ -157,7 +158,7 @@ export default function DetectInline() {
         isUploading: false,
         isDetecting: false,
         result: null,
-        error: error instanceof Error ? error.message : 'Detection failed',
+        error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
       }));
     }
   }, [fileState.file, fileState.isValid]);
@@ -189,6 +190,7 @@ export default function DetectInline() {
             onFileSelect={handleFileSelect}
             fileState={fileState}
             isLoading={detectionState.isLoading}
+            upload={_upload}
         />
 
         {/* File Info */}
@@ -221,16 +223,16 @@ export default function DetectInline() {
             {detectionState.isUploading || detectionState.isDetecting ? (
                 <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {detectionState.isUploading ? 'Uploading...' : 
-                 detectionState.isDetecting ? 'Analyzing...' : 'Processing...'}
+                {detectionState.isUploading ? _state?.uploading ?? "Uploading...": 
+                 detectionState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
                 </>
             ) : detectionState.isFinished ? (
                 <>
                 <CheckCircle className="mr-2 h-4 w-4" />
-                Detection Complete
+                {_state?.detection_complete ?? "Detection Complete"}
                 </>
             ) : (
-                'Detect AI Generation'
+                _state?.detect_ai_generation ?? "Detect AI Generation"
             )}
             </Button>
         )}
@@ -251,6 +253,7 @@ export default function DetectInline() {
         {detectionState.isFinished ? (
             <DetectionImageResult
             result={detectionState.result as DetectionImageQueryResponse}
+            detectResult={_detectResult}
             imagePreview={fileState.preview}
             onReset={handleReset}
             />
@@ -260,7 +263,7 @@ export default function DetectInline() {
                 <div className="text-center">
                 <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
                 <p className="mt-4 text-sm text-muted-foreground">
-                    Detection results will appear here
+                    {_detectResult?.result_detail ?? "Detection results will be here"}
                 </p>
                 </div>
             </CardContent>

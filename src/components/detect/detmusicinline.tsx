@@ -22,8 +22,10 @@ import {
 
 import { DetectionAudioResult } from './detmusicresult';
 import { FileUpload } from './upload';
+import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
 
-export default function DetectMusicInline() {
+
+export default function DetectMusicInline({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
   const [fileState, setFileState] = useState<FileUploadState>({
     file: null,
     preview: null,
@@ -62,7 +64,7 @@ export default function DetectMusicInline() {
         file: null,
         preview: null,
         isValid: false,
-        error: validation.error || 'Invalid file',
+        error: validation.error || (_detectResult?.invalid_file ?? 'Invalid file'),
       });
       return;
     }
@@ -102,7 +104,7 @@ export default function DetectMusicInline() {
           isUploading: false,
           isDetecting: false,
           isFinished: false,
-          error: 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
+          error: _detectResult?.insufficient_credits ?? 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
         }));
         return;
       }
@@ -113,7 +115,7 @@ export default function DetectMusicInline() {
         isUploading: false,
         isDetecting: false,
         isFinished: false,
-        error: 'Unable to verify credits. Please try again.',
+        error: _detectResult?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
       }));
       return;
     }
@@ -148,7 +150,7 @@ export default function DetectMusicInline() {
         isUploading: false,
         isDetecting: false,
         result: null,
-        error: error instanceof Error ? error.message : 'Detection failed',
+        error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
       }));
     }
   }, [fileState.file, fileState.isValid]);
@@ -179,8 +181,7 @@ export default function DetectMusicInline() {
             onFileSelect={handleFileSelect}
             fileState={fileState}
             isLoading={detectionState.isLoading}
-            title="Upload an audio file"
-            hint="Select audio file"
+            upload={_upload}
             supportType={["mp3","wav"]}
         />
 
@@ -214,16 +215,16 @@ export default function DetectMusicInline() {
             {detectionState.isUploading || detectionState.isDetecting ? (
                 <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {detectionState.isUploading ? 'Uploading...' : 
-                 detectionState.isDetecting ? 'Analyzing...' : 'Processing...'}
+                {detectionState.isUploading ? _state?.uploading ?? "Uploading...": 
+                 detectionState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
                 </>
             ) : detectionState.isFinished ? (
                 <>
                 <CheckCircle className="mr-2 h-4 w-4" />
-                Detection Complete
+                {_state?.detection_complete ?? "Detection Complete"}
                 </>
             ) : (
-                'Detect AI Generation'
+                _state?.detect_ai_generation ?? "Detect AI Generation"
             )}
             </Button>
         )}
@@ -244,6 +245,7 @@ export default function DetectMusicInline() {
         {detectionState.isFinished ? (
             <DetectionAudioResult
             queryresult={detectionState.result as DetectionAudioQueryResponse}
+            detectResult={_detectResult}
             imagePreview={fileState.preview}
             onReset={handleReset}
             />
@@ -253,7 +255,7 @@ export default function DetectMusicInline() {
                 <div className="text-center">
                 <Volume2 className="mx-auto h-12 w-12 text-muted-foreground" />
                 <p className="mt-4 text-sm text-muted-foreground">
-                    Detection results will appear here
+                    {_detectResult?.result_detail ?? "Detection results will be here"}
                 </p>
                 </div>
             </CardContent>

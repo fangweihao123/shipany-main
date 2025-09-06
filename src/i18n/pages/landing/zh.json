@@ -58,6 +58,50 @@
     "show_happy_users": true,
     "show_badge": false
   },
+  "detection":{
+    "uploads":[
+      {
+        "upload_tab": "图片检测",
+        "upload_title": "上传图片",
+        "select_tip": "选择图片",
+        "drag_drop_text": "拖拽文件到此处，或点击选择",
+        "click_different_file": "点击选择不同的文件",
+        "supports_format": "支持 {formats} 格式"
+      },
+      {
+        "upload_tab": "音频检测",
+        "upload_title": "上传音频文件",
+        "select_tip": "选择音频文件",
+        "drag_drop_text": "拖拽文件到此处，或点击选择",
+        "click_different_file": "点击选择不同的文件",
+        "supports_format": "支持 {formats} 格式"
+      }
+    ],
+    "state": {
+      "uploading": "上传中...",
+      "analyzing": "分析中...",
+      "processing": "处理中...",
+      "detection_complete": "检测完成",
+      "detect_ai_generation": "检测AI生成内容"
+    },
+    "detectResult": {
+      "result_detail": "检测结果将在此显示",
+      "insufficient_credits": "积分不足。您需要至少1个积分进行检测。请升级您的计划。",
+      "unable_verify_credits": "无法验证积分。请重试。",
+      "invalid_file": "无效文件",
+      "preview_failed": "生成图片预览失败",
+      "detection_failed": "检测失败",
+      "confidence_level": "置信度",
+      "ai_generated": "AI生成:该文件似乎是由人工智能创建的。",
+      "human_created": "人工创作：该文件似乎是真实或人为创作的。",
+      "analyze_again": "分析新的文件",
+      "understand": "理解结果",
+      "confidence_score_desc": "置信度分数:表示AI模型对其预测结果的确定程度。分数越高,代表模型越有信心。",
+      "ai_generated_desc": "AI生成:该图像呈现出典型的AI生成特征,例如特定的伪影、模式或不一致之处。",
+      "human_created_desc": "人工创作：该图像看起来是拍摄的、手绘的，或通过传统数字艺术方法创作的。",
+      "note": "注意:没有任何检测方法可以做到100%准确。在判断图像真实性时，结果应结合其他证据一并考虑。"
+    }
+  },
   "introduce": {
     "name": "introduce",
     "title": "什么是AI检测器",

@@ -210,24 +210,16 @@ export default function Detect() {
 
           {/* Results Section */}
           <div className="space-y-6">
-            {detectionState.result ? (
-              <DetectionImageResult
-                result={detectionState.result}
-                imagePreview={fileState.preview}
-                onReset={handleReset}
-              />
-            ) : (
-              <Card className="border-dashed">
-                <CardContent className="pt-12 pb-12">
-                  <div className="text-center">
-                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                    <p className="mt-4 text-sm text-gray-500">
-                      Detection results will appear here
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+            <Card className="border-dashed">
+              <CardContent className="pt-12 pb-12">
+                <div className="text-center">
+                  <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                  <p className="mt-4 text-sm text-gray-500">
+                    Detection results will appear here
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

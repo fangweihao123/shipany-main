@@ -58,6 +58,50 @@
     "show_happy_users": true,
     "show_badge": false
   },
+  "detection":{
+    "uploads":[
+      {
+        "upload_tab": "Image Detection",
+        "upload_title": "Upload an image",
+        "select_tip": "Select image",
+        "drag_drop_text": "Drag and drop your image here, or click to select",
+        "click_different_file": "Click to select a different image",
+        "supports_format": "Supports {formats}"
+      },
+      {
+        "upload_tab": "Audio Detection",
+        "upload_title": "Upload an audio file",
+        "select_tip": "Select audio file",
+        "drag_drop_text": "Drag and drop your audio here, or click to select",
+        "click_different_file": "Click to select a different image",
+        "supports_format": "Supports {formats}"
+      }
+    ],
+    "state": {
+      "uploading": "Uploading...",
+      "analyzing": "Analyzing...",
+      "processing": "Processing...",
+      "detection_complete": "Detection Complete",
+      "detect_ai_generation": "Detect AI Generation"
+    },
+    "detectResult": {
+      "result_detail": "Detection results will appear here",
+      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+      "unable_verify_credits": "Unable to verify credits. Please try again.",
+      "invalid_file": "Invalid file",
+      "preview_failed": "Failed to generate image preview",
+      "detection_failed": "Detection failed",
+      "confidence_level": "Confidence Level",
+      "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
+      "human_created": "Human Created: This file appears to be authentic or human-created.",
+      "analyze_again": "Analyze Another file",
+      "understand": "Understanding the Results",
+      "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
+      "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
+      "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
+      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity."
+    }
+  },
   "introduce": {
     "name": "introduce",
     "title": "What is AI Detector",
@@ -251,46 +295,6 @@
             {
               "title": "Pricing",
               "url": "/pricing",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "Resources",
-          "children": [
-            {
-              "title": "API Documentation",
-              "url": "/api-docs",
-              "target": "_self"
-            },
-            {
-              "title": "Detection Guide",
-              "url": "/guide",
-              "target": "_self"
-            },
-            {
-              "title": "Blog",
-              "url": "/posts",
-              "target": "_self"
-            }
-          ]
-        },
-        {
-          "title": "Use Cases",
-          "children": [
-            {
-              "title": "Security Teams",
-              "url": "/security",
-              "target": "_self"
-            },
-            {
-              "title": "Journalists",
-              "url": "/journalism",
-              "target": "_self"
-            },
-            {
-              "title": "Legal Professionals",
-              "url": "/legal",
               "target": "_self"
             }
           ]

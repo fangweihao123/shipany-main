@@ -10,6 +10,7 @@ import Pricing from "@/components/blocks/pricing";
 import Showcase from "@/components/blocks/showcase";
 import Stats from "@/components/blocks/stats";
 import Testimonial from "@/components/blocks/testimonial";
+import DetectionTabs from "@/components/blocks/hero/detectiontabs";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 
@@ -49,6 +50,7 @@ export default async function LandingPage({
   return (
     <>
       {page.hero && <Hero hero={page.hero} />}
+      {page.detection && <DetectionTabs detection={page.detection}/>}
       {page.branding && <Branding section={page.branding} />}
       {page.introduce && <Feature1 section={page.introduce} />}
       {page.benefit && <Feature2 section={page.benefit} />}
