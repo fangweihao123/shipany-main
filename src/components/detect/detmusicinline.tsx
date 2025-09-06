@@ -23,9 +23,15 @@ import {
 import { DetectionAudioResult } from './detmusicresult';
 import { FileUpload } from './upload';
 import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 
 
 export default function DetectMusicInline({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
+  const { status } = useSession();
+  const router = useRouter();
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
   const [fileState, setFileState] = useState<FileUploadState>({
     file: null,
     preview: null,
@@ -79,6 +85,13 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
 
   const handleDetection = useCallback(async () => {
     if (!fileState.file || !fileState.isValid) return;
+
+    // Require auth before detection
+    if (status === 'unauthenticated') {
+      setShowAuthDialog(true);
+      setTimeout(() => router.push('/auth/signin'), 1200);
+      return;
+    }
 
 
     setDetectionState(prev => ({
@@ -153,7 +166,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
         error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
       }));
     }
-  }, [fileState.file, fileState.isValid]);
+  }, [fileState.file, fileState.isValid, status, router, _state?.auth_required]);
 
   const handleReset = useCallback(() => {
     setFileState({
@@ -175,6 +188,13 @@ export default function DetectMusicInline({ _upload, _state, _detectResult }: { 
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Dialog open={showAuthDialog} onOpenChange={setShowAuthDialog}>
+          <DialogContent className="sm:max-w-[420px]">
+            <DialogDescription>
+              {_state?.auth_required || ''}
+            </DialogDescription>
+          </DialogContent>
+        </Dialog>
         {/* Upload Section */}
         <div className="space-y-6">
         <FileUpload

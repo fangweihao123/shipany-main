@@ -13,6 +13,7 @@ export interface State{
   processing?: string;
   detection_complete?: string;
   detect_ai_generation?: string;
+  auth_required?: string;
 }
 
 export interface DetectResult{

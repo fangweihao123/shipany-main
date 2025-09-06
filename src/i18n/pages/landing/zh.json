@@ -82,7 +82,8 @@
       "analyzing": "分析中...",
       "processing": "处理中...",
       "detection_complete": "检测完成",
-      "detect_ai_generation": "检测AI生成内容"
+      "detect_ai_generation": "检测AI生成内容",
+      "auth_required": "请您先登录，享受检测AI服务，正在跳转到登录页面..."
     },
     "detectResult": {
       "result_detail": "检测结果将在此显示",

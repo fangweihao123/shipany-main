@@ -82,7 +82,8 @@
       "analyzing": "Analyzing...",
       "processing": "Processing...",
       "detection_complete": "Detection Complete",
-      "detect_ai_generation": "Detect AI Generation"
+      "detect_ai_generation": "Detect AI Generation",
+      "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
     },
     "detectResult": {
       "result_detail": "Detection results will appear here",

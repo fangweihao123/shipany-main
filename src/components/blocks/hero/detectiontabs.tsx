@@ -22,8 +22,12 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
                 className={`px-4 py-2 rounded-md flex items-center ${activeIndex === i? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
-                  <Scan className="w-4 h-4 mr-2" />
-                    {u.upload_title}
+                  {i === 0 ? (
+                    <Scan className="w-4 h-4 mr-2" />
+                  ) : (
+                    <Volume2 className="w-4 h-4 mr-2" />
+                  )}
+                  {u.upload_tab || u.upload_title}
                 </button>
               ))}
             </div>
