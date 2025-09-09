@@ -13,7 +13,7 @@ if (!API_KEY) {
 }
 
 async function queryTaskStatus(data: DetectionQueryRequest): Promise<DetectionAudioQueryResponse> {
-  const url: string = `https://ai-${data.type}-detect.undetectable.ai/query`;
+  const url: string = data.type ? `https://ai-${data.type}-detect.undetectable.ai/query` : "https://ai-detect.undetectable.ai/query";
   const response = await fetch(url, {
     method: 'POST',
     headers: {

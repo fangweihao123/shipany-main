@@ -90,7 +90,7 @@ export function FileUpload({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*,audio/*"
+            accept="audio/*"
             onChange={handleFileInputChange}
             className="hidden"
             disabled={isLoading}

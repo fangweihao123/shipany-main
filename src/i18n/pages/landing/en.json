@@ -61,12 +61,17 @@
   "detection":{
     "uploads":[
       {
-        "upload_tab": "Image Detection",
-        "upload_title": "Upload an image",
-        "select_tip": "Select image",
-        "drag_drop_text": "Drag and drop your image here, or click to select",
-        "click_different_file": "Click to select a different image",
-        "support_format": "Supports {formats}"
+        "upload_tab": "Text Detection",
+        "upload_title": "Enter text",
+        "select_tip": "Select text file",
+        "drag_drop_text": "Drag and drop your text file here, or click to select",
+        "click_different_file": "Click to select a different text file",
+        "support_format": "Supports {formats}",
+        "text_input_placeholder": "Enter text here (minimum 200 words recommended for best accuracy)...",
+        "text_input_label": "Enter Text",
+        "file_upload_label": "Or Upload Text File",
+        "word_count": "{count} words",
+        "min_words_tip": "Minimum 200 words recommended for best accuracy"
       },
       {
         "upload_tab": "Audio Detection",
@@ -93,10 +98,10 @@
       "invalid_file": "Invalid file",
       "preview_failed": "Failed to generate image preview",
       "detection_failed": "Detection failed",
-      "confidence_level": "Confidence Level",
+      "confidence_level": "AI Level",
       "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
       "human_created": "Human Created: This file appears to be authentic or human-created.",
-      "analyze_again": "Analyze Another file",
+      "analyze_again": "Analyze Again",
       "understand": "Understanding the Results",
       "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
       "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
@@ -262,7 +267,7 @@
     "buttons": [
       {
         "title": "Try Detector",
-        "url": "/detect",
+        "url": "#detect",
         "target": "_self",
         "icon": "RiScanLine"
       }

@@ -1,8 +1,8 @@
 "use client";
 import { useMemo, useState } from "react";
-import DetectImageInline from "@/components/detect/deimginline";
 import DetectMusicInline from "@/components/detect/detmusicinline";
-import { Scan, Volume2 } from "lucide-react";
+import DetectTextInline from "@/components/detect/detextinline";
+import { Volume2, FileText } from "lucide-react";
 import { Detection } from "@/types/blocks/detect";
 
 export default function DetectionTabs({ detection }: { detection: Detection }){
@@ -10,7 +10,7 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
   const [activeIndex, setActiveIndex] = useState(0);
   
   return (
-    <div className="container">
+    <div id="detect" className="container">
         {/* Tab Navigation */}
         {uploads.length > 0 && (
           <div className="flex justify-center mb-6">
@@ -23,7 +23,7 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {i === 0 ? (
-                    <Scan className="w-4 h-4 mr-2" />
+                    <FileText className="w-4 h-4 mr-2" />
                   ) : (
                     <Volume2 className="w-4 h-4 mr-2" />
                   )}
@@ -36,8 +36,11 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
         {/* Detection Area */}
         <section id="detect-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
-            {activeIndex === 0 ? <DetectImageInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/> 
-            : <DetectMusicInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} max_audio_length={30} />}
+            {activeIndex === 0 ? (
+              <DetectTextInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
+            ) : (
+              <DetectMusicInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} max_audio_length={30} />
+            )}
           </div>
         </section>
       </div>

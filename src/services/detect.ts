@@ -4,7 +4,9 @@ import {
   DetectionImgResponse,
   DetectionProvider,
   DetectionAudioResponse,
-  DetectionQueryRequest
+  DetectionTextResponse,
+  DetectionQueryRequest,
+  TextInputState
 } from '@/types/detect';
 import { stat } from 'fs';
 import { resolve } from 'path';
@@ -30,6 +32,15 @@ export const PROVIDER_CONFIGS = {
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/detect/undetectable/mp3',
     supportedFormats: ['mp3', 'wav','m4a','flac','ogg'] as const,
+  },
+  undetectabletext: {
+    name: 'Undetectable AI Text',
+    description: 'Advanced AI text detection with high accuracy',
+    maxFileSize: 1 * 1024 * 1024, // 1MB for text files
+    endpoint: '/api/detect/undetectable/text',
+    supportedFormats: ['txt'] as const,
+    minWords: 200,
+    maxWords: 30000,
   },
   sightengineimg: {
     name: 'Sightengine Img',
@@ -251,4 +262,100 @@ export function getConfidenceColor(confidence: number): string {
 export function getConfidenceDescription(prediction: string, confidence: number): string {
   const level = confidence >= 80 ? 'High' : confidence >= 60 ? 'Medium' : 'Low';
   return `${level} confidence that this image is ${prediction.toLowerCase()}`;
+}
+
+// Text detection functions
+export async function detectText(text: string, provider?: DetectionProvider): Promise<DetectionTextResponse> {
+  const selectedProvider = provider || 'undetectabletext';
+  
+  // Validate text
+  const validation = validateText(text);
+  if (!validation.isValid) {
+    throw new DetectionError(validation.error || 'Invalid text', 400);
+  }
+
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new DetectionError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data as DetectionTextResponse;
+  } catch (error) {
+    if (error instanceof DetectionError) {
+      throw error;
+    }
+    
+    throw new DetectionError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+export function validateText(text: string): { isValid: boolean; error?: string } {
+  if (!text || text.trim().length === 0) {
+    return {
+      isValid: false,
+      error: 'Text cannot be empty'
+    };
+  }
+
+  const wordCount = countWords(text);
+  const config = PROVIDER_CONFIGS.undetectabletext;
+
+  if (wordCount > (config.maxWords || 30000)) {
+    return {
+      isValid: false,
+      error: `Text is too long. Maximum ${config.maxWords || 30000} words allowed.`
+    };
+  }
+
+  return { isValid: true };
+}
+
+export function countWords(text: string): number {
+  if (!text || text.trim().length === 0) return 0;
+  
+  // 处理中英文混合文本的计数
+  const trimmedText = text.trim();
+  return trimmedText.length || 1; // 如果有文本但计数为0，至少返回1
+}
+
+export function validateTextState(text: string): TextInputState {
+  const wordCount = countWords(text);
+  const validation = validateText(text);
+  
+  return {
+    text,
+    wordCount,
+    isValid: validation.isValid,
+    error: validation.error || null
+  };
+}
+
+export function readTextFile(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error('Failed to read text file'));
+    reader.readAsText(file);
+  });
 }

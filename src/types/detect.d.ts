@@ -1,7 +1,7 @@
 // AI Image Detection Types
 
 // API Provider Types
-export type DetectionProvider = 'undetectableimg' | 'undetectablemp3' | 'sightengineimg' | 'sightenginemp3';
+export type DetectionProvider = 'undetectableimg' | 'undetectablemp3' | 'undetectabletext' | 'sightengineimg' | 'sightenginemp3';
 
 // Undetectable AI Types
 export interface PreSignedUrlRequest {
@@ -39,6 +39,23 @@ export interface DetectionAudioResponse{
   status: string;
 }
 
+export interface DetectionTextRequest {
+  text: string;
+  key: string;
+  model: string;
+  retry_count: number;
+}
+
+export interface DetectionTextResponse {
+  id: string;
+  input: string;
+  model: string;
+  result: null;
+  result_details: null;
+  status: string;
+  retry_count: number;
+}
+
 export interface DetectionQueryRequest{
   type: string;
   id: string;
@@ -70,6 +87,25 @@ export interface DetectionImageQueryResponse{
     confidence: number;
   }
   preview_url: string;
+}
+
+export interface DetectionTextQueryResponse{
+  id: string;
+  model: string;
+  result: number;
+  result_details: {
+    scoreGptZero: number;
+    scoreOpenAI: number;
+    scoreWriter: number;
+    scoreCrossPlag: number;
+    scoreCopyLeaks: number;
+    scoreSapling: number;
+    scoreContentAtScale: number;
+    scoreZeroGPT: number;
+    human: number;
+  };
+  status: string;
+  retry_count: number;
 }
 
 export interface DetectionResponse {
@@ -171,6 +207,13 @@ export interface FileUploadState {
   isValid: boolean;
   error: string | null;
   duration?: number
+}
+
+export interface TextInputState {
+  text: string;
+  isValid: boolean;
+  error: string | null;
+  wordCount: number;
 }
 
 // Supported file types
