@@ -257,10 +257,13 @@ export default function DetectTextInline({ _upload, _state, _detectResult }: { _
                   )}
                 </div>
                 <CardTitle className={`text-2xl ${detectionState.result.result > 50 ? 'text-red-600' : 'text-green-600'}`}>
-                  {detectionState.result.result > 50 ? 'AI Generated' : 'Human Created'}
+                  {detectionState.result.result > 50 ? 
+                    (_detectResult?.ai_generated?.split(':')[0] ?? 'AI Generated') : 
+                    (_detectResult?.human_created?.split(':')[0] ?? 'Human Created')
+                  }
                 </CardTitle>
                 <CardDescription>
-                  Overall confidence: {Math.round(detectionState.result.result)}%
+                  {_detectResult?.confidence_level ?? 'Overall confidence'}: {Math.round(detectionState.result.result)}%
                 </CardDescription>
               </CardHeader>
               
@@ -283,12 +286,12 @@ export default function DetectTextInline({ _upload, _state, _detectResult }: { _
 
                 {/* Individual Detection Scores */}
                 <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-700">Individual Detection Scores</h4>
+                  <h4 className="text-sm font-medium text-gray-700">{_detectResult?.individual_detection_scores ?? 'Individual Detection Scores'}</h4>
                   <div className="grid gap-2 text-sm">
                     {detectionState.result.result_details && (
                       <>
                         <div className="flex justify-between items-center p-2 bg-green-50 rounded border border-green-200">
-                          <span className="font-medium">Human Score</span>
+                          <span className="font-medium">{_detectResult?.human_score ?? 'Human Score'}</span>
                           <Badge variant="outline" className="bg-green-100 text-green-800">
                             {Math.round(detectionState.result.result_details.human)}%
                           </Badge>
@@ -305,12 +308,12 @@ export default function DetectTextInline({ _upload, _state, _detectResult }: { _
                     {detectionState.result.result > 50 ? (
                       <span>
                         <strong>{_detectResult?.ai_generated ?? "AI Generated: This text appears to have been created by artificial intelligence."}</strong> 
-                        The majority of detection models agree that this content shows patterns typical of AI-generated text.
+                        {_detectResult?.ai_pattern_detected ?? 'The majority of detection models agree that this content shows patterns typical of AI-generated text.'}
                       </span>
                     ) : (
                       <span>
                         <strong>{_detectResult?.human_created ?? "Human Created: This text appears to be authentic or human-written."}</strong> 
-                        The analysis suggests this content shows patterns more consistent with human writing.
+                        {_detectResult?.human_pattern_detected ?? 'The analysis suggests this content shows patterns more consistent with human writing.'}
                       </span>
                     )}
                   </AlertDescription>

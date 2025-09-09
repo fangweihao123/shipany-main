@@ -106,6 +106,11 @@
       "confidence_score_desc": "整体分数：代表多个AI检测模型的综合分析结果。分数高于50%表示内容可能为AI生成。",
       "ai_generated_desc": "个别分数：每个检测模型使用不同算法分析文本模式、写作风格和AI生成内容的语言标记。",
       "human_created_desc": "人工分数：基于自然写作模式和文体元素，表示文本由人类撰写的可能性。",
+      "individual_detection_scores": "个别检测分数",
+      "human_score": "人工分数",
+      "overall_confidence": "整体置信度",
+      "ai_pattern_detected": "大多数检测模型都认为此内容显示出AI生成文本的典型模式。",
+      "human_pattern_detected": "分析表明此内容显示出更符合人类写作的模式。",
       "note": "注意：没有任何检测方法可以做到100%准确。在判断内容真实性时，结果应结合其他证据一并考虑。",
       "audio_too_long": "音频时长超出限制。请上传不超过 {seconds} 秒的音频文件。"
     }

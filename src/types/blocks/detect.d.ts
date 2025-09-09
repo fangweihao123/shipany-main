@@ -39,6 +39,11 @@ export interface DetectResult{
   human_created_desc?: string;
   note?: string;
   audio_too_long?: string;
+  individual_detection_scores?: string;
+  human_score?: string;
+  overall_confidence?: string;
+  ai_pattern_detected?: string;
+  human_pattern_detected?: string;
 }
 
 export interface Detection{
