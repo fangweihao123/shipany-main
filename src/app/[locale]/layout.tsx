@@ -26,6 +26,9 @@ export async function generateMetadata({
     },
     description: t("metadata.description") || "",
     keywords: t("metadata.keywords") || "",
+    verification: {
+      google: 'EW5r9iiNDSDn_1L5xwNjAs5pZ8U5Kom-D21UFwkeR-Q',
+    },
   };
 }
 

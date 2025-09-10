@@ -61,19 +61,6 @@
   "detection":{
     "uploads":[
       {
-        "upload_tab": "Text Detection",
-        "upload_title": "Enter text",
-        "select_tip": "Select text file",
-        "drag_drop_text": "Drag and drop your text file here, or click to select",
-        "click_different_file": "Click to select a different text file",
-        "support_format": "Supports {formats}",
-        "text_input_placeholder": "Enter text here (minimum 200 words recommended for best accuracy)...",
-        "text_input_label": "Enter Text",
-        "file_upload_label": "Or Upload Text File",
-        "word_count": "{count} words",
-        "min_words_tip": "Minimum 200 words recommended for best accuracy"
-      },
-      {
         "upload_tab": "Audio Detection",
         "upload_title": "Upload an audio file",
         "select_tip": "Select audio file",
