@@ -4,38 +4,27 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent} from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Upload, Music, Volume2, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import {
-  DetectionState,
+  UnwatermarkState,
   FileUploadState,
-  DetectionAudioQueryResponse,
-  DetectionQueryRequest
-} from '@/types/detect';
+} from '@/types/unwatermark';
 import {
-  detectMusic,
+  unwatermarkImage,
   validateFile,
   getImagePreview,
   formatFileSize,
   getDefaultProvider,
-  pollDetectionResult,
-} from '@/services/detect';
+  pollTaskResult
+} from '@/services/unwatermark';
 
-import { DetectionAudioResult } from './detmusicresult';
-import { FileUpload } from '../blocks/upload';
+import { FileUpload } from '@/components/blocks/upload';
 import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 
-interface DetectMusicInlineProps {
-  _upload?: DetectUpload;
-  _state?: State;
-  _detectResult?: DetectResult;
-  max_audio_length: number;
-}
-
-
-export default function DetectMusicInline({ _upload, _state, _detectResult, max_audio_length }: DetectMusicInlineProps) {
+export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
@@ -45,9 +34,8 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
     isValid: false,
     error: null,
   });
-  
-  const [detectionState, setDetectionState] = useState<DetectionState>({
-    isLoading: false,
+
+  const [unwatermarkState, setUnwatermarkState] = useState<UnwatermarkState>({
     isUploading: false,
     isDetecting: false,
     isFinished: false,
@@ -59,9 +47,8 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
 
   const handleFileSelect = useCallback(async (file: File) => {
     // Reset states
-    setDetectionState(prev => ({
+    setUnwatermarkState(prev => ({
       ...prev,
-      isLoading: false,
       isUploading: false,
       isDetecting: false,
       isFinished: false,
@@ -71,7 +58,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
     }));
 
     // Validate file
-    const validation = validateFile(file, "undetectablemp3");
+    const validation = validateFile(file, "wavespeedimg");
     if (!validation.isValid) {
       setFileState({
         file: null,
@@ -82,38 +69,21 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
       return;
     }
 
-    // Load audio metadata to get duration
     try {
-      const url = URL.createObjectURL(file);
-      const audio = new Audio();
-      const duration = await new Promise<number>((resolve) => {
-        audio.preload = 'metadata';
-        audio.onloadedmetadata = () => {
-          const d = Number.isFinite(audio.duration) ? audio.duration : 0;
-          URL.revokeObjectURL(url);
-          resolve(d);
-        };
-        audio.onerror = () => {
-          URL.revokeObjectURL(url);
-          resolve(0);
-        };
-        audio.src = url;
-      });
-
+      // Generate preview
+      const preview = await getImagePreview(file);
       setFileState({
-        file: file,
-        preview: null,
+        file,
+        preview,
         isValid: true,
-        error: "",
-        duration
+        error: null,
       });
-    } catch {
+    } catch (error) {
       setFileState({
-        file: file,
+        file: null,
         preview: null,
-        isValid: true,
-        error: "",
-        duration: undefined
+        isValid: false,
+        error: _detectResult?.preview_failed ?? 'Failed to generate image preview',
       });
     }
   }, []);
@@ -121,27 +91,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
   const handleDetection = useCallback(async () => {
     if (!fileState.file || !fileState.isValid) return;
 
-    // Require auth before detection
-    if (status === 'unauthenticated') {
-      setShowAuthDialog(true);
-      setTimeout(() => router.push('/auth/signin'), 1200);
-      return;
-    }
-
-    // Duration limit check (30s)
-    if (fileState.duration !== undefined && fileState.duration > max_audio_length) {
-      setDetectionState(prev => ({
-        ...prev,
-        isLoading: false,
-        isUploading: false,
-        isDetecting: false,
-        isFinished: false,
-        error: _detectResult?.audio_too_long?.replace('{seconds}', String(max_audio_length)) || ''
-      }));
-      return;
-    }
-
-    setDetectionState(prev => ({
+    setUnwatermarkState(prev => ({
       ...prev,
       isUploading: true,
       isDetecting: false,
@@ -149,63 +99,28 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
       error: null,
     }));
 
-    // Check credits before detection
     try {
-      const creditsResponse = await fetch('/api/get-user-credits', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      const creditsData = await creditsResponse.json();
-      
-      if (creditsData.message !== "ok" || creditsData.data?.left_credits < 1) {
-        setDetectionState(prev => ({
-          ...prev,
-          isLoading: false,
-          isUploading: false,
-          isDetecting: false,
-          isFinished: false,
-          error: _detectResult?.insufficient_credits ?? 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
-        }));
-        return;
-      }
-    } catch (error) {
-      setDetectionState(prev => ({
-        ...prev,
-        isLoading: false,
-        isUploading: false,
-        isDetecting: false,
-        isFinished: false,
-        error: _detectResult?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
-      }));
-      return;
-    }
-
-    try {
-      const result = await detectMusic(fileState.file, 'undetectablemp3');
-      setDetectionState(prev => ({
+      const result = await unwatermarkImage(fileState.file, "wavespeedimg");
+      setUnwatermarkState(prev => ({
         ...prev,
         isUploading: false,
         isDetecting: true,
         isFinished: false,
-        result,
+        result: result,
         error: null,
-        detectionId: result.id
+        taskId: result,
       }));
-      const request : DetectionQueryRequest = {
-        type: "audio",
-        id: result.id
-      };
-      const queryResult = await pollDetectionResult(request);
-      setDetectionState(prev => ({
+      const queryResult = await pollTaskResult(result);
+      setUnwatermarkState(prev => ({
         ...prev,
         isUploading: false,
         isDetecting: false,
         isFinished: true,
-        queryResult,
+        result: queryResult,
         error: null,
       }));
     } catch (error) {
-      setDetectionState(prev => ({
+      setUnwatermarkState(prev => ({
         ...prev,
         isUploading: false,
         isDetecting: false,
@@ -213,7 +128,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
         error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
       }));
     }
-  }, [fileState.file, fileState.isValid, fileState.duration, status, router, _state?.auth_required, _detectResult?.audio_too_long]);
+  }, [fileState.file, fileState.isValid, status, router, _state?.auth_required]);
 
   const handleReset = useCallback(() => {
     setFileState({
@@ -222,7 +137,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
       isValid: false,
       error: null,
     });
-    setDetectionState(prev => ({
+    setUnwatermarkState(prev => ({
       ...prev,
       isLoading: false,
       isUploading: false,
@@ -232,6 +147,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
       uploadProgress: 0,
     }));
   }, []);
+
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -247,17 +163,16 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
         <FileUpload
             onFileSelect={handleFileSelect}
             fileState={fileState}
-            isLoading={detectionState.isLoading}
+            isLoading={unwatermarkState.isUploading}
             upload={_upload}
-            fileDuration={max_audio_length}
-            supportType={["mp3","wav"]}
         />
+
         {/* File Info */}
         {fileState.file && fileState.isValid && (
             <Card>
             <CardContent className="pt-6">
                 <div className="flex items-center space-x-3">
-                <Music className="h-5 w-5 text-blue-600" />
+                <ImageIcon className="h-5 w-5 text-blue-600" />
                 <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground truncate">
                     {fileState.file.name}
@@ -275,17 +190,17 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
         {fileState.isValid && (
             <Button
             onClick={handleDetection}
-            disabled={detectionState.isUploading || detectionState.isDetecting}
+            disabled={unwatermarkState.isUploading || unwatermarkState.isDetecting}
             className="w-full"
             size="lg"
             >
-            {detectionState.isUploading || detectionState.isDetecting ? (
+            {unwatermarkState.isUploading || unwatermarkState.isDetecting ? (
                 <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {detectionState.isUploading ? _state?.uploading ?? "Uploading...": 
-                 detectionState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
+                {unwatermarkState.isUploading ? _state?.uploading ?? "Uploading...": 
+                 unwatermarkState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
                 </>
-            ) : detectionState.isFinished ? (
+            ) : unwatermarkState.isFinished ? (
                 <>
                 <CheckCircle className="mr-2 h-4 w-4" />
                 {_state?.detection_complete ?? "Detection Complete"}
@@ -297,11 +212,11 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
         )}
 
         {/* Error Display */}
-        {(fileState.error || detectionState.error) && (
+        {(fileState.error || unwatermarkState.error) && (
             <Alert variant="destructive">
             <XCircle className="h-4 w-4" />
             <AlertDescription>
-                {fileState.error || detectionState.error}
+                {fileState.error || unwatermarkState.error}
             </AlertDescription>
             </Alert>
         )}
@@ -309,25 +224,16 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
 
         {/* Results Section */}
         <div className="space-y-6">
-        {detectionState.isFinished ? (
-            <DetectionAudioResult
-            queryresult={detectionState.result as DetectionAudioQueryResponse}
-            detectResult={_detectResult}
-            imagePreview={fileState.preview}
-            onReset={handleReset}
-            />
-        ) : (
-            <Card className="border-dashed">
+          <Card className="border-dashed">
             <CardContent className="pt-12 pb-12">
                 <div className="text-center">
-                <Volume2 className="mx-auto h-12 w-12 text-muted-foreground" />
+                <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
                 <p className="mt-4 text-sm text-muted-foreground">
                     {_detectResult?.result_detail ?? "Detection results will be here"}
                 </p>
                 </div>
             </CardContent>
-            </Card>
-        )}
+          </Card>
         </div>
     </div>
   );

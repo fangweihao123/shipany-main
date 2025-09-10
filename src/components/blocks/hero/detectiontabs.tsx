@@ -5,6 +5,7 @@ import DetectTextInline from "@/components/detect/detextinline";
 import { Volume2, FileText } from "lucide-react";
 import { Detection } from "@/types/blocks/detect";
 import DetectInline from "@/components/detect/deimginline";
+import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
 
 export default function DetectionTabs({ detection }: { detection: Detection }){
   const uploads = useMemo(() => detection?.uploads ?? [], [detection]);
@@ -38,7 +39,7 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
         <section id="detect-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
             {activeIndex === 0 ? (
-              <DetectInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} />
+              <UnwatermarkBlock _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} />
             ) : (
               <DetectTextInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
             )}

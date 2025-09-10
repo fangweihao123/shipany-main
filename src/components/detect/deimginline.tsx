@@ -21,7 +21,7 @@ import {
 } from '@/services/detect';
 
 import { DetectionImageResult } from './detimgresult';
-import { FileUpload } from './upload';
+import { FileUpload } from '../blocks/upload';
 import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';

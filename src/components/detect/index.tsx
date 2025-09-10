@@ -21,7 +21,7 @@ import {
   getDefaultProvider
 } from '@/services/detect';
 import { DetectionImageResult } from './detimgresult';
-import { FileUpload } from './upload';
+import { FileUpload } from '../blocks/upload';
 
 export default function Detect() {
   const [fileState, setFileState] = useState<FileUploadState>({
