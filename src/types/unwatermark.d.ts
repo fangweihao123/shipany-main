@@ -1,7 +1,7 @@
 // AI Image Detection Types
 
 // API Provider Types
-export type UnwatermarkProvider = 'wavespeedunwatermarkimg' | 'wavespeedremovebg';
+export type UnwatermarkProvider = 'wavespeedunwatermarkimg' | 'wavespeedremovebg' | 'wavespeedunwatermarkvideo';
 
 export interface UnwatermarkImgRequest {
     image: string;

@@ -8,15 +8,18 @@ import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucid
 import {
   UnwatermarkState,
   FileUploadState,
+  UnwatermarkProvider,
 } from '@/types/unwatermark';
 import {
   unwatermarkImage,
   validateFile,
-  getImagePreview,
+  getSupportFileType,
   formatFileSize,
   getDefaultProvider,
   pollTaskResult
 } from '@/services/unwatermark';
+
+import { getImagePreview } from '@/lib/utils';
 
 import { FileUpload } from '@/components/blocks/upload';
 import { Upload as DetectUpload, State, UnwatermarkResult } from "@/types/blocks/unwatermarklocale";
@@ -29,6 +32,9 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const apiProvider : UnwatermarkProvider = "wavespeedunwatermarkimg";
+  const [formats, scope] = getSupportFileType(apiProvider);
+  
   const [fileState, setFileState] = useState<FileUploadState>({
     file: null,
     preview: null,
@@ -59,7 +65,7 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
     }));
 
     // Validate file
-    const validation = validateFile(file, "wavespeedunwatermarkimg");
+    const validation = validateFile(file, apiProvider);
     if (!validation.isValid) {
       setFileState({
         file: null,
@@ -101,7 +107,7 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
     }));
 
     try {
-      const result = await unwatermarkImage(fileState.file, "wavespeedunwatermarkimg");
+      const result = await unwatermarkImage(fileState.file, apiProvider);
       setUnwatermarkState(prev => ({
         ...prev,
         isUploading: false,
@@ -166,6 +172,8 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
             fileState={fileState}
             isLoading={unwatermarkState.isUploading}
             upload={_upload}
+            supportType={formats}
+            filescope={scope}
         />
 
         {/* File Info */}

@@ -12,14 +12,14 @@ import {
 } from '@/types/unwatermark';
 import {
   unwatermarkImage,
-  validateFile,
   getSupportFileType,
+  validateFile,
   formatFileSize,
   getDefaultProvider,
   pollTaskResult
 } from '@/services/unwatermark';
 
-import { getImagePreview } from '@/lib/utils';
+import { getVideoPreview } from '@/lib/utils';
 
 import { FileUpload } from '@/components/blocks/upload';
 import { Upload as DetectUpload, State, UnwatermarkResult } from "@/types/blocks/unwatermarklocale";
@@ -27,13 +27,13 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 import { ShowImageResult } from './ShowImgresult';
+import { format } from 'path';
 
-export default function RemoveBGBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
+export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
-
-  const apiProvider : UnwatermarkProvider = "wavespeedremovebg";
+  const apiProvider : UnwatermarkProvider = "wavespeedunwatermarkvideo";
   const [formats, scope] = getSupportFileType(apiProvider);
 
   const [fileState, setFileState] = useState<FileUploadState>({
@@ -79,7 +79,7 @@ export default function RemoveBGBlock({ _upload, _state, _unwatermarkDetails }: 
 
     try {
       // Generate preview
-      const preview = await getImagePreview(file);
+      const preview = await getVideoPreview(file);
       setFileState({
         file,
         preview,

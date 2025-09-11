@@ -4,9 +4,7 @@ import {
 } from '@/types/detect';
 
 import {
-  UnwatermarkProvider,
-  UnwatermarkImgRequest,
-  UnwatermarkImgResponse
+  UnwatermarkProvider
 } from '@/types/unwatermark'
 
 export const PROVIDER_CONFIGS = {
@@ -14,15 +12,25 @@ export const PROVIDER_CONFIGS = {
     name: 'Unwatermark Image',
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/watermark/wavespeed/img',
+    endpoint: '/api/watermark/wavespeed',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
+    fileScope: "image/*"
   },
   wavespeedremovebg:{
     name: 'Unwatermark Image',
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/watermark/wavespeed/img',
+    endpoint: '/api/watermark/wavespeed',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
+    fileScope: "image/*"
+  },
+  wavespeedunwatermarkvideo:{
+    name: 'Unwatermark Video',
+    description: 'Remove Watermark From Video',
+    maxFileSize: 100 * 1024 * 1024, // 100MB
+    endpoint: '/api/watermark/wavespeed',
+    supportedFormats: ['mp4'] as const,
+    fileScope: "video/*"
   }
 } as const;
 
@@ -148,6 +156,12 @@ export async function pollTaskResult(id: string): Promise<any>{
   throw new Error('Detection timeout');
 }
 
+export function getSupportFileType(provider: UnwatermarkProvider): [string[], string]{
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  return [config.supportedFormats, config.fileScope]
+}
 
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes';
@@ -157,15 +171,6 @@ export function formatFileSize(bytes: number): string {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-}
-
-export function getImagePreview(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error('Failed to read file'));
-    reader.readAsDataURL(file);
-  });
 }
 
 // Helper function to get confidence color
