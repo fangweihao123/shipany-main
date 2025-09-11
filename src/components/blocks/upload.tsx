@@ -90,9 +90,9 @@ export function FileUpload({
         <div
           className={cn(
             "relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer",
-            isDragOver ? "border-blue-500 bg-blue-50" : "border-gray-300",
-            isLoading ? "cursor-not-allowed opacity-50" : "hover:border-gray-400",
-            fileState.error ? "border-red-300 bg-red-50" : ""
+            isDragOver ? "border-primary bg-primary/10" : "border-border",
+            isLoading ? "cursor-not-allowed opacity-50" : "hover:border-border",
+            fileState.error ? "border-destructive bg-destructive/10" : ""
           )}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -139,32 +139,32 @@ export function FileUpload({
               </div>
               
               {!isLoading && (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {upload?.click_different_file ?? "Click to select a different image"} 
                 </p>
               )}
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+              <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center">
                 <Upload className={cn(
                   "w-6 h-6",
-                  isDragOver ? "text-blue-600" : "text-gray-400"
+                  isDragOver ? "text-primary" : "text-muted-foreground"
                 )} />
               </div>
               
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   {upload?.upload_title}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   {upload?.drag_drop_text ?? "Drag and drop your image here, or click to select"} 
                 </p>
-                <p className="text-xs text-gray-500 mb-2">
+                <p className="text-xs text-muted-foreground mb-2">
                   {supportText}
                 </p>
                 {fileDuration && (
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     {durationTips}
                   </p>
                 )}
@@ -181,7 +181,7 @@ export function FileUpload({
         </div>
 
         {fileState.error && (
-          <p className="mt-3 text-sm text-red-600">
+          <p className="mt-3 text-sm text-destructive">
             {fileState.error}
           </p>
         )}
