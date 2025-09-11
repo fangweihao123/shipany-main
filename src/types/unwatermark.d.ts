@@ -10,6 +10,13 @@ export interface UnwatermarkImgRequest {
     enable_sync_mode?: boolean;
 }
 
+export interface UnwatermarkVideoRequest {
+    video: string;
+    output_format?: string;
+    enable_base64_output?: boolean;
+    enable_sync_mode?: boolean;
+}
+
 export interface UnwatermarkImgResponse{
   id: string;
   model: string;

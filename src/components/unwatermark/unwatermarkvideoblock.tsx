@@ -26,7 +26,7 @@ import { Upload as DetectUpload, State, UnwatermarkResult } from "@/types/blocks
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
-import { ShowImageResult } from './ShowImgresult';
+import { ShowVideoResult } from './ShowVideoResult';
 import { format } from 'path';
 
 export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
@@ -235,10 +235,9 @@ export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDet
         {/* Results Section */}
         {
           unwatermarkState.isFinished ? (
-            <ShowImageResult 
+            <ShowVideoResult 
             result={unwatermarkState.result.data.outputs}
             unwatermarkDetails={_unwatermarkDetails}
-            imagePreview={fileState.preview}
             onReset={handleReset}
             />
           ) : (

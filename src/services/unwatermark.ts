@@ -13,7 +13,7 @@ export const PROVIDER_CONFIGS = {
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/watermark/wavespeed',
-    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'],
     fileScope: "image/*"
   },
   wavespeedremovebg:{
@@ -21,7 +21,7 @@ export const PROVIDER_CONFIGS = {
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/watermark/wavespeed',
-    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'],
     fileScope: "image/*"
   },
   wavespeedunwatermarkvideo:{
@@ -29,7 +29,7 @@ export const PROVIDER_CONFIGS = {
     description: 'Remove Watermark From Video',
     maxFileSize: 100 * 1024 * 1024, // 100MB
     endpoint: '/api/watermark/wavespeed',
-    supportedFormats: ['mp4'] as const,
+    supportedFormats: ['mp4'],
     fileScope: "video/*"
   }
 } as const;

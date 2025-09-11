@@ -1,9 +1,10 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Image, FileText } from "lucide-react";
+import { Image, FileVideo } from "lucide-react";
 import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
 import { Unwatermark } from "@/types/blocks/unwatermarklocale";
 import RemoveBGBlock from "@/components/unwatermark/removebgblock";
+import UnwatermarkVideoBlock from "@/components/unwatermark/unwatermarkvideoblock";
 
 export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwatermark }){
   const uploads = useMemo(() => unwatermark?.uploads ?? [], [unwatermark]);
@@ -25,7 +26,9 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
                   {i === 0 ? (
                     <Image className="w-4 h-4 mr-2" />
                   ) : (
-                    <Image className="w-4 h-4 mr-2" />
+                    i === 1 ? 
+                    (<FileVideo className="w-4 h-4 mr-2" />)
+                    :(<Image className="w-4 h-4 mr-2" />)
                   )}
                   {u.upload_tab || u.upload_title}
                 </button>
@@ -39,7 +42,9 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
             {activeIndex === 0 ? (
               <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             ) : (
-              <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+              activeIndex === 1 
+              ? <UnwatermarkVideoBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+              : <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             )}
           </div>
         </section>

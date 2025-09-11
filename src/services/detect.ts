@@ -138,7 +138,7 @@ export async function queryDetectionStatus(request:DetectionQueryRequest):Promis
 }
 
 export async function pollDetectionResult(request:DetectionQueryRequest): Promise<any>{
-  const maxAttempts = 30;
+  const maxAttempts = 90;
   const interval = 2000;
 
   for(let attempt = 0; attempt < maxAttempts; attempt++){

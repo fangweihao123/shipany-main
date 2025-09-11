@@ -5,6 +5,7 @@ import {
 
 import {
   UnwatermarkImgRequest,
+  UnwatermarkVideoRequest,
   UnwatermarkImgResponse,
   UnwatermarkProvider
 } from '@/types/unwatermark'
@@ -19,9 +20,9 @@ if (!API_KEY) {
   console.error('UNDETECTABLE_AI_API_KEY is not set in environment variables');
 }
 
-async function uploadImage(file: Uint8Array<ArrayBuffer>, contentType: string): Promise<string> {
+async function uploadFile(file: Uint8Array<ArrayBuffer>, filename:string, contentType: string): Promise<string> {
   const storage = newStorage();
-  const key = `upload/img_${getUuid()}.png`;
+  const key = `upload/${getUuid()}${filename}`;
   const response = await storage.uploadFile({
     body: file,
     key: key,
@@ -42,6 +43,8 @@ async function removeImageWaterMark(data: UnwatermarkImgRequest, provider: Unwat
     url += '/image-watermark-remover';
   }else if(provider === 'wavespeedremovebg'){
     url += '/image-background-remover';
+  }else if(provider === 'wavespeedunwatermarkvideo'){
+    url += '/video-watermark-remover';
   }
   
   const response = await fetch(url, {
@@ -55,6 +58,25 @@ async function removeImageWaterMark(data: UnwatermarkImgRequest, provider: Unwat
 
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+async function removeVideoWaterMark(data: UnwatermarkVideoRequest, provider: UnwatermarkProvider): Promise<UnwatermarkImgResponse> {
+  let url = API_BASE_URL || "";
+  url += '/video-watermark-remover';
+  
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to process video: ${response.statusText}`);
   }
   return response.json();
 }
@@ -92,7 +114,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file type
-    const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/avif', 'image/bmp', 'image/tiff'];
+    const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/avif', 'image/bmp', 'image/tiff', 'video/mp4'];
     if (!supportedTypes.includes(file.type)) {
       return NextResponse.json(
         {
@@ -108,7 +130,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file size (1KB - 10MB)
-    if (file.size < 1024 || file.size > 10 * 1024 * 1024) {
+    if (file.size < 1024 || file.size > 100 * 1024 * 1024) {
       return NextResponse.json(
         {
           success: false,
@@ -124,16 +146,25 @@ export async function POST(request: NextRequest) {
 
     // Step 2: Upload image
     const fileBuffer = await file.bytes();
-    const uploadUrl = await uploadImage(fileBuffer, file.type);
+    const uploadUrl = await uploadFile(fileBuffer, file.name, file.type);
 
     // Step 3: Detect image
-    const removeRequest: UnwatermarkImgRequest = {
-      image: uploadUrl
-    };
+    if(provider === "wavespeedremovebg" || provider === "wavespeedunwatermarkimg"){
+      const removeRequest: UnwatermarkImgRequest = {
+        image: uploadUrl
+      };
 
-    const detectionResponse = await removeImageWaterMark(removeRequest, provider);
+      const detectionResponse = await removeImageWaterMark(removeRequest, provider);
 
-    return NextResponse.json(detectionResponse);
+      return NextResponse.json(detectionResponse);
+    }else{
+      const removeRequest: UnwatermarkVideoRequest = {
+        video: uploadUrl
+      };
+      const detectionResponse = await removeVideoWaterMark(removeRequest, provider);
+
+      return NextResponse.json(detectionResponse);
+    }
 
   } catch (error) {
     console.error('Detection API error:', error);
