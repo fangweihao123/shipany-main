@@ -10,7 +10,14 @@ import {
 } from '@/types/unwatermark'
 
 export const PROVIDER_CONFIGS = {
-  wavespeedimg: {
+  wavespeedunwatermarkimg: {
+    name: 'Unwatermark Image',
+    description: 'Remove Watermark From Image',
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/watermark/wavespeed/img',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
+  },
+  wavespeedremovebg:{
     name: 'Unwatermark Image',
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
@@ -33,7 +40,7 @@ export class UnwatermarkError extends Error {
 // Get default provider from environment or fallback to sightengine
 export function getDefaultProvider(): UnwatermarkProvider {
   const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as UnwatermarkProvider;
-  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'wavespeedimg';
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'wavespeedunwatermarkimg';
 }
 
 export async function unwatermarkImage(file: File, provider?: UnwatermarkProvider): Promise<string> {
@@ -48,6 +55,7 @@ export async function unwatermarkImage(file: File, provider?: UnwatermarkProvide
   const config = PROVIDER_CONFIGS[selectedProvider];
   const formData = new FormData();
   formData.append('file', file);
+  formData.append('provider', selectedProvider);
 
   try {
     const response = await fetch(config.endpoint, {

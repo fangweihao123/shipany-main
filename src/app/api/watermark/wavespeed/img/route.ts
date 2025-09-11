@@ -5,15 +5,14 @@ import {
 
 import {
   UnwatermarkImgRequest,
-  UnwatermarkImgResponse
+  UnwatermarkImgResponse,
+  UnwatermarkProvider
 } from '@/types/unwatermark'
-import { decreaseCredits, CreditsTransType } from '@/services/credit';
-import { getUserUuid } from '@/services/user';
 import { newStorage, Storage } from '@/lib/storage';
 import { getUuid } from '@/lib/hash';
 
-const API_BASE_URL = process.env.ERASE_WATERMARK_API_ENDPOINT;
-const API_KEY = process.env.ERASE_WATERMARK_API_KEY;
+const API_BASE_URL = process.env.WAVESPEED_API_ENDPOINT;
+const API_KEY = process.env.WAVESPEED_API_KEY;
 const STORAGE_PUBLIC_URL = process.env.STORAGE_PUBLIC_URL;
 
 if (!API_KEY) {
@@ -37,8 +36,15 @@ async function uploadImage(file: Uint8Array<ArrayBuffer>, contentType: string): 
   return url;
 }
 
-async function removeImageWaterMark(data: UnwatermarkImgRequest): Promise<UnwatermarkImgResponse> {
-  const response = await fetch(`${API_BASE_URL}/image-watermark-remover`, {
+async function removeImageWaterMark(data: UnwatermarkImgRequest, provider: UnwatermarkProvider): Promise<UnwatermarkImgResponse> {
+  let url = API_BASE_URL || "";
+  if(provider === 'wavespeedunwatermarkimg'){
+    url += '/image-watermark-remover';
+  }else if(provider === 'wavespeedremovebg'){
+    url += '/image-background-remover';
+  }
+  
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -70,6 +76,7 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const provider = formData.get('provider') as UnwatermarkProvider;
 
     if (!file) {
       return NextResponse.json(
@@ -124,7 +131,7 @@ export async function POST(request: NextRequest) {
       image: uploadUrl
     };
 
-    const detectionResponse = await removeImageWaterMark(removeRequest);
+    const detectionResponse = await removeImageWaterMark(removeRequest, provider);
 
     return NextResponse.json(detectionResponse);
 

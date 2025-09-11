@@ -61,10 +61,19 @@
   "unwatermark":{
     "uploads":[
       {
-        "upload_tab": "Audio Detection",
-        "upload_title": "Upload an audio file",
-        "select_tip": "Select audio file",
-        "drag_drop_text": "Drag and drop your audio here, or click to select",
+        "upload_tab": "Erase Image Watermark",
+        "upload_title": "Upload an image file",
+        "select_tip": "Select image file",
+        "drag_drop_text": "Drag and drop your image here, or click to select",
+        "click_different_file": "Click to select a different image",
+        "support_format": "Supports {formats}",
+        "duration_limit_tip": "Supports up to {seconds}s audio"
+      },
+       {
+        "upload_tab": "Erase Image Background",
+        "upload_title": "Upload an image file",
+        "select_tip": "Select image file",
+        "drag_drop_text": "Drag and drop your image here, or click to select",
         "click_different_file": "Click to select a different image",
         "support_format": "Supports {formats}",
         "duration_limit_tip": "Supports up to {seconds}s audio"
@@ -72,10 +81,10 @@
     ],
     "state": {
       "uploading": "Uploading...",
-      "analyzing": "Analyzing...",
+      "analyzing": "Processing...",
       "processing": "Processing...",
-      "detection_complete": "Detection Complete",
-      "detect_ai_generation": "Detect AI Generation",
+      "detection_complete": "Complete",
+      "detect_ai_generation": "Start",
       "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
     },
     "unwatermarkResult": {

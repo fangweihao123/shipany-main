@@ -1,8 +1,9 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Volume2, FileText } from "lucide-react";
+import { Image, FileText } from "lucide-react";
 import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
 import { Unwatermark } from "@/types/blocks/unwatermarklocale";
+import RemoveBGBlock from "@/components/unwatermark/removebgblock";
 
 export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwatermark }){
   const uploads = useMemo(() => unwatermark?.uploads ?? [], [unwatermark]);
@@ -22,9 +23,9 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {i === 0 ? (
-                    <FileText className="w-4 h-4 mr-2" />
+                    <Image className="w-4 h-4 mr-2" />
                   ) : (
-                    <Volume2 className="w-4 h-4 mr-2" />
+                    <Image className="w-4 h-4 mr-2" />
                   )}
                   {u.upload_tab || u.upload_title}
                 </button>
@@ -38,7 +39,7 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
             {activeIndex === 0 ? (
               <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             ) : (
-              <div></div>
+              <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             )}
           </div>
         </section>

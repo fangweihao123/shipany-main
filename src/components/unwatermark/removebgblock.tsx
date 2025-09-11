@@ -25,7 +25,7 @@ import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 import { ShowImageResult } from './ShowImgresult';
 
-export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
+export default function RemoveBGBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
@@ -59,7 +59,7 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
     }));
 
     // Validate file
-    const validation = validateFile(file, "wavespeedunwatermarkimg");
+    const validation = validateFile(file, "wavespeedremovebg");
     if (!validation.isValid) {
       setFileState({
         file: null,
@@ -101,7 +101,7 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
     }));
 
     try {
-      const result = await unwatermarkImage(fileState.file, "wavespeedunwatermarkimg");
+      const result = await unwatermarkImage(fileState.file, "wavespeedremovebg");
       setUnwatermarkState(prev => ({
         ...prev,
         isUploading: false,
