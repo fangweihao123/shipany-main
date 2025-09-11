@@ -69,6 +69,15 @@
         "support_format": "Supports {formats}",
         "duration_limit_tip": "Supports up to {seconds}s audio"
       },
+      {
+        "upload_tab": "Erase Video Background",
+        "upload_title": "Upload an video file",
+        "select_tip": "Select video file",
+        "drag_drop_text": "Drag and drop your video here, or click to select",
+        "click_different_file": "Click to select a different video",
+        "support_format": "Supports {formats}",
+        "duration_limit_tip": "Supports up to {seconds}s audio"
+      },
        {
         "upload_tab": "Erase Image Background",
         "upload_title": "Upload an image file",
