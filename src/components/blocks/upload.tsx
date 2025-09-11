@@ -15,7 +15,10 @@ interface FileUploadProps {
   upload?: DetectUpload;
   fileDuration?: number;
   supportType?: string[];
+  filescope?: string;
 }
+
+type uploadType = "video" | "image" | "audio" | "text";
 
 export function FileUpload({ 
     onFileSelect, 
@@ -23,10 +26,19 @@ export function FileUpload({
     isLoading,
     upload,
     fileDuration,
-    supportType = ['JPG', 'PNG', 'WebP', 'HEIC', 'AVIF', 'BMP']
+    supportType = ['JPG', 'PNG', 'WebP', 'HEIC', 'AVIF', 'BMP'],
+    filescope = "image/*"
   }: FileUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  let uploadType : uploadType = "image";
+  if(filescope.includes("video")){
+    uploadType = "video";
+  }else if(filescope.includes("image")){
+    uploadType = "image";
+  }else if(filescope.includes("audio")){
+    uploadType = "audio";
+  }
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -90,7 +102,7 @@ export function FileUpload({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*"
+            accept={filescope}
             onChange={handleFileInputChange}
             className="hidden"
             disabled={isLoading}
@@ -99,11 +111,21 @@ export function FileUpload({
           {fileState.preview ? (
             <div className="space-y-4">
               <div className="relative inline-block">
-                <img
+                {uploadType === "video" && (
+                  <video
+                  src={fileState.preview}
+                  controls
+                  className="aspect-video max-h-80 max-w-full rounded-lg shadow-md"
+                  preload="metadata"
+                />
+                )}
+                {uploadType === "image" && (
+                  <img
                   src={fileState.preview}
                   alt="Preview"
-                  className="max-h-48 max-w-full rounded-lg shadow-md"
+                  className="aspect-video max-h-80 max-w-full rounded-lg shadow-md object-contain bg-black"
                 />
+                )}
                 {!isLoading && (
                   <Button
                     variant="destructive"
