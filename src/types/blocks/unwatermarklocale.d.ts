@@ -30,6 +30,8 @@ export interface UnwatermarkResult{
   preview_failed?: string;
   unwatermark_failed?: string;
   result_detail?: string;
+  insufficient_credits?: string;
+  unable_verify_credits?: string;
 }
 
 

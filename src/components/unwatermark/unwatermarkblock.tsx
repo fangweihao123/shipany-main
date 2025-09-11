@@ -98,6 +98,13 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
   const handleDetection = useCallback(async () => {
     if (!fileState.file || !fileState.isValid) return;
 
+     // Require auth before detection
+    if (status === 'unauthenticated') {
+      setShowAuthDialog(true);
+      setTimeout(() => router.push('/auth/signin'), 1200);
+      return;
+    }
+
     setUnwatermarkState(prev => ({
       ...prev,
       isUploading: true,
@@ -105,6 +112,37 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
       isFinished: false,
       error: null,
     }));
+
+    // Check credits before detection
+    try {
+      const creditsResponse = await fetch('/api/get-user-credits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const creditsData = await creditsResponse.json();
+      
+      if (creditsData.message !== "ok" || creditsData.data?.left_credits < 1) {
+        setUnwatermarkState(prev => ({
+          ...prev,
+          isLoading: false,
+          isUploading: false,
+          isDetecting: false,
+          isFinished: false,
+          error: _unwatermarkDetails?.insufficient_credits ?? 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
+        }));
+        return;
+      }
+    } catch (error) {
+      setUnwatermarkState(prev => ({
+        ...prev,
+        isLoading: false,
+        isUploading: false,
+        isDetecting: false,
+        isFinished: false,
+        error: _unwatermarkDetails?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
+      }));
+      return;
+    }
 
     try {
       const result = await unwatermarkImage(fileState.file, apiProvider);

@@ -103,7 +103,9 @@
       "invalid_file": "Invalid file",
       "preview_failed": "Failed to generate image preview",
       "unwatermark_failed": "Detection failed",
-      "result_detail": "Detection results will appear here"
+      "result_detail": "Detection results will appear here",
+      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+      "unable_verify_credits": "Unable to verify credits. Please try again."
     }
   },
   "introduce": {

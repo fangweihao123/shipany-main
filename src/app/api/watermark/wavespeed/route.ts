@@ -3,6 +3,9 @@ import {
   ApiErrorResponse,
 } from '@/types/detect';
 
+import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { getUserUuid } from '@/services/user';
+
 import {
   UnwatermarkImgRequest,
   UnwatermarkVideoRequest,
@@ -59,6 +62,17 @@ async function removeImageWaterMark(data: UnwatermarkImgRequest, provider: Unwat
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
+
+  const user_uuid = await getUserUuid();
+  if (!user_uuid){
+    throw new Error("Please Login First");
+  }
+  await decreaseCredits({
+    user_uuid,
+    trans_type: CreditsTransType.Ping,
+    credits: 1,
+  });
+
   return response.json();
 }
 
