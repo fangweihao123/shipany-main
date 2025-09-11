@@ -19,12 +19,13 @@ import {
 } from '@/services/unwatermark';
 
 import { FileUpload } from '@/components/blocks/upload';
-import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/detect";
+import { Upload as DetectUpload, State, UnwatermarkResult } from "@/types/blocks/unwatermarklocale";
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
+import { ShowImageResult } from './ShowImgresult';
 
-export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
+export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
   const router = useRouter();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
@@ -64,7 +65,7 @@ export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _
         file: null,
         preview: null,
         isValid: false,
-        error: validation.error || (_detectResult?.invalid_file ?? 'Invalid file'),
+        error: validation.error || (_unwatermarkDetails?.invalid_file ?? 'Invalid file'),
       });
       return;
     }
@@ -83,7 +84,7 @@ export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _
         file: null,
         preview: null,
         isValid: false,
-        error: _detectResult?.preview_failed ?? 'Failed to generate image preview',
+        error: _unwatermarkDetails?.preview_failed ?? 'Failed to generate image preview',
       });
     }
   }, []);
@@ -125,7 +126,7 @@ export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _
         isUploading: false,
         isDetecting: false,
         result: null,
-        error: error instanceof Error ? error.message : (_detectResult?.detection_failed ?? 'Detection failed'),
+        error: error instanceof Error ? error.message : (_unwatermarkDetails?.unwatermark_failed ?? 'Unwatermark failed'),
       }));
     }
   }, [fileState.file, fileState.isValid, status, router, _state?.auth_required]);
@@ -223,18 +224,30 @@ export default function UnwatermarkBlock({ _upload, _state, _detectResult }: { _
         </div>
 
         {/* Results Section */}
-        <div className="space-y-6">
-          <Card className="border-dashed">
-            <CardContent className="pt-12 pb-12">
-                <div className="text-center">
-                <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                <p className="mt-4 text-sm text-muted-foreground">
-                    {_detectResult?.result_detail ?? "Detection results will be here"}
-                </p>
-                </div>
-            </CardContent>
-          </Card>
-        </div>
+        {
+          unwatermarkState.isFinished ? (
+            <ShowImageResult 
+            result={unwatermarkState.result.data.outputs}
+            unwatermarkDetails={_unwatermarkDetails}
+            imagePreview={fileState.preview}
+            onReset={handleReset}
+            />
+          ) : (
+            <div className="space-y-6">
+              <Card className="border-dashed">
+                <CardContent className="pt-12 pb-12">
+                    <div className="text-center">
+                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-4 text-sm text-muted-foreground">
+                        {_unwatermarkDetails?.result_detail ?? "Detection results will be here"}
+                    </p>
+                    </div>
+                </CardContent>
+              </Card>
+            </div>
+          )
+        }
+        
     </div>
   );
 }

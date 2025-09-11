@@ -4,11 +4,13 @@ import { Section } from "@/types/blocks/section";
 import { Footer } from "@/types/blocks/footer";
 import { Pricing } from "@/types/blocks/pricing";
 import { Detection } from "@/types/blocks/detect"
+import { Unwatermark } from "../blocks/unwatermarklocale";
 
 export interface LandingPage {
   header?: Header;
   hero?: Hero;
   detection?: Detection;
+  unwatermark?: Unwatermark;
   branding?: Section;
   introduce?: Section;
   benefit?: Section;

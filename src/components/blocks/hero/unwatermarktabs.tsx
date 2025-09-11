@@ -1,18 +1,15 @@
 "use client";
 import { useMemo, useState } from "react";
-import DetectMusicInline from "@/components/detect/detmusicinline";
-import DetectTextInline from "@/components/detect/detextinline";
 import { Volume2, FileText } from "lucide-react";
-import { Detection } from "@/types/blocks/detect";
-import DetectInline from "@/components/detect/deimginline";
 import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
+import { Unwatermark } from "@/types/blocks/unwatermarklocale";
 
-export default function DetectionTabs({ detection }: { detection: Detection }){
-  const uploads = useMemo(() => detection?.uploads ?? [], [detection]);
+export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwatermark }){
+  const uploads = useMemo(() => unwatermark?.uploads ?? [], [unwatermark]);
   const [activeIndex, setActiveIndex] = useState(0);
   
   return (
-    <div id="detect" className="container">
+    <div id="unwatermark" className="container">
         {/* Tab Navigation */}
         {uploads.length > 0 && (
           <div className="flex justify-center mb-6">
@@ -36,12 +33,12 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
           </div>
         )}
         {/* Detection Area */}
-        <section id="detect-area" className="mt-6 scroll-mt-24">
+        <section id="unwatermark-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
             {activeIndex === 0 ? (
-              <div/>
+              <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             ) : (
-              <DetectTextInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
+              <div></div>
             )}
           </div>
         </section>
