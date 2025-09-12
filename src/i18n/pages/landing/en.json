@@ -61,6 +61,14 @@
   "detection":{
     "uploads":[
       {
+        "upload_tab": "Image Detection",
+        "upload_title": "Upload an image file",
+        "select_tip": "Select image file",
+        "drag_drop_text": "Drag and drop your image here, or click to select",
+        "click_different_file": "Click to select a different image",
+        "support_format": "Supports {formats}"
+      },
+      {
         "upload_tab": "Text Detection",
         "upload_title": "Enter text",
         "select_tip": "Select text file",
@@ -78,7 +86,7 @@
         "upload_title": "Upload an audio file",
         "select_tip": "Select audio file",
         "drag_drop_text": "Drag and drop your audio here, or click to select",
-        "click_different_file": "Click to select a different image",
+        "click_different_file": "Click to select a different audio",
         "support_format": "Supports {formats}",
         "duration_limit_tip": "Supports up to {seconds}s audio"
       }

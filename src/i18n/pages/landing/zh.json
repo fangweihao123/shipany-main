@@ -61,6 +61,14 @@
   "detection":{
     "uploads":[
       {
+        "upload_tab": "图片检测",
+        "upload_title": "上传图片文件",
+        "select_tip": "选择图片文件",
+        "drag_drop_text": "拖拽图片到此处，或点击选择",
+        "click_different_file": "点击选择不同的图片",
+        "support_format": "支持 {formats} 格式"
+      },
+      {
         "upload_tab": "文本检测",
         "upload_title": "输入文本",
         "select_tip": "选择文本文件",
@@ -77,8 +85,8 @@
         "upload_tab": "音频检测",
         "upload_title": "上传音频文件",
         "select_tip": "选择音频文件",
-        "drag_drop_text": "拖拽文件到此处，或点击选择",
-        "click_different_file": "点击选择不同的文件",
+        "drag_drop_text": "拖拽音频到此处，或点击选择",
+        "click_different_file": "点击选择不同的音频",
         "support_format": "支持 {formats} 格式",
         "duration_limit_tip": "支持最长 {seconds} 秒的音频"
       }
@@ -98,20 +106,15 @@
       "invalid_file": "无效文件",
       "preview_failed": "生成图片预览失败",
       "detection_failed": "检测失败",
-      "confidence_level": "整体置信度",
-      "ai_generated": "AI生成：该文本似乎是由人工智能创建的。",
-      "human_created": "人工创作：该文本似乎是由人类撰写的。",
-      "analyze_again": "分析新的文本",
+      "confidence_level": "AI程度",
+      "ai_generated": "AI生成：该文件似乎是由人工智能创建的。",
+      "human_created": "人工创作：该文件似乎是真实的或由人类创作的。",
+      "analyze_again": "重新分析",
       "understand": "理解结果",
-      "confidence_score_desc": "整体分数：代表多个AI检测模型的综合分析结果。分数高于50%表示内容可能为AI生成。",
-      "ai_generated_desc": "个别分数：每个检测模型使用不同算法分析文本模式、写作风格和AI生成内容的语言标记。",
-      "human_created_desc": "人工分数：基于自然写作模式和文体元素，表示文本由人类撰写的可能性。",
-      "individual_detection_scores": "个别检测分数",
-      "human_score": "人工分数",
-      "overall_confidence": "整体置信度",
-      "ai_pattern_detected": "大多数检测模型都认为此内容显示出AI生成文本的典型模式。",
-      "human_pattern_detected": "分析表明此内容显示出更符合人类写作的模式。",
-      "note": "注意：没有任何检测方法可以做到100%准确。在判断内容真实性时，结果应结合其他证据一并考虑。",
+      "confidence_score_desc": "置信度分数：表示AI模型对其预测的确定程度。分数越高表示对结果越有信心。",
+      "ai_generated_desc": "AI生成：图片显示出AI生成内容的典型特征，如特定的人工痕迹、模式或不一致性。",
+      "human_created_desc": "人工创作：图片似乎是通过拍摄、手绘或传统数字艺术方法创作的。",
+      "note": "注意：没有任何检测方法可以做到100%准确。在对图片真实性做出重要判断时，结果应结合其他证据一并考虑。",
       "audio_too_long": "音频时长超出限制。请上传不超过 {seconds} 秒的音频文件。"
     }
   },

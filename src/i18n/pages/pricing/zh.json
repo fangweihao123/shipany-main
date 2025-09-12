@@ -3,7 +3,7 @@
     "name": "pricing",
     "label": "定价方案",
     "title": "简单透明的定价方案",
-    "description": "选择适合您AI检测需求的完美方案。以实惠价格保护您免受虚假内容侵害。",
+    "description": "选择适合您AI图片检测需求的完美方案。以实惠价格保护您免受虚假图片侵害。",
     "groups": [
       {
         "name": "monthly",
@@ -43,8 +43,8 @@
           "icon": "RiScanLine"
         },
         "product_id": "basic",
-        "product_name": "AI检测器基础版月付",
-        "credits": 1000,
+        "product_name": "AI图片检测器基础版月付",
+        "credits": 100,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -74,8 +74,8 @@
           "icon": "RiVipCrownLine"
         },
         "product_id": "Professional",
-        "product_name": "AI检测器专业版月付",
-        "credits": 5000,
+        "product_name": "AI图片检测器专业版月付",
+        "credits": 200,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -84,7 +84,7 @@
         "description": "适合个人用户和小团队使用。",
         "features_title": "包含功能",
         "features": [
-          "每年2400积分检测次数",
+          "每年1200积分检测次数",
           "高质量内容检测",
           "优先邮件支持",
           "自定义检测阈值",
@@ -103,9 +103,9 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic-annually",
-        "product_name": "AI检测器基础版年付",
-        "credits": 12000,
+        "product_id": "basicannually",
+        "product_name": "AI图片检测器基础版年付",
+        "credits": 1200,
         "valid_months": 12,
         "group": "yearly"
       },
@@ -115,7 +115,7 @@
         "label": "热门",
         "features_title": "包含基础版所有功能，另加",
         "features": [
-          "每年72000积分检测次数",
+          "每年3000积分检测次数",
           "高质量内容检测",
           "优先邮件支持",
           "自定义检测阈值",
@@ -134,9 +134,9 @@
           "url": "/checkout?plan=professional-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional-annually",
-        "product_name": "AI检测器专业版年付",
-        "credits": 60000,
+        "product_id": "Professionalannually",
+        "product_name": "AI图片检测器专业版年付",
+        "credits": 3000,
         "valid_months": 12,
         "group": "yearly"
       }
