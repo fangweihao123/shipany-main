@@ -3,7 +3,7 @@
     "name": "pricing",
     "label": "Pricing",
     "title": "Simple, Transparent Pricing",
-    "description": "Choose the perfect plan for your AI image detection needs. Protect against fake images at an affordable price.",
+    "description": "Choose the perfect plan for your EraseWatermark needs. Erase watermark from content at an affordable price.",
     "groups": [
       {
         "name": "monthly",
@@ -23,11 +23,10 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "100 credits detections per month",
+          "100 credits watermark removals per month",
           "High quality, legible content",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "Advanced AI algorithms"
         ],
         "interval": "month",
         "amount": 890,
@@ -43,7 +42,7 @@
           "icon": "RiScanLine"
         },
         "product_id": "basic",
-        "product_name": "AI Image Detector Basic Monthly",
+        "product_name": "EraseWatermark Basic Monthly",
         "credits": 100,
         "valid_months": 1,
         "group": "monthly"
@@ -54,11 +53,10 @@
         "label": "Popular",
         "features_title": "Everything in Basic, plus",
         "features": [
-          "200 credits detections per month",
+          "200 credits watermark removals per month",
           "High quality, legible content",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "Advanced AI algorithms"
         ],
         "interval": "month",
         "amount": 1690,
@@ -74,7 +72,7 @@
           "icon": "RiVipCrownLine"
         },
         "product_id": "Professional",
-        "product_name": "AI Image Detector Professional Monthly",
+        "product_name": "EraseWatermark Professional Monthly",
         "credits": 200,
         "valid_months": 1,
         "group": "monthly"
@@ -84,11 +82,10 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "1200 credits detections per month",
+          "1200 credits watermark removals per year",
           "High quality, legible content",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "Advanced AI algorithms"
         ],
         "interval": "year",
         "amount": 8280,
@@ -104,7 +101,7 @@
           "icon": "RiScanLine"
         },
         "product_id": "basicannually",
-        "product_name": "AI Image Detector Basic Annually",
+        "product_name": "EraseWatermark Basic Annually",
         "credits": 1200,
         "valid_months": 12,
         "group": "yearly"
@@ -115,11 +112,10 @@
         "label": "Popular",
         "features_title": "Everything in Basic, plus",
         "features": [
-          "3000 credits detections per month",
+          "3000 credits watermark removals per year",
           "High quality, legible content",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "Advanced AI algorithms"
         ],
         "interval": "year",
         "amount": 15480,
