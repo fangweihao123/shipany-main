@@ -14,6 +14,7 @@ import DetectionTabs from "@/components/blocks/hero/detectiontabs";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 import UnwatermarkTabs from "@/components/blocks/hero/unwatermarktabs";
+import SliderImgFeature from "@/components/blocks/sliderimgfeature";
 
 export const revalidate = 60;
 export const dynamic = "force-static";
@@ -53,7 +54,7 @@ export default async function LandingPage({
       {page.hero && <Hero hero={page.hero} />}
       {page.unwatermark && <UnwatermarkTabs unwatermark={page.unwatermark}/>}
       {page.branding && <Branding section={page.branding} />}
-      {page.introduce && <Feature1 section={page.introduce} />}
+      {page.introduce && <SliderImgFeature section={page.introduce} />}
       {page.benefit && <Feature2 section={page.benefit} />}
       {page.usage && <Feature3 section={page.usage} />}
       {page.feature && <Feature section={page.feature} />}

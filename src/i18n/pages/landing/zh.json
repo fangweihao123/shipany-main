@@ -137,8 +137,8 @@
         "description": "我们先进的去水印工具使用尖端人工智能技术提供精确结果，同时保持图像质量并保留每个重要细节。",
         "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/fake-news.png",
-          "alt": "显示通过网站和扬声器图标打击虚假新闻的插图"
+          "src": "/imgs/features/aiwatermarkremover.png",
+          "alt": "一幅紫色简洁风格的 AI 水印去除工具插图，包含 AI 芯片和去除水印的图片"
         }
       },
       {
@@ -146,8 +146,8 @@
         "description": "体验闪电般快速的去水印性能，单张图片在几秒内完成处理。我们高效的去水印工具无缝处理批量操作，提供专业结果无延迟。",
         "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/art-protection.png",
-          "alt": "防范艺术盗用的简约图形，带有框架艺术品和小偷图标"
+          "src": "/imgs/features/fastproces.png",
+          "alt": "一幅紫色简洁风格的快速水印去除处理工具插图，包含水印图像和表示高速处理的线条"
         }
       },
       {
@@ -155,8 +155,8 @@
         "description": "您的隐私是我们的首要任务。我们的去水印工具安全处理文件，下载后自动删除。我们绝不存储、访问或分享您的内容，确保完全保密。",
         "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/identity-protection.png",
-          "alt": "阻止身份欺诈的简单插图，带有身份证和蒙面人物图标"
+          "src": "/imgs/features/securewatermark.png",
+          "alt": "一幅淡紫色简洁风格的安全水印去除工具插图，包含带勾选的盾牌、水印图像以及突出安全性的文字"
         }
       }
     ]
