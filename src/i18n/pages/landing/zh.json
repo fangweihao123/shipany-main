@@ -2,16 +2,16 @@
   "template": "shipany-template-one",
   "theme": "light",
   "meta": {
-    "title": "AI检测器 - 秒级识别AI生成内容 | detect-ai.me",
-    "description": "专业AI检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI检测器，立即试用。",
-    "keywords": "AI检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
+    "title": "EraseWatermark - 专业AI去水印工具",
+    "description": "专业AI驱动的去水印工具，快速移除图片和视频水印。高效、快速、高质量结果，支持单张和批量处理。",
+    "keywords": "去水印,AI去水印,图片编辑,视频编辑,批量处理,在线工具"
   },
   "header": {
     "brand": {
-      "title": "AI检测器",
+      "title": "EraseWatermark",
       "logo": {
-        "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "src": "/erase-watermark-icon.svg",
+        "alt": "EraseWatermark"
       },
       "url": "/"
     },
@@ -46,15 +46,15 @@
     "show_locale": true
   },
   "hero": {
-    "title": "秒级检测AI生成内容",
-    "highlight_text": "AI生成内容",
-    "description": "先进的AI检测器技术，识别人工智能内容并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
+    "title": "专业去水印工具 AI驱动技术",
+    "highlight_text": "AI驱动技术",
+    "description": "终极去水印解决方案，适用于图片和视频。先进的AI技术在几秒内提供专业结果，让去水印任务变得轻松精准。",
     "announcement": {
       "label": "测试版",
-      "title": "🤖 AI检测器现已全球服务",
+      "title": "🤖 EraseWatermark现已全球服务",
       "url": "/#feature"
     },
-    "tip": "🔒 您的内容绝不会被存储",
+    "tip": "🔒 您的图片绝不会被存储",
     "show_happy_users": true,
     "show_badge": false
   },
@@ -66,15 +66,6 @@
         "select_tip": "选择图片文件",
         "drag_drop_text": "将图片拖放到这里，或点击选择",
         "click_different_file": "点击选择其他图片",
-        "support_format": "支持 {formats} 格式",
-        "duration_limit_tip": "支持最长 {seconds}s 的音频"
-      },
-      {
-        "upload_tab": "视频去背景",
-        "upload_title": "上传视频文件",
-        "select_tip": "选择视频文件",
-        "drag_drop_text": "将视频拖放到这里，或点击选择",
-        "click_different_file": "点击选择其他视频",
         "support_format": "支持 {formats} 格式",
         "duration_limit_tip": "支持最长 {seconds}s 的音频"
       },
@@ -94,7 +85,7 @@
       "processing": "处理中...",
       "detection_complete": "完成",
       "detect_ai_generation": "开始",
-      "auth_required": "请登录后使用AI检测功能。正在跳转到登录页面..."
+      "auth_required": "请登录后使用去水印功能。正在跳转到登录页面..."
     },
     "unwatermarkResult": {
       "resulthints": "去水印结果",
@@ -102,48 +93,48 @@
       "downloadButton": "下载",
       "invalid_file": "无效文件",
       "preview_failed": "生成图片预览失败",
-      "unwatermark_failed": "检测失败",
-      "result_detail": "检测结果将在此处显示",
-      "insufficient_credits": "积分不足。您至少需要1个积分进行检测。请升级您的套餐。",
+      "unwatermark_failed": "处理失败",
+      "result_detail": "处理结果将在此处显示",
+      "insufficient_credits": "积分不足。您至少需要1个积分进行去水印处理。请升级您的套餐。",
       "unable_verify_credits": "无法验证积分。请重试。"
     }
   },
   "introduce": {
     "name": "introduce",
-    "title": "什么是AI检测器",
+    "title": "什么是EraseWatermark",
     "label": "产品介绍",
-    "description": "AI检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
+    "description": "EraseWatermark使用先进的AI技术智能移除图片和视频中的水印，同时保持原始质量和细节。",
     "image": {
-      "src": "/imgs/features/detector.png",
-      "alt": "男子在电脑屏幕上检查内容是否为AI生成的插图"
+      "src": "/imgs/features/watermark-remover.png",
+      "alt": "去水印处理过程的前后对比插图"
     },
     "items": [
       {
-        "title": "即时检测",
-        "description": "上传任何内容，通过实时AI分析技术在几秒内获得结果。",
+        "title": "即时处理",
+        "description": "上传任何图片或视频，通过实时去水印技术在几秒内获得清洁结果。",
         "icon": "RiFlashlightLine"
       },
       {
-        "title": "先进算法",
-        "description": "使用在数百万样本上训练的最先进机器学习模型进行精确检测。",
+        "title": "先进AI技术",
+        "description": "使用在数百万图片上训练的最先进机器学习模型进行精确去水印。",
         "icon": "RiBrainLine"
       },
       {
         "title": "隐私优先",
-        "description": "您上传的内容经过安全处理，绝不会存储在我们的服务器上。",
+        "description": "您上传的图片和视频经过安全处理，绝不会存储在我们的服务器上。",
         "icon": "RiShieldCheckLine"
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么选择AI检测器",
+    "title": "为什么选择我们的去水印工具",
     "label": "优势",
-    "description": "使用我们行业领先的AI检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
+    "description": "发现我们先进去水印技术的强大功能。专为专业去水印应用而构建，我们的平台结合了速度、精确度和用户友好的设计，提供最有效的去水印体验。",
     "items": [
       {
-        "title": "打击虚假新闻",
-        "description": "识别用于虚假信息传播活动的AI生成图片，防范假新闻宣传。",
+        "title": "AI驱动去水印",
+        "description": "我们先进的去水印工具使用尖端人工智能技术提供精确结果，同时保持图像质量并保留每个重要细节。",
         "icon": "RiShieldLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
@@ -151,8 +142,8 @@
         }
       },
       {
-        "title": "防范艺术盗用",
-        "description": "检测未经授权的AI复制原创艺术作品，保护知识产权权利。",
+        "title": "快速去水印处理",
+        "description": "体验闪电般快速的去水印性能，单张图片在几秒内完成处理。我们高效的去水印工具无缝处理批量操作，提供专业结果无延迟。",
         "icon": "RiCopyrightLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
@@ -160,8 +151,8 @@
         }
       },
       {
-        "title": "阻止身份欺诈",
-        "description": "识别深度伪造头像和AI生成的身份文件，防范欺诈和诈骗。",
+        "title": "安全去水印",
+        "description": "您的隐私是我们的首要任务。我们的去水印工具安全处理文件，下载后自动删除。我们绝不存储、访问或分享您的内容，确保完全保密。",
         "icon": "RiUserForbidLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
@@ -172,8 +163,8 @@
   },
   "usage": {
     "name": "usage",
-    "title": "如何使用AI检测器",
-    "description": "通过三个简单步骤识别AI生成内容：",
+    "title": "如何使用去水印工具",
+    "description": "通过三个简单步骤去除水印：",
     "image": {
       "src": "/imgs/features/detection-process.png",
       "alt": "AI检测器处理流程工作图"
@@ -182,24 +173,24 @@
     "text_align": "center",
     "items": [
       {
-        "title": "上传您的内容",
-        "description": "拖放任何文件或粘贴URL。支持图片、文本和其他常见格式。",
+        "title": "上传到去水印工具",
+        "description": "通过拖放文件或点击浏览开始使用我们的去水印工具。我们的去水印工具支持所有主要格式，包括PNG、JPG、JPEG、MP4、MOV等，确保最大兼容性满足您的去水印需求。",
         "image": {
           "src": "/imgs/features/upload.png",
           "alt": "AI检测器内容分析上传界面"
         }
       },
       {
-        "title": "AI分析",
-        "description": "我们的先进算法在几秒内分析内容中AI生成的明显特征。",
+        "title": "智能去水印分析",
+        "description": "我们复杂的去水印AI精确分析您的内容，识别水印模式和纹理。去水印工具然后智能重建背景，同时保持原始图像质量、颜色和精细细节。",
         "image": {
           "src": "/imgs/features/analyze.png",
           "alt": "显示检测过程的AI检测器分析仪表板"
         }
       },
       {
-        "title": "获取结果",
-        "description": "收到置信度评分和详细分析，说明内容被标记为AI或人类创作的原因。",
+        "title": "下载清洁结果",
+        "description": "预览您的去水印结果并立即下载。我们的去水印工具提供清洁、专业质量的图片，可立即用于您的项目、演示或出版物。",
         "image": {
           "src": "/imgs/features/results.png",
           "alt": "带有置信度评分和分析的AI检测器结果屏幕"
@@ -209,27 +200,27 @@
   },
   "feature": {
     "name": "feature",
-    "title": "AI检测器核心功能",
-    "description": "精准快速识别AI生成内容的先进技术。",
+    "title": "EraseWatermark核心功能",
+    "description": "精准快速去除图片和视频水印的先进AI技术。",
     "items": [
       {
-        "title": "实时检测",
-        "description": "通过闪电般快速的分析在几秒内处理内容并获得即时结果。",
+        "title": "实时处理",
+        "description": "通过闪电般快速的AI在几秒内去除水印并获得即时结果。",
         "icon": "RiFlashlightLine"
       },
       {
-        "title": "高准确率",
-        "description": "行业领先的检测准确率，基于数百万AI和人类生成内容训练。",
+        "title": "高质量结果",
+        "description": "行业领先的去水印质量，基于数百万图片和视频训练。",
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "多种上传方式",
-        "description": "支持拖放、文件上传、URL输入和剪贴板粘贴，最大便利性。",
+        "title": "多种格式支持",
+        "description": "支持图片（PNG、JPG、JPEG）和视频（MP4、MOV），拖放上传，最大便利性。",
         "icon": "RiUploadLine"
       },
       {
-        "title": "详细报告",
-        "description": "全面的分析报告，包含置信度评分和检测推理。",
+        "title": "预览和下载",
+        "description": "即时预览您的无水印结果并下载高质量处理文件。",
         "icon": "RiFileTextLine"
       }
     ]
@@ -237,35 +228,35 @@
   "faq": {
     "name": "faq",
     "label": "常见问题",
-    "title": "AI检测器常见问题解答",
+    "title": "EraseWatermark常见问题解答",
     "description": "还有其他问题？请通过邮件联系我们或查看我们的文档。",
     "items": [
       {
-        "title": "AI检测器的准确率如何？",
-        "description": "我们的AI检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
+        "title": "EraseWatermark的效果如何？",
+        "description": "我们的EraseWatermark工具在去除水印的同时保持原始图像质量方面达到95%以上的成功率。AI系统基于数百万样本训练，持续更新以处理各种水印类型。"
       },
       {
-        "title": "可以检测哪些类型的AI生成内容？",
-        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
+        "title": "可以去除哪些类型的水印？",
+        "description": "我们可以去除文字水印、logo水印、透明叠加层和复杂多层水印从图片和视频中。我们的AI识别水印模式并智能重建背景内容。"
       },
       {
-        "title": "我的上传内容数据会被存储或共享吗？",
-        "description": "不会，我们优先保护您的隐私。上传的图片和音频文件经过实时处理后立即删除。我们绝不会存储、共享或将您的内容用于任何其他目的。"
+        "title": "我的上传内容会被存储或共享吗？",
+        "description": "不会，我们优先保护您的隐私。上传的图片和视频经过实时处理后下载完成即自动删除。我们绝不会存储、共享或将您的内容用于任何其他目的。"
       },
       {
-        "title": "如果结果不正确怎么办？",
-        "description": "虽然我们的系统非常准确，但没有检测方法是100%完美的。我们目前处于测试版阶段，正在持续改进。您可以报告不正确的结果帮助我们增强算法。"
+        "title": "如果水印去除效果不理想怎么办？",
+        "description": "虽然我们的AI非常有效，但复杂水印可能需要多次尝试。我们正在持续改进算法。您可以尝试不同设置或联系客服获得具有挑战性的水印帮助。"
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "立即开始使用AI检测器",
-    "description": "保护您免受AI生成内容欺诈和虚假信息的侵害。",
+    "title": "立即开始使用EraseWatermark",
+    "description": "使用专业AI技术立即从您的图片和视频中去除水印。",
     "buttons": [
       {
-        "title": "试用检测器",
-        "url": "#detect",
+        "title": "试用EraseWatermark",
+        "url": "#unwatermark",
         "target": "_self",
         "icon": "RiScanLine"
       }
@@ -274,15 +265,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "AI检测器",
-      "description": "先进的AI检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
+      "title": "EraseWatermark",
+      "description": "先进的AI去水印技术，专业清洁图片和视频，同时保持原始质量和细节。",
       "logo": {
-        "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "src": "/erase-watermark-icon.svg",
+        "alt": "EraseWatermark"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • AI检测器 版权所有。",
+    "copyright": "© 2025 • EraseWatermark 版权所有。",
     "nav": {
       "items": [
         {
@@ -312,9 +303,9 @@
         {
           "title": "邮箱",
           "icon": "RiMailLine",
-          "url": "mailto:support@detect-ai.me",
+          "url": "mailto:support@erasewatermark.com",
           "target": "_self",
-          "description": "support@detect-ai.me"
+          "description": "support@erasewatermark.com"
         }
       ]
     },

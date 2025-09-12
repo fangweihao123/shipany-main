@@ -27,7 +27,7 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
                     <Image className="w-4 h-4 mr-2" />
                   ) : (
                     i === 1 ? 
-                    (<FileVideo className="w-4 h-4 mr-2" />)
+                    (<Image className="w-4 h-4 mr-2" />)
                     :(<Image className="w-4 h-4 mr-2" />)
                   )}
                   {u.upload_tab || u.upload_title}
@@ -43,7 +43,7 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
               <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             ) : (
               activeIndex === 1 
-              ? <UnwatermarkVideoBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+              ? <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
               : <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
             )}
           </div>

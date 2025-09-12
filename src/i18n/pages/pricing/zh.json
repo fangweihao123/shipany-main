@@ -3,7 +3,7 @@
     "name": "pricing",
     "label": "定价方案",
     "title": "简单透明的定价方案",
-    "description": "选择适合您AI检测需求的完美方案。以实惠价格保护您免受虚假内容侵害。",
+    "description": "选择适合您去水印需求的完美方案。以实惠价格享受专业的AI去水印服务。",
     "groups": [
       {
         "name": "monthly",
@@ -20,14 +20,13 @@
     "items": [
       {
         "title": "基础版",
-        "description": "适合个人用户和小团队使用。",
+        "description": "适合个人用户和小团队的去水印需求。",
         "features_title": "包含功能",
         "features": [
-          "每月100积分检测次数",
-          "高质量内容检测",
+          "每月100次去水印处理",
+          "专业质量结果",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "高级处理选项"
         ],
         "interval": "month",
         "amount": 890,
@@ -43,22 +42,21 @@
           "icon": "RiScanLine"
         },
         "product_id": "basic",
-        "product_name": "AI检测器基础版月付",
+        "product_name": "EraseWatermark基础版月付",
         "credits": 1000,
         "valid_months": 1,
         "group": "monthly"
       },
       {
         "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
+        "description": "最适合企业和专业用户使用。",
         "label": "热门",
         "features_title": "包含基础版所有功能，另加",
         "features": [
-          "每月200积分检测次数",
-          "高质量内容检测",
+          "每月200次去水印处理",
+          "专业质量结果",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "高级处理选项"
         ],
         "interval": "month",
         "amount": 1690,
@@ -74,21 +72,20 @@
           "icon": "RiVipCrownLine"
         },
         "product_id": "Professional",
-        "product_name": "AI检测器专业版月付",
+        "product_name": "EraseWatermark专业版月付",
         "credits": 5000,
         "valid_months": 1,
         "group": "monthly"
       },
       {
         "title": "基础版",
-        "description": "适合个人用户和小团队使用。",
+        "description": "适合个人用户和小团队的去水印需求。",
         "features_title": "包含功能",
         "features": [
-          "每年2400积分检测次数",
-          "高质量内容检测",
+          "每年1200次去水印处理",
+          "专业质量结果",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "高级处理选项"
         ],
         "interval": "year",
         "amount": 8280,
@@ -104,22 +101,21 @@
           "icon": "RiScanLine"
         },
         "product_id": "basic-annually",
-        "product_name": "AI检测器基础版年付",
+        "product_name": "EraseWatermark基础版年付",
         "credits": 12000,
         "valid_months": 12,
         "group": "yearly"
       },
       {
         "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
+        "description": "最适合企业和专业用户使用。",
         "label": "热门",
         "features_title": "包含基础版所有功能，另加",
         "features": [
-          "每年72000积分检测次数",
-          "高质量内容检测",
+          "每年2400次去水印处理",
+          "专业质量结果",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "高级处理选项"
         ],
         "interval": "year",
         "amount": 15480,
@@ -135,7 +131,7 @@
           "icon": "RiVipCrownLine"
         },
         "product_id": "Professional-annually",
-        "product_name": "AI检测器专业版年付",
+        "product_name": "EraseWatermark专业版年付",
         "credits": 60000,
         "valid_months": 12,
         "group": "yearly"
