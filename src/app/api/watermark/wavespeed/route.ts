@@ -23,7 +23,7 @@ if (!API_KEY) {
   console.error('UNDETECTABLE_AI_API_KEY is not set in environment variables');
 }
 
-async function uploadFile(file: Uint8Array<ArrayBuffer>, filename:string, contentType: string): Promise<string> {
+async function uploadFile(file: Uint8Array<ArrayBufferLike>, filename:string, contentType: string): Promise<string> {
   const storage = newStorage();
   const key = `upload/${getUuid()}${filename}`;
   const response = await storage.uploadFile({

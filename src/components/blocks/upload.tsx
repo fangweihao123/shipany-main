@@ -14,7 +14,7 @@ interface FileUploadProps {
   isLoading: boolean;
   upload?: DetectUpload;
   fileDuration?: number;
-  supportType?: string[];
+  supportType?: readonly string[];
   filescope?: string;
 }
 

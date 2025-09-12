@@ -156,7 +156,7 @@ export async function pollTaskResult(id: string): Promise<any>{
   throw new Error('Detection timeout');
 }
 
-export function getSupportFileType(provider: UnwatermarkProvider): [string[], string]{
+export function getSupportFileType(provider: UnwatermarkProvider): [readonly string[], string]{
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   const config = PROVIDER_CONFIGS[selectedProvider];
