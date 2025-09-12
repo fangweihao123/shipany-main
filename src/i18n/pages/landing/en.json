@@ -2,9 +2,9 @@
   "template": "shipany-template-one",
   "theme": "light",
   "meta": {
-    "title": "AI Detector - Detect AI-Generated Content Instantly | detect-ai.me",
-    "description": "Professional AI Detector tool to identify AI-generated images, text, and media. Fast, accurate detection with 95%+ accuracy rate. Try our AI Detector free today.",
-    "keywords": "AI Detector, AI detection, artificial intelligence detection, deepfake detection, AI content identification"
+    "title": "EraseWatermark - Professional AI Watermark Remover Tool",
+    "description": "Professional AI-powered watermark remover for images and videos. Fast, efficient, high-quality results for single and batch processing online.",
+    "keywords": "watermark remover,AI watermark remover,image editing,video editing,batch processing,online tool"
   },
   "header": {
     "brand": {
@@ -46,9 +46,9 @@
     "show_locale": true
   },
   "hero": {
-    "title": "Detect AI-Generated Content in Seconds",
-    "highlight_text": "AI-Generated Content",
-    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
+    "title": "Professional Watermark Remover AI-Powered Tool",
+    "highlight_text": "AI-Powered Tool",
+    "description": "The ultimate watermark remover solution for images and videos. Advanced AI technology delivers professional results in seconds, making watermark remover tasks effortless and precise.",
     "announcement": {
       "label": "BETA",
       "title": "🤖 Now serving AI Detector worldwide",
@@ -137,13 +137,13 @@
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Choose AI Detector",
+    "title": "Why Choose Our Watermark Remover",
     "label": "Benefits",
-    "description": "Protect yourself and your organization from AI-generated content fraud with our industry-leading AI Detector technology.",
+    "description": "Discover the power of our advanced watermark remover technology. Built specifically for professional watermark remover applications, our platform combines speed, accuracy, and user-friendly design to deliver the most effective watermark remover experience available.",
     "items": [
       {
-        "title": "Combat Fake News",
-        "description": "Identify AI-generated images used in misinformation campaigns and protect against fake news propaganda.",
+        "title": "AI-Powered Watermark Remover",
+        "description": "Our advanced watermark remover uses cutting-edge artificial intelligence to deliver precise results while maintaining image quality and preserving every important detail.",
         "icon": "RiShieldLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
@@ -151,8 +151,8 @@
         }
       },
       {
-        "title": "Prevent Art Theft",
-        "description": "Detect unauthorized AI reproductions of original artwork and protect intellectual property rights.",
+        "title": "Fast Watermark Remover Processing",
+        "description": "Experience lightning-fast watermark remover performance with single images processed in seconds. Our efficient watermark remover handles batch operations seamlessly, delivering professional results without delays.",
         "icon": "RiCopyrightLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
@@ -160,8 +160,8 @@
         }
       },
       {
-        "title": "Stop Identity Fraud",
-        "description": "Identify deepfake profile pictures and AI-generated identity documents to prevent fraud and scams.",
+        "title": "Secure Watermark Remover",
+        "description": "Your privacy is our priority. Our watermark remover processes files securely with automatic deletion after download. We never store, access, or share your content, ensuring complete confidentiality.",
         "icon": "RiUserForbidLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
@@ -170,40 +170,165 @@
       }
     ]
   },
+  "statsTest": {
+    "name": "stats",
+    "label": "Stats",
+    "title": "People Love ShipAny",
+    "description": "for it's easy to use and fast to ship.",
+    "icon": "FaRegHeart",
+    "items": [
+      {
+        "title": "Trusted by",
+        "label": "99+",
+        "description": "Customers"
+      },
+      {
+        "title": "Ship Fast in",
+        "label": "5",
+        "description": "Minutes"
+      }
+    ]
+  },
+  "testimonialTest": {
+    "name": "testimonial",
+    "label": "Testimonial",
+    "title": "What Users Say About ShipAny",
+    "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
+    "icon": "GoThumbsup",
+    "items": [
+      {
+        "title": "David Chen",
+        "label": "Founder of AIWallpaper.shop",
+        "description": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Rachel Kim",
+        "label": "CTO at HeyBeauty.ai",
+        "description": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Marcus Thompson",
+        "label": "Solo Developer",
+        "description": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Sofia Garcia",
+        "label": "CEO of Melodisco",
+        "description": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "James Wilson",
+        "label": "Tech Lead at GPTs.works",
+        "description": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
+        "image": {
+          "src": "/imgs/users/5.png"
+        }
+      },
+      {
+        "title": "Anna Zhang",
+        "label": "Startup Founder",
+        "description": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
+      }
+    ]
+  },
+  "showcaseTest": {
+    "name": "showcase",
+    "title": "AI SaaS Startups built with ShipAny",
+    "description": "Easy to use and fast to ship.",
+    "items": [
+      {
+        "title": "ThinkAny",
+        "description": "AI Search Engine",
+        "url": "https://thinkany.ai",
+        "target": "_blank",
+        "image": {
+          "src": "/imgs/showcases/7.png"
+        }
+      },
+      {
+        "title": "HeyBeauty",
+        "description": "AI Virtual Try On",
+        "url": "https://heybeauty.ai",
+        "target": "_blank",
+        "image": {
+          "src": "/imgs/showcases/5.png"
+        }
+      }
+    ]
+  },
+  "brandingTest": {
+    "title": "ShipAny is built on the shoulders of giants",
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn/UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ]
+  },
   "usage": {
     "name": "usage",
-    "title": "How to Use AI Detector",
-    "description": "Identify AI-generated content in three simple steps:",
-    "image": {
-      "src": "/imgs/features/detection-process.png",
-      "alt": "AI Detector process workflow diagram"
-    },
+    "title": "How to Use Watermark Remover",
+    "description": "Remove watermark from content in three simple steps:",
     "image_position": "left",
     "text_align": "center",
     "items": [
       {
-        "title": "Upload Your Content",
-        "description": "Drag and drop any file or paste a URL. Supports images, text, and other common formats.",
-        "image": {
-          "src": "/imgs/features/upload.png",
-          "alt": "Upload interface for AI Detector content analysis"
-        }
+        "title": "Upload to Watermark Remover",
+        "description": "Start using our watermark remover by dragging and dropping your files or clicking to browse. Our watermark remover supports all major formats including PNG, JPG, JPEG, MP4, MOV, and many more, ensuring maximum compatibility for your watermark remover needs."
       },
       {
-        "title": "AI Analysis",
-        "description": "Our advanced algorithms analyze the content for telltale signs of AI generation in seconds.",
-        "image": {
-          "src": "/imgs/features/analyze.png",
-          "alt": "AI Detector analysis dashboard showing detection process"
-        }
+        "title": "Smart Watermark Remover Analysis",
+        "description": "Our sophisticated watermark remover AI analyzes your content with precision, identifying watermark patterns and textures. The watermark remover then intelligently reconstructs the background while preserving original image quality, colors, and fine details."
       },
       {
-        "title": "Get Results",
-        "description": "Receive a confidence score and detailed analysis showing why the content was flagged as AI or human-created.",
-        "image": {
-          "src": "/imgs/features/results.png",
-          "alt": "AI Detector results screen with confidence score and analysis"
-        }
+        "title": "Download Clean Results",
+        "description": "Preview your watermark remover results and download instantly. Our watermark remover delivers clean, professional-quality images ready for immediate use in your projects, presentations, or publications."
       }
     ]
   },

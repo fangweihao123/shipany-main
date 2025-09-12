@@ -58,61 +58,54 @@
     "show_happy_users": true,
     "show_badge": false
   },
-  "detection":{
+  "unwatermark":{
     "uploads":[
       {
-        "upload_tab": "文本检测",
-        "upload_title": "输入文本",
-        "select_tip": "选择文本文件",
-        "drag_drop_text": "拖拽文本文件到此处，或点击选择",
-        "click_different_file": "点击选择不同的文本文件",
+        "upload_tab": "图片去水印",
+        "upload_title": "上传图片文件",
+        "select_tip": "选择图片文件",
+        "drag_drop_text": "将图片拖放到这里，或点击选择",
+        "click_different_file": "点击选择其他图片",
         "support_format": "支持 {formats} 格式",
-        "text_input_placeholder": "在此输入文本（建议最少200字以获得最佳准确性）...",
-        "text_input_label": "输入文本",
-        "file_upload_label": "或上传文本文件",
-        "word_count": "{count} 字",
-        "min_words_tip": "建议最少200字以获得最佳准确性"
+        "duration_limit_tip": "支持最长 {seconds}s 的音频"
       },
       {
-        "upload_tab": "音频检测",
-        "upload_title": "上传音频文件",
-        "select_tip": "选择音频文件",
-        "drag_drop_text": "拖拽文件到此处，或点击选择",
-        "click_different_file": "点击选择不同的文件",
+        "upload_tab": "视频去背景",
+        "upload_title": "上传视频文件",
+        "select_tip": "选择视频文件",
+        "drag_drop_text": "将视频拖放到这里，或点击选择",
+        "click_different_file": "点击选择其他视频",
         "support_format": "支持 {formats} 格式",
-        "duration_limit_tip": "支持最长 {seconds} 秒的音频"
+        "duration_limit_tip": "支持最长 {seconds}s 的音频"
+      },
+       {
+        "upload_tab": "图片去背景",
+        "upload_title": "上传图片文件",
+        "select_tip": "选择图片文件",
+        "drag_drop_text": "将图片拖放到这里，或点击选择",
+        "click_different_file": "点击选择其他图片",
+        "support_format": "支持 {formats} 格式",
+        "duration_limit_tip": "支持最长 {seconds}s 的音频"
       }
     ],
     "state": {
       "uploading": "上传中...",
-      "analyzing": "分析中...",
+      "analyzing": "处理中...",
       "processing": "处理中...",
-      "detection_complete": "检测完成",
-      "detect_ai_generation": "检测AI生成内容",
-      "auth_required": "请您先登录，享受检测AI服务，正在跳转到登录页面..."
+      "detection_complete": "完成",
+      "detect_ai_generation": "开始",
+      "auth_required": "请登录后使用AI检测功能。正在跳转到登录页面..."
     },
-    "detectResult": {
-      "result_detail": "检测结果将在此显示",
-      "insufficient_credits": "积分不足。您需要至少1个积分进行检测。请升级您的计划。",
-      "unable_verify_credits": "无法验证积分。请重试。",
+    "unwatermarkResult": {
+      "resulthints": "去水印结果",
+      "downloadtips": "请在7天内下载文件",
+      "downloadButton": "下载",
       "invalid_file": "无效文件",
       "preview_failed": "生成图片预览失败",
-      "detection_failed": "检测失败",
-      "confidence_level": "整体置信度",
-      "ai_generated": "AI生成：该文本似乎是由人工智能创建的。",
-      "human_created": "人工创作：该文本似乎是由人类撰写的。",
-      "analyze_again": "分析新的文本",
-      "understand": "理解结果",
-      "confidence_score_desc": "整体分数：代表多个AI检测模型的综合分析结果。分数高于50%表示内容可能为AI生成。",
-      "ai_generated_desc": "个别分数：每个检测模型使用不同算法分析文本模式、写作风格和AI生成内容的语言标记。",
-      "human_created_desc": "人工分数：基于自然写作模式和文体元素，表示文本由人类撰写的可能性。",
-      "individual_detection_scores": "个别检测分数",
-      "human_score": "人工分数",
-      "overall_confidence": "整体置信度",
-      "ai_pattern_detected": "大多数检测模型都认为此内容显示出AI生成文本的典型模式。",
-      "human_pattern_detected": "分析表明此内容显示出更符合人类写作的模式。",
-      "note": "注意：没有任何检测方法可以做到100%准确。在判断内容真实性时，结果应结合其他证据一并考虑。",
-      "audio_too_long": "音频时长超出限制。请上传不超过 {seconds} 秒的音频文件。"
+      "unwatermark_failed": "检测失败",
+      "result_detail": "检测结果将在此处显示",
+      "insufficient_credits": "积分不足。您至少需要1个积分进行检测。请升级您的套餐。",
+      "unable_verify_credits": "无法验证积分。请重试。"
     }
   },
   "introduce": {
