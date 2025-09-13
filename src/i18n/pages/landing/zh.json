@@ -2,16 +2,16 @@
   "template": "shipany-template-one",
   "theme": "light",
   "meta": {
-    "title": "AI检测器 - 秒级识别AI生成内容 | detect-ai.me",
-    "description": "专业AI检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI检测器，立即试用。",
-    "keywords": "AI检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
+    "title": "AI图像检测器 - 秒级识别AI生成内容 | detect-ai.me",
+    "description": "专业AI图像检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI图像检测器，立即试用。",
+    "keywords": "AI图像检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
   },
   "header": {
     "brand": {
-      "title": "AI检测器",
+      "title": "AI图像检测器",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "alt": "AI图像检测器"
       },
       "url": "/"
     },
@@ -46,12 +46,12 @@
     "show_locale": true
   },
   "hero": {
-    "title": "秒级检测AI生成内容",
-    "highlight_text": "AI生成内容",
-    "description": "先进的AI检测器技术，识别人工智能内容并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
+    "title": "秒级检测AI生成图像",
+    "highlight_text": "AI生成图像",
+    "description": "先进的AI图像检测器技术，识别人工智能图像并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
     "announcement": {
       "label": "测试版",
-      "title": "🤖 AI检测器现已全球服务",
+      "title": "🤖 AI图像检测器现已全球服务",
       "url": "/#feature"
     },
     "tip": "🔒 您的内容绝不会被存储",
@@ -120,9 +120,9 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "什么是AI检测器",
+    "title": "什么是AI图像检测器",
     "label": "产品介绍",
-    "description": "AI检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
+    "description": "AI图像检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
     "image": {
       "src": "/imgs/features/detector.png",
       "alt": "男子在电脑屏幕上检查内容是否为AI生成的插图"
@@ -147,9 +147,9 @@
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么选择AI检测器",
+    "title": "为什么选择AI图像检测器",
     "label": "优势",
-    "description": "使用我们行业领先的AI检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
+    "description": "使用我们行业领先的AI图像检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
     "items": [
       {
         "title": "打击虚假新闻",
@@ -182,11 +182,11 @@
   },
   "usage": {
     "name": "usage",
-    "title": "如何使用AI检测器",
+    "title": "如何使用AI图像检测器",
     "description": "通过三个简单步骤识别AI生成内容：",
     "image": {
       "src": "/imgs/features/detection-process.png",
-      "alt": "AI检测器处理流程工作图"
+      "alt": "AI图像检测器处理流程工作图"
     },
     "image_position": "left",
     "text_align": "center",
@@ -196,7 +196,7 @@
         "description": "拖放任何文件或粘贴URL。支持图片、文本和其他常见格式。",
         "image": {
           "src": "/imgs/features/upload.png",
-          "alt": "AI检测器内容分析上传界面"
+          "alt": "AI图像检测器内容分析上传界面"
         }
       },
       {
@@ -204,7 +204,7 @@
         "description": "我们的先进算法在几秒内分析内容中AI生成的明显特征。",
         "image": {
           "src": "/imgs/features/analyze.png",
-          "alt": "显示检测过程的AI检测器分析仪表板"
+          "alt": "显示检测过程的AI图像检测器分析仪表板"
         }
       },
       {
@@ -212,14 +212,14 @@
         "description": "收到置信度评分和详细分析，说明内容被标记为AI或人类创作的原因。",
         "image": {
           "src": "/imgs/features/results.png",
-          "alt": "带有置信度评分和分析的AI检测器结果屏幕"
+          "alt": "带有置信度评分和分析的AI图像检测器结果屏幕"
         }
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "AI检测器核心功能",
+    "title": "AI图像检测器核心功能",
     "description": "精准快速识别AI生成内容的先进技术。",
     "items": [
       {
@@ -247,16 +247,16 @@
   "faq": {
     "name": "faq",
     "label": "常见问题",
-    "title": "AI检测器常见问题解答",
+    "title": "AI图像检测器常见问题解答",
     "description": "还有其他问题？请通过邮件联系我们或查看我们的文档。",
     "items": [
       {
-        "title": "AI检测器的准确率如何？",
-        "description": "我们的AI检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
+        "title": "AI图像检测器的准确率如何？",
+        "description": "我们的AI图像检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
       },
       {
         "title": "可以检测哪些类型的AI生成内容？",
-        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
+        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI图像检测器识别AI生成特有的常见人工痕迹和模式。"
       },
       {
         "title": "我的上传内容数据会被存储或共享吗？",
@@ -270,7 +270,7 @@
   },
   "cta": {
     "name": "cta",
-    "title": "立即开始使用AI检测器",
+    "title": "立即开始使用AI图像检测器",
     "description": "保护您免受AI生成内容欺诈和虚假信息的侵害。",
     "buttons": [
       {
@@ -284,15 +284,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "AI检测器",
-      "description": "先进的AI检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
+      "title": "AI图像检测器",
+      "description": "先进的AI图像检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "alt": "AI图像检测器"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • AI检测器 版权所有。",
+    "copyright": "© 2025 • AI图像检测器 版权所有。",
     "nav": {
       "items": [
         {
