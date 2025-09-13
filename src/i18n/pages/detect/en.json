@@ -1,89 +1,157 @@
 {
-  "showcase": {
-    "name": "showcase",
-    "title": "AI SaaS Startups built with ShipAny",
-    "description": "Easy to use and fast to ship.",
+  "intro": {
+    "name": "intro",
+    "title": "Professional AI Image Detector",
+    "description": "Detect AI-generated images with confidence using our advanced machine learning technology. Our AI image detector analyzes visual patterns and artifacts to distinguish between human-created and artificially generated content.",
     "items": [
       {
-        "title": "ThinkAny",
-        "description": "AI Search Engine",
-        "url": "https://thinkany.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/7.png"
-        }
+        "title": "Free AI Detection",
+        "description": "Start using our AI image detector immediately with free credits included.",
+        "icon": "RiGiftLine"
       },
       {
-        "title": "HeyBeauty",
-        "description": "AI Virtual Try On",
-        "url": "https://heybeauty.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/5.png"
-        }
+        "title": "Enterprise Ready",
+        "description": "Scale your AI detection needs with our robust API and enterprise solutions.",
+        "icon": "RiBuildingLine"
+      }
+    ]
+  },
+  "main": {
+    "title": "Upload Image for AI Detection",
+    "description": "Simply upload your image below and our advanced detection system will analyze it for artificial generation patterns. Get instant results with detailed confidence scores and explanations.",
+    "tech_description": "Our AI detection technology works by analyzing multiple layers of image data including pixel patterns, compression artifacts, and generation signatures that are characteristic of artificial intelligence tools like DALL-E, Midjourney, and Stable Diffusion.",
+    "use_cases": "Whether you're a content creator verifying authenticity, a journalist fact-checking images, or a business protecting brand integrity, our detection service provides the reliable analysis you need to identify AI-generated content with confidence."
+  },
+  "detection": {
+    "uploads": [
+      {
+        "upload_tab": "Image Detection",
+        "upload_title": "Upload an image file",
+        "select_tip": "Select image file",
+        "drag_drop_text": "Drag and drop your image here, or click to select",
+        "click_different_file": "Click to select a different image",
+        "support_format": "Supports {formats}"
+      }
+    ],
+    "state": {
+      "uploading": "Uploading...",
+      "analyzing": "Analyzing...",
+      "processing": "Processing...",
+      "detection_complete": "Detection Complete",
+      "detect_ai_generation": "Detect AI Generation",
+      "auth_required": "Please sign in to use AI image detection. Redirecting to login page..."
+    },
+    "detectResult": {
+      "result_detail": "Detection results will appear here",
+      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+      "unable_verify_credits": "Unable to verify credits. Please try again.",
+      "invalid_file": "Invalid file",
+      "preview_failed": "Failed to generate image preview",
+      "detection_failed": "Detection failed",
+      "confidence_level": "AI Level",
+      "ai_generated": "AI Generated: This image appears to have been created by artificial intelligence.",
+      "human_created": "Human Created: This image appears to be authentic or human-created.",
+      "analyze_again": "Analyze Again",
+      "understand": "Understanding the Results",
+      "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
+      "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
+      "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
+      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity."
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Key Features of AI Image Detector",
+    "description": "Advanced technology to identify AI-generated images with precision and speed.",
+    "items": [
+      {
+        "title": "High Accuracy Detection",
+        "description": "Our detection system achieves over 95% accuracy in identifying AI-generated images using state-of-the-art machine learning models.",
+        "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "AI Wallpaper",
-        "description": "AI Wallpaper Generator",
-        "url": "https://aiwallpaper.shop",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/1.png"
-        }
+        "title": "Instant Results",
+        "description": "Get immediate analysis results with our lightning-fast detection technology that processes images in seconds.",
+        "icon": "RiFlashlightLine"
       },
       {
-        "title": "AI Cover",
-        "description": "AI Cover Generator",
-        "url": "https://aicover.design",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/2.png"
-        }
+        "title": "Privacy Protected",
+        "description": "Your uploaded images are processed securely and never stored on our servers, ensuring complete privacy protection.",
+        "icon": "RiShieldCheckLine"
       },
       {
-        "title": "GPTs Works",
-        "description": "GPTs Directory",
-        "url": "https://gpts.works",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/3.png"
-        }
+        "title": "Multiple AI Models",
+        "description": "Detects images from various AI generators including DALL-E, Midjourney, Stable Diffusion, and other popular AI image tools.",
+        "icon": "RiBrainLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "How Our AI Image Detector Works",
+    "description": "Our AI detection process analyzes multiple layers of image data to provide accurate results.",
+    "items": [
+      {
+        "title": "Upload Image",
+        "description": "Simply drag and drop or select any image file. Our system supports all major formats including JPG, PNG, and WebP."
       },
       {
-        "title": "Melodisco",
-        "description": "AI Music Player",
-        "url": "https://melodis.co",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/4.png"
-        }
+        "title": "AI Analysis",
+        "description": "Advanced neural networks examine pixel patterns, compression artifacts, and generation signatures typical of AI tools."
       },
       {
-        "title": "Pagen",
-        "description": "AI Landing Page Generator",
-        "url": "https://pagen.so",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/6.png"
-        }
+        "title": "Instant Results",
+        "description": "Receive detailed analysis showing confidence scores and specific AI generation indicators within seconds."
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Why Choose Our AI Image Detector",
+    "description": "Trusted by content creators, journalists, and businesses worldwide for reliable AI detection.",
+    "items": [
+      {
+        "title": "Protect Your Brand",
+        "description": "Ensure authenticity in marketing materials and prevent AI-generated content from compromising your brand integrity.",
+        "icon": "RiShieldLine"
       },
       {
-        "title": "SoraFM",
-        "description": "AI Video Generator",
-        "url": "https://sorafm.trys.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/8.png"
-        }
+        "title": "Content Verification",
+        "description": "Verify the authenticity of user-generated content and submissions to maintain platform quality and trust.",
+        "icon": "RiVerifiedBadgeLine"
       },
       {
-        "title": "PodLM",
-        "description": "AI Podcast Generator",
-        "url": "https://podlm.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/9.png"
-        }
+        "title": "Research & Education",
+        "description": "Support academic research and educational initiatives by providing reliable AI detection for scholarly work.",
+        "icon": "RiBookOpenLine"
+      },
+      {
+        "title": "Media Validation",
+        "description": "Help journalists and news organizations verify image authenticity to combat misinformation.",
+        "icon": "RiNewspaperLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about our AI image detector service.",
+    "items": [
+      {
+        "title": "How accurate is the AI image detector?",
+        "description": "Our detection system achieves over 95% accuracy in identifying AI-generated images. The technology is continuously trained on millions of image samples from various AI generators."
+      },
+      {
+        "title": "What image formats are supported?",
+        "description": "The detection service supports common image formats including JPG, PNG, WebP, and GIF files up to 10MB in size."
+      },
+      {
+        "title": "Are my uploaded images stored?",
+        "description": "No, we prioritize your privacy. Uploaded images are processed in real-time and immediately deleted after analysis. We never store or share your content."
+      },
+      {
+        "title": "Can it detect images from all AI generators?",
+        "description": "Our detection technology can identify images from most popular AI generators including DALL-E, Midjourney, Stable Diffusion, and many others. We continuously update our models to detect new AI generation techniques."
       }
     ]
   }

@@ -18,6 +18,11 @@
     "nav": {
       "items": [
         {
+          "title": "AI检测器",
+          "url": "/detectImage",
+          "icon": "RiScanLine"
+        },
+        {
           "title": "功能特点",
           "url": "/#feature",
           "icon": "RiSparkling2Line"

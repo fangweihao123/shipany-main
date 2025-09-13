@@ -1,4 +1,5 @@
-import { LandingPage, PricingPage, ShowcasePage, DetectPage } from "@/types/pages/landing";
+import { LandingPage, PricingPage, ShowcasePage } from "@/types/pages/landing";
+import { DetectPage } from "@/types/pages/detect";
 
 export async function getLandingPage(locale: string): Promise<LandingPage> {
   return (await getPage("landing", locale)) as LandingPage;

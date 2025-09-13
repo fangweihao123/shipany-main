@@ -18,6 +18,11 @@
     "nav": {
       "items": [
         {
+          "title": "AI Image Detector",
+          "url": "/detectImage",
+          "icon": "RiScanLine"
+        },
+        {
           "title": "Features",
           "url": "/#feature",
           "icon": "RiSparkling2Line"

@@ -31,5 +31,3 @@ export interface ShowcasePage {
   showcase?: Section;
 }
 
-export interface DetectPage {
-}
