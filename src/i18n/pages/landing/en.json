@@ -18,9 +18,22 @@
     "nav": {
       "items": [
         {
-          "title": "AI Image Detector",
-          "url": "/detectImage",
-          "icon": "RiScanLine"
+          "title": "Detectors",
+          "icon": "RiRadarLine",
+          "children": [
+            {
+              "title": "AI Image Detector",
+              "url": "/detectImage",
+              "description": "Detect AI-generated images with confidence.",
+              "icon": "RiImageLine"
+            },
+            {
+              "title": "AI Plagiarism Checker",
+              "url": "/ai-plagiarism-checker",
+              "description": "Detect AI-written text with confidence.",
+              "icon": "RiFileTextLine"
+            }
+          ]
         },
         {
           "title": "Features",

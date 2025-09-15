@@ -18,9 +18,22 @@
     "nav": {
       "items": [
         {
-          "title": "AI检测器",
-          "url": "/detectImage",
-          "icon": "RiScanLine"
+          "title": "检测工具",
+          "icon": "RiRadarLine",
+          "children": [
+            {
+              "title": "AI 图像检测",
+              "url": "/detectImage",
+              "description": "检测 AI 生成的图像。",
+              "icon": "RiImageLine"
+            },
+            {
+              "title": "AI 抄袭检测",
+              "url": "/ai-plagiarism-checker",
+              "description": "检测 AI 撰写的文本。",
+              "icon": "RiFileTextLine"
+            }
+          ]
         },
         {
           "title": "功能特点",

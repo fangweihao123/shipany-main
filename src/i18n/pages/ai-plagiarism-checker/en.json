@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "title": "AI Plagiarism Checker – Detect AI-Written Text Accurately | detect-ai.me",
+    "description": "Accurate AI Plagiarism Checker for detecting AI-written text. Analyze content with confidence scores and detailed insights. Fast, secure, and privacy-friendly.",
+    "keywords": "AI Plagiarism Checker, detect AI text, AI content detection, AI writing detector, plagiarism AI"
+  },
+  "intro": {
+    "name": "intro",
+    "title": "AI Plagiarism Checker",
+    "description": "Detect AI-written text with confidence. Paste your content below and our models will analyze linguistic patterns and stylometric signals to estimate the likelihood of AI generation.",
+    "items": [
+      { "title": "Instant Analysis", "description": "Get fast results with confidence scores.", "icon": "RiFlashlightLine" },
+      { "title": "Privacy First", "description": "Content is processed securely and not stored.", "icon": "RiShieldCheckLine" }
+    ]
+  },
+  "main": {
+    "title": "Paste Text to Check for AI Writing",
+    "description": "Our AI Plagiarism Checker evaluates sentence cadence, lexical entropy, repetition, and coherence signals that are commonly associated with AI models, presenting a clear overall score alongside practical guidance.",
+    "tech_description": "Longer samples (200+ words) yield more stable statistics and more reliable judgments. Short passages can still be analyzed, but they benefit from additional context and follow‑up review when decisions are consequential.",
+    "use_cases": "Ideal for reviewing essays and assignments, moderating platform submissions, screening editorial content, and verifying internal documents where authenticity and provenance matter."
+  },
+  "detection": {
+    "uploads": [
+      {
+        "upload_tab": "Text Detection",
+        "upload_title": "Enter text",
+        "text_input_placeholder": "Paste your text here (200+ words recommended for best accuracy)...",
+        "word_count": "{count} words",
+        "min_words_tip": "Minimum 200 words recommended for best accuracy"
+      }
+    ],
+    "state": {
+      "uploading": "Uploading...",
+      "analyzing": "Analyzing...",
+      "processing": "Processing...",
+      "detection_complete": "Detection Complete",
+      "detect_ai_generation": "Detect AI Generation",
+      "auth_required": "Please sign in to use AI text detection. Redirecting to login page..."
+    },
+    "detectResult": {
+      "result_detail": "Detection results will appear here",
+      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+      "unable_verify_credits": "Unable to verify credits. Please try again.",
+      "detection_failed": "Detection failed",
+      "confidence_level": "Overall confidence",
+      "ai_generated": "AI Generated: This text appears to have been created by artificial intelligence.",
+      "human_created": "Human Created: This text appears to be authentic or human-written.",
+      "analyze_again": "Analyze Another Text",
+      "understand": "Understanding the Results",
+      "confidence_score_desc": "Overall Score: Combined analysis from multiple detection models.",
+      "ai_generated_desc": "AI Generated: Detectors found patterns typical of AI-written content.",
+      "human_created_desc": "Human Score: Indicates likelihood of human authorship based on natural style.",
+      "note": "Note: No detection method is 100% accurate. Use results alongside other evidence.",
+      "individual_detection_scores": "Individual Detection Scores",
+      "human_score": "Human Score",
+      "overall_confidence": "Overall Confidence",
+      "ai_pattern_detected": "The majority of models detected AI-like patterns.",
+      "human_pattern_detected": "Patterns are more consistent with human writing."
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Key Features for AI Text Detection",
+    "description": "An explainable, multi‑model approach that delivers stable, actionable assessments.",
+    "items": [
+      {
+        "title": "High Accuracy & Robustness",
+        "description": "Combines statistical and semantic indicators to reduce bias from any single detector and improve reliability.",
+        "icon": "RiCheckboxCircleLine"
+      },
+      {
+        "title": "Explainable Results",
+        "description": "In addition to the overall score, provides guidance and interpretation so you understand why the model leans one way or another.",
+        "icon": "RiInformationLine"
+      },
+      {
+        "title": "Privacy & Security",
+        "description": "Processes content in real time without persistent storage; encrypted in transit to meet compliance needs.",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "Ensemble of Models",
+        "description": "Continuously updated to reflect the latest AI writing patterns and detection research.",
+        "icon": "RiBrainLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "How to Use the AI Plagiarism Checker",
+    "description": "Complete a thorough check in three simple steps.",
+    "items": [
+      {
+        "title": "Paste Your Text",
+        "description": "Provide the content you want to verify; 200+ words recommended for stable statistics."
+      },
+      {
+        "title": "Start Analysis",
+        "description": "We run multiple algorithms in parallel to evaluate stylometry, repetition, and generation indicators."
+      },
+      {
+        "title": "Review Results",
+        "description": "Check the overall confidence, read the guidance, and decide next steps based on human/AI tendencies."
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Built for Real‑World Review Scenarios",
+    "description": "Supports education, media, platforms, and enterprise collaborations with practical workflows.",
+    "items": [
+      {
+        "title": "Assignments and Papers",
+        "description": "Assist instructors and TAs with early screening, highlighting suspicious segments and review cues.",
+        "icon": "RiBookOpenLine"
+      },
+      {
+        "title": "Platform Moderation",
+        "description": "Help content ops locate likely AI‑generated submissions and uphold community trust.",
+        "icon": "RiVerifiedBadgeLine"
+      },
+      {
+        "title": "Team Compliance",
+        "description": "Safeguard originality in marketing, knowledge bases, and external communications to avoid risk.",
+        "icon": "RiShieldLine"
+      },
+      {
+        "title": "Education & Research",
+        "description": "Provide reliable tooling and data support for studies in authorship and detection methods.",
+        "icon": "RiGraduationCapLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "FAQ",
+    "description": "Common questions about AI text detection.",
+    "items": [
+      {
+        "title": "How many words should I paste?",
+        "description": "We recommend at least 200 words to achieve more reliable results."
+      },
+      {
+        "title": "Do you store my text?",
+        "description": "No. Content is processed securely and not stored for future use."
+      }
+    ]
+  }
+}

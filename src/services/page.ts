@@ -17,6 +17,10 @@ export async function getShowcasePage(locale: string): Promise<ShowcasePage> {
   return (await getPage("showcase", locale)) as ShowcasePage;
 }
 
+export async function getAIPlagiarismPage(locale: string): Promise<DetectPage> {
+  return (await getPage("ai-plagiarism-checker", locale)) as DetectPage;
+}
+
 export async function getPage(
   name: string,
   locale: string
