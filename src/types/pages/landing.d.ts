@@ -4,10 +4,12 @@ import { Section } from "@/types/blocks/section";
 import { Footer } from "@/types/blocks/footer";
 import { Pricing } from "@/types/blocks/pricing";
 import { Detection } from "@/types/blocks/detect"
+import { HeroGeometic } from "@/types/blocks/heroGeometic";
 
 export interface LandingPage {
   header?: Header;
   hero?: Hero;
+  heroGeometic?: HeroGeometic;
   detection?: Detection;
   branding?: Section;
   introduce?: Section;

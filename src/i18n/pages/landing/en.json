@@ -56,7 +56,15 @@
     },
     "tip": "🔒 Your images are never stored",
     "show_happy_users": true,
-    "show_badge": false
+    "show_badge": false,
+    "disabled": true
+  },
+  "heroGeometic": {
+    "badge": "Detect AI-Generated Content in Seconds",
+    "title1": "Detect AI-Generated Content in Seconds",
+    "title2": "Detect AI-Generated Content in Seconds",
+    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
+    "disabled": false
   },
   "detection":{
     "uploads":[
