@@ -8,8 +8,8 @@ export default function HeroGeometic({ hero }: { hero: HeroType }) {
   }
   return (
     <>
-      <section className="py-24">
-          <div className="min-h-screen">
+      <section className="py-12">
+          <div>
             <HeroGeometric
               badge={hero.badge}
               title1={hero.title1}
