@@ -8,6 +8,12 @@ export interface MainSection {
   use_cases?: string;
 }
 
+export interface LongformSection {
+  heading?: string;
+  subheading?: string;
+  paragraphs?: string[];
+}
+
 export interface DetectPage {
   detection?: Detection;
   intro?: Section;
@@ -16,4 +22,5 @@ export interface DetectPage {
   usage?: Section;
   benefit?: Section;
   faq?: Section;
+  longform?: LongformSection[];
 }

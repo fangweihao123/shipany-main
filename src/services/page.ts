@@ -21,6 +21,10 @@ export async function getAIPlagiarismPage(locale: string): Promise<DetectPage> {
   return (await getPage("ai-plagiarism-checker", locale)) as DetectPage;
 }
 
+export async function getAIAudioDetectorPage(locale: string): Promise<DetectPage> {
+  return (await getPage("ai-audio-detector", locale)) as DetectPage;
+}
+
 export async function getPage(
   name: string,
   locale: string
