@@ -14,6 +14,7 @@ import DetectionTabs from "@/components/blocks/hero/detectiontabs";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 import HeroGeometic from "@/components/blocks/HeroGeometric";
+import { ImageGeneratorBlock } from "@/components/generator/imagegenerator";
 
 export const revalidate = 60;
 export const dynamic = "force-static";
@@ -53,6 +54,7 @@ export default async function LandingPage({
       {page.hero && <Hero hero={page.hero} />}
       {page.heroGeometic && <HeroGeometic hero={page.heroGeometic} />}
       {page.detection && <DetectionTabs detection={page.detection}/>}
+      {page.imageGenerator && <ImageGeneratorBlock imageGenerator={page.imageGenerator} /> }
       {page.branding && <Branding section={page.branding} />}
       {page.introduce && <Feature1 section={page.introduce} />}
       {page.benefit && <Feature2 section={page.benefit} />}
