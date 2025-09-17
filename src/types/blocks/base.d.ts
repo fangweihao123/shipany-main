@@ -122,3 +122,8 @@ export interface DataCard {
   tip?: string;
   icon?: string;
 }
+
+export interface PromptInput{
+  title?: string;
+  textPlaceHolder?: string;
+}
