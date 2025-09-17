@@ -60,10 +60,10 @@
     "disabled": true
   },
   "heroGeometic": {
-    "badge": "Detect AI-Generated Content in Seconds",
-    "title1": "Detect AI-Generated Content in Seconds",
-    "title2": "Detect AI-Generated Content in Seconds",
-    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
+    "badge": "Detect AI-Generated",
+    "title1": "Detect AI-Generated",
+    "title2": "Detect",
+    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.",
     "disabled": false
   },
   "detection":{

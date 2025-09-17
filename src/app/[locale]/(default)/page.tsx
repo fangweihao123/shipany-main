@@ -53,7 +53,6 @@ export default async function LandingPage({
     <>
       {page.hero && <Hero hero={page.hero} />}
       {page.heroGeometic && <HeroGeometic hero={page.heroGeometic} />}
-      {page.detection && <DetectionTabs detection={page.detection}/>}
       {page.imageGenerator && <ImageGeneratorBlock imageGenerator={page.imageGenerator} /> }
       {page.branding && <Branding section={page.branding} />}
       {page.introduce && <Feature1 section={page.introduce} />}

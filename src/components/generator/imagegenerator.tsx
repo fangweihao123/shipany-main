@@ -12,7 +12,7 @@ export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
 
   return (
     <div id="generator" className="container">
-      <div className="mx-auto flex w-full max-w-[70rem] flex-col gap-10 lg:flex-row lg:items-stretch lg:gap-20">
+      <div className="mx-auto flex w-full max-w-[80rem] flex-col gap-10 lg:flex-row lg:items-stretch">
         {imageGenerator?.promptEngine && (
           <div className="flex flex-1">
             <PromptEngineBlock promptEngine={imageGenerator.promptEngine} />
