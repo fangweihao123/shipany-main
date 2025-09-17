@@ -1,7 +1,7 @@
 "use client";
 import { PromptEngine } from "@/types/blocks/imagegenerator";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
 
@@ -12,9 +12,24 @@ interface PromptEngineProps {
 
 export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i">("i2i");
+  const [prompt, setPrompt] = useState("");
+  const [files, setFiles] = useState<File[]>([]);
+
+  const canGenerate = useMemo(() => {
+    if(mode === "t2i"){
+      return prompt.length > 0;
+    }else if(mode === "i2i"){
+      return prompt.length > 0 && files.length > 0;
+    }
+  },[mode, prompt, files]);
 
   const onGenerateClick = () => {
+    
+  };
 
+  const onPromptChange = (value: string) => {
+    console.log(value);
+    setPrompt(value);
   };
 
   const promptEngineSelector = () => {
@@ -25,7 +40,8 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
 
           </MultiImgUpload>
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}>
+            promptInput = {promptEngine.text2Image?.input}
+            onChange={onPromptChange}>
           </PromptInputBlock>
         </div>
       );
@@ -33,7 +49,8 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
       return (
         <div>
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}>
+            promptInput = {promptEngine.text2Image?.input}
+            onChange={onPromptChange}>
           </PromptInputBlock>
         </div>
       );
@@ -76,6 +93,7 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
           type="button"
           onClick={onGenerateClick}
           className="w-full"
+          disabled={!canGenerate}
           >
           {promptEngine.generateButton?.title}
         </Button>
