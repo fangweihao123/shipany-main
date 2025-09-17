@@ -1,4 +1,4 @@
 // AI Image Detection Types
 
 // API Provider Types
-export type GeneratorProvider = 'nanobanana';
+export type GeneratorProvider = 'nanobananat2i';

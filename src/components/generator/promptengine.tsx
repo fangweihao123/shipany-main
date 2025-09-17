@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
+import { generateImage } from "@/services/generator";
 
 
 interface PromptEngineProps {
@@ -24,7 +25,7 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
   },[mode, prompt, files]);
 
   const onGenerateClick = () => {
-    
+    generateImage(files, prompt, "nanobananat2i");
   };
 
   const onPromptChange = (value: string) => {

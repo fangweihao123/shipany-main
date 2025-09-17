@@ -6,12 +6,12 @@ import {
 import { GeneratorProvider } from '@/types/generator';
 
 export const PROVIDER_CONFIGS = {
-  nanobanana: {
+  nanobananat2i: {
     name: 'Nano Banana',
     description: 'Advanced Image Generator Engine',
     model: "gemini-2.5-flash-image-preview",
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/service/gen-image',
+    endpoint: '/api/service/edit-image',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   }
 } as const;
@@ -30,7 +30,7 @@ export class GeneratorError extends Error {
 // Get default provider from environment or fallback to sightengine
 export function getDefaultProvider(): GeneratorProvider {
   const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as GeneratorProvider;
-  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobanana';
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobananat2i';
 }
 
 export async function generateImage(files: File[], prompt: string, provider?: GeneratorProvider): Promise<string> {
