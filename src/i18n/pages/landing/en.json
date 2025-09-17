@@ -97,6 +97,87 @@
       "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
     }
   },
+  "imageGenerator": {
+    "promptEngine":{
+      "title": "Prompt Engine",
+      "description": "Transform your image with AI-powered editing",
+      "image2ImageTab": "Image to Image",
+      "image2Image": {
+        "upload": {
+          "upload_title": "Reference Image",
+          "select_tip": "Add Image",
+          "max_file_size_tip": "Max 50MB"
+        },
+        "input":{
+          "title": "Main Prompt",
+          "textPlaceHolder": "A futuristic city powered by nano technology, golden hour lighting, ultra detailed..."
+        }
+      },
+      "text2ImageTab": "Text to Image",
+      "text2Image": {
+        "input":{
+          "title": "Main Prompt",
+          "textPlaceHolder": "A futuristic city powered by nano technology, golden hour lighting, ultra detailed..."
+        }
+      },
+      "generateButton": {
+        "type": "button",
+        "title": "Generate Now"
+      }
+    },
+    "outputGallery":{
+      "title": "Output Gallery",
+      "description": "Your ultra-fast AI creations appear here instantly",
+      "dataCard": {
+          "title": "Ready for instant generation",
+          "description": "Enter your prompt and unleash the power"
+      },
+      "downloadButton": {
+        "type": "button",
+        "title": "Download"
+      }
+    }
+  },
+  "branding": {
+    "title": "ShipAny is built on the shoulders of giants",
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn/UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ]
+  },
   "introduce": {
     "name": "introduce",
     "title": "What is AI Detector",
@@ -220,6 +301,86 @@
         "title": "Detailed Reports",
         "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
         "icon": "RiFileTextLine"
+      }
+    ]
+  },
+  "stats": {
+    "name": "stats",
+    "label": "Stats",
+    "title": "People Love ShipAny",
+    "description": "for it's easy to use and fast to ship.",
+    "icon": "FaRegHeart",
+    "items": [
+      {
+        "title": "Trusted by",
+        "label": "99+",
+        "description": "Customers"},
+      {
+        "title": "Built in",
+        "label": "20+",
+        "description": "Components"
+      },
+      {
+        "title": "Ship Fast in",
+        "label": "5",
+        "description": "Minutes"
+      }
+    ]
+  },
+  "testimonial": {
+    "name": "testimonial",
+    "label": "Testimonial",
+    "title": "What Users Say About ShipAny",
+    "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
+    "icon": "GoThumbsup",
+    "items": [
+      {
+        "title": "David Chen",
+        "label": "Founder of AIWallpaper.shop",
+        "description": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Rachel Kim",
+        "label": "CTO at HeyBeauty.ai",
+        "description": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
+        "image": {
+          "src": "/imgs/users/2.png"
+        }
+      },
+      {
+        "title": "Marcus Thompson",
+        "label": "Solo Developer",
+        "description": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
+      },
+      {
+        "title": "Sofia Garcia",
+        "label": "CEO of Melodisco",
+        "description": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "James Wilson",
+        "label": "Tech Lead at GPTs.works",
+        "description": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
+        "image": {
+          "src": "/imgs/users/5.png"
+        }
+      },
+      {
+        "title": "Anna Zhang",
+        "label": "Startup Founder",
+        "description": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
+        "image": {
+          "src": "/imgs/users/6.png"
+        }
       }
     ]
   },
