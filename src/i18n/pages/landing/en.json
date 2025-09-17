@@ -32,6 +32,12 @@
               "url": "/ai-plagiarism-checker",
               "description": "Detect AI-written text with confidence.",
               "icon": "RiFileTextLine"
+            },
+            {
+              "title": "AI Audio Checker",
+              "url": "/ai-audio-detector",
+              "description": "Detect AI-generated audio with confidence.",
+              "icon": "RiSoundcloudLine"
             }
           ]
         },

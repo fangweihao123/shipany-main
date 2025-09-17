@@ -32,6 +32,12 @@
               "url": "/ai-plagiarism-checker",
               "description": "检测 AI 撰写的文本。",
               "icon": "RiFileTextLine"
+            },
+            {
+              "title": "AI 音频检测",
+              "url": "/ai-audio-detector",
+              "description": "检测 AI 生成的音频。",
+              "icon": "RiSoundcloudLine"
             }
           ]
         },
