@@ -11,7 +11,15 @@ export const PROVIDER_CONFIGS = {
     description: 'Advanced Image Generator Engine',
     model: "gemini-2.5-flash-image-preview",
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/service/edit-image',
+    endpoint: '/api/wavespeed/nano-banana/texttoimage',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
+  nanobananai2i: {
+    name: 'Nano Banana',
+    description: 'Advanced Image Generator Engine',
+    model: "gemini-2.5-flash-image-preview",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/wavespeed/nano-banana/edit',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   }
 } as const;
@@ -33,7 +41,45 @@ export function getDefaultProvider(): GeneratorProvider {
   return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobananat2i';
 }
 
-export async function generateImage(files: File[], prompt: string, provider?: GeneratorProvider): Promise<string> {
+export async function generateImage(prompt: string, provider?: GeneratorProvider): Promise<string> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( {
+        "prompt": prompt
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new GeneratorError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data.data.id;
+  } catch (error) {
+    if (error instanceof GeneratorError) {
+      throw error;
+    }
+    
+    throw new GeneratorError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+export async function editImage(files: File[], prompt: string, provider?: GeneratorProvider): Promise<string> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   // Validate file with provider-specific limits
@@ -47,13 +93,14 @@ export async function generateImage(files: File[], prompt: string, provider?: Ge
   const config = PROVIDER_CONFIGS[selectedProvider];
   const formData = new FormData();
   formData.append('prompt', prompt);
-  formData.append('provider', provider?.toString() ?? "");
-  formData.append('model', config.model);
+  files.forEach((file, index) => {
+    formData.append(`file`, file, file.name);
+  }); 
 
   try {
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      body: formData,
+      body: formData
     });
 
     const data = await response.json();

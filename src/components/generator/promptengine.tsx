@@ -4,7 +4,8 @@ import { Button } from "../ui/button";
 import { useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
-import { generateImage } from "@/services/generator";
+import { editImage, generateImage } from "@/services/generator";
+import { pollTaskResult } from "@/lib/utils";
 
 
 interface PromptEngineProps {
@@ -24,8 +25,16 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
     }
   },[mode, prompt, files]);
 
-  const onGenerateClick = () => {
-    generateImage(files, prompt, "nanobananat2i");
+  const onGenerateClick = async () => {
+    if(mode === "t2i"){
+      const id = await generateImage(prompt, "nanobananat2i");
+      const queryResult = await pollTaskResult(id);
+      console.log("final query result", queryResult);
+    }else if(mode === "i2i"){
+      const id = await editImage(files, prompt, "nanobananai2i");
+      const queryResult = await pollTaskResult(id);
+      console.log("final query result", queryResult);
+    }
   };
 
   const onPromptChange = (value: string) => {
@@ -37,7 +46,10 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
     if(mode === "i2i"){
       return (
         <div>
-          <MultiImgUpload uploadInfo={promptEngine.image2Image?.upload}>
+          <MultiImgUpload 
+            uploadInfo={promptEngine.image2Image?.upload}
+            onChange={setFiles}
+            >
 
           </MultiImgUpload>
           <PromptInputBlock
