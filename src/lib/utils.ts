@@ -22,3 +22,38 @@ export function getVideoPreview(file: File): Promise<string> {
     reader.readAsDataURL(file);
   });
 }
+
+export async function queryTaskStatus(id:string):Promise<any>{
+  const response = await fetch('/api/watermark/wavespeed/query',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id}),
+  });
+  if(!response.ok){
+    throw new Error(`Query failed: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  console.log("query result", result);
+  return result;
+}
+
+export async function pollTaskResult(id: string): Promise<any>{
+  const maxAttempts = 30;
+  const interval = 2000;
+
+  for(let attempt = 0; attempt < maxAttempts; attempt++){
+    const status = await queryTaskStatus(id);
+    if(status.data.status === 'completed'){
+      return status;
+    }
+    if(status.data.status === 'failed'){
+      throw new Error('unwatermark failed');
+    }
+    await new Promise(resolve => setTimeout(resolve, interval));
+  }
+
+  throw new Error('Detection timeout');
+}

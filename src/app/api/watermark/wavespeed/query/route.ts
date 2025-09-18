@@ -3,8 +3,8 @@ import {
   ApiErrorResponse
 } from '@/types/detect';
 
-const API_BASE_URL = process.env.ERASE_WATERMARK_API_QUERY_ENDPOINT || "";
-const API_KEY = process.env.ERASE_WATERMARK_API_KEY;
+const API_BASE_URL = process.env.WAVESPEED_API_QUERY_ENDPOINT || "";
+const API_KEY = process.env.WAVESPEED_API_KEY;
 
 if (!API_KEY) {
   console.error('ERASE_WATERMARK_API_KEY is not set in environment variables');
@@ -40,9 +40,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    const body = await request.json();
-    const id : string = body.id;
+    const {id} = await request.json();
 
     const queryStatusResponse = await queryTaskStatus(id);
     
