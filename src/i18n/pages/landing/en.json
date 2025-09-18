@@ -312,6 +312,100 @@
       }
     ]
   },
+  "showcase": {
+    "name": "showcase",
+    "title": "showcase",
+    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "image": {
+      "src": "/imgs/users/1.png"
+    },
+    "items": [
+      {
+        "title": "Real-time Detection",
+        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "High Accuracy Rate",
+        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Multiple Upload Methods",
+        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      }
+    ]
+  },
+  "showcase1": {
+    "name": "showcase1",
+    "title": "showcase1",
+    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "items": [
+      {
+        "title": "Real-time Detection",
+        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "High Accuracy Rate",
+        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Multiple Upload Methods",
+        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "image": {
+          "src": "/imgs/users/1.png"
+        }
+      }
+    ]
+  },
   "stats": {
     "name": "stats",
     "label": "Stats",
