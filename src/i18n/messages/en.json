@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "AI Detector - Detect AI Content Instantly | detect-ai.me",
-    "description": "Professional AI Detector for images, text & media. 95%+ accuracy detecting deepfakes & AI content. Free tool with instant results. Protect against AI fraud.",
-    "keywords": "AI Detector, AI detection, deepfake detection, AI content verification, fake content detection"
+    "title": "Nano Banana - AI Image Studio for Instant Visuals",
+    "description": "Nano Banana combines Google WaveSpeed text-to-image and watermark removal so teams can ship polished visuals in seconds. Generate, edit, and clean assets in one intuitive workspace.",
+    "keywords": "Nano Banana, AI image studio, text to image, image generator, watermark remover, WaveSpeed"
   },
   "user": {
     "sign_in": "Sign In",
@@ -34,7 +34,7 @@
   },
   "my_orders": {
     "title": "My Orders",
-    "description": "orders paid with ShipAny.",
+    "description": "Orders purchased through Nano Banana.",
     "no_orders": "No orders found",
     "tip": "",
     "activate_order": "Activate Order",
@@ -89,7 +89,7 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "News, resources, and updates about ShipAny",
+    "description": "News, resources, and updates about Nano Banana",
     "read_more_text": "Read More",
     "no_content": "No content",
     "all": "All",
@@ -104,7 +104,7 @@
     "edit_invite_link": "Edit Invite Link",
     "copy_invite_link": "Copy Invite Link",
     "invite_code": "Invite Code",
-    "invite_tip": "Invite 1 friend to buy ShipAny, reward $50.",
+    "invite_tip": "Invite a friend to Nano Banana and you both earn bonus credits.",
     "invite_balance": "Invite Reward Balance",
     "total_invite_count": "Total Invite Count",
     "total_paid_count": "Total Paid Count",
@@ -112,7 +112,7 @@
     "update_invite_code": "Set Invite Code",
     "update_invite_code_tip": "Input your custom invite code",
     "update_invite_button": "Save",
-    "no_orders": "You can't invite others before you bought ShipAny",
+    "no_orders": "You need an active Nano Banana plan before inviting others.",
     "no_affiliates": "You're not allowed to invite others, please contact us to apply for permission.",
     "table": {
       "invite_time": "Invite Time",
@@ -130,7 +130,7 @@
     "submit": "Submit",
     "loading": "Submitting...",
     "contact_tip": "Other ways to contact us",
-    "rating_tip": "How do you feel about ShipAny?",
+    "rating_tip": "How do you feel about Nano Banana?",
     "placeholder": "Leave your words here..."
   }
 }

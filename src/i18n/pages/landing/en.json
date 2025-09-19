@@ -2,30 +2,30 @@
   "template": "shipany-template-one",
   "theme": "light",
   "meta": {
-    "title": "AI Detector - Detect AI-Generated Content Instantly | detect-ai.me",
-    "description": "Professional AI Detector tool to identify AI-generated images, text, and media. Fast, accurate detection with 95%+ accuracy rate. Try our AI Detector free today.",
-    "keywords": "AI Detector, AI detection, artificial intelligence detection, deepfake detection, AI content identification"
+    "title": "Nano Banana - Lightning-Fast AI Image Studio",
+    "description": "Design stunning visuals in seconds with Nano Banana, the AI image studio powered by Google WaveSpeed. Generate brand assets, restyle references, and remove watermarks without leaving your browser.",
+    "keywords": "Nano Banana, AI image studio, WaveSpeed, text to image, image-to-image, watermark remover, AI design tool"
   },
   "header": {
     "brand": {
-      "title": "AI Detector",
+      "title": "Nano Banana",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI Detector"
+        "alt": "Nano Banana"
       },
       "url": "/"
     },
     "nav": {
       "items": [
         {
-          "title": "Features",
-          "url": "/#feature",
+          "title": "Generator",
+          "url": "/#generator",
           "icon": "RiSparkling2Line"
         },
         {
-          "title": "Pricing",
-          "url": "/pricing",
-          "icon": "RiMoneyDollarCircleLine"
+          "title": "Watermark Remover",
+          "url": "/#detect",
+          "icon": "RiShieldLine"
         },
         {
           "title": "How it Works",
@@ -39,125 +39,123 @@
         }
       ]
     },
-    "buttons": [
-    ],
+    "buttons": [],
     "show_sign": true,
     "show_theme": true,
     "show_locale": true
   },
   "hero": {
-    "title": "Detect AI-Generated Content in Seconds",
-    "highlight_text": "AI-Generated Content",
-    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
+    "title": "Create Production-Ready Images in Seconds",
+    "highlight_text": "Production-Ready Images",
+    "description": "Nano Banana fuses Google WaveSpeed generation with pixel-perfect cleanup so your ideas become market-ready visuals instantly.<br/>Generate from text, restyle with reference images, or clean existing assets with watermark removal.",
     "announcement": {
       "label": "BETA",
-      "title": "🤖 Now serving AI Detector worldwide",
-      "url": "/#feature"
+      "title": "🍌 Nano Banana is now open for creators worldwide",
+      "url": "/#generator"
     },
-    "tip": "🔒 Your images are never stored",
+    "tip": "🔒 Prompts and assets stay private by default",
     "show_happy_users": true,
     "show_badge": false,
-    "disabled": true
-  },
-  "heroGeometic": {
-    "badge": "Detect AI-Generated",
-    "title1": "Detect AI-Generated",
-    "title2": "Detect",
-    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.",
     "disabled": false
   },
-  "detection":{
-    "uploads":[
+  "heroGeometic": {
+    "badge": "Generate & Clean",
+    "title1": "Generate & Clean",
+    "title2": "In Seconds",
+    "description": "Create new visuals, restyle references, and remove watermarks without leaving Nano Banana.",
+    "disabled": false
+  },
+  "detection": {
+    "uploads": [
       {
-        "upload_tab": "Audio Detection",
-        "upload_title": "Upload an audio file",
-        "select_tip": "Select audio file",
-        "drag_drop_text": "Drag and drop your audio here, or click to select",
-        "click_different_file": "Click to select a different image",
-        "support_format": "Supports {formats}",
-        "duration_limit_tip": "Supports up to {seconds}s audio"
+        "upload_tab": "Watermark Remover",
+        "upload_title": "Upload an image with a watermark",
+        "select_tip": "Choose image",
+        "drag_drop_text": "Drag your asset here or click to upload",
+        "click_different_file": "Click to try a different image",
+        "support_format": "Supports {formats}"
       }
     ],
     "state": {
-      "uploading": "Uploading...",
-      "analyzing": "Analyzing...",
-      "processing": "Processing...",
-      "detection_complete": "Detection Complete",
-      "detect_ai_generation": "Detect AI Generation",
-      "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
+      "uploading": "Uploading image...",
+      "analyzing": "Removing watermark...",
+      "processing": "Polishing details...",
+      "detection_complete": "Clean version ready",
+      "detect_ai_generation": "Remove watermark",
+      "auth_required": "Please sign in to remove watermarks. Redirecting to login..."
     },
     "detectResult": {
-      "result_detail": "Detection results will appear here",
-      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
-      "unable_verify_credits": "Unable to verify credits. Please try again.",
-      "invalid_file": "Invalid file",
-      "preview_failed": "Failed to generate image preview",
-      "detection_failed": "Detection failed",
-      "confidence_level": "AI Level",
-      "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
-      "human_created": "Human Created: This file appears to be authentic or human-created.",
-      "analyze_again": "Analyze Again",
-      "understand": "Understanding the Results",
-      "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
-      "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
-      "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
-      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity.",
-      "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
+      "result_detail": "Your cleaned image will appear here.",
+      "insufficient_credits": "Not enough credits. Watermark removal costs 1 credit. Upgrade your plan to continue.",
+      "unable_verify_credits": "We couldn't verify your credits. Please try again.",
+      "invalid_file": "Unsupported file type or size. Try a PNG, JPG, or WebP under 10 MB.",
+      "preview_failed": "We couldn't generate a preview for this image.",
+      "detection_failed": "Something went wrong while removing the watermark.",
+      "confidence_level": "Cleanup status",
+      "ai_generated": "Success: The watermark is gone and the image is ready to download.",
+      "human_created": "Original image: Previewing your uploaded file.",
+      "analyze_again": "Process another image",
+      "understand": "How cleanup works",
+      "confidence_score_desc": "Nano Banana runs multiple passes to blend surrounding pixels and keep edges crisp.",
+      "ai_generated_desc": "Download the high-resolution version without the original watermark artifacts.",
+      "human_created_desc": "Keep your original upload handy to compare before and after results.",
+      "note": "Results vary depending on watermark size, placement, and contrast. Upload the highest resolution asset available for best quality.",
+      "audio_too_long": "Image exceeds the maximum upload size. Please upload a file under the limit."
     }
   },
   "imageGenerator": {
-    "promptEngine":{
-      "title": "Prompt Engine",
-      "description": "Transform your image with AI-powered editing",
+    "promptEngine": {
+      "title": "Nano Banana Studio",
+      "description": "Generate new concepts or restyle existing visuals with Google WaveSpeed.",
       "image2ImageTab": "Image to Image",
       "image2Image": {
         "upload": {
-          "upload_title": "Reference Image",
-          "select_tip": "Add Image",
-          "max_file_size_tip": "Max 50MB"
+          "upload_title": "Reference image",
+          "select_tip": "Add reference image",
+          "max_file_size_tip": "Max 10MB"
         },
-        "input":{
-          "title": "Main Prompt",
-          "textPlaceHolder": "A futuristic city powered by nano technology, golden hour lighting, ultra detailed..."
+        "input": {
+          "title": "Guidance Prompt",
+          "textPlaceHolder": "Describe how you want to transform the reference image—lighting, camera angle, style, extra details..."
         }
       },
       "text2ImageTab": "Text to Image",
       "text2Image": {
-        "input":{
+        "input": {
           "title": "Main Prompt",
-          "textPlaceHolder": "A futuristic city powered by nano technology, golden hour lighting, ultra detailed..."
+          "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
         }
       },
       "generateButton": {
         "type": "button",
-        "title": "Generate Now",
-        "loadingTitle": "Generating..."
+        "title": "Generate with Nano Banana",
+        "loadingTitle": "Blending magic..."
       },
       "states": {
-        "generating": "Generating..."
+        "generating": "Brewing your banana..."
       }
     },
-    "outputGallery":{
+    "outputGallery": {
       "title": "Output Gallery",
-      "description": "Your ultra-fast AI creations appear here instantly",
+      "description": "Your generated images and watermark-free results appear instantly.",
       "dataCard": {
-          "title": "Ready for instant generation",
-          "description": "Enter your prompt and unleash the power"
+        "title": "Ready for instant creation",
+        "description": "Add a prompt or upload a reference to get started."
       },
       "downloadButton": {
         "type": "button",
         "title": "Download",
-        "loadingTitle": "Downloading..."
+        "loadingTitle": "Preparing download..."
       },
       "messages": {
-        "loading": "Generating, please wait...",
-        "empty": "Generated images will appear here",
+        "loading": "Generating, hang tight...",
+        "empty": "Your visuals will appear here",
         "imageAlt": "Generated image"
       }
     }
   },
   "branding": {
-    "title": "ShipAny is built on the shoulders of giants",
+    "title": "Nano Banana is powered by world-class platforms",
     "items": [
       {
         "title": "Next.js",
@@ -198,162 +196,162 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "What is AI Detector",
-    "label": "Introduce",
-    "description": "AI Detector uses advanced machine learning algorithms to analyze content and identify whether it was generated by artificial intelligence or created by humans.",
+    "title": "What is Nano Banana",
+    "label": "Overview",
+    "description": "Nano Banana is an AI image studio built on Google WaveSpeed that lets creative teams go from idea to polished asset in seconds.",
     "image": {
       "src": "/imgs/features/detector.png",
-      "alt": "Illustration of a man checking if content is AI-generated on a computer screen"
+      "alt": "Designer using Nano Banana to create marketing visuals"
     },
     "items": [
       {
-        "title": "Instant Detection",
-        "description": "Upload any image and get results in seconds with our real-time AI analysis technology.",
+        "title": "Lightning-fast generation",
+        "description": "Type a prompt and receive high-resolution variations in seconds using WaveSpeed models.",
         "icon": "RiFlashlightLine"
       },
       {
-        "title": "Advanced Algorithms",
-        "description": "Uses state-of-the-art machine learning models trained on millions of images for accurate detection.",
+        "title": "Guided reimagining",
+        "description": "Upload a reference image and steer new renders with style prompts and guidance strength.",
         "icon": "RiBrainLine"
       },
       {
-        "title": "Privacy First",
-        "description": "Your uploaded images are processed securely and never stored on our servers.",
+        "title": "Built-in privacy",
+        "description": "Assets process securely and are never stored longer than needed for delivery.",
         "icon": "RiShieldCheckLine"
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Choose AI Detector",
+    "title": "Why teams choose Nano Banana",
     "label": "Benefits",
-    "description": "Protect yourself and your organization from AI-generated content fraud with our industry-leading AI Detector technology.",
+    "description": "Ship campaigns and product visuals faster with a unified generation and cleanup workflow.",
     "items": [
       {
-        "title": "Combat Fake News",
-        "description": "Identify AI-generated images used in misinformation campaigns and protect against fake news propaganda.",
+        "title": "Launch campaigns faster",
+        "description": "Turn briefs into production-ready images in minutes instead of days of manual editing.",
         "icon": "RiShieldLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
-          "alt": "Illustration showing combat fake news with website and megaphone icon"
+          "alt": "Marketing team launching campaign assets with Nano Banana"
         }
       },
       {
-        "title": "Prevent Art Theft",
-        "description": "Detect unauthorized AI reproductions of original artwork and protect intellectual property rights.",
+        "title": "Protect your brand assets",
+        "description": "Keep logos and product shots watermark-free while preserving fine detail.",
         "icon": "RiCopyrightLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
-          "alt": "Minimalist graphic prevent art theft with framed artwork and thief icon"
+          "alt": "Product photography enhanced by Nano Banana"
         }
       },
       {
-        "title": "Stop Identity Fraud",
-        "description": "Identify deepfake profile pictures and AI-generated identity documents to prevent fraud and scams.",
+        "title": "Collaborate confidently",
+        "description": "Role-based access and audit trails ensure every edit is tracked for your team.",
         "icon": "RiUserForbidLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
-          "alt": "Simple illustration stop identity fraud with ID card and masked figure icon"
+          "alt": "Team collaborating on Nano Banana workflow"
         }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "How to Use AI Detector",
-    "description": "Identify AI-generated content in three simple steps:",
+    "title": "How Nano Banana works",
+    "description": "Go from idea to ready-to-use asset with three simple steps:",
     "image": {
       "src": "/imgs/features/detection-process.png",
-      "alt": "AI Detector process workflow diagram"
+      "alt": "Nano Banana workflow diagram"
     },
     "image_position": "left",
     "text_align": "center",
     "items": [
       {
-        "title": "Upload Your Content",
-        "description": "Drag and drop any file or paste a URL. Supports images, text, and other common formats.",
+        "title": "Describe or upload your vision",
+        "description": "Start with a text prompt or drop in a reference image, product photo, or sketch.",
         "image": {
           "src": "/imgs/features/upload.png",
-          "alt": "Upload interface for AI Detector content analysis"
+          "alt": "Uploading assets into Nano Banana"
         }
       },
       {
-        "title": "AI Analysis",
-        "description": "Our advanced algorithms analyze the content for telltale signs of AI generation in seconds.",
+        "title": "Fine-tune style and details",
+        "description": "Adjust guidance, choose styles, and let Nano Banana iterate with lightning-fast previews.",
         "image": {
           "src": "/imgs/features/analyze.png",
-          "alt": "AI Detector analysis dashboard showing detection process"
+          "alt": "Tuning styles and prompts inside Nano Banana"
         }
       },
       {
-        "title": "Get Results",
-        "description": "Receive a confidence score and detailed analysis showing why the content was flagged as AI or human-created.",
+        "title": "Download and share instantly",
+        "description": "Export watermark-free images ready for campaigns, storefronts, or presentations.",
         "image": {
           "src": "/imgs/features/results.png",
-          "alt": "AI Detector results screen with confidence score and analysis"
+          "alt": "Reviewing generated outputs from Nano Banana"
         }
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Key Features of AI Detector",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Key features of Nano Banana",
+    "description": "Everything you need to ideate, generate, and refine visuals in one place.",
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "title": "Text-to-image generation",
+        "description": "Create stunning concepts from natural language prompts using WaveSpeed models.",
         "icon": "RiFlashlightLine"
       },
       {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "title": "Image-to-image restyling",
+        "description": "Upload a reference and guide the transformation with prompts and control strength.",
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "title": "Watermark removal",
+        "description": "Clean legacy assets in seconds with our AI-powered watermark remover.",
         "icon": "RiUploadLine"
       },
       {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "title": "Project-ready exports",
+        "description": "Download high-res outputs optimized for web, print, or storyboards.",
         "icon": "RiFileTextLine"
       }
     ]
   },
   "showcase": {
     "name": "showcase",
-    "title": "showcase",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Built with Nano Banana",
+    "description": "See how teams use Nano Banana for marketing, ecommerce, and product storytelling.",
     "image": {
       "src": "/imgs/users/1.png"
     },
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "title": "Ecommerce hero shots",
+        "description": "Generate lifestyle imagery around your product without expensive reshoots.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "title": "App and UI concepts",
+        "description": "Visualize interface ideas and motion studies in minutes.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "title": "Campaign moodboards",
+        "description": "Create cohesive moodboards with consistent color and lighting.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "title": "Social-ready variations",
+        "description": "Produce endless aspect ratios and styles tailored to each channel.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -362,54 +360,33 @@
   },
   "showcase1": {
     "name": "showcase1",
-    "title": "showcase1",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Before & After",
+    "description": "Combine Nano Banana generation and cleanup to refresh your asset library.",
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "title": "Product photos",
+        "description": "Remove watermarks and generate new backgrounds to match any campaign.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "title": "Brand illustrations",
+        "description": "Iterate on existing vectors and deliver new variations instantly.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "title": "Event visuals",
+        "description": "Spin up polished banners and signage without waiting on agencies.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "title": "Pitch decks",
+        "description": "Turn rough ideas into high-impact slides for investors and stakeholders.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -419,79 +396,64 @@
   "stats": {
     "name": "stats",
     "label": "Stats",
-    "title": "People Love ShipAny",
-    "description": "for it's easy to use and fast to ship.",
+    "title": "Creators love Nano Banana",
+    "description": "because it delivers polished visuals without the wait.",
     "icon": "FaRegHeart",
     "items": [
       {
-        "title": "Trusted by",
-        "label": "99+",
-        "description": "Customers"},
-      {
-        "title": "Built in",
-        "label": "20+",
-        "description": "Components"
+        "title": "Average render time",
+        "label": "7s",
+        "description": "Per image"
       },
       {
-        "title": "Ship Fast in",
-        "label": "5",
-        "description": "Minutes"
+        "title": "Monthly prompts",
+        "label": "120K+",
+        "description": "Generated"
+      },
+      {
+        "title": "Assets cleaned",
+        "label": "20K+",
+        "description": "Watermarks removed"
       }
     ]
   },
   "testimonial": {
     "name": "testimonial",
-    "label": "Testimonial",
-    "title": "What Users Say About ShipAny",
-    "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
+    "label": "Testimonials",
+    "title": "What teams say about Nano Banana",
+    "description": "Designers, marketers, and founders ship faster with Nano Banana.",
     "icon": "GoThumbsup",
     "items": [
       {
-        "title": "David Chen",
-        "label": "Founder of AIWallpaper.shop",
-        "description": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
+        "title": "Lena Ortiz",
+        "label": "Creative Director, FreshDrop",
+        "description": "Nano Banana replaced entire rounds of photo editing. We launch seasonal campaigns in hours now.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Rachel Kim",
-        "label": "CTO at HeyBeauty.ai",
-        "description": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
+        "title": "Kenji Morita",
+        "label": "Product Designer, Atlas Apps",
+        "description": "Text-to-image and cleanup in the same workspace keeps our feature launches on schedule.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "Marcus Thompson",
-        "label": "Solo Developer",
-        "description": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+        "title": "Morgan Blake",
+        "label": "Founder, Pine & Pixel Studio",
+        "description": "Clients expect bespoke visuals fast. Nano Banana gives me pro results without needing a retoucher.",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "Sofia Garcia",
-        "label": "CEO of Melodisco",
-        "description": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
+        "title": "Isabelle Tremblay",
+        "label": "Growth Marketer, OrbitWear",
+        "description": "The watermark remover saved our archive. We refreshed 500+ product shots in a week.",
         "image": {
           "src": "/imgs/users/4.png"
-        }
-      },
-      {
-        "title": "James Wilson",
-        "label": "Tech Lead at GPTs.works",
-        "description": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
-        "image": {
-          "src": "/imgs/users/5.png"
-        }
-      },
-      {
-        "title": "Anna Zhang",
-        "label": "Startup Founder",
-        "description": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
-        "image": {
-          "src": "/imgs/users/6.png"
         }
       }
     ]
@@ -499,70 +461,70 @@
   "faq": {
     "name": "faq",
     "label": "FAQ",
-    "title": "Frequently Asked Questions About AI Detector",
-    "description": "Have another question? Contact us by email or check our documentation.",
+    "title": "Frequently asked about Nano Banana",
+    "description": "Need something else? Reach out and we'll help you get set up.",
     "items": [
       {
-        "title": "How accurate is the AI Detector?",
-        "description": "Our AI Detector achieves over 95% accuracy in identifying AI-generated images and audio content. The system is trained on millions of samples and continuously updated to detect the latest AI generation techniques."
+        "title": "What powers Nano Banana's generation?",
+        "description": "We run on Google WaveSpeed models tuned for speed and consistency, delivering high-fidelity renders without long wait times."
       },
       {
-        "title": "What types of AI-generated content can it detect?",
-        "description": "We can detect images created by DALL-E, Midjourney, Stable Diffusion and audio generated by AI voice tools. Our AI Detector identifies common artifacts and patterns specific to AI generation in both visual and audio content."
+        "title": "Can I upload my own assets?",
+        "description": "Yes. Bring product photos, illustrations, or sketches. Use image-to-image to restyle them or run the watermark remover to clean legacy files."
       },
       {
-        "title": "Is my uploaded content data stored or shared?",
-        "description": "No, we prioritize your privacy. Uploaded images and audio files are processed in real-time and immediately deleted after analysis. We never store, share, or use your content for any other purpose."
+        "title": "Is my content private?",
+        "description": "Absolutely. Uploads are encrypted in transit and deleted automatically after your outputs are delivered."
       },
       {
-        "title": "What should I do if I get an incorrect result?",
-        "description": "While our system is highly accurate, no detection method is 100% perfect. We're currently in BETA and continuously improving. You can report incorrect results to help us enhance our algorithms."
+        "title": "How are credits consumed?",
+        "description": "Each text-to-image or image-to-image request costs 1 credit. Watermark removal also costs 1 credit per image."
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Start Using AI Detector Today",
-    "description": "Protect yourself from AI-generated content fraud and misinformation.",
+    "title": "Start creating with Nano Banana",
+    "description": "Join creators generating and refreshing visuals without slowing down production.",
     "buttons": [
       {
-        "title": "Try Detector",
-        "url": "#detect",
+        "title": "Launch Studio",
+        "url": "#generator",
         "target": "_self",
-        "icon": "RiScanLine"
+        "icon": "RiSparkling2Line"
       }
     ]
   },
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "AI Detector",
-      "description": "Advanced AI Detector technology to identify artificial content and protect against fake media, deepfakes, and content fraud.",
+      "title": "Nano Banana",
+      "description": "The AI image studio for generating new concepts and cleaning existing assets with Google WaveSpeed.",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI Detector"
+        "alt": "Nano Banana"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • AI Detector All rights reserved.",
+    "copyright": "© 2025 • Nano Banana. All rights reserved.",
     "nav": {
       "items": [
         {
           "title": "Product",
           "children": [
             {
-              "title": "Features",
-              "url": "/#feature",
+              "title": "Generator",
+              "url": "/#generator",
+              "target": "_self"
+            },
+            {
+              "title": "Watermark Remover",
+              "url": "/#detect",
               "target": "_self"
             },
             {
               "title": "How it Works",
               "url": "/#usage",
-              "target": "_self"
-            },
-            {
-              "title": "Pricing",
-              "url": "/pricing",
               "target": "_self"
             }
           ]
@@ -574,9 +536,9 @@
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:support@detect-ai.me",
+          "url": "mailto:hello@nanobanana.ai",
           "target": "_self",
-          "description": "support@detect-ai.me"
+          "description": "hello@nanobanana.ai"
         }
       ]
     },
