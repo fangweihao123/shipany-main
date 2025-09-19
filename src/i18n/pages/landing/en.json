@@ -3,7 +3,7 @@
   "theme": "light",
   "meta": {
     "title": "Nano Banana - Lightning-Fast AI Image Studio",
-    "description": "Design stunning visuals in seconds with Nano Banana, the AI image studio. Generate brand assets, restyle references, and remove watermarks without leaving your browser.",
+    "description": "Create, refine, and ship premium visuals with nano banana, the AI image generation studio that merges prompts, references, and instant exports.",
     "keywords": "Nano Banana, AI image studio, text to image, image-to-image, AI design tool"
   },
   "header": {
@@ -52,13 +52,13 @@
   "hero": {
     "title": "Create Production-Ready Images in Seconds",
     "highlight_text": "Production-Ready Images",
-    "description": "Nano Banana fuses generation with pixel-perfect cleanup so your ideas become market-ready visuals instantly.<br/>Generate from text, restyle with reference images, or clean existing assets with watermark removal.",
+    "description": "nano banana pairs imaginative prompts with smart refinement, turning brief sparks into campaign-ready art in seconds. With nano banana you sketch ideas in text, drop in references, and watch polished compositions appear without manual clean-up. The environment supports comments, creative checkpoints, and instant reshoots for emerging ideas.<br/>Keep your focus on storytelling while the platform automates quality checks.",
     "announcement": {
       "label": "BETA",
       "title": "🍌 Nano Banana is now open for creators worldwide",
       "url": "/#generator"
     },
-    "tip": "🔒 Prompts and assets stay private by default",
+    "tip": "Save scene setups by pinning timeline markers, so recurring shoots rebuild instantly without guesswork.",
     "show_happy_users": true,
     "show_badge": false,
     "disabled": true
@@ -67,7 +67,7 @@
     "badge": "Nano Banana",
     "title1": "Nano Banana",
     "title2": "AI Image Editor",
-    "description": "Experience the future of AI image editing. Nano-banana's advanced model delivers consistent character editing and scene preservation that surpasses Flux Kontext.",
+    "description": "Inside the geometric workspace, nano banana stabilizes characters, props, and camera rhythm across every frame. The result is a toolkit that respects brand palettes while encouraging dramatic lighting experiments.",
     "disabled": false
   },
   "detection": {
@@ -161,7 +161,7 @@
   },
   "branding": {
     "title": "Nano Banana is powered by world-class platforms",
-    "disabled" : true,
+    "disabled": true,
     "items": [
       {
         "title": "Next.js",
@@ -204,7 +204,7 @@
     "name": "introduce",
     "title": "What is Nano Banana",
     "label": "Overview",
-    "description": "Nano Banana is an AI image studio that lets creative teams go from idea to polished asset in seconds.",
+    "description": "nano banana is built for fast-moving creatives who must balance imagination with measurable outcomes. Instead of juggling disconnected tools, nano banana supplies a unified studio that listens to your brief, proposes prompt angles, and maps visual directions to campaign goals. The platform captures feedback, learns every product nuance, and translates it into refined scene variations without slowing collaboration. With nano banana shaping your workflow, teams stay playful, executives stay confident, and polished deliverables leave the dashboard ready for launch.",
     "image": {
       "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "Designer using Nano Banana to create marketing visuals"
@@ -212,17 +212,17 @@
     "items": [
       {
         "title": "Lightning-fast generation",
-        "description": "Type a prompt and receive high-resolution variations in seconds.",
+        "description": "Blitz through concept exploration because nano banana delivers multiple high-resolution drafts before your inspiration cools, making comparison effortless.",
         "icon": "RiFlashlightLine"
       },
       {
         "title": "Guided reimagining",
-        "description": "Upload a reference image and steer new renders with style prompts and guidance strength.",
+        "description": "Guide reimagining by pairing references with prompts; nano banana blends both sources into fresh yet on-brand compositions.",
         "icon": "RiBrainLine"
       },
       {
         "title": "Built-in privacy",
-        "description": "Assets process securely and are never stored longer than needed for delivery.",
+        "description": "Protect sensitive material through privacy-first routing where the studio encrypts uploads and purges caches after export.",
         "icon": "RiShieldCheckLine"
       }
     ]
@@ -232,11 +232,11 @@
     "title": "Why teams choose Nano Banana",
     "label": "Benefits",
     "disabled": true,
-    "description": "Ship campaigns and product visuals faster with a unified generation and cleanup workflow.",
+    "description": "Teams choose nano banana to anchor brainstorming, production, and delivery inside one adaptive environment.",
     "items": [
       {
         "title": "Launch campaigns faster",
-        "description": "Turn briefs into production-ready images in minutes instead of days of manual editing.",
+        "description": "Accelerate campaign launches as nano banana interprets briefs, surfaces template prompts, and auto-sizes assets for every channel.",
         "icon": "RiShieldLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
@@ -245,7 +245,7 @@
       },
       {
         "title": "Protect your brand assets",
-        "description": "Keep logos and product shots watermark-free while preserving fine detail.",
+        "description": "Defend brand equity when the platform rebuilds textures, packaging gleam, and typography fidelity across every render.",
         "icon": "RiCopyrightLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
@@ -254,7 +254,7 @@
       },
       {
         "title": "Collaborate confidently",
-        "description": "Role-based access and audit trails ensure every edit is tracked for your team.",
+        "description": "Unlock transparent collaboration because the studio tracks versions, highlights decisions, and streamlines sign-off loops.",
         "icon": "RiUserForbidLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
@@ -266,7 +266,7 @@
   "usage": {
     "name": "usage",
     "title": "How Nano Banana works",
-    "description": "Go from idea to ready-to-use asset with three simple steps:",
+    "description": "Turning imagination into launch-ready imagery takes three grounded stages inside nano banana.",
     "image": {
       "src": "/imgs/features/detection-process.png",
       "alt": "Nano Banana workflow diagram"
@@ -276,41 +276,41 @@
     "items": [
       {
         "title": "Describe or upload your vision",
-        "description": "Start with a text prompt or drop in a reference image, product photo, or sketch."
+        "description": "Describe or upload your vision and nano banana reads tone, subject, and context before proposing starting compositions."
       },
       {
         "title": "Fine-tune style and details",
-        "description": "Adjust guidance, choose styles, and let Nano Banana iterate with lightning-fast previews."
+        "description": "Fine-tune style and details with sliders that link to lighting, lens, and narrative presets for consistent output."
       },
       {
         "title": "Download and share instantly",
-        "description": "Export watermark-free images ready for campaigns, storefronts, or presentations."
+        "description": "Download and share instantly while the system packages layered files, transparent PNGs, and brand-safe archives."
       }
     ]
   },
   "feature": {
     "name": "feature",
     "title": "Key features of Nano Banana",
-    "description": "Everything you need to ideate, generate, and refine visuals in one place.",
+    "description": "nano banana clusters advanced tooling into approachable modules that help new creators feel confident and experts iterate faster.",
     "items": [
       {
         "title": "Text-to-image generation",
-        "description": "Create stunning concepts from natural language prompts.",
+        "description": "Command text-to-image generation as nano banana interprets conversational prompts and balances cinematic framing with product clarity.",
         "icon": "RiFlashlightLine"
       },
       {
         "title": "Image-to-image restyling",
-        "description": "Upload a reference and guide the transformation with prompts and control strength.",
+        "description": "Shape image-to-image restyling where the studio respects silhouettes, fabric physics, and lighting cues yet keeps results surprising.",
         "icon": "RiCheckboxCircleLine"
       },
       {
         "title": "Project-ready exports",
-        "description": "Download high-res outputs optimized for web, print, or storyboards.",
+        "description": "Produce production-ready exports because nano banana maintains print ratios, web compressions, and motion storyboard sheets automatically.",
         "icon": "RiFileTextLine"
       },
       {
         "title": "Ready-to-go, watermark-free",
-        "description": "Deliver finished assets instantly with clean exports that stay watermark-free across every channel.",
+        "description": "Deliver watermark-free visuals since the toolkit reconstructs gradients, micro-textures, and lettering with studio precision.",
         "icon": "RiDownloadLine"
       }
     ]
@@ -318,7 +318,7 @@
   "showcase": {
     "name": "showcase",
     "title": "Built with Nano Banana",
-    "description": "See how teams use Nano Banana for marketing, ecommerce, and product storytelling.",
+    "description": "Across ecommerce, entertainment, education, and SaaS, teams rely on nano banana to storyboard futures, spotlight products, and concept mascots their audiences adore.",
     "image": {
       "src": "/imgs/users/1.png"
     },
@@ -349,33 +349,33 @@
   "showcase1": {
     "name": "showcase1",
     "title": "Before & After",
-    "description": "Combine Nano Banana generation and cleanup to refresh your asset library.",
+    "description": "Blend new renders with archival assets in nano banana so legacy materials evolve with your latest branding without heavy retouching.",
     "disabled": true,
     "items": [
       {
         "title": "Product photos",
-        "description": "Remove watermarks and generate new backgrounds to match any campaign.",
+        "description": "Refresh product photos as nano banana clears clutter, balances reflections, and outputs seasonal lighting sets quickly.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "Brand illustrations",
-        "description": "Iterate on existing vectors and deliver new variations instantly.",
+        "description": "Update brand illustrations when the studio adapts vector language, preserves palettes, and expands supporting scenery.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "Event visuals",
-        "description": "Spin up polished banners and signage without waiting on agencies.",
+        "description": "Reimagine event visuals by letting the platform choreograph signage, stage glow, and crowd energy across multiple layouts.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "Pitch decks",
-        "description": "Turn rough ideas into high-impact slides for investors and stakeholders.",
+        "description": "Elevate pitch decks with the system transforming rough sketches into investor-ready frames packed with narrative clarity.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -386,7 +386,7 @@
     "name": "stats",
     "label": "Stats",
     "title": "Creators love Nano Banana",
-    "description": "because it delivers polished visuals without the wait.",
+    "description": "Creative leads praise nano banana for trimming bottlenecks, aligning teams, and keeping momentum high.",
     "icon": "FaRegHeart",
     "disabled": true,
     "items": [
@@ -411,14 +411,14 @@
     "name": "testimonial",
     "label": "Testimonials",
     "title": "What teams say about Nano Banana",
-    "description": "Designers, marketers, and founders ship faster with Nano Banana.",
+    "description": "Marketers, designers, and founders trust nano banana whenever deadlines loom yet aspirations stay ambitious.",
     "icon": "GoThumbsup",
     "disabled": true,
     "items": [
       {
         "title": "Lena Ortiz",
         "label": "Creative Director, FreshDrop",
-        "description": "Nano Banana replaced entire rounds of photo editing. We launch seasonal campaigns in hours now.",
+        "description": "nano banana removed time-consuming retouching for our retail line, letting us validate seasonal ideas before breakfast.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -426,7 +426,7 @@
       {
         "title": "Kenji Morita",
         "label": "Product Designer, Atlas Apps",
-        "description": "Text-to-image and cleanup in the same workspace keeps our feature launches on schedule.",
+        "description": "The studio keeps every app launch cohesive by binding interface captures with atmospheric storytelling backdrops.",
         "image": {
           "src": "/imgs/users/2.png"
         }
@@ -434,7 +434,7 @@
       {
         "title": "Morgan Blake",
         "label": "Founder, Pine & Pixel Studio",
-        "description": "Clients expect bespoke visuals fast. Nano Banana gives me pro results without needing a retoucher.",
+        "description": "nano banana gave our boutique studio enterprise muscle without losing the handcrafted polish clients expect.",
         "image": {
           "src": "/imgs/users/3.png"
         }
@@ -442,7 +442,7 @@
       {
         "title": "Isabelle Tremblay",
         "label": "Growth Marketer, OrbitWear",
-        "description": "The watermark remover saved our archive. We refreshed 500+ product shots in a week.",
+        "description": "The platform restored our archival photography while modernizing textures subtly enough for loyal fans to cheer.",
         "image": {
           "src": "/imgs/users/4.png"
         }
@@ -453,30 +453,30 @@
     "name": "faq",
     "label": "FAQ",
     "title": "Frequently asked about Nano Banana",
-    "description": "Need something else? Reach out and we'll help you get set up.",
+    "description": "Curious about infrastructure, licensing, or support? These nano banana answers set the foundation before you reach out.",
     "items": [
       {
         "title": "What powers Nano Banana's generation?",
-        "description": "We run on nano banana models tuned for speed and consistency, delivering high-fidelity renders without long wait times."
+        "description": "nano banana orchestrates diffusion, control nets, and style memory layers tuned for balance between speed and cinematic nuance."
       },
       {
         "title": "Can I upload my own assets?",
-        "description": "Yes. Bring product photos, illustrations, or sketches. Use image-to-image to restyle them"
+        "description": "Upload product shots, sketches, CAD exports, or brand patterns and the engine fuses them with your textual direction."
       },
       {
         "title": "Is my content private?",
-        "description": "Absolutely. Uploads are encrypted in transit and deleted automatically after your outputs are delivered."
+        "description": "Your content stays private because nano banana encrypts transfers, isolates containers, and honors custom retention windows."
       },
       {
         "title": "How are credits consumed?",
-        "description": "Each text-to-image or image-to-image request costs 1 credit."
+        "description": "Credits stay predictable as the dashboard meters usage per render, updates stats, and recommends right-sized plans."
       }
     ]
   },
   "cta": {
     "name": "cta",
     "title": "Start creating with Nano Banana",
-    "description": "Join creators generating and refreshing visuals without slowing down production.",
+    "description": "Join creators worldwide who rely on nano banana to turn half-formed ideas into polished visuals without derailing production.",
     "buttons": [
       {
         "title": "Launch Studio",
@@ -490,7 +490,7 @@
     "name": "footer",
     "brand": {
       "title": "Nano Banana",
-      "description": "The AI image studio for generating new concepts and cleaning existing assets.",
+      "description": "nano banana is the AI-native studio for shaping concepts, evolving brand narratives, and shipping assets that sparkle across channels.",
       "logo": {
         "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"

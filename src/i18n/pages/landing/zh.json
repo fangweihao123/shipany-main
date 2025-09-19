@@ -3,7 +3,7 @@
   "theme": "light",
   "meta": {
     "title": "Nano Banana - 极速生成专业视觉的AI图像工作室",
-    "description": "Nano Banana 让你在浏览器中数秒打造品牌视觉、重塑参考图并一键去水印。",
+    "description": "使用 nano banana 快速生成、精修并交付高品质视觉；在同一平台内管理提示词、参考素材、审批节点与导出档案。",
     "keywords": "Nano Banana, AI图像工作室, 文生图, 图生图, AI设计工具"
   },
   "header": {
@@ -52,13 +52,13 @@
   "hero": {
     "title": "几秒产出可直接上线的视觉内容",
     "highlight_text": "可直接上线的视觉内容",
-    "description": "Nano Banana 将生成能力与像素级清理结合，让灵感瞬间成为市场级素材。<br/>支持文字生成、参考图重绘，以及一键清理旧素材中的水印。",
+    "description": "nano banana 将灵感整理、提示词润色、质检交付整合进一个面向创作者的控制台。你可以用一句口语化描述、上传一张参考图，或者同时交给 nano banana 进行解析，它会在十秒内呈现多套可直接上线的视觉草稿，并自动标注镜头、光线与材质变化，方便日后复用。<br/>每一次调整都会被 nano banana 记录成清晰的时间线，团队成员进入项目即可理解上下文，反馈也能即时同步。你只需专注故事本身，其余琐碎步骤都交由自动化流程完成。nano banana 默认私有化处理所有提示词与素材；完成导出后，系统会清除临时缓存，并为需要长期追踪的项目生成审计报告。<br/>当你想探索不同风格时，nano banana 会建议适合的镜头语言、构图和色彩方案，并提供对比视图帮助决策。面对紧急活动或跨区域协作，nano banana 支持多人同时编辑提示词、共享参考板，并将关键修改推送到 Slack 或邮箱提醒。<br/>如果需要生成多语言版本，nano banana 还能自动翻译提示词并保留你定义的品牌术语，让视觉叙事在所有渠道保持一致。最后，nano banana 的性能面板会展示渲染时间、素材使用频率与团队协作指标，帮助你对下一波创意做出更精准的规划。",
     "announcement": {
       "label": "测试版",
       "title": "🍌 Nano Banana 现已向全球创作者开放",
       "url": "/#generator"
     },
-    "tip": "🔒 所有提示词与素材默认私有",
+    "tip": "在时间轴里启用场景书签，nano banana 会一键恢复灯光、材质与镜位，让跨项目复用更轻松。",
     "show_happy_users": true,
     "show_badge": false,
     "disabled": true
@@ -105,7 +105,7 @@
     "name": "introduce",
     "title": "什么是 Nano Banana",
     "label": "产品概览",
-    "description": "Nano Banana 让创意团队迅速从灵感走到成品。",
+    "description": "nano banana 面向追求速度的营销、设计与产品团队，将提示词优化、素材版本管理、审稿批注与导出流程集中在同一处。作为专业的AI图像工作室，nano banana 不仅能够快速理解创意简报，还能根据品牌调性生成符合预期的视觉方案。每次变更都会被 nano banana 记录为可视化时间线，团队协作者可以随时接力，不怕灵感被零散工具拖慢。无论是电商产品图、社交媒体素材还是营销活动视觉，nano banana 都能在保证质量的前提下大幅提升创作效率。",
     "image": {
       "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "设计师使用 Nano Banana 构建营销视觉"
@@ -113,17 +113,17 @@
     "items": [
       {
         "title": "极速生成",
-        "description": "输入提示词，数秒即可得到高分辨率方案。",
+        "description": "探索阶段交给 nano banana，系统会根据简报即时产出多组高清方案并给出差异提示，帮你迅速锁定方向。",
         "icon": "RiFlashlightLine"
       },
       {
         "title": "智能重绘",
-        "description": "上传参考图，通过风格提示与引导强度轻松定制效果。",
+        "description": "结合参考图时，nano banana 会保留品牌识别元素，同时尝试大胆的光影与材质组合，为你带来惊喜灵感。",
         "icon": "RiBrainLine"
       },
       {
         "title": "内置隐私",
-        "description": "素材全程安全处理，仅为交付而短暂保留。",
+        "description": "所有上传与导出都经过 nano banana 加密处理，交付完成后自动清理缓存，确保素材安全。",
         "icon": "RiShieldCheckLine"
       }
     ]
@@ -133,11 +133,11 @@
     "title": "团队选择 Nano Banana 的理由",
     "label": "核心优势",
     "disabled": true,
-    "description": "生成与清理合一的工作流，帮助你更快交付活动与产品视觉。",
+    "description": "团队选择 nano banana，是因为它把头脑风暴、成片制作、版本同步与审批交付串成无缝闭环。",
     "items": [
       {
         "title": "加速活动发布",
-        "description": "将创意简报在几分钟内变成上线级图片，告别漫长手工修图。",
+        "description": "nano banana 会拆解简报、生成提示词模板、自动匹配渠道尺寸，让活动物料快速进入制作阶段。",
         "icon": "RiShieldLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
@@ -146,7 +146,7 @@
       },
       {
         "title": "守护品牌资产",
-        "description": "去除水印同时保留产品细节，确保素材随时可用。",
+        "description": "面对复杂材质与细节，nano banana 能重建金属反光、面料纹理与品牌标识，保持整体质感一致。",
         "icon": "RiCopyrightLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
@@ -155,7 +155,7 @@
       },
       {
         "title": "协作更安心",
-        "description": "基于角色的权限与操作记录，让团队每次修改都有迹可循。",
+        "description": "角色权限、批注记录、导出历史都由 nano banana 留档，跨部门协作时清晰追踪每一步。",
         "icon": "RiUserForbidLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
@@ -167,7 +167,7 @@
   "usage": {
     "name": "usage",
     "title": "Nano Banana 如何工作",
-    "description": "三个步骤，就能获得成品级素材：",
+    "description": "在 nano banana 内完成创意落地只需三步，既保留实验空间又让流程井然有序。",
     "image": {
       "src": "/imgs/features/detection-process.png",
       "alt": "Nano Banana 工作流示意图"
@@ -177,41 +177,41 @@
     "items": [
       {
         "title": "描述或上传创意",
-        "description": "从文本提示词开始，或拖入产品图、草图等参考素材。"
+        "description": "上传描述或素材后，nano banana 会解析情绪、主体与投放渠道，给出合适的初稿建议。"
       },
       {
         "title": "调节风格与细节",
-        "description": "调节引导力度、选择风格，Nano Banana 会迅速给出多轮预览。"
+        "description": "调节风格时，nano banana 将灯光、镜头、色调与叙事节奏关联成可复用预设，保证每轮输出一致。"
       },
       {
         "title": "立即下载并分享",
-        "description": "导出无水印高清图片，用于活动、店铺或演示。"
+        "description": "导出阶段，nano banana 同步生成分层文件、透明背景与品牌安全档案，方便各渠道即时上线。"
       }
     ]
   },
   "feature": {
     "name": "feature",
     "title": "Nano Banana 的核心能力",
-    "description": "从灵感到成品的一站式图像工作室。",
+    "description": "nano banana 将复杂的AI生成能力封装成直观易用的模块化工具，让新成员能够快速上手创作，资深创作者也能保留对细节的精细控制。通过智能算法优化，nano banana 确保每次生成都能达到商用级别的品质标准。",
     "items": [
       {
         "title": "文生图生成",
-        "description": "以自然语言快速产出高品质构图。",
+        "description": "文生图引擎由 nano banana 训练，可理解日常语言中的情绪与镜头描述，呈现电影感画面。",
         "icon": "RiFlashlightLine"
       },
       {
         "title": "图生图重塑",
-        "description": "上传参考图，通过提示词与控制强度获得多种变体。",
+        "description": "图生图流程保留主体结构与姿态，nano banana 在此基础上探索风格、材质与细节变奏。",
         "icon": "RiCheckboxCircleLine"
       },
       {
         "title": "项目级导出",
-        "description": "下载适合网页、印刷或演示的高分辨率成果。",
+        "description": "项目导出面板预置商城、演示、印刷规格，nano banana 自动校验色彩与尺寸。",
         "icon": "RiFileTextLine"
       },
       {
         "title": "随用随走，无需水印",
-        "description": "生成即得干净成品图，跨渠道输出都能保持无水印，随时投入使用。",
+        "description": "智能清理算法让 nano banana 生成的所有资产保持无水印状态，直接投入正式渠道。",
         "icon": "RiDownloadLine"
       }
     ]
@@ -220,30 +220,30 @@
     "name": "faq",
     "label": "常见问题",
     "title": "Nano Banana 常见问题",
-    "description": "还有其他疑问？欢迎联系我们，一起完成部署。",
+    "description": "在了解套餐定价、技术支持或合规要求前，不妨先阅读这些关于 nano banana 的常见问答解析，随后再与我们的专业顾问深入沟通具体需求。这些问题涵盖了用户在使用 nano banana 过程中最关心的核心功能与安全保障。",
     "items": [
       {
         "title": "Nano Banana 使用哪种生成模型？",
-        "description": "我们兼顾速度与一致性，让你几乎无等待地获得高保真图像。"
+        "description": "nano banana 编排扩散模型、控制网络与风格记忆层，兼顾速度与画面细腻度。"
       },
       {
         "title": "可以上传自有素材吗？",
-        "description": "当然可以。上传产品照、插画或草图，使用图生图重塑，或通过去水印功能清理旧文件。"
+        "description": "你可以上传产品图、草图、CAD 或品牌素材库，nano banana 会与文本提示协同推演。"
       },
       {
         "title": "我的内容会被保存吗？",
-        "description": "不会。素材全程加密传输，并在输出交付后自动删除。"
+        "description": "所有数据在 nano banana 中加密传输，可自定义保留时长或选择即时删除策略。"
       },
       {
         "title": "积分如何扣费？",
-        "description": "每次文生图或图生图请求消耗 1 个积分，去水印同样是每张 1 个积分。"
+        "description": "积分消耗由 nano banana 实时统计，仪表盘展示趋势，方便选择适配套餐。"
       }
     ]
   },
   "cta": {
     "name": "cta",
     "title": "立即使用 Nano Banana 创作",
-    "description": "加入创作者行列，瞬间生成并焕新你的视觉素材。",
+    "description": "立即加入 nano banana 创作者社群，把灵感在一个平台内转化为成品级素材，并随时同步给团队。",
     "buttons": [
       {
         "title": "开启工作室",
@@ -257,7 +257,7 @@
     "name": "footer",
     "brand": {
       "title": "Nano Banana",
-      "description": "AI 图像工作室，集生成与去水印于一体。",
+      "description": "面向品牌叙事、多渠道发布的 AI 图像工作室，让创意与执行保持同样敏捷。",
       "logo": {
         "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"
@@ -312,7 +312,7 @@
     "badge": "Nano Banana",
     "title1": "Nano Banana",
     "title2": "AI 图像编辑器",
-    "description": "体验下一代 AI 图像编辑。Nano Banana 的高级模型在角色一致性与场景保真度上全面超越 Flux Kontext。",
+    "description": "几何工作台让 nano banana 自动校准角色与镜头节奏。",
     "disabled": false
   },
   "imageGenerator": {
@@ -410,7 +410,7 @@
   "showcase": {
     "name": "showcase",
     "title": "使用 Nano Banana 打造",
-    "description": "了解团队如何借助 Nano Banana 完成营销、电商与产品故事化视觉。",
+    "description": "无论是电商、教育还是娱乐行业，团队都借助 nano banana 讲述产品故事，让创意在多渠道保持统一质感。",
     "image": {
       "src": "/imgs/users/1.png"
     },
@@ -441,32 +441,32 @@
   "showcase1": {
     "name": "showcase1",
     "title": "前后对比",
-    "description": "用 Nano Banana 的生成与去水印流程焕新整个素材库。",
+    "description": "生成与修复结合时，nano banana 能延续旧资产的品牌调性，同时补充最新的材质与光影表现。",
     "items": [
       {
         "title": "产品照片",
-        "description": "移除水印并生成契合场景的背景，一键完成。",
+        "description": "产品摄影交给 nano banana 处理，背景、布光与摆放都可一键切换季节或场景。",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "品牌插画",
-        "description": "在原有矢量基础上快速迭代多种风格。",
+        "description": "品牌插画由 nano banana 扩展，色彩系统与角色设定得到保留，还能衍生更多故事场景。",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "活动视觉",
-        "description": "无需等待外部团队，数小时完成海报与展架设计。",
+        "description": "活动视觉利用 nano banana 的模板与日程协作，舞台动线与观众氛围迅速成稿。",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
         "title": "融资演示",
-        "description": "把草稿转成高影响力的路演幻灯片视觉。",
+        "description": "融资演示中，nano banana 将粗略线框转化为结构清晰、信息完整的故事帧。",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -478,7 +478,7 @@
     "name": "stats",
     "label": "数据",
     "title": "创作者都爱 Nano Banana",
-    "description": "因为它让精修视觉无需等待。",
+    "description": "管理者赞赏 nano banana，因为等待时间被压缩，团队产出节奏得到长期维持。",
     "icon": "FaRegHeart",
     "items": [
       {
@@ -503,13 +503,13 @@
     "name": "testimonial",
     "label": "用户评价",
     "title": "团队对 Nano Banana 的评价",
-    "description": "设计师、市场人和创始人都靠它提速上线。",
+    "description": "设计师、营销人与创始人把关键节点托付给 nano banana，它已成为他们值得依赖的创意伙伴。",
     "icon": "GoThumbsup",
     "items": [
       {
         "title": "Lena Ortiz",
         "label": "FreshDrop 创意总监",
-        "description": "Nano Banana 取代了整轮手工修图，我们的季度活动如今几个小时就能上线。",
+        "description": "零售团队用 nano banana 在早餐前完成季节提案，高保真视觉随即进入测试渠道。",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -517,7 +517,7 @@
       {
         "title": "Kenji Morita",
         "label": "Atlas Apps 产品设计师",
-        "description": "文生图和去水印在同一空间完成，让我们的功能上线始终如期。",
+        "description": "应用上线时，nano banana 让界面截图与情境背景协同，产品故事一次讲清。",
         "image": {
           "src": "/imgs/users/2.png"
         }
@@ -525,7 +525,7 @@
       {
         "title": "Morgan Blake",
         "label": "Pine & Pixel Studio 创始人",
-        "description": "客户期待高定制视觉，Nano Banana 让我不必再依赖外部修图师。",
+        "description": "小型工作室借助 nano banana 拥有媲美大型后期的执行力，同时保留手工定制的温度。",
         "image": {
           "src": "/imgs/users/3.png"
         }
@@ -533,7 +533,7 @@
       {
         "title": "Isabelle Tremblay",
         "label": "OrbitWear 增长营销",
-        "description": "去水印功能救活了我们的老素材，一周内就翻新了 500+ 张产品图。",
+        "description": "老档案经过 nano banana 的精修，既保留原始细节又呈现更现代的色彩与质感。",
         "image": {
           "src": "/imgs/users/4.png"
         }
