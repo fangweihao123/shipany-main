@@ -19,7 +19,7 @@
       "items": [
         {
           "title": "图像生成器",
-          "url": "/#generator",
+          "url": "zh/#generator",
           "icon": "RiSparkling2Line"
         },
         {
@@ -29,7 +29,7 @@
         },
         {
           "title": "工作流程",
-          "url": "/#usage",
+          "url": "zh/#usage",
           "icon": "RiSearchLine"
         },
         {
@@ -107,7 +107,7 @@
     "label": "产品概览",
     "description": "Nano Banana 基于 Google WaveSpeed 打造，让创意团队迅速从灵感走到成品。",
     "image": {
-      "src": "/imgs/features/detector.png",
+      "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "设计师使用 Nano Banana 构建营销视觉"
     },
     "items": [
