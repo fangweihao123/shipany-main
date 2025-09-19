@@ -27,7 +27,11 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
   const downloadLabel = outputGallery.downloadButton?.title ?? "Download";
   const downloadingLabel = outputGallery.downloadButton?.loadingTitle ?? downloadLabel;
 
-  const handleDownload = async (item: GeneratorOutput) => {
+  const handleDownload = async (items: GeneratorOutput[]) => {
+    const item = items.at(0);
+    if(item === undefined){
+      return;
+    }
     const itemId = item.id ?? item.src;
     setDownloadingId(itemId);
 
@@ -85,14 +89,9 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
         </div>
         <div className="m-4">
           <Card
-            title={outputGallery.dataCard?.title}
-            description={outputGallery.dataCard?.description}
+            title={!isGenerating&&isEmpty ? outputGallery.dataCard?.title : undefined}
+            description={!isGenerating&&isEmpty ? outputGallery.dataCard?.description : undefined}
             className="flex flex-1 min-h-[30rem] flex-col items-center justify-center border-4 border-dotted text-center gap-4">
-            {isGenerating && !isEmpty && (
-              <p className="text-sm text-muted-foreground">
-                {loadingMessage}
-              </p>
-            )}
             {isEmpty ? (
               <p className="text-sm text-muted-foreground">
                 {isGenerating
@@ -100,30 +99,32 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
                   : emptyMessage}
               </p>
             ) : (
-              <div className="grid w-full gap-4 sm:grid-cols-2">
+              <div className="w-full gap-4">
                 {galleryItems.map((item) => {
                   const itemId = item.id ?? item.src;
-                  const isDownloading = downloadingId === itemId;
                   return (
-                    <div key={itemId} className="flex flex-col gap-2">
+                    <div key={itemId} className="flex">
                       <img
                         src={item.src}
                         alt={imageAlt}
-                        className="h-auto w-full rounded-lg border object-cover"
+                        className="flex h-full w-full rounded-lg border object-cover"
                       />
-                      <Button
-                        type="button"
-                        onClick={() => handleDownload(item)}
-                        disabled={isDownloading}
-                      >
-                        {isDownloading ? downloadingLabel : downloadLabel}
-                      </Button>
                     </div>
                   );
                 })}
               </div>
             )}
           </Card>
+          {!isEmpty && 
+            <Button
+              type="button"
+              onClick={() => handleDownload(galleryItems)}
+              className="flex w-full mt-4"
+            >
+              {downloadLabel}
+            </Button>
+          }
+          
         </div>
       </div>
     </div>
