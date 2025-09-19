@@ -52,11 +52,11 @@ export async function POST(req: NextRequest) {
       contentType: "image/png",
       disposition: "inline",
     });
-    return {
+    return respData({
       ...res,
       provider,
       filename,
-    };
+    });
   } catch (err) {
     console.log("gen image failed:", err);
     return respErr("gen image failed");
