@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
 
     // Step 2: Upload image
     const fileBuffer = await file.bytes();
-    const uploadUrl = await uploadFile(fileBuffer, file.name, file.type);
+    const uploadUrl = await Promise.resolve(uploadFile(fileBuffer, file.name, file.type));
 
     // Step 3: Detect image
     if(provider === "wavespeedremovebg" || provider === "wavespeedunwatermarkimg"){

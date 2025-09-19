@@ -291,9 +291,9 @@
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:support@erasewatermark.com",
+          "url": "mailto:support@erasewatermark.ai",
           "target": "_self",
-          "description": "support@erasewatermark.com"
+          "description": "support@erasewatermark.ai"
         }
       ]
     },
