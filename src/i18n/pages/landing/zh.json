@@ -177,27 +177,15 @@
     "items": [
       {
         "title": "描述或上传创意",
-        "description": "从文本提示词开始，或拖入产品图、草图等参考素材。",
-        "image": {
-          "src": "/imgs/features/upload.png",
-          "alt": "将素材上传到 Nano Banana"
-        }
+        "description": "从文本提示词开始，或拖入产品图、草图等参考素材。"
       },
       {
         "title": "调节风格与细节",
-        "description": "调节引导力度、选择风格，Nano Banana 会迅速给出多轮预览。",
-        "image": {
-          "src": "/imgs/features/analyze.png",
-          "alt": "在 Nano Banana 中调整风格参数"
-        }
+        "description": "调节引导力度、选择风格，Nano Banana 会迅速给出多轮预览。"
       },
       {
         "title": "立即下载并分享",
-        "description": "导出无水印高清图片，用于活动、店铺或演示。",
-        "image": {
-          "src": "/imgs/features/results.png",
-          "alt": "查看 Nano Banana 生成的最终作品"
-        }
+        "description": "导出无水印高清图片，用于活动、店铺或演示。"
       }
     ]
   },

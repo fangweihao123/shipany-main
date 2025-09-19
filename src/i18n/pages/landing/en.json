@@ -276,27 +276,15 @@
     "items": [
       {
         "title": "Describe or upload your vision",
-        "description": "Start with a text prompt or drop in a reference image, product photo, or sketch.",
-        "image": {
-          "src": "/imgs/features/upload.png",
-          "alt": "Uploading assets into Nano Banana"
-        }
+        "description": "Start with a text prompt or drop in a reference image, product photo, or sketch."
       },
       {
         "title": "Fine-tune style and details",
-        "description": "Adjust guidance, choose styles, and let Nano Banana iterate with lightning-fast previews.",
-        "image": {
-          "src": "/imgs/features/analyze.png",
-          "alt": "Tuning styles and prompts inside Nano Banana"
-        }
+        "description": "Adjust guidance, choose styles, and let Nano Banana iterate with lightning-fast previews."
       },
       {
         "title": "Download and share instantly",
-        "description": "Export watermark-free images ready for campaigns, storefronts, or presentations.",
-        "image": {
-          "src": "/imgs/features/results.png",
-          "alt": "Reviewing generated outputs from Nano Banana"
-        }
+        "description": "Export watermark-free images ready for campaigns, storefronts, or presentations."
       }
     ]
   },
