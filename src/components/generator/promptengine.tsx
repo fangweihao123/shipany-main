@@ -6,34 +6,91 @@ import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
 import { editImage, generateImage } from "@/services/generator";
 import { pollTaskResult } from "@/lib/utils";
+import { GeneratorOutput } from "@/types/generator";
 
 
 interface PromptEngineProps {
   promptEngine: PromptEngine;
+  onOutputsChange?: (outputs: GeneratorOutput[]) => void;
+  onGeneratingChange?: (isGenerating: boolean) => void;
 }
 
-export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
+function normalizeOutputs(result: any): GeneratorOutput[] {
+  const outputs: unknown[] = result?.data?.outputs ?? result?.outputs ?? [];
+  if (!Array.isArray(outputs)) {
+    return [];
+  }
+
+  return outputs.flatMap((entry: any, index) => {
+    const image = entry?.image ?? entry;
+    if (!image) {
+      return [];
+    }
+
+    const base64Payload = image?.b64_json || image?.base64 || image?.b64 || image?.data || image?.image_base64 || null;
+    const mimeType = image?.mime_type || image?.mimeType || (base64Payload ? "image/png" : undefined);
+    const dataUrl = base64Payload ? `data:${mimeType};base64,${base64Payload}` : undefined;
+    const remoteUrl = image?.url || image?.public_url || image?.publicUrl || image?.image_url || image?.signed_url;
+    const explicitDataUrl = image?.data_url || image?.dataUrl;
+    const directString = typeof image === "string" ? image : undefined;
+
+    const src = explicitDataUrl || dataUrl || remoteUrl || directString;
+    if (!src) {
+      return [];
+    }
+
+    return [{
+      id: entry?.id ?? result?.data?.id ?? String(index),
+      src,
+      mimeType,
+    }];
+  });
+}
+
+export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i">("i2i");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const canGenerate = useMemo(() => {
-    if(mode === "t2i"){
+    if (mode === "t2i") {
       return prompt.length > 0;
-    }else if(mode === "i2i"){
+    }
+    if (mode === "i2i") {
       return prompt.length > 0 && files.length > 0;
     }
-  },[mode, prompt, files]);
+    return false;
+  }, [mode, prompt, files]);
 
   const onGenerateClick = async () => {
-    if(mode === "t2i"){
-      const id = await generateImage(prompt, "nanobananat2i");
-      const queryResult = await pollTaskResult(id);
-      console.log("final query result", queryResult);
-    }else if(mode === "i2i"){
-      const id = await editImage(files, prompt, "nanobananai2i");
-      const queryResult = await pollTaskResult(id);
-      console.log("final query result", queryResult);
+    if (!canGenerate || isGenerating) {
+      return;
+    }
+
+    try {
+      setIsGenerating(true);
+      onGeneratingChange?.(true);
+
+      if(mode === "t2i"){
+        const id = await generateImage(prompt, "nanobananat2i");
+        const queryResult = await pollTaskResult(id);
+        const normalized = normalizeOutputs(queryResult);
+        onOutputsChange?.(normalized);
+        console.log("final query result", queryResult);
+      }else if(mode === "i2i"){
+        const id = await editImage(files, prompt, "nanobananai2i");
+        const queryResult = await pollTaskResult(id);
+        const normalized = normalizeOutputs(queryResult);
+        onOutputsChange?.(normalized);
+        console.log("final query result", queryResult);
+      }
+    } catch (error) {
+      console.error("failed to generate", error);
+      onOutputsChange?.([]);
+    } finally {
+      setIsGenerating(false);
+      onGeneratingChange?.(false);
     }
   };
 
@@ -75,6 +132,10 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
 
   const inactiveBtn =
     "bg-primary-foreground text-muted-foreground";
+  const generatingText = promptEngine.states?.generating
+    || promptEngine.generateButton?.loadingTitle
+    || promptEngine.generateButton?.title
+    || "";
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="flex-1 w-full rounded-xl border-2 border-fd-foreground shadow bg-input/[0.4]">
@@ -106,12 +167,12 @@ export function PromptEngineBlock({ promptEngine }: PromptEngineProps) {
           type="button"
           onClick={onGenerateClick}
           className="w-full"
-          disabled={!canGenerate}
+          disabled={!canGenerate || isGenerating}
           >
-          {promptEngine.generateButton?.title}
+          {isGenerating ? generatingText : promptEngine.generateButton?.title}
         </Button>
       </div>
     </div>
-    
+
   );
 }

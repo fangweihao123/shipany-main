@@ -18,6 +18,9 @@ export interface PromptEngine{
   text2ImageTab?: string;
   text2Image?: Text2Image;
   generateButton?: Button;
+  states?: {
+    generating?: string;
+  };
 }
 
 export interface OutputGallery{
@@ -25,6 +28,11 @@ export interface OutputGallery{
   description?: string;
   dataCard?: DataCard;
   downloadButton?: Button;
+  messages?: {
+    loading?: string;
+    empty?: string;
+    imageAlt?: string;
+  };
 }
 
 export interface ImageGenerator{

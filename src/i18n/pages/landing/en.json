@@ -130,7 +130,11 @@
       },
       "generateButton": {
         "type": "button",
-        "title": "Generate Now"
+        "title": "Generate Now",
+        "loadingTitle": "Generating..."
+      },
+      "states": {
+        "generating": "Generating..."
       }
     },
     "outputGallery":{
@@ -142,7 +146,13 @@
       },
       "downloadButton": {
         "type": "button",
-        "title": "Download"
+        "title": "Download",
+        "loadingTitle": "Downloading..."
+      },
+      "messages": {
+        "loading": "Generating, please wait...",
+        "empty": "Generated images will appear here",
+        "imageAlt": "Generated image"
       }
     }
   },
