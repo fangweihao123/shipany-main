@@ -3,14 +3,14 @@
   "theme": "light",
   "meta": {
     "title": "Nano Banana - 极速生成专业视觉的AI图像工作室",
-    "description": "Nano Banana 依托 Google WaveSpeed，为团队在浏览器中几秒完成品牌视觉、参考重绘与去水印。",
+    "description": "Nano Banana 基于 Google WaveSpeed，让你在浏览器中数秒打造品牌视觉、重塑参考图并一键去水印。",
     "keywords": "Nano Banana, AI图像工作室, WaveSpeed, 文生图, 图生图, 去水印, AI设计工具"
   },
   "header": {
     "brand": {
       "title": "Nano Banana",
       "logo": {
-        "src": "/detect-ai-icon.svg",
+        "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"
       },
       "url": "/"
@@ -21,11 +21,6 @@
           "title": "图像生成器",
           "url": "/#generator",
           "icon": "RiSparkling2Line"
-        },
-        {
-          "title": "去水印",
-          "url": "/#detect",
-          "icon": "RiShieldLine"
         },
         {
           "title": "工作流程",
@@ -55,7 +50,8 @@
     },
     "tip": "🔒 所有提示词与素材默认私有",
     "show_happy_users": true,
-    "show_badge": false
+    "show_badge": false,
+    "disabled": true
   },
   "detection": {
     "uploads": [
@@ -71,9 +67,9 @@
     "state": {
       "uploading": "图片上传中...",
       "analyzing": "AI 正在去除水印...",
-      "processing": "正在精细修复...",
+      "processing": "正在精修细节...",
       "detection_complete": "干净版本已就绪",
-      "detect_ai_generation": "开始去水印",
+      "detect_ai_generation": "去除水印",
       "auth_required": "请先登录即可使用去水印功能，正在跳转到登录页面..."
     },
     "detectResult": {
@@ -83,7 +79,7 @@
       "invalid_file": "文件格式或大小不受支持，请上传 10 MB 以内的 PNG、JPG 或 WebP。",
       "preview_failed": "预览生成失败，请更换图片后再试。",
       "detection_failed": "去除水印时出现问题。",
-      "confidence_level": "处理状态",
+      "confidence_level": "清理状态",
       "ai_generated": "成功：水印已移除，可直接下载处理后的图片。",
       "human_created": "原始图片：当前显示为您上传的原图。",
       "analyze_again": "继续处理下一张",
@@ -91,8 +87,8 @@
       "confidence_score_desc": "Nano Banana 会多次采样周围像素，平滑水印区域并保持边缘锐利。",
       "ai_generated_desc": "最终会输出高分辨率版本，去除原始水印痕迹。",
       "human_created_desc": "保留原始上传文件，方便对比前后效果。",
-      "note": "实际效果会受到水印大小、位置与对比度影响。建议上传更高分辨率的素材以获得最佳结果。",
-      "audio_too_long": "图片超过最大上传限制，请压缩后重新上传。"
+      "note": "实际效果取决于水印大小、位置与对比度。建议使用分辨率更高的素材以获得最佳结果。",
+      "audio_too_long": "图片超过最大上传限制，请上传符合体积要求的文件。"
     }
   },
   "introduce": {
@@ -210,11 +206,6 @@
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "AI 去水印",
-        "description": "几秒清理旧素材的水印，保留关键细节。",
-        "icon": "RiUploadLine"
-      },
-      {
         "title": "项目级导出",
         "description": "下载适合网页、印刷或演示的高分辨率成果。",
         "icon": "RiFileTextLine"
@@ -264,7 +255,7 @@
       "title": "Nano Banana",
       "description": "基于 Google WaveSpeed 的 AI 图像工作室，集生成与去水印于一体。",
       "logo": {
-        "src": "/detect-ai-icon.svg",
+        "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"
       },
       "url": "/"
@@ -281,11 +272,6 @@
               "target": "_self"
             },
             {
-              "title": "去水印",
-              "url": "/#detect",
-              "target": "_self"
-            },
-            {
               "title": "工作流程",
               "url": "/#usage",
               "target": "_self"
@@ -299,9 +285,9 @@
         {
           "title": "邮箱",
           "icon": "RiMailLine",
-          "url": "mailto:hello@nanobanana.ai",
+          "url": "mailto:support@ai-nanobanana.net",
           "target": "_self",
-          "description": "hello@nanobanana.ai"
+          "description": "support@ai-nanobanana.net"
         }
       ]
     },
@@ -319,10 +305,10 @@
     }
   },
   "heroGeometic": {
-    "badge": "生成与清理",
-    "title1": "生成与清理",
-    "title2": "一气呵成",
-    "description": "在 Nano Banana 中完成创意生成、图像重塑与去水印，不必在工具间切换。",
+    "badge": "Nano Banana",
+    "title1": "Nano Banana",
+    "title2": "AI 图像编辑器",
+    "description": "体验下一代 AI 图像编辑。Nano Banana 的高级模型在角色一致性与场景保真度上全面超越 Flux Kontext。",
     "disabled": false
   },
   "imageGenerator": {
@@ -351,15 +337,15 @@
       "generateButton": {
         "type": "button",
         "title": "使用 Nano Banana 生成",
-        "loadingTitle": "AI 正在调色..."
+        "loadingTitle": "魔法混合中..."
       },
       "states": {
-        "generating": "Nano Banana 正在生成..."
+        "generating": "香蕉灵感酝酿中..."
       }
     },
     "outputGallery": {
       "title": "输出画廊",
-      "description": "生成的图像和去水印结果会立即显示。",
+      "description": "生成的图像与去水印结果会即时呈现。",
       "dataCard": {
         "title": "随时准备创作",
         "description": "输入提示词或上传参考图即可开始。"
@@ -377,7 +363,7 @@
     }
   },
   "branding": {
-    "title": "Nano Banana 由顶级基础设施驱动",
+    "title": "Nano Banana 由世界级平台驱动",
     "items": [
       {
         "title": "Next.js",
@@ -414,12 +400,13 @@
           "alt": "Vercel"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "showcase": {
     "name": "showcase",
-    "title": "Nano Banana 实战案例",
-    "description": "看看团队如何利用 Nano Banana 完成营销、电商与产品故事化视觉。",
+    "title": "使用 Nano Banana 打造",
+    "description": "了解团队如何借助 Nano Banana 完成营销、电商与产品故事化视觉。",
     "image": {
       "src": "/imgs/users/1.png"
     },
@@ -457,7 +444,7 @@
   "showcase1": {
     "name": "showcase1",
     "title": "前后对比",
-    "description": "结合生成与去水印功能，全面焕新你的素材库。",
+    "description": "用 Nano Banana 的生成与去水印流程焕新整个素材库。",
     "items": [
       {
         "title": "产品照片",
@@ -487,13 +474,14 @@
           "src": "/imgs/users/1.png"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "stats": {
     "name": "stats",
     "label": "数据",
     "title": "创作者都爱 Nano Banana",
-    "description": "因为它让精修视觉不再等待。",
+    "description": "因为它让精修视觉无需等待。",
     "icon": "FaRegHeart",
     "items": [
       {
@@ -511,13 +499,14 @@
         "label": "20K+",
         "description": "已清理的资产"
       }
-    ]
+    ],
+    "disabled": true
   },
   "testimonial": {
     "name": "testimonial",
     "label": "用户评价",
     "title": "团队对 Nano Banana 的评价",
-    "description": "设计师、市场人和创始人都在用它提速。",
+    "description": "设计师、市场人和创始人都靠它提速上线。",
     "icon": "GoThumbsup",
     "items": [
       {
@@ -552,6 +541,7 @@
           "src": "/imgs/users/4.png"
         }
       }
-    ]
+    ],
+    "disabled": true
   }
 }

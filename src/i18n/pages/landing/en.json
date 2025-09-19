@@ -10,7 +10,7 @@
     "brand": {
       "title": "Nano Banana",
       "logo": {
-        "src": "/detect-ai-icon.svg",
+        "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"
       },
       "url": "/"
@@ -21,11 +21,6 @@
           "title": "Generator",
           "url": "/#generator",
           "icon": "RiSparkling2Line"
-        },
-        {
-          "title": "Watermark Remover",
-          "url": "/#detect",
-          "icon": "RiShieldLine"
         },
         {
           "title": "How it Works",
@@ -56,13 +51,13 @@
     "tip": "🔒 Prompts and assets stay private by default",
     "show_happy_users": true,
     "show_badge": false,
-    "disabled": false
+    "disabled": true
   },
   "heroGeometic": {
-    "badge": "Generate & Clean",
-    "title1": "Generate & Clean",
-    "title2": "In Seconds",
-    "description": "Create new visuals, restyle references, and remove watermarks without leaving Nano Banana.",
+    "badge": "Nano Banana",
+    "title1": "Nano Banana",
+    "title2": "AI Image Editor",
+    "description": "Experience the future of AI image editing. Nano-banana's advanced model delivers consistent character editing and scene preservation that surpasses Flux Kontext.",
     "disabled": false
   },
   "detection": {
@@ -156,6 +151,7 @@
   },
   "branding": {
     "title": "Nano Banana is powered by world-class platforms",
+    "disabled" : true,
     "items": [
       {
         "title": "Next.js",
@@ -225,6 +221,7 @@
     "name": "benefit",
     "title": "Why teams choose Nano Banana",
     "label": "Benefits",
+    "disabled": true,
     "description": "Ship campaigns and product visuals faster with a unified generation and cleanup workflow.",
     "items": [
       {
@@ -309,11 +306,6 @@
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "Watermark removal",
-        "description": "Clean legacy assets in seconds with our AI-powered watermark remover.",
-        "icon": "RiUploadLine"
-      },
-      {
         "title": "Project-ready exports",
         "description": "Download high-res outputs optimized for web, print, or storyboards.",
         "icon": "RiFileTextLine"
@@ -362,6 +354,7 @@
     "name": "showcase1",
     "title": "Before & After",
     "description": "Combine Nano Banana generation and cleanup to refresh your asset library.",
+    "disabled": true,
     "items": [
       {
         "title": "Product photos",
@@ -399,6 +392,7 @@
     "title": "Creators love Nano Banana",
     "description": "because it delivers polished visuals without the wait.",
     "icon": "FaRegHeart",
+    "disabled": true,
     "items": [
       {
         "title": "Average render time",
@@ -423,6 +417,7 @@
     "title": "What teams say about Nano Banana",
     "description": "Designers, marketers, and founders ship faster with Nano Banana.",
     "icon": "GoThumbsup",
+    "disabled": true,
     "items": [
       {
         "title": "Lena Ortiz",
@@ -470,7 +465,7 @@
       },
       {
         "title": "Can I upload my own assets?",
-        "description": "Yes. Bring product photos, illustrations, or sketches. Use image-to-image to restyle them or run the watermark remover to clean legacy files."
+        "description": "Yes. Bring product photos, illustrations, or sketches. Use image-to-image to restyle them"
       },
       {
         "title": "Is my content private?",
@@ -478,7 +473,7 @@
       },
       {
         "title": "How are credits consumed?",
-        "description": "Each text-to-image or image-to-image request costs 1 credit. Watermark removal also costs 1 credit per image."
+        "description": "Each text-to-image or image-to-image request costs 1 credit."
       }
     ]
   },
@@ -501,7 +496,7 @@
       "title": "Nano Banana",
       "description": "The AI image studio for generating new concepts and cleaning existing assets with Google WaveSpeed.",
       "logo": {
-        "src": "/detect-ai-icon.svg",
+        "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"
       },
       "url": "/"
@@ -518,11 +513,6 @@
               "target": "_self"
             },
             {
-              "title": "Watermark Remover",
-              "url": "/#detect",
-              "target": "_self"
-            },
-            {
               "title": "How it Works",
               "url": "/#usage",
               "target": "_self"
@@ -536,9 +526,9 @@
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:hello@nanobanana.ai",
+          "url": "mailto:support@ai-nanobanana.net",
           "target": "_self",
-          "description": "hello@nanobanana.ai"
+          "description": "support@ai-nanobanana.net"
         }
       ]
     },
