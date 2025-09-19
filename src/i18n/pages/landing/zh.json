@@ -23,9 +23,19 @@
           "icon": "RiSparkling2Line"
         },
         {
+          "title": "定价",
+          "url": "/pricing",
+          "icon": "RiPriceTag3Fill"
+        },
+        {
           "title": "工作流程",
           "url": "/#usage",
           "icon": "RiSearchLine"
+        },
+        {
+          "title": "案例",
+          "url": "/showcase",
+          "icon": "RiGalleryFill"
         },
         {
           "title": "博客",
@@ -122,6 +132,7 @@
     "name": "benefit",
     "title": "团队选择 Nano Banana 的理由",
     "label": "核心优势",
+    "disabled": true,
     "description": "生成与清理合一的工作流，帮助你更快交付活动与产品视觉。",
     "items": [
       {
@@ -209,6 +220,11 @@
         "title": "项目级导出",
         "description": "下载适合网页、印刷或演示的高分辨率成果。",
         "icon": "RiFileTextLine"
+      },
+      {
+        "title": "随用随走，无需水印",
+        "description": "生成即得干净成品图，跨渠道输出都能保持无水印，随时投入使用。",
+        "icon": "RiDownloadLine"
       }
     ]
   },
@@ -412,31 +428,24 @@
     },
     "items": [
       {
-        "title": "电商主视觉",
-        "description": "无需重拍即可生成符合品牌调性的生活场景照。",
+        "title": "超精细露珠",
         "image": {
-          "src": "/imgs/users/1.png"
+          "src": "/imgs/showcases/leaf.jpg",
+          "alt": "Nano Banana 生成的带露珠叶片微距图"
         }
       },
       {
-        "title": "应用与 UI 概念",
-        "description": "几分钟内可视化界面想法与动效氛围。",
+        "title": "未来科技城市",
         "image": {
-          "src": "/imgs/users/1.png"
+          "src": "/imgs/showcases/nanocity.jpg",
+          "alt": "Nano Banana 渲染的未来科技城市天际线"
         }
       },
       {
-        "title": "活动情绪板",
-        "description": "用统一的色彩和光效快速打造情绪板。",
+        "title": "猫咪手办",
         "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "社媒多尺寸素材",
-        "description": "按渠道输出多种比例和风格的视觉内容。",
-        "image": {
-          "src": "/imgs/users/1.png"
+          "src": "/imgs/showcases/catstate.jpg",
+          "alt": "Nano Banana 生成的商业化潮玩手办形象"
         }
       }
     ]
