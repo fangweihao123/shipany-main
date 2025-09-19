@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Nano Banana - AI Image Studio for Instant Visuals",
-    "description": "Nano Banana combines Google WaveSpeed text-to-image and watermark removal so teams can ship polished visuals in seconds. Generate, edit, and clean assets in one intuitive workspace.",
-    "keywords": "Nano Banana, AI image studio, text to image, image generator, watermark remover, WaveSpeed"
+    "description": "Nano Banana combines image-to-image and text-to-image so teams can ship polished visuals in seconds. Generate, edit, and clean assets in one intuitive workspace.",
+    "keywords": "Nano Banana, AI image studio, text to image, image generator"
   },
   "user": {
     "sign_in": "Sign In",

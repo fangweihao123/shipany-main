@@ -3,8 +3,8 @@
   "theme": "light",
   "meta": {
     "title": "Nano Banana - Lightning-Fast AI Image Studio",
-    "description": "Design stunning visuals in seconds with Nano Banana, the AI image studio powered by Google WaveSpeed. Generate brand assets, restyle references, and remove watermarks without leaving your browser.",
-    "keywords": "Nano Banana, AI image studio, WaveSpeed, text to image, image-to-image, watermark remover, AI design tool"
+    "description": "Design stunning visuals in seconds with Nano Banana, the AI image studio. Generate brand assets, restyle references, and remove watermarks without leaving your browser.",
+    "keywords": "Nano Banana, AI image studio, text to image, image-to-image, AI design tool"
   },
   "header": {
     "brand": {
@@ -52,7 +52,7 @@
   "hero": {
     "title": "Create Production-Ready Images in Seconds",
     "highlight_text": "Production-Ready Images",
-    "description": "Nano Banana fuses Google WaveSpeed generation with pixel-perfect cleanup so your ideas become market-ready visuals instantly.<br/>Generate from text, restyle with reference images, or clean existing assets with watermark removal.",
+    "description": "Nano Banana fuses generation with pixel-perfect cleanup so your ideas become market-ready visuals instantly.<br/>Generate from text, restyle with reference images, or clean existing assets with watermark removal.",
     "announcement": {
       "label": "BETA",
       "title": "🍌 Nano Banana is now open for creators worldwide",
@@ -111,7 +111,7 @@
   "imageGenerator": {
     "promptEngine": {
       "title": "Nano Banana Studio",
-      "description": "Generate new concepts or restyle existing visuals with Google WaveSpeed.",
+      "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
       "image2ImageTab": "Image to Image",
       "image2Image": {
         "upload": {
@@ -204,7 +204,7 @@
     "name": "introduce",
     "title": "What is Nano Banana",
     "label": "Overview",
-    "description": "Nano Banana is an AI image studio built on Google WaveSpeed that lets creative teams go from idea to polished asset in seconds.",
+    "description": "Nano Banana is an AI image studio that lets creative teams go from idea to polished asset in seconds.",
     "image": {
       "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "Designer using Nano Banana to create marketing visuals"
@@ -212,7 +212,7 @@
     "items": [
       {
         "title": "Lightning-fast generation",
-        "description": "Type a prompt and receive high-resolution variations in seconds using WaveSpeed models.",
+        "description": "Type a prompt and receive high-resolution variations in seconds.",
         "icon": "RiFlashlightLine"
       },
       {
@@ -295,7 +295,7 @@
     "items": [
       {
         "title": "Text-to-image generation",
-        "description": "Create stunning concepts from natural language prompts using WaveSpeed models.",
+        "description": "Create stunning concepts from natural language prompts.",
         "icon": "RiFlashlightLine"
       },
       {
@@ -457,7 +457,7 @@
     "items": [
       {
         "title": "What powers Nano Banana's generation?",
-        "description": "We run on Google WaveSpeed models tuned for speed and consistency, delivering high-fidelity renders without long wait times."
+        "description": "We run on nano banana models tuned for speed and consistency, delivering high-fidelity renders without long wait times."
       },
       {
         "title": "Can I upload my own assets?",
@@ -490,7 +490,7 @@
     "name": "footer",
     "brand": {
       "title": "Nano Banana",
-      "description": "The AI image studio for generating new concepts and cleaning existing assets with Google WaveSpeed.",
+      "description": "The AI image studio for generating new concepts and cleaning existing assets.",
       "logo": {
         "src": "/nano-banana-icon.svg",
         "alt": "Nano Banana"

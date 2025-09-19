@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Nano Banana - 即刻生成专业级视觉内容的AI图像工作室",
-    "description": "Nano Banana 集成 Google WaveSpeed 文生图与去水印能力，让团队在几秒内交付精修视觉素材。通过文字生成、图像编辑与一站式清理快速打造作品。",
-    "keywords": "Nano Banana, AI图像工作室, 文生图, 图像生成, 去水印, WaveSpeed"
+    "description": "Nano Banana 集成 Google 文生图与图生图能力，让团队在几秒内交付精修视觉素材。通过文字生成、图像编辑与一站式清理快速打造作品。",
+    "keywords": "Nano Banana, AI图像工作室, 文生图, 图像生成"
   },
   "user": {
     "sign_in": "登录",
