@@ -1,43 +1,25 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Nano Banana Favicon</title>
+  <desc>Rounded square with stylized nano banana mark</desc>
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1E40AF"/>
-      <stop offset="100%" style="stop-color:#60A5FA"/>
+    <linearGradient id="faviconBg" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="faviconBanana" x1="12" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE066" />
+      <stop offset="0.5" stop-color="#FFC933" />
+      <stop offset="1" stop-color="#FFB400" />
+    </linearGradient>
+    <linearGradient id="faviconEdge" x1="20" y1="10" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4A300" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#CC7A00" stop-opacity="0.95" />
     </linearGradient>
   </defs>
-  
-  <!-- Background -->
-  <rect width="32" height="32" rx="6" fill="url(#bg)"/>
-  
-  <!-- Image frame -->
-  <rect x="6" y="8" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#E5E7EB"/>
-  
-  <!-- AI neural network pattern -->
-  <g opacity="0.8">
-    <circle cx="10" cy="12" r="1" fill="#3B82F6"/>
-    <circle cx="16" cy="12" r="1" fill="#3B82F6"/>
-    <circle cx="22" cy="12" r="1" fill="#3B82F6"/>
-    <circle cx="13" cy="18" r="1" fill="#3B82F6"/>
-    <circle cx="19" cy="18" r="1" fill="#3B82F6"/>
-    <line x1="10" y1="12" x2="16" y2="12" stroke="#3B82F6" stroke-width="0.5"/>
-    <line x1="16" y1="12" x2="22" y2="12" stroke="#3B82F6" stroke-width="0.5"/>
-    <line x1="13" y1="12" x2="13" y2="18" stroke="#3B82F6" stroke-width="0.5"/>
-    <line x1="19" y1="12" x2="19" y2="18" stroke="#3B82F6" stroke-width="0.5"/>
-    <line x1="13" y1="18" x2="19" y2="18" stroke="#3B82F6" stroke-width="0.5"/>
-  </g>
-  
-  <!-- Scanning line -->
-  <rect x="6" y="15" width="20" height="1" fill="#10B981"/>
-  
-  <!-- Detection corners -->
-  <g stroke="#10B981" stroke-width="1" fill="none">
-    <path d="M4 6 L4 4 L6 4"/>
-    <path d="M26 4 L28 4 L28 6"/>
-    <path d="M4 26 L4 28 L6 28"/>
-    <path d="M26 28 L28 28 L28 26"/>
-  </g>
-  
-  <!-- Status indicator -->
-  <circle cx="26" cy="6" r="2" fill="#10B981"/>
-  <circle cx="26" cy="6" r="1" fill="#FFFFFF"/>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#faviconBg)" />
+  <path d="M50.9 13.2c0.64 2.11 0.52 4.33-0.02 6.29-1.65 6.16-5.7 12.11-10.62 16.3-4.92 4.21-10.92 6.68-16.76 6.68-5.23 0-10.12-1.89-13.59-5.38-0.69-0.69-0.91-1.72-0.55-2.64l1.58-4.01c0.23-0.58 0.69-1.05 1.28-1.29 2.5-1 5.32-0.39 7.38 1.48 2.51 2.25 6.2 2.98 9.75 1.89 4.55-1.4 8.39-5.33 10.03-10.26 1.06-3.31 0.88-6.8-0.5-9.63-0.32-0.65-0.24-1.44 0.21-2.01l2.69-3.44c0.43-0.54 1.1-0.8 1.77-0.69 3.99 0.66 6.89 2.85 8.2 6.73Z" fill="url(#faviconBanana)" />
+  <path d="M23.5 40.31c5.84 0 11.84-2.47 16.76-6.68 4.92-4.19 8.97-10.14 10.62-16.3 0.16-0.58 0.28-1.18 0.36-1.77 0.92 5.12-1.9 11.6-6.12 16.17-6.35 6.74-15.98 10.49-23.73 8.14-1.88-0.56-3.49-1.46-4.78-2.65 2.34 1.85 5.21 3.09 8.89 3.09Z" fill="url(#faviconEdge)" opacity="0.9" />
+  <path d="M40.42 18.81c0.99 4.3-1.32 8.92-5.27 10.66-4.42 1.94-9.72 0.9-12.88-2.15-2.05-2.04-5.09-2.29-7.3-1.2l0.42-1.06c0.23-0.58 0.69-1.05 1.28-1.29 2.5-1 5.32-0.39 7.38 1.48 2.51 2.25 6.2 2.98 9.75 1.89 2.76-0.85 5.17-2.86 6.18-5.33Z" fill="#FFF8C9" fill-opacity="0.55" />
+  <circle cx="18" cy="46" r="4" fill="#38BDF8" fill-opacity="0.35" />
+  <circle cx="46" cy="16" r="2.6" fill="#6B4C1D" />
 </svg>

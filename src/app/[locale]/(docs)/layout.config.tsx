@@ -9,13 +9,13 @@ export function baseOptions(locale: string): BaseLayoutProps {
       title: (
         <>
           <Image
-            src="/detect-ai-icon.svg"
-            alt="Logo"
+            src="/nano-banana-icon.svg"
+            alt="Nano Banana Logo"
             width={28}
             height={28}
             className=""
           />
-          <span className="text-lg text-primary font-bold">Detect AI</span>
+          <span className="text-lg text-primary font-bold">Nano Banana</span>
         </>
       ),
       transparentMode: "top",

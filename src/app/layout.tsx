@@ -25,7 +25,7 @@ export default async function RootLayout({
 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/detect-ai-icon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/nano-banana-icon.svg" />
         <meta name="theme-color" content="#1E40AF" />
 
         {locales &&

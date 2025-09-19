@@ -22,10 +22,10 @@ export default async function AdminLayout({
 
   const sidebar: Sidebar = {
     brand: {
-      title: "Detect AI",
+      title: "Nano Banana",
       logo: {
-        src: "/detect-ai-icon.svg",
-        alt: "Detect AI",
+        src: "/nano-banana-icon.svg",
+        alt: "Nano Banana",
       },
       url: "/admin",
     },
