@@ -7,6 +7,11 @@ import { MultiImgUpload } from "./MultiImgUpload";
 import { editImage, generateImage } from "@/services/generator";
 import { pollTaskResult } from "@/lib/utils";
 import { GeneratorOutput } from "@/types/generator";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useTrial } from "@/lib/trial";
+import { GeneratorError } from "@/services/generator";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
 
 
 interface PromptEngineProps {
@@ -49,9 +54,13 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
 
 export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i">("i2i");
+  const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const { status } = useSession();
+  const router = useRouter();
 
   const canGenerate = useMemo(() => {
     if (mode === "t2i") {
@@ -66,6 +75,15 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   const onGenerateClick = async () => {
     if (!canGenerate || isGenerating) {
       return;
+    }
+
+    // 梳理一下逻辑 即先检测一下是否登录了 未登录则之间扣除本地的点数 如果登陆了先检测一下credits是否够用
+    if (status === 'unauthenticated'){
+      if(!useTrial()){
+        setShowAuthDialog(true);
+        setTimeout(() => router.push('/auth/signin'), 2200);
+        return;
+      }
     }
 
     try {
@@ -87,6 +105,14 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       }
     } catch (error) {
       console.error("failed to generate", error);
+      const generatorError = error as GeneratorError;
+      if(generatorError){
+        if(generatorError.code === 100){
+          setFailure("insuficientcredits");
+        }else if(generatorError.code === 200){
+          setFailure("apierror");
+        }
+      }
       onOutputsChange?.([]);
     } finally {
       setIsGenerating(false);
@@ -95,8 +121,21 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   };
 
   const onPromptChange = (value: string) => {
-    console.log(value);
     setPrompt(value);
+  };
+
+  const ButtonText = () => {
+    if(failure === "normal"){
+      if(isGenerating){
+        return generatingText;
+      }else{
+        return promptEngine.generateButton?.title;
+      }
+    }else if(failure === "apierror"){
+      return promptEngine.api_error;
+    }else if(failure === "insuficientcredits"){
+      return promptEngine.insufficient_credits;
+    }
   };
 
   const promptEngineSelector = () => {
@@ -138,6 +177,16 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     || "";
   return (
     <div className="flex h-full w-full flex-col gap-4">
+      <Dialog open={showAuthDialog}>
+        <DialogTitle>
+          {''}
+        </DialogTitle>
+        <DialogContent className="sm:max-w-[420px]">
+            <DialogDescription>
+              {promptEngine?.auth_Required || ''}
+            </DialogDescription>
+          </DialogContent>
+      </Dialog>
       <div className="flex-1 w-full rounded-xl border-2 border-fd-foreground shadow bg-input/[0.4]">
         { /* 顶部区域 */}
         <div className="flex flex-col gap-3 p-4 bg-input">
@@ -169,7 +218,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           className="w-full"
           disabled={!canGenerate || isGenerating}
           >
-          {isGenerating ? generatingText : promptEngine.generateButton?.title}
+          {ButtonText()}
         </Button>
       </div>
     </div>

@@ -113,6 +113,9 @@
       "title": "Nano Banana Studio",
       "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
       "image2ImageTab": "Image to Image",
+      "auth_Required": "Ran out of free credits. Please Log in to try more.",
+      "insufficient_credits": "Not Enough credits. Please top up credits.",
+      "api_error": "Encounter Error, please change prompt or try it later",
       "image2Image": {
         "upload": {
           "upload_title": "Reference image",

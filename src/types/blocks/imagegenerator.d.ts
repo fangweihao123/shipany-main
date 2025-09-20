@@ -18,6 +18,9 @@ export interface PromptEngine{
   text2ImageTab?: string;
   text2Image?: Text2Image;
   generateButton?: Button;
+  auth_Required?: string;
+  insufficient_credits?: string;
+  api_error?: string;
   states?: {
     generating?: string;
   };

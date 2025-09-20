@@ -6,11 +6,12 @@ import {
 import {
   UnwatermarkImgResponse
 } from '@/types/unwatermark'
-import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { decreaseCredits, CreditsTransType, getUserCredits } from '@/services/credit';
 import { getUserUuid } from '@/services/user';
 import { newStorage, Storage } from '@/lib/storage';
 import { getUuid } from '@/lib/hash';
 import { EditImgRequest } from '@/types/wavespeed/nanobanana/image';
+import { UserCredits } from "@/types/user";
 
 const API_BASE_URL = process.env.WAVESPEED_API_BASE_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
@@ -50,6 +51,15 @@ async function EditImage(data: EditImgRequest): Promise<UnwatermarkImgResponse> 
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
+  const user_uuid = await getUserUuid();
+  if (user_uuid){
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 2,
+    });
+    console.log('edit image sucess with 2 credits consuption');
+  }
   return response.json();
 }
 
@@ -62,6 +72,21 @@ export async function POST(request: NextRequest) {
           error: {
             code: 500,
             message: 'API key not configured',
+          },
+        } as ApiErrorResponse,
+        { status: 500 }
+      );
+    }
+
+    const user_uuid = await getUserUuid();
+    const usercredits : UserCredits = await getUserCredits(user_uuid);
+    if(usercredits.left_credits < 2){
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 100,
+            message: 'InSufficient Credits',
           },
         } as ApiErrorResponse,
         { status: 500 }
@@ -104,14 +129,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(Response);
 
   } catch (error) {
-    console.error('Detection API error:', error);
+    console.error('NanoBanana API error:', error);
     
     return NextResponse.json(
       {
         success: false,
         error: {
-          code: 500,
-          message: 'Internal server error',
+          code: 200,
+          message: 'NanoBanana API error',
           details: error instanceof Error ? error.message : 'Unknown error',
         },
       } as ApiErrorResponse,
