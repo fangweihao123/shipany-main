@@ -3,7 +3,7 @@
     "name": "pricing",
     "label": "定价方案",
     "title": "简单透明的定价方案",
-    "description": "选择适合您AI检测需求的完美方案。以实惠价格保护您免受虚假内容侵害。",
+    "description": "选择适合您AI图像生成需求的完美方案。使用Nano Banana以实惠价格生成高质量图像。",
     "groups": [
       {
         "name": "monthly",
@@ -14,7 +14,8 @@
       {
         "name": "yearly",
         "title": "年付",
-        "label": "节省20%"
+        "is_featured": true,
+        "label": "节省50%"
       }
     ],
     "items": [
@@ -23,17 +24,16 @@
         "description": "适合个人用户和小团队使用。",
         "features_title": "包含功能",
         "features": [
-          "每月100积分检测次数",
-          "高质量内容检测",
-          "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "每月150积分",
+          "每月75张高质量图像",
+          "包含所有风格模板",
+          "标准生成速度",
+          "基础客户支持"
         ],
         "interval": "month",
-        "amount": 890,
+        "amount": 1500,
         "currency": "USD",
-        "price": "￥59",
-        "original_price": "￥69",
+        "price": "$15.00",
         "unit": "/ 月",
         "is_featured": false,
         "tip": "入门的完美选择！",
@@ -42,40 +42,68 @@
           "url": "/checkout?plan=basic-monthly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic",
-        "product_name": "AI检测器基础版月付",
-        "credits": 1000,
+        "product_id": "Basic",
+        "product_name": "AI图像生成器基础版月付",
+        "credits": 150,
         "valid_months": 1,
         "group": "monthly"
       },
       {
         "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
+        "description": "适合专业创作者和团队使用。",
         "label": "热门",
-        "features_title": "包含基础版所有功能，另加",
+        "features_title": "包含功能",
         "features": [
-          "每月200积分检测次数",
-          "高质量内容检测",
-          "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "每月800积分",
+          "每月400张高质量图像",
+          "包含所有风格模板",
+          "优先生成队列",
+          "优先客户支持"
         ],
         "interval": "month",
-        "amount": 1690,
+        "amount": 3900,
         "currency": "USD",
-        "price": "￥119",
-        "original_price": "￥139",
+        "price": "$39.00",
         "unit": "/ 月",
         "is_featured": true,
         "tip": "企业用户的最佳选择！",
         "button": {
           "title": "选择专业版",
-          "url": "/checkout?plan=professional-monthly",
+          "url": "/checkout?plan=pro-monthly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional",
-        "product_name": "AI检测器专业版月付",
-        "credits": 5000,
+        "product_id": "Pro",
+        "product_name": "AI图像生成器专业版月付",
+        "credits": 800,
+        "valid_months": 1,
+        "group": "monthly"
+      },
+      {
+        "title": "企业版",
+        "description": "为大型企业和专业工作室设计。",
+        "features_title": "包含功能",
+        "features": [
+          "每月1600积分",
+          "每月800张高质量图像",
+          "包含所有风格模板",
+          "最快生成速度",
+          "专属客户经理"
+        ],
+        "interval": "month",
+        "amount": 8000,
+        "currency": "USD",
+        "price": "$80.00",
+        "unit": "/ 月",
+        "is_featured": false,
+        "tip": "为大型企业设计！",
+        "button": {
+          "title": "选择企业版",
+          "url": "/checkout?plan=max-monthly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "Max",
+        "product_name": "AI图像生成器企业版月付",
+        "credits": 1600,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -84,17 +112,18 @@
         "description": "适合个人用户和小团队使用。",
         "features_title": "包含功能",
         "features": [
-          "每年2400积分检测次数",
-          "高质量内容检测",
-          "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "每年1800积分",
+          "每月75张高质量图像",
+          "包含所有风格模板",
+          "标准生成速度",
+          "基础客户支持",
+          "商业使用许可"
         ],
         "interval": "year",
-        "amount": 8280,
+        "amount": 14400,
         "currency": "USD",
-        "price": "￥49",
-        "original_price": "￥59",
+        "price": "$12",
+        "original_price": "$15",
         "unit": "/ 月",
         "is_featured": false,
         "tip": "年付可节省20%！",
@@ -103,40 +132,72 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic-annually",
-        "product_name": "AI检测器基础版年付",
-        "credits": 12000,
+        "product_id": "BasicAnnual",
+        "product_name": "AI图像生成器基础版年付",
+        "credits": 1800,
         "valid_months": 12,
         "group": "yearly"
       },
       {
         "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
+        "description": "适合专业创作者和团队使用。",
         "label": "热门",
-        "features_title": "包含基础版所有功能，另加",
+        "features_title": "包含功能",
         "features": [
-          "每年72000积分检测次数",
-          "高质量内容检测",
-          "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "每年9600积分",
+          "每月400张高质量图像",
+          "包含所有风格模板",
+          "优先生成队列",
+          "优先客户支持",
+          "商业使用许可"
         ],
         "interval": "year",
-        "amount": 15480,
+        "amount": 23400,
         "currency": "USD",
-        "price": "￥89",
-        "original_price": "￥119",
+        "price": "$19.5",
+        "original_price": "$39",
         "unit": "/ 月",
         "is_featured": true,
-        "tip": "最受欢迎！年付节省20%！",
+        "tip": "最受欢迎！年付节省50%！",
         "button": {
           "title": "选择专业版",
-          "url": "/checkout?plan=professional-yearly",
+          "url": "/checkout?plan=pro-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional-annually",
-        "product_name": "AI检测器专业版年付",
-        "credits": 60000,
+        "product_id": "ProAnnual",
+        "product_name": "AI图像生成器专业版年付",
+        "credits": 9600,
+        "valid_months": 12,
+        "group": "yearly"
+      },
+      {
+        "title": "企业版",
+        "description": "为大型企业和专业工作室设计。",
+        "features_title": "包含功能",
+        "features": [
+          "每年19200积分",
+          "每月800张高质量图像",
+          "包含所有风格模板",
+          "最快生成速度",
+          "专属客户经理",
+          "商业使用许可"
+        ],
+        "interval": "year",
+        "amount": 48000,
+        "currency": "USD",
+        "price": "$40",
+        "original_price": "$80",
+        "unit": "/ 月",
+        "is_featured": false,
+        "tip": "最受欢迎！年付节省50%！",
+        "button": {
+          "title": "选择企业版",
+          "url": "/checkout?plan=max-yearly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "MaxAnnual",
+        "product_name": "AI图像生成器企业版年付",
+        "credits": 19200,
         "valid_months": 12,
         "group": "yearly"
       }
