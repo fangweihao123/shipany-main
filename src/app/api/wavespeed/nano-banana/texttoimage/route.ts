@@ -62,18 +62,20 @@ export async function POST(request: NextRequest) {
     const { prompt } = await request.json();
 
     const user_uuid = await getUserUuid();
-    const usercredits : UserCredits = await getUserCredits(user_uuid);
-    if(usercredits.left_credits < 2){
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 100,
-            message: 'InSufficient Credits',
-          },
-        } as ApiErrorResponse,
-        { status: 500 }
-      );
+    if(user_uuid.length > 0){
+      const usercredits : UserCredits = await getUserCredits(user_uuid);
+      if(usercredits.left_credits < 2){
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 100,
+              message: 'InSufficient Credits',
+            },
+          } as ApiErrorResponse,
+          { status: 500 }
+        );
+      }
     }
 
     // Step 3: Detect image
