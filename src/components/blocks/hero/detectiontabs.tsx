@@ -5,8 +5,6 @@ import DetectTextInline from "@/components/detect/detextinline";
 import DetectInline from "@/components/detect/deimginline";
 import { Volume2, FileText, Image } from "lucide-react";
 import { Detection } from "@/types/blocks/detect";
-import DetectInline from "@/components/detect/deimginline";
-import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
 
 export default function DetectionTabs({ detection }: { detection: Detection }){
   const uploads = useMemo(() => detection?.uploads ?? [], [detection]);
