@@ -1,8 +1,9 @@
 import { TrialState } from "@/types/trials/trialState";
 
-const TRIAL_KEY = "app_trial";
-const SESSION_KEY = "app_session_trial";
-const MAX_TRIAL = 2;
+const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME;
+const TRIAL_KEY = `${PROJECT_NAME}_app_trial`;
+const SESSION_KEY = `${PROJECT_NAME}_app_session_trial`;
+const MAX_TRIAL = 1;
 
 export function getTrialState(): TrialState{
     // 优先从localStorage读取
