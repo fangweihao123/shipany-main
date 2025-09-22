@@ -63,16 +63,14 @@ async function removeImageWaterMark(data: UnwatermarkImgRequest, provider: Unwat
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
-
   const user_uuid = await getUserUuid();
-  if (!user_uuid){
-    throw new Error("Please Login First");
+  if (user_uuid){
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 1,
+    });
   }
-  await decreaseCredits({
-    user_uuid,
-    trans_type: CreditsTransType.Ping,
-    credits: 1,
-  });
 
   return response.json();
 }
@@ -122,37 +120,6 @@ export async function POST(request: NextRequest) {
           error: {
             code: 400,
             message: 'No file provided',
-          },
-        } as ApiErrorResponse,
-        { status: 400 }
-      );
-    }
-
-    // Validate file type
-    const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/avif', 'image/bmp', 'image/tiff', 'video/mp4'];
-    if (!supportedTypes.includes(file.type)) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 400,
-            message: 'Unsupported file type',
-            details: `Supported types: ${supportedTypes.join(', ')}`,
-          },
-        } as ApiErrorResponse,
-        { status: 400 }
-      );
-    }
-
-    // Validate file size (1KB - 10MB)
-    if (file.size < 1024 || file.size > 100 * 1024 * 1024) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 400,
-            message: 'Invalid file size',
-            details: 'File size must be between 1KB and 10MB',
           },
         } as ApiErrorResponse,
         { status: 400 }

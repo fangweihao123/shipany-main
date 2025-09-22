@@ -85,7 +85,7 @@
       "processing": "处理中...",
       "detection_complete": "完成",
       "detect_ai_generation": "开始",
-      "auth_required": "请登录后使用去水印功能。正在跳转到登录页面..."
+      "auth_required": "免费额度用完啦！请登录后使用去水印功能。"
     },
     "unwatermarkResult": {
       "resulthints": "去水印结果",
@@ -105,7 +105,11 @@
     "label": "产品介绍",
     "description": "EraseWatermark使用先进的AI技术智能移除图片和视频中的水印，同时保持原始质量和细节。",
     "image": {
-      "src": "/imgs/features/watermark-remover.png",
+      "src": "/imgs/beforeremove.png",
+      "alt": "去水印处理过程的前后对比插图"
+    },
+    "imageAfter": {
+      "src": "/imgs/afterremove.png",
       "alt": "去水印处理过程的前后对比插图"
     },
     "items": [
@@ -174,27 +178,15 @@
     "items": [
       {
         "title": "上传到去水印工具",
-        "description": "通过拖放文件或点击浏览开始使用我们的去水印工具。我们的去水印工具支持所有主要格式，包括PNG、JPG、JPEG、MP4、MOV等，确保最大兼容性满足您的去水印需求。",
-        "image": {
-          "src": "/imgs/features/upload.png",
-          "alt": "AI检测器内容分析上传界面"
-        }
+        "description": "通过拖放文件或点击浏览开始使用我们的去水印工具。我们的去水印工具支持所有主要格式，包括PNG、JPG、JPEG、MP4、MOV等，确保最大兼容性满足您的去水印需求。"
       },
       {
         "title": "智能去水印分析",
-        "description": "我们复杂的去水印AI精确分析您的内容，识别水印模式和纹理。去水印工具然后智能重建背景，同时保持原始图像质量、颜色和精细细节。",
-        "image": {
-          "src": "/imgs/features/analyze.png",
-          "alt": "显示检测过程的AI检测器分析仪表板"
-        }
+        "description": "我们复杂的去水印AI精确分析您的内容，识别水印模式和纹理。去水印工具然后智能重建背景，同时保持原始图像质量、颜色和精细细节。"
       },
       {
         "title": "下载清洁结果",
-        "description": "预览您的去水印结果并立即下载。我们的去水印工具提供清洁、专业质量的图片，可立即用于您的项目、演示或出版物。",
-        "image": {
-          "src": "/imgs/features/results.png",
-          "alt": "带有置信度评分和分析的AI检测器结果屏幕"
-        }
+        "description": "预览您的去水印结果并立即下载。我们的去水印工具提供清洁、专业质量的图片，可立即用于您的项目、演示或出版物。"
       }
     ]
   },

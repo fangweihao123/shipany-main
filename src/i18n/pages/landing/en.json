@@ -85,7 +85,7 @@
       "processing": "Processing...",
       "detection_complete": "Complete",
       "detect_ai_generation": "Start",
-      "auth_required": "Please sign in to use watermark removal. Redirecting to login page..."
+      "auth_required": "Run out of free credist.Please sign in to use watermark removal"
     },
     "unwatermarkResult": {
       "resulthints": "Unwatermark result",
