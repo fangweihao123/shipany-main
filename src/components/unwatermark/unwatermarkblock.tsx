@@ -27,6 +27,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 import { ShowImageResult } from './ShowImgresult';
+import { canUseTrial, useTrial } from '@/lib/trial';
 
 export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
@@ -100,9 +101,11 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
 
      // Require auth before detection
     if (status === 'unauthenticated') {
-      setShowAuthDialog(true);
-      setTimeout(() => router.push('/auth/signin'), 1200);
-      return;
+      if(!useTrial()){
+        setShowAuthDialog(true);
+        setTimeout(() => router.push('/auth/signin'), 2200);
+        return;
+      }
     }
 
     setUnwatermarkState(prev => ({
@@ -112,7 +115,7 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
       isFinished: false,
       error: null,
     }));
-
+    const startTime = performance.now();
     // Check credits before detection
     try {
       const creditsResponse = await fetch('/api/get-user-credits', {
@@ -143,6 +146,8 @@ export default function UnwatermarkBlock({ _upload, _state, _unwatermarkDetails 
       }));
       return;
     }
+    const endTime = performance.now();
+    console.log(`检查credits是否足够耗时 ${(endTime - startTime)/1000} s`);
 
     try {
       const result = await unwatermarkImage(fileState.file, apiProvider);

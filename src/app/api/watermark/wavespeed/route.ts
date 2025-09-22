@@ -17,6 +17,7 @@ import { getUuid } from '@/lib/hash';
 
 const API_BASE_URL = process.env.WAVESPEED_API_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
+const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME;
 const STORAGE_PUBLIC_URL = process.env.STORAGE_PUBLIC_URL;
 
 if (!API_KEY) {
@@ -25,7 +26,7 @@ if (!API_KEY) {
 
 async function uploadFile(file: Uint8Array<ArrayBufferLike>, filename:string, contentType: string): Promise<string> {
   const storage = newStorage();
-  const key = `upload/${getUuid()}${filename}`;
+  const key = `${PROJECT_NAME}/upload/${getUuid()}${filename}`;
   const response = await storage.uploadFile({
     body: file,
     key: key,
