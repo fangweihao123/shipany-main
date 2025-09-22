@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "title": "AI 音频检测器 – 精准识别合成语音 | detect-ai.me",
+    "description": "使用 AI 音频检测器对语音内容进行光谱与语言层面的双重审核，为企业提供快速、可追溯的合规判定。",
+    "keywords": "AI 音频检测器, 语音克隆检测, 深度伪造语音, 合成语音分析"
+  },
+  "intro": {
+    "name": "intro",
+    "title": "AI 音频检测器",
+    "description": "通过 AI 音频检测器快速筛查配音、播客或客服录音，及时发现可疑的合成痕迹。系统会提取光谱指纹与语言节奏特征，并提供一份易于理解的风险摘要，帮助审核团队在紧迫时限中做出准确判断。",
+    "items": [
+      { "title": "证据透明", "description": "从声谱图到语言特征，逐项解释判定依据，便于团队对外说明。", "icon": "RiFlashlightLine" },
+      { "title": "安全合规", "description": "区域化数据处理与审计日志满足企业级合规要求。", "icon": "RiShieldCheckLine" }
+    ]
+  },
+  "main": {
+    "title": "上传音频，获取可信分析",
+    "description": "支持 90 秒内的 MP3、WAV 音频，一键完成上传与检测。系统会生成置信度评分、风险要点与后续建议，让团队迅速对接后续流程。",
+    "tech_description": "检测引擎综合分析声谱质心变化、MFCC 特征与音素时长模型，同时结合自研网络、开源基准与统计模型，确保不同来源的偏差被充分揭示。",
+    "use_cases": "适用于广播节目审查、广告投放复核、语音客服质检、举报线索取证等多种场景。"
+  },
+  "longform": [
+    {
+      "heading": "构建可验证的音频信任",
+      "paragraphs": [
+        "对于需要维护音频可信度的团队来说，如何在有限时间内给出明确结论始终是一项挑战。我们的 AI 音频检测器可以识别波形中细微的噪声残留、压缩副产物与上下文不一致之处，并提供可追溯的判定依据。",
+        "当 AI 音频检测器标记出可疑片段时，面板会给出声谱快照、文字注释与风险量表，帮助团队理解真人声音与合成声音的差异。AI 音频检测器还会同步记录溯源元数据，确保报告在审计中依旧站得住脚。",
+        "通过这些诊断信息，AI 音频检测器还能给出整改建议，让团队能够指导创作者逐步优化，而非简单拒收文件。"
+      ]
+    },
+    {
+      "heading": "合规流程提速又可控",
+      "paragraphs": [
+        "在受监管行业中，AI 音频检测器可作为合规伙伴，加速审批却不牺牲审慎。呼叫中心与媒体档案部门能够快速查验语音素材的真实性，并导出满足审计要求的报告。",
+        "AI 音频检测器支持精细化标签管理，可按活动、说话人或授权区域整理线索，调查人员能在数分钟内完成异常排查、协同注释，并生成满足法务、审计与安全团队的汇总材料。"
+      ]
+    },
+    {
+      "heading": "创意协作与取证并行",
+      "paragraphs": [
+        "创意团队也乐于使用 AI 音频检测器，因为它不仅告知风险分数，还解释音调平衡、语速节奏与立体声结构等维度，让制作人可以有针对性地调整。",
+        "在测试阶段，我们观察到制作人在发布前咨询 AI 音频检测器，可将返工率降低近 40%，因为他们能提前发现不一致之处并保留真实人声。"
+      ]
+    },
+    {
+      "heading": "远程教学中的原创性保障",
+      "paragraphs": [
+        "教育场景下，AI 音频检测器帮助教师在远程口语作业中维护原创性，同时通过课堂隐私模式仅短暂存储数据以符合法规要求。",
+        "学生可以清楚了解原创性的标准，AI 音频检测器则呈现标注后的可疑时间轴，提醒教师注意不自然的机器语气。"
+      ]
+    },
+    {
+      "heading": "平台风控的可靠后盾",
+      "paragraphs": [
+        "平台安全团队可以将 AI 音频检测器接入自动审核流程，提前拦截高风险内容；调查人员则能凭借留存的取证数据定位可疑来源。",
+        "法证语言学专家也能结合 AI 音频检测器追踪可疑的声码器特征，强化下架举证流程，记者在核实线索时同样能依靠这些证据稳固报道可信度。"
+      ]
+    }
+  ],
+  "detection": {
+    "max_audio_length": 90,
+    "uploads": [
+      {
+        "upload_tab": "音频检测",
+        "upload_title": "上传音频",
+        "text_input_placeholder": "拖拽或选择 MP3/WAV 音频（最长 90 秒）",
+        "word_count": "已分析 {count} 秒",
+        "min_words_tip": "建议上传 15-90 秒的片段以获得更稳定判定"
+      }
+    ],
+    "state": {
+      "uploading": "上传中...",
+      "analyzing": "正在分析音频...",
+      "processing": "处理中...",
+      "detection_complete": "检测完成",
+      "detect_ai_generation": "识别 AI 生成",
+      "auth_required": "请先登录后再执行音频检测，即将跳转登录页..."
+    },
+    "detectResult": {
+      "result_detail": "检测完成后将在此展示详细结果。",
+      "insufficient_credits": "当前积分不足 1 点，无法进行检测，请考虑升级套餐。",
+      "unable_verify_credits": "暂时无法校验积分，请稍后重试。",
+      "detection_failed": "音频检测失败",
+      "audio_too_long": "超过 {seconds} 秒的音频需要先裁剪后再上传。",
+      "confidence_level": "整体置信度",
+      "ai_generated": "检测到合成语音",
+      "human_created": "检测到真人语音",
+      "analyze_again": "继续检测其他音频",
+      "understand": "如何解读结果",
+      "confidence_score_desc": "综合光谱、语言与概率特征的总体得分。",
+      "ai_generated_desc": "模型捕捉到与常见语音克隆系统一致的特征。",
+      "human_created_desc": "音频呈现真实人声的自然颤动与韵律变化。",
+      "note": "任何检测工具都非百分百准确，关键场景下请结合人工复核。",
+      "individual_detection_scores": "各项检测得分",
+      "human_score": "真人可能性",
+      "overall_confidence": "总体置信度",
+      "ai_pattern_detected": "大多数模型判定该音频存在 AI 生成特征。",
+      "human_pattern_detected": "特征与真实人声相符。"
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "核心能力",
+    "description": "从信号级别的检测到团队协作，帮助组织在高效率与高可信度之间取得平衡。",
+    "items": [
+      {
+        "title": "信号取证",
+        "description": "通过声谱差异、谐波比对与自适应阈值定位可疑片段。",
+        "icon": "RiCpuLine"
+      },
+      {
+        "title": "协作流程",
+        "description": "支持任务指派、批注记录与多渠道通知，确保团队同步。",
+        "icon": "RiTeamLine"
+      },
+      {
+        "title": "证据保全",
+        "description": "生成带有哈希与保全策略的报告，满足法规与取证需求。",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "可扩展 API",
+        "description": "批量接口与队列控制，轻松嵌入既有的内容审核或内容生产链路。",
+        "icon": "RiCodeLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "三步完成检测",
+    "description": "上传音频、查看洞察并协同处理结果，全流程安全可追溯。",
+    "items": [
+      {
+        "title": "上传素材",
+        "description": "拖拽或选择音频文件，系统自动完成预处理。"
+      },
+      {
+        "title": "阅读洞察",
+        "description": "查看置信度、证据标签与语言特征图表，理解风险来源。"
+      },
+      {
+        "title": "处理下一步",
+        "description": "导出报告、发起人工复核或将结论同步至合规系统。"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "面向不同团队的价值",
+    "description": "支持媒体、客服、合规与平台安全等多种业务场景，提供统一的音频判定标准。",
+    "items": [
+      {
+        "title": "媒体机构",
+        "description": "在播出前识别冒名或拼接音频，维护频道信誉。",
+        "icon": "RiBroadcastLine"
+      },
+      {
+        "title": "客服运营",
+        "description": "确保培训与质检素材来自真实座席，避免错误案例流入系统。",
+        "icon": "RiHeadphoneLine"
+      },
+      {
+        "title": "企业合规",
+        "description": "生成符合审计要求的文档，减少人工整理负担。",
+        "icon": "RiFileShield2Line"
+      },
+      {
+        "title": "互联网平台",
+        "description": "将自动检测融入上传流程，增强社区信任。",
+        "icon": "RiGlobalLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "常见问题",
+    "description": "关于部署、集成与隐私的常见疑问。",
+    "items": [
+      {
+        "title": "支持哪些格式？",
+        "description": "目前支持 MP3、WAV，后续将扩展至 FLAC、AAC，可通过 API 混合批量上传。"
+      },
+      {
+        "title": "数据如何保护？",
+        "description": "上传全程加密存储，管理员可以设定保留期限，并通过日志追踪每一次访问。"
+      },
+      {
+        "title": "可以调整灵敏度吗？",
+        "description": "可以。您可以为不同队列设置灵敏度、配置升级路径，并结合人工复核。"
+      }
+    ]
+  }
+}

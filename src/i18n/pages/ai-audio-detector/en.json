@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "title": "AI Audio Detector – Catch Synthetic Voices with Certainty | detect-ai.me",
+    "description": "Screen voiceovers, podcasts, and calls with an AI audio detector that blends spectral forensics, linguistic analysis, and risk reporting for fast, defensible decisions.",
+    "keywords": "AI audio detector, voice cloning checker, deepfake audio detection, synthetic voice analysis"
+  },
+  "intro": {
+    "name": "intro",
+    "title": "AI Audio Detector",
+    "description": "Use the ai audio detector to screen voiceovers, podcasts, or customer calls before they go live. It listens for spectral fingerprints, rhythm irregularities, and metadata mismatches that reliably signal synthetic speech while preserving nuance about human performance. Our team designed the workflow for editors, compliance reviewers, and platform moderators who need a trustworthy verdict without sacrificing turnaround time.",
+    "items": [
+      { "title": "Transparent Scores", "description": "Diagnostic cards explain why a clip is flagged using spectral, linguistic, and provenance evidence.", "icon": "RiFlashlightLine" },
+      { "title": "Secure by Default", "description": "Regional processing, audit logs, and retention policies meet enterprise compliance requirements.", "icon": "RiShieldCheckLine" }
+    ]
+  },
+  "main": {
+    "title": "Upload Audio to Verify Authenticity",
+    "description": "Upload any snippet up to ninety seconds and put the ai audio detector to work with a layered inspection pipeline that compares timbre, transcript structure, and device fingerprints in seconds. The overview card walks through confidence scoring, highlights, and recommended follow-up steps so your team can implement decisions with clarity. Every analysis is logged with timezone-aware timestamps, user notes, and retention settings that map directly to enterprise governance policies.",
+    "tech_description": "Behind the interface, our detection stack triangulates evidence across spectral centroid evolution, mel-frequency cepstral coefficients, and phoneme duration modeling. Instead of chasing a single heuristic, the system fuses outputs from proprietary neural nets, open-source benchmarks, and statistical baselines so biases remain visible. Confidence bands adapt as more audio from a source is evaluated, helping you understand whether a change is due to creative direction, microphone hardware, or an external manipulator. Detailed latency metrics and usage dashboards let platform teams tune capacity before traffic surges.",
+    "use_cases": "Broadcast companies rely on the workflow to confirm syndicated segments, while agencies validate influencer campaigns before launch. Compliance teams review voice agents for regulated disclosures, and risk officers compare witness testimony against verified baselines. Product teams even plug the analytics into feature flags to automatically halt suspicious uploads, keeping community standards intact without staff burnout."
+  },
+  "longform": [
+    {
+      "heading": "Operational Confidence with Expert Evidence",
+      "paragraphs": [
+        "Anyone responsible for safeguarding audio integrity faces a daily puzzle of balancing speed with certainty. Our ai audio detector interprets subtle cues inside a waveform, from impulsive noise residues to compression side effects, and contextualizes them against vast libraries of verified material.",
+        "When the ai audio detector flags a suspicious passage, the dashboard guides you through spectral snapshots, transcribed language markers, and a concise risk rubric that clarifies why human voices and synthetic clones diverge. Because the ai audio detector also records provenance metadata, you can hand stakeholders a transparent chain of custody that survives audits.",
+        "Alongside these diagnostics, the ai audio detector explains recommended remediations so teams can coach creators rather than simply rejecting files."
+      ]
+    },
+    {
+      "heading": "Compliance Acceleration Without Blind Spots",
+      "paragraphs": [
+        "In regulated industries, the ai audio detector becomes a compliance ally that accelerates approvals without diluting due diligence. Call centers upload recordings to the ai audio detector to verify that training material still reflects authentic scripts, while media archives rely on the ai audio detector to guard against deepfake infiltrations that might erode public trust.",
+        "The ai audio detector supports granular tagging, letting you label clips by campaign, speaker, or licensing territory so investigations stay organized and searchable. As a result, analysts can surface anomalies in minutes, collaborate through shared notes, and export reports that satisfy auditors, legal counsel, and security teams simultaneously."
+      ]
+    },
+    {
+      "heading": "Creative Collaboration Backed by Forensics",
+      "paragraphs": [
+        "Creative studios appreciate how the ai audio detector respects artistry while still surfacing manipulations. Instead of delivering a vague score, the ai audio detector provides interpretive language about tonal balance, speech cadence, and cross-channel coherence so producers can make informed revisions.",
+        "During beta testing, we observed that editors who consulted the ai audio detector before publishing reduced rework cycles by nearly forty percent because they caught inconsistencies early and preserved authentic voices."
+      ]
+    },
+    {
+      "heading": "Academic Integrity for Remote Assessment",
+      "paragraphs": [
+        "Education leaders deploy the ai audio detector to uphold assessment integrity when oral exams or spoken assignments are submitted remotely. Students receive clear expectations about originality, and the ai audio detector gives instructors annotated timelines that highlight improbable robotic phrasing.",
+        "With its classroom privacy mode, the ai audio detector stores results only long enough to confirm authenticity, meeting district regulations while still deterring misuse."
+      ]
+    },
+    {
+      "heading": "Trust and Safety Integrations at Scale",
+      "paragraphs": [
+        "Platform trust and safety teams integrate the ai audio detector with automated moderation queues so high-risk uploads are inspected before they reach audiences. Forensic linguists partnering with the ai audio detector can trace neural vocoder artifacts back to specific toolkits, strengthening takedown requests and policy enforcement.",
+        "Even independent journalists lean on the ai audio detector when verifying whistleblower evidence, ensuring that emergent stories stand on a foundation of credible sound."
+      ]
+    }
+  ],
+  "detection": {
+    "max_audio_length": 90,
+    "uploads": [
+      {
+        "upload_tab": "Audio Detection",
+        "upload_title": "Upload audio",
+        "text_input_placeholder": "Drop or select an audio file (MP3, WAV up to 90 seconds)",
+        "word_count": "{count} seconds processed",
+        "min_words_tip": "Clips between 15 and 90 seconds deliver the most reliable insight"
+      }
+    ],
+    "state": {
+      "uploading": "Uploading...",
+      "analyzing": "Analyzing waveform...",
+      "processing": "Processing...",
+      "detection_complete": "Detection Complete",
+      "detect_ai_generation": "Detect AI Generation",
+      "auth_required": "Please sign in to analyze audio. Redirecting to login page..."
+    },
+    "detectResult": {
+      "result_detail": "Your detection summary will appear here once analysis finishes.",
+      "insufficient_credits": "You need at least 1 credit to run an audio analysis. Please upgrade your plan.",
+      "unable_verify_credits": "We could not verify credits. Please try again in a moment.",
+      "detection_failed": "Audio detection failed",
+      "audio_too_long": "Clips longer than {seconds} seconds must be trimmed before upload.",
+      "confidence_level": "Overall confidence",
+      "ai_generated": "Synthetic Voice Detected",
+      "human_created": "Authentic Voice Detected",
+      "analyze_again": "Scan Another Clip",
+      "understand": "Understanding the Results",
+      "confidence_score_desc": "Overall Score: Combines spectral, linguistic, and probabilistic indicators.",
+      "ai_generated_desc": "Synthetic Voice: Models observed features aligned with known voice cloning systems.",
+      "human_created_desc": "Authentic Voice: Detected human variance with natural vibrato and prosody shifts.",
+      "note": "No detector is infallible. Pair findings with policy review when stakes are high.",
+      "individual_detection_scores": "Individual Detection Scores",
+      "human_score": "Human Score",
+      "overall_confidence": "Overall Confidence",
+      "ai_pattern_detected": "The majority of detectors identified patterns consistent with AI-generated speech.",
+      "human_pattern_detected": "Markers align with organic human speech production."
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Key Features for Audio Authenticity",
+    "description": "Layered evidence, structured reporting, and collaboration tools make this platform a dependable guardian of live and archived sound without slowing production teams.",
+    "items": [
+      {
+        "title": "Forensic Signal Analysis",
+        "description": "Spectrogram diffs, harmonic ratio tracking, and adaptive thresholds clarify where anomalies live inside a recording.",
+        "icon": "RiCpuLine"
+      },
+      {
+        "title": "Collaboration Ready",
+        "description": "Assign reviews, log notes, and notify stakeholders inside the dashboard or via Slack, Jira, and email integrations.",
+        "icon": "RiTeamLine"
+      },
+      {
+        "title": "Evidence Preservation",
+        "description": "Create immutable case packets with chain-of-custody metadata, cryptographic hashes, and retention policies mapped to your governance standards.",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "Scalable API",
+        "description": "Batch endpoints, webhooks, and queue controls fit easily into ingestion pipelines or moderation backlogs.",
+        "icon": "RiCodeLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "How to Verify a Clip",
+    "description": "Upload a file, review automated insights, then collaborate on next steps, all inside one secure workflow that respects regional data rules and auditability.",
+    "items": [
+      {
+        "title": "Add Your Audio",
+        "description": "Drag and drop MP3 or WAV files up to ninety seconds; our preprocessing cleans normalization artifacts automatically."
+      },
+      {
+        "title": "Review Insights",
+        "description": "Track confidence gauges, detailed evidence callouts, and linguistic variance charts before setting a verdict."
+      },
+      {
+        "title": "Publish or Escalate",
+        "description": "Export a compliance-ready summary, schedule a manual review, or auto-forward findings into governance tooling."
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Built for Real-World Audio Governance",
+    "description": "Support content moderation, creative approval, legal discovery, and customer experience operations with a shared source of truth that scales as teams grow.",
+    "items": [
+      {
+        "title": "Media Networks",
+        "description": "Protect broadcast credibility by catching impersonations, re-recordings, and illicit sample splices ahead of distribution.",
+        "icon": "RiBroadcastLine"
+      },
+      {
+        "title": "Contact Centers",
+        "description": "Ensure training and QA clips reflect verified agents, flagging tampered audio before it reaches coaching systems.",
+        "icon": "RiHeadphoneLine"
+      },
+      {
+        "title": "Enterprise Compliance",
+        "description": "Generate defensible documentation that aligns with SOC 2, HIPAA, and PCI governance frameworks without manual spreadsheet wrangling.",
+        "icon": "RiFileShield2Line"
+      },
+      {
+        "title": "Digital Platforms",
+        "description": "Boost trust and safety initiatives by integrating automated checks into upload portals and partner workflows.",
+        "icon": "RiGlobalLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "FAQ",
+    "description": "Answers for the most common policy and deployment questions around audio authenticity verification.",
+    "items": [
+      {
+        "title": "What formats are supported?",
+        "description": "We accept MP3 and WAV today, with FLAC and AAC in our upcoming roadmap. Batch uploads via API can mix formats."
+      },
+      {
+        "title": "How is data secured?",
+        "description": "All uploads are encrypted in transit and at rest. You control retention windows, and logs capture every user action for audits."
+      },
+      {
+        "title": "Can we customize thresholds?",
+        "description": "Yes. Teams can adjust sensitivity profiles per queue, configure escalations, and embed human review for mission-critical cases."
+      }
+    ]
+  }
+}

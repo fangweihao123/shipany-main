@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "title": "AI Plagiarism Checker — AI文本检测与鉴别 | detect-ai.me",
+    "description": "AI Plagiarism Checker：快速检测文本是否由AI撰写，提供置信度与解释说明，安全、快捷、隐私友好。",
+    "keywords": "AI Plagiarism Checker, AI文本检测, AI写作检测, AI内容鉴别, 论文AI检测"
+  },
+  "intro": {
+    "name": "intro",
+    "title": "AI Plagiarism Checker",
+    "description": "面向真实写作场景的AI文本检测工具。将内容粘贴到下方，我们会从句式结构、词汇分布、重复模式等多维度分析文本，评估其是否更接近AI生成。结果以置信度呈现，并配有简明解释，帮助你快速判断并进一步核实。",
+    "items": [
+      { "title": "即时分析", "description": "快速返回检测结果与置信度分数。", "icon": "RiFlashlightLine" },
+      { "title": "隐私优先", "description": "仅实时处理文本，不做持久化存储。", "icon": "RiShieldCheckLine" }
+    ]
+  },
+  "main": {
+    "title": "粘贴文本，检测是否为AI撰写",
+    "description": "AI Plagiarism Checker 综合多种检测模型与文体学特征，对文本进行稳健评估。我们重点考察句子节奏、词汇熵、上下文连贯性、重复率与生成式迹象，力求在准确性与可解释性之间取得平衡，并提供直观的置信度分数帮助判断。",
+    "tech_description": "当文本样本更充分（建议 200 字以上）时，统计特征更稳定、模型判断更可靠。短文本仍可检测，但由于信号稀疏，建议结合上下文与来源进一步核验；对于经过强力改写或混合生成的文本，我们也尽量给出合理的趋势评估。",
+    "use_cases": "适用于论文作业审阅、内容审核、投稿查验、知识付费内容把关、企业内训资料审视与团队稿件质检等场景，帮助你在效率与真实性之间找到最优解，同时降低误判风险。"
+  },
+  "detection": {
+    "uploads": [
+      {
+        "upload_tab": "文本检测",
+        "upload_title": "输入文本",
+        "text_input_placeholder": "在此粘贴文本（推荐200字以上以获得更稳定的结果）...",
+        "word_count": "{count} 字",
+        "min_words_tip": "建议至少200字以提升检测稳定性"
+      }
+    ],
+    "state": {
+      "uploading": "上传中...",
+      "analyzing": "分析中...",
+      "processing": "处理中...",
+      "detection_complete": "检测完成",
+      "detect_ai_generation": "检测AI生成",
+      "auth_required": "请登录以使用AI文本检测功能，正在跳转登录..."
+    },
+    "detectResult": {
+      "result_detail": "检测结果将显示在这里",
+      "insufficient_credits": "余额不足。检测需要至少1个积分，请先升级或充值。",
+      "unable_verify_credits": "无法验证积分，请稍后重试。",
+      "detection_failed": "检测失败",
+      "confidence_level": "整体置信度",
+      "ai_generated": "AI生成：该文本呈现较多AI撰写特征。",
+      "human_created": "人工创作：该文本更符合人类写作模式。",
+      "analyze_again": "继续检测其他文本",
+      "understand": "如何理解检测结果",
+      "confidence_score_desc": "整体分数来源于多模型综合评估，数值越高表示AI生成可能性越大。",
+      "ai_generated_desc": "当多项指标同时出现规律性、均匀性或低波动迹象时，更接近AI生成。",
+      "human_created_desc": "自然的句式起伏、语义衔接与个性化表达，往往更贴近人工创作。",
+      "note": "提示：任何检测都非100%准确，重要结论应结合上下文与其他证据一并判断。",
+      "individual_detection_scores": "分项检测得分",
+      "human_score": "人工概率",
+      "overall_confidence": "综合置信度",
+      "ai_pattern_detected": "多数模型认为存在明显的AI写作迹象。",
+      "human_pattern_detected": "整体特征更符合人类写作。"
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "AI 文本检测的关键特性",
+    "description": "以可解释性为核心的多模型融合方案，为你提供稳定、可复现的判断依据。",
+    "items": [
+      {
+        "title": "高准确率与稳健性",
+        "description": "融合统计特征与语义特征，多角度衡量文本是否呈现 AI 写作模式，有效降低单一模型的偏差。",
+        "icon": "RiCheckboxCircleLine"
+      },
+      {
+        "title": "可解释的结果",
+        "description": "除综合置信度外，还提供分项提示与判读建议，帮助你理解模型为何作出当前判断。",
+        "icon": "RiInformationLine"
+      },
+      {
+        "title": "隐私与安全",
+        "description": "仅进行实时分析，不对内容做持久化存储；请求全程加密，适配合规要求。",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "多模型融合",
+        "description": "兼容不同检测思路与算法流派，持续学习最新 AI 写作特征，保持检测能力的前沿性。",
+        "icon": "RiBrainLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "如何使用 AI Plagiarism Checker",
+    "description": "三步完成检测，快速获得可信的判断与可操作的建议。",
+    "items": [
+      {
+        "title": "粘贴文本",
+        "description": "将需要检测的文本粘贴到输入框，建议 200 字以上以获得更稳定的统计特征。"
+      },
+      {
+        "title": "启动分析",
+        "description": "点击开始检测，系统会并行调用多种算法，对文体学特征与生成迹象进行综合评估。"
+      },
+      {
+        "title": "阅读结果",
+        "description": "查看综合置信度、分项提示与解读说明，并根据“人类/AI迹象”趋势做进一步判断。"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "为真实写作与审核场景而生",
+    "description": "覆盖教育、媒体、平台、企业内部协作等多种场景，真正落地易用。",
+    "items": [
+      {
+        "title": "作业与论文审核",
+        "description": "辅助教师与助教进行初步筛查，聚焦可疑段落并提示复核要点，降低人工成本。",
+        "icon": "RiBookOpenLine"
+      },
+      {
+        "title": "内容平台审核",
+        "description": "帮助运营与审核团队快速定位疑似 AI 生成稿件，维护社区质量与公信力。",
+        "icon": "RiVerifiedBadgeLine"
+      },
+      {
+        "title": "团队写作与合规",
+        "description": "在企业知识库、市场稿件、对外材料中把关真实性与原创度，避免潜在风险。",
+        "icon": "RiShieldLine"
+      },
+      {
+        "title": "教育与研究支持",
+        "description": "为教育机构与研究团队提供可靠的检测工具与数据支持，辅助开展方法论研究。",
+        "icon": "RiGraduationCapLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "常见问题",
+    "description": "关于AI文本检测的常见疑问。",
+    "items": [
+      {
+        "title": "需要多长的文本？",
+        "description": "建议至少200字，以获得更稳定的统计特征与更可靠的结论。"
+      },
+      {
+        "title": "系统会保存我的文本吗？",
+        "description": "不会。我们只做实时处理，不进行持久化存储，充分保护你的隐私。"
+      }
+    ]
+  }
+}

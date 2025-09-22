@@ -2,21 +2,45 @@
   "template": "shipany-template-one",
   "theme": "light",
   "meta": {
-    "title": "AI检测器 - 秒级识别AI生成内容 | detect-ai.me",
-    "description": "专业AI检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI检测器，立即试用。",
-    "keywords": "AI检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
+    "title": "AI图像检测器 - 秒级识别AI生成内容 | detect-ai.me",
+    "description": "专业AI图像检测器工具，识别AI生成的图片、文本和媒体内容。95%+准确率检测深度伪造和AI内容。免费AI图像检测器，立即试用。",
+    "keywords": "AI图像检测器, AI内容检测, 人工智能检测, 深度伪造检测, AI内容识别"
   },
   "header": {
     "brand": {
-      "title": "AI检测器",
+      "title": "AI图像检测器",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "alt": "AI图像检测器"
       },
       "url": "/"
     },
     "nav": {
       "items": [
+        {
+          "title": "检测工具",
+          "icon": "RiRadarLine",
+          "children": [
+            {
+              "title": "AI 图像检测",
+              "url": "/detectImage",
+              "description": "检测 AI 生成的图像。",
+              "icon": "RiImageLine"
+            },
+            {
+              "title": "AI 抄袭检测",
+              "url": "/ai-plagiarism-checker",
+              "description": "检测 AI 撰写的文本。",
+              "icon": "RiFileTextLine"
+            },
+            {
+              "title": "AI 音频检测",
+              "url": "/ai-audio-detector",
+              "description": "检测 AI 生成的音频。",
+              "icon": "RiSoundcloudLine"
+            }
+          ]
+        },
         {
           "title": "功能特点",
           "url": "/#feature",
@@ -46,12 +70,12 @@
     "show_locale": true
   },
   "hero": {
-    "title": "秒级检测AI生成内容",
-    "highlight_text": "AI生成内容",
-    "description": "先进的AI检测器技术，识别人工智能内容并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
+    "title": "秒级检测AI生成图像",
+    "highlight_text": "AI生成图像",
+    "description": "先进的AI图像检测器技术，识别人工智能图像并防范虚假媒体。<br/>保护您免受深度伪造、艺术盗用和内容欺诈的侵害。",
     "announcement": {
       "label": "测试版",
-      "title": "🤖 AI检测器现已全球服务",
+      "title": "🤖 AI图像检测器现已全球服务",
       "url": "/#feature"
     },
     "tip": "🔒 您的内容绝不会被存储",
@@ -60,6 +84,14 @@
   },
   "detection":{
     "uploads":[
+      {
+        "upload_tab": "图片检测",
+        "upload_title": "上传图片文件",
+        "select_tip": "选择图片文件",
+        "drag_drop_text": "拖拽图片到此处，或点击选择",
+        "click_different_file": "点击选择不同的图片",
+        "support_format": "支持 {formats} 格式"
+      },
       {
         "upload_tab": "文本检测",
         "upload_title": "输入文本",
@@ -77,8 +109,8 @@
         "upload_tab": "音频检测",
         "upload_title": "上传音频文件",
         "select_tip": "选择音频文件",
-        "drag_drop_text": "拖拽文件到此处，或点击选择",
-        "click_different_file": "点击选择不同的文件",
+        "drag_drop_text": "拖拽音频到此处，或点击选择",
+        "click_different_file": "点击选择不同的音频",
         "support_format": "支持 {formats} 格式",
         "duration_limit_tip": "支持最长 {seconds} 秒的音频"
       }
@@ -98,28 +130,23 @@
       "invalid_file": "无效文件",
       "preview_failed": "生成图片预览失败",
       "detection_failed": "检测失败",
-      "confidence_level": "整体置信度",
-      "ai_generated": "AI生成：该文本似乎是由人工智能创建的。",
-      "human_created": "人工创作：该文本似乎是由人类撰写的。",
-      "analyze_again": "分析新的文本",
+      "confidence_level": "AI程度",
+      "ai_generated": "AI生成：该文件似乎是由人工智能创建的。",
+      "human_created": "人工创作：该文件似乎是真实的或由人类创作的。",
+      "analyze_again": "重新分析",
       "understand": "理解结果",
-      "confidence_score_desc": "整体分数：代表多个AI检测模型的综合分析结果。分数高于50%表示内容可能为AI生成。",
-      "ai_generated_desc": "个别分数：每个检测模型使用不同算法分析文本模式、写作风格和AI生成内容的语言标记。",
-      "human_created_desc": "人工分数：基于自然写作模式和文体元素，表示文本由人类撰写的可能性。",
-      "individual_detection_scores": "个别检测分数",
-      "human_score": "人工分数",
-      "overall_confidence": "整体置信度",
-      "ai_pattern_detected": "大多数检测模型都认为此内容显示出AI生成文本的典型模式。",
-      "human_pattern_detected": "分析表明此内容显示出更符合人类写作的模式。",
-      "note": "注意：没有任何检测方法可以做到100%准确。在判断内容真实性时，结果应结合其他证据一并考虑。",
+      "confidence_score_desc": "置信度分数：表示AI模型对其预测的确定程度。分数越高表示对结果越有信心。",
+      "ai_generated_desc": "AI生成：图片显示出AI生成内容的典型特征，如特定的人工痕迹、模式或不一致性。",
+      "human_created_desc": "人工创作：图片似乎是通过拍摄、手绘或传统数字艺术方法创作的。",
+      "note": "注意：没有任何检测方法可以做到100%准确。在对图片真实性做出重要判断时，结果应结合其他证据一并考虑。",
       "audio_too_long": "音频时长超出限制。请上传不超过 {seconds} 秒的音频文件。"
     }
   },
   "introduce": {
     "name": "introduce",
-    "title": "什么是AI检测器",
+    "title": "什么是AI图像检测器",
     "label": "产品介绍",
-    "description": "AI检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
+    "description": "AI图像检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
     "image": {
       "src": "/imgs/features/detector.png",
       "alt": "男子在电脑屏幕上检查内容是否为AI生成的插图"
@@ -144,9 +171,9 @@
   },
   "benefit": {
     "name": "benefit",
-    "title": "为什么选择AI检测器",
+    "title": "为什么选择AI图像检测器",
     "label": "优势",
-    "description": "使用我们行业领先的AI检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
+    "description": "使用我们行业领先的AI图像检测器技术，保护您和您的组织免受AI生成内容欺诈的侵害。",
     "items": [
       {
         "title": "打击虚假新闻",
@@ -179,11 +206,11 @@
   },
   "usage": {
     "name": "usage",
-    "title": "如何使用AI检测器",
+    "title": "如何使用AI图像检测器",
     "description": "通过三个简单步骤识别AI生成内容：",
     "image": {
       "src": "/imgs/features/detection-process.png",
-      "alt": "AI检测器处理流程工作图"
+      "alt": "AI图像检测器处理流程工作图"
     },
     "image_position": "left",
     "text_align": "center",
@@ -193,7 +220,7 @@
         "description": "拖放任何文件或粘贴URL。支持图片、文本和其他常见格式。",
         "image": {
           "src": "/imgs/features/upload.png",
-          "alt": "AI检测器内容分析上传界面"
+          "alt": "AI图像检测器内容分析上传界面"
         }
       },
       {
@@ -201,7 +228,7 @@
         "description": "我们的先进算法在几秒内分析内容中AI生成的明显特征。",
         "image": {
           "src": "/imgs/features/analyze.png",
-          "alt": "显示检测过程的AI检测器分析仪表板"
+          "alt": "显示检测过程的AI图像检测器分析仪表板"
         }
       },
       {
@@ -209,14 +236,14 @@
         "description": "收到置信度评分和详细分析，说明内容被标记为AI或人类创作的原因。",
         "image": {
           "src": "/imgs/features/results.png",
-          "alt": "带有置信度评分和分析的AI检测器结果屏幕"
+          "alt": "带有置信度评分和分析的AI图像检测器结果屏幕"
         }
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "AI检测器核心功能",
+    "title": "AI图像检测器核心功能",
     "description": "精准快速识别AI生成内容的先进技术。",
     "items": [
       {
@@ -244,16 +271,16 @@
   "faq": {
     "name": "faq",
     "label": "常见问题",
-    "title": "AI检测器常见问题解答",
+    "title": "AI图像检测器常见问题解答",
     "description": "还有其他问题？请通过邮件联系我们或查看我们的文档。",
     "items": [
       {
-        "title": "AI检测器的准确率如何？",
-        "description": "我们的AI检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
+        "title": "AI图像检测器的准确率如何？",
+        "description": "我们的AI图像检测器在识别AI生成的图片和音频内容方面达到95%以上的准确率。系统基于数百万样本训练，持续更新以检测最新的AI生成技术。"
       },
       {
         "title": "可以检测哪些类型的AI生成内容？",
-        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI检测器识别AI生成特有的常见人工痕迹和模式。"
+        "description": "我们可以检测由DALL-E、Midjourney、Stable Diffusion生成的图片以及AI语音工具生成的音频。我们的AI图像检测器识别AI生成特有的常见人工痕迹和模式。"
       },
       {
         "title": "我的上传内容数据会被存储或共享吗？",
@@ -267,7 +294,7 @@
   },
   "cta": {
     "name": "cta",
-    "title": "立即开始使用AI检测器",
+    "title": "立即开始使用AI图像检测器",
     "description": "保护您免受AI生成内容欺诈和虚假信息的侵害。",
     "buttons": [
       {
@@ -281,15 +308,15 @@
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "AI检测器",
-      "description": "先进的AI检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
+      "title": "AI图像检测器",
+      "description": "先进的AI图像检测器技术，识别人工内容并防范虚假媒体、深度伪造和内容欺诈。",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI检测器"
+        "alt": "AI图像检测器"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • AI检测器 版权所有。",
+    "copyright": "© 2025 • AI图像检测器 版权所有。",
     "nav": {
       "items": [
         {

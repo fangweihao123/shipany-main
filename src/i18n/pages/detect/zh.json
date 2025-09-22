@@ -1,89 +1,157 @@
 {
-  "showcase": {
-    "name": "showcase",
-    "title": "使用 ShipAny 构建的 AI SaaS 创业项目",
-    "description": "易于使用，快速发布。",
+  "intro": {
+    "name": "intro",
+    "title": "专业AI图像检测器",
+    "description": "使用我们先进的机器学习技术自信地检测AI生成的图像。我们的AI图像检测器分析视觉模式和伪影来区分人工创建和人工生成的内容。",
     "items": [
       {
-        "title": "ThinkAny",
-        "description": "AI 搜索引擎",
-        "url": "https://thinkany.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/7.png"
-        }
+        "title": "免费AI检测",
+        "description": "立即开始使用我们的AI图像检测器，包含免费积分。",
+        "icon": "RiGiftLine"
       },
       {
-        "title": "HeyBeauty",
-        "description": "AI 虚拟试妆",
-        "url": "https://heybeauty.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/5.png"
-        }
+        "title": "企业就绪",
+        "description": "通过我们强大的API和企业解决方案扩展您的AI检测需求。",
+        "icon": "RiBuildingLine"
+      }
+    ]
+  },
+  "main": {
+    "title": "上传图像进行AI检测",
+    "description": "只需在下方上传您的图像，我们先进的检测系统将分析人工生成模式。获得带有详细置信度分数和解释的即时结果。",
+    "tech_description": "我们的AI检测技术通过分析图像数据的多个层面来工作，包括像素模式、压缩伪影和AI工具（如DALL-E、Midjourney和Stable Diffusion）特有的生成签名。",
+    "use_cases": "无论您是验证真实性的内容创作者、事实核查图像的记者，还是保护品牌完整性的企业，我们的检测服务都能提供您需要的可靠分析，以自信地识别AI生成的内容。"
+  },
+  "detection": {
+    "uploads": [
+      {
+        "upload_tab": "图像检测",
+        "upload_title": "上传图像文件",
+        "select_tip": "选择图像文件",
+        "drag_drop_text": "将图像拖放到此处，或点击选择",
+        "click_different_file": "点击选择不同的图像",
+        "support_format": "支持 {formats}"
+      }
+    ],
+    "state": {
+      "uploading": "上传中...",
+      "analyzing": "分析中...",
+      "processing": "处理中...",
+      "detection_complete": "检测完成",
+      "detect_ai_generation": "检测AI生成",
+      "auth_required": "请登录以使用AI图像检测。正在跳转到登录页面..."
+    },
+    "detectResult": {
+      "result_detail": "检测结果将显示在这里",
+      "insufficient_credits": "余额不足。您需要至少1个积分进行检测。请升级您的计划。",
+      "unable_verify_credits": "无法验证积分。请重试。",
+      "invalid_file": "无效文件",
+      "preview_failed": "生成图像预览失败",
+      "detection_failed": "检测失败",
+      "confidence_level": "AI等级",
+      "ai_generated": "AI生成：此图像似乎由人工智能创建。",
+      "human_created": "人工创建：此图像似乎是真实的或人工创建的。",
+      "analyze_again": "重新分析",
+      "understand": "理解结果",
+      "confidence_score_desc": "置信度分数：表示AI模型对其预测的确定程度。分数越高意味着对结果越有信心。",
+      "ai_generated_desc": "AI生成：图像显示AI生成内容的典型特征，如特定的伪影、模式或不一致性。",
+      "human_created_desc": "人工创建：图像似乎是拍摄的、手绘的或通过传统数字艺术方法创建的。",
+      "note": "注意：没有检测方法是100%准确的。在对图像真实性做出重要决定时，应将结果与其他证据一起考虑。"
+    }
+  },
+  "feature": {
+    "name": "feature",
+    "title": "AI图像检测器的关键特性",
+    "description": "先进技术精准快速识别AI生成的图像。",
+    "items": [
+      {
+        "title": "高精度检测",
+        "description": "我们的AI图像检测器使用最先进的机器学习模型，在识别AI生成图像方面达到超过95%的准确率。",
+        "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "AI Wallpaper",
-        "description": "AI 壁纸生成器",
-        "url": "https://aiwallpaper.shop",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/1.png"
-        }
+        "title": "即时结果",
+        "description": "使用我们闪电般快速的AI图像检测技术，在几秒钟内处理图像并获得即时分析结果。",
+        "icon": "RiFlashlightLine"
       },
       {
-        "title": "AI Cover",
-        "description": "AI 封面生成器",
-        "url": "https://aicover.design",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/2.png"
-        }
+        "title": "隐私保护",
+        "description": "您上传的图像在我们的服务器上安全处理且从不存储，确保完全的隐私保护。",
+        "icon": "RiShieldCheckLine"
       },
       {
-        "title": "GPTs Works",
-        "description": "GPTs 目录",
-        "url": "https://gpts.works",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/3.png"
-        }
+        "title": "多种AI模型",
+        "description": "检测来自各种AI生成器的图像，包括DALL-E、Midjourney、Stable Diffusion和其他流行的AI图像工具。",
+        "icon": "RiBrainLine"
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "我们的AI图像检测器如何工作",
+    "description": "我们的AI检测过程分析图像数据的多个层面以提供准确结果。",
+    "items": [
+      {
+        "title": "上传图像",
+        "description": "简单地拖放或选择任何图像文件。我们的系统支持所有主要格式，包括JPG、PNG和WebP。"
       },
       {
-        "title": "Melodisco",
-        "description": "AI 音乐播放器",
-        "url": "https://melodis.co",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/4.png"
-        }
+        "title": "AI分析",
+        "description": "先进的神经网络检查像素模式、压缩伪影和AI工具典型的生成签名。"
       },
       {
-        "title": "Pagen",
-        "description": "AI 落地页生成器",
-        "url": "https://pagen.so",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/6.png"
-        }
+        "title": "即时结果",
+        "description": "在几秒钟内收到详细分析，显示置信度分数和特定的AI生成指标。"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "为什么选择我们的AI图像检测器",
+    "description": "受到全球内容创作者、记者和企业信赖的可靠AI检测。",
+    "items": [
+      {
+        "title": "保护您的品牌",
+        "description": "确保营销材料的真实性，防止AI生成的内容损害您的品牌完整性。",
+        "icon": "RiShieldLine"
       },
       {
-        "title": "SoraFM",
-        "description": "AI 视频生成器",
-        "url": "https://sorafm.trys.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/8.png"
-        }
+        "title": "内容验证",
+        "description": "验证用户生成内容和提交的真实性，以维护平台质量和信任。",
+        "icon": "RiVerifiedBadgeLine"
       },
       {
-        "title": "PodLM",
-        "description": "AI 播客生成器",
-        "url": "https://podlm.ai",
-        "target": "_blank",
-        "image": {
-          "src": "/imgs/showcases/9.png"
-        }
+        "title": "研究与教育",
+        "description": "通过为学术工作提供可靠的AI检测来支持学术研究和教育倡议。",
+        "icon": "RiBookOpenLine"
+      },
+      {
+        "title": "媒体验证",
+        "description": "帮助记者和新闻机构验证图像真实性以对抗错误信息。",
+        "icon": "RiNewspaperLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "title": "常见问题",
+    "description": "关于我们AI图像检测器服务的常见问题。",
+    "items": [
+      {
+        "title": "AI图像检测器的准确率如何？",
+        "description": "我们的AI图像检测器在识别AI生成图像方面达到超过95%的准确率。系统持续在来自各种AI生成器的数百万图像样本上进行训练。"
+      },
+      {
+        "title": "支持哪些图像格式？",
+        "description": "AI图像检测器支持常见的图像格式，包括JPG、PNG、WebP和GIF文件，最大10MB。"
+      },
+      {
+        "title": "我上传的图像会被存储吗？",
+        "description": "不会，我们优先考虑您的隐私。上传的图像实时处理并在分析后立即删除。我们从不存储或共享您的内容。"
+      },
+      {
+        "title": "能检测所有AI生成器的图像吗？",
+        "description": "我们的AI图像检测器可以识别来自大多数流行AI生成器的图像，包括DALL-E、Midjourney、Stable Diffusion等。我们持续更新模型以检测新的AI生成技术。"
       }
     ]
   }

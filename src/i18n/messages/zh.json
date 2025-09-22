@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "AI检测器 - 即时检测AI内容 | detect-ai.me",
-    "description": "专业的AI检测工具，支持图像、文本和媒体。95%以上准确率检测深度伪造和AI内容。免费工具，实时结果，帮助防范AI欺诈。",
-    "keywords": "AI检测器, AI检测, 深度伪造检测, AI内容验证, 虚假内容检测"
+    "title": "AI图像检测器 - 即时检测AI生成图像 | detect-ai.me",
+    "description": "专业的AI图像检测工具，识别AI生成的图像。95%以上准确率检测深度伪造和AI图像。免费工具，实时结果，帮助防范AI图像欺诈。",
+    "keywords": "AI图像检测器, AI图像检测, 深度伪造检测, AI图像验证, 虚假图像检测"
   },
   "user": {
     "sign_in": "登录",

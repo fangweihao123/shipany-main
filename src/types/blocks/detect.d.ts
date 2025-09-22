@@ -48,7 +48,8 @@ export interface DetectResult{
 }
 
 export interface Detection{
-  uploads?: Upload[],
-  state?: State,
-  detectResult?: DetectResult
+  uploads?: Upload[];
+  state?: State;
+  detectResult?: DetectResult;
+  max_audio_length?: number;
 }

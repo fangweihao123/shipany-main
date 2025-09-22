@@ -251,6 +251,7 @@ export default function DetectMusicInline({ _upload, _state, _detectResult, max_
             upload={_upload}
             fileDuration={max_audio_length}
             supportType={["mp3","wav"]}
+            filescope={"audio/*"}
         />
         {/* File Info */}
         {fileState.file && fileState.isValid && (

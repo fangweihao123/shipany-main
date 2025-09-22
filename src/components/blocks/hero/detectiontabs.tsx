@@ -2,7 +2,8 @@
 import { useMemo, useState } from "react";
 import DetectMusicInline from "@/components/detect/detmusicinline";
 import DetectTextInline from "@/components/detect/detextinline";
-import { Volume2, FileText } from "lucide-react";
+import DetectInline from "@/components/detect/deimginline";
+import { Volume2, FileText, Image } from "lucide-react";
 import { Detection } from "@/types/blocks/detect";
 import DetectInline from "@/components/detect/deimginline";
 import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
@@ -25,9 +26,9 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
                   {i === 0 ? (
-                    <FileText className="w-4 h-4 mr-2" />
+                    <Image className="w-4 h-4 mr-2" />
                   ) : (
-                    <Volume2 className="w-4 h-4 mr-2" />
+                    i === 1 ? <FileText className="w-4 h-4 mr-2" /> : <Volume2 className="w-4 h-4 mr-2" />
                   )}
                   {u.upload_tab || u.upload_title}
                 </button>
@@ -39,9 +40,11 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
         <section id="detect-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
             {activeIndex === 0 ? (
-              <UnwatermarkBlock _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} />
+              <DetectInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
             ) : (
+              activeIndex === 1 ? 
               <DetectTextInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
+              : <DetectMusicInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} max_audio_length={30} />
             )}
           </div>
         </section>

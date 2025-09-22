@@ -9,7 +9,21 @@
   </url>
   
   <url>
-    <loc>https://detect-ai.me/detect</loc>
+    <loc>https://detect-ai.me/detectImage</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://detect-ai.me/ai-plagiarism-checker</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://detect-ai.me/ai-audio-detector</loc>
     <lastmod>2025-01-20T10:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -36,43 +50,6 @@
     <priority>0.6</priority>
   </url>
   
-  <!-- Use Cases -->
-  <url>
-    <loc>https://detect-ai.me/security</loc>
-    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://detect-ai.me/journalism</loc>
-    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://detect-ai.me/legal</loc>
-    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <!-- Resources -->
-  <url>
-    <loc>https://detect-ai.me/api-docs</loc>
-    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://detect-ai.me/guide</loc>
-    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
   <!-- Legal Pages -->
   <url>
     <loc>https://detect-ai.me/privacy-policy</loc>
@@ -94,6 +71,27 @@
     <lastmod>2025-01-20T10:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://detect-ai.me/zh/detectImage</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://detect-ai.me/zh/ai-plagiarism-checker</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://detect-ai.me/zh/ai-audio-detector</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>

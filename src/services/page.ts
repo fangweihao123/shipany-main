@@ -1,4 +1,5 @@
-import { LandingPage, PricingPage, ShowcasePage, DetectPage } from "@/types/pages/landing";
+import { LandingPage, PricingPage, ShowcasePage } from "@/types/pages/landing";
+import { DetectPage } from "@/types/pages/detect";
 
 export async function getLandingPage(locale: string): Promise<LandingPage> {
   return (await getPage("landing", locale)) as LandingPage;
@@ -14,6 +15,14 @@ export async function getDetectPage(locale: string): Promise<DetectPage> {
 
 export async function getShowcasePage(locale: string): Promise<ShowcasePage> {
   return (await getPage("showcase", locale)) as ShowcasePage;
+}
+
+export async function getAIPlagiarismPage(locale: string): Promise<DetectPage> {
+  return (await getPage("ai-plagiarism-checker", locale)) as DetectPage;
+}
+
+export async function getAIAudioDetectorPage(locale: string): Promise<DetectPage> {
+  return (await getPage("ai-audio-detector", locale)) as DetectPage;
 }
 
 export async function getPage(
