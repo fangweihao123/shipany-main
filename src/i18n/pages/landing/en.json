@@ -221,7 +221,8 @@
           "alt": "Vercel"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "introduce": {
     "name": "introduce",
@@ -385,7 +386,8 @@
           "src": "/imgs/users/1.png"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "showcase1": {
     "name": "showcase1",
@@ -441,7 +443,8 @@
           "src": "/imgs/users/1.png"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "stats": {
     "name": "stats",
@@ -464,7 +467,8 @@
         "label": "5",
         "description": "Minutes"
       }
-    ]
+    ],
+    "disabled": true
   },
   "testimonial": {
     "name": "testimonial",
@@ -521,7 +525,8 @@
           "src": "/imgs/users/6.png"
         }
       }
-    ]
+    ],
+    "disabled": true
   },
   "faq": {
     "name": "faq",
