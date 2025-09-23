@@ -9,6 +9,13 @@
   </url>
 
   <url>
+    <loc>https://www.ai-nanobanana.net/posts.xml</loc>
+    <lastmod>2025-01-20T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.ai-nanobanana.net/pricing</loc>
     <lastmod>2025-02-15T10:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
