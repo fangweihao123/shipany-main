@@ -16,6 +16,7 @@ if (!API_KEY) {
   console.error('UNDETECTABLE_AI_API_KEY is not set in environment variables');
 }
 
+
 async function getPreSignedUrl(data: PreSignedUrlRequest): Promise<PreSignedUrlResponse> {
   const response = await fetch(`${API_BASE_URL}/get-presigned-url?file_name=${data.file_name}`, {
     method: 'GET',
