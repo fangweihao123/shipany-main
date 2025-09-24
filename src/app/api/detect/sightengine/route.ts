@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
   SightengineDetectionResponse,
-  UnifiedDetectionResponse,
   ApiErrorResponse
 } from '@/types/detect';
+import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { getUserUuid } from '@/services/user';
 
 const API_BASE_URL = 'https://api.sightengine.com/1.0/check.json';
 const API_USER = process.env.SIGHTENGINE_API_USER;
@@ -35,12 +36,22 @@ async function detectImageWithSightengine(file: File): Promise<SightengineDetect
     throw new Error(`Sightengine API failed: ${JSON.stringify(data)}`);
   }
 
+  // Decrease credits after successful detection
+  const user_uuid = await getUserUuid();
+  if (user_uuid) {
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 4,
+    });
+  }
+
   return data as SightengineDetectionResponse;
 }
 
 function transformSightengineResponse(
   sightengineResponse: SightengineDetectionResponse
-): UnifiedDetectionResponse {
+): any {
   const aiScore = sightengineResponse.type.ai_generated;
   
   // Sightengine returns a score from 0 to 1, where higher values indicate AI-generated content
@@ -48,15 +59,16 @@ function transformSightengineResponse(
   const confidence = Math.round(aiScore * 100);
   const isAIGenerated = aiScore > 0.5; // Threshold: 50%
   
+  // Transform to match the expected frontend structure
   return {
+    result: isAIGenerated ? confidence : 100 - confidence, // confidence score as number
+    result_details: {
+      final_result: isAIGenerated ? "AI Generated" : "Not AI Generated"
+    },
     success: true,
     provider: 'sightengineimg',
-    result: {
-      prediction: isAIGenerated ? "AI Generated" : "Not AI Generated",
-      confidence: isAIGenerated ? confidence : 100 - confidence,
-      confidence_percentage: `${isAIGenerated ? confidence : 100 - confidence}%`,
-      raw_score: aiScore,
-    },
+    confidence_percentage: `${isAIGenerated ? confidence : 100 - confidence}%`,
+    raw_score: aiScore,
     request_id: sightengineResponse.request.id,
     image_url: sightengineResponse.media.uri,
     processing_time: Date.now() / 1000 - sightengineResponse.request.timestamp,

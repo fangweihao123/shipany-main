@@ -8,7 +8,6 @@ import { Upload, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucid
 import {
   DetectionState,
   FileUploadState,
-  DetectionQueryRequest,
   DetectionImageQueryResponse
 } from '@/types/detect';
 import {
@@ -16,8 +15,7 @@ import {
   validateFile,
   getImagePreview,
   formatFileSize,
-  getDefaultProvider,
-  pollDetectionResult
+  getDefaultProvider
 } from '@/services/detect';
 
 import { DetectionImageResult } from './detimgresult';
@@ -64,7 +62,7 @@ export default function DetectInline({ _upload, _state, _detectResult }: { _uplo
     }));
 
     // Validate file
-    const validation = validateFile(file, "undetectableimg");
+    const validation = validateFile(file, "sightengineimg");
     if (!validation.isValid) {
       setFileState({
         file: null,
@@ -148,26 +146,13 @@ export default function DetectInline({ _upload, _state, _detectResult }: { _uplo
     
 
     try {
-      const result = await detectImage(fileState.file, "undetectableimg");
-      setDetectionState(prev => ({
-        ...prev,
-        isUploading: false,
-        isDetecting: true,
-        isFinished: false,
-        result: result,
-        error: null,
-      }));
-      const request : DetectionQueryRequest = {
-        type: "image",
-        id: result.id
-      };
-      const queryResult = await pollDetectionResult(request);
+      const result = await detectImage(fileState.file, "sightengineimg");
       setDetectionState(prev => ({
         ...prev,
         isUploading: false,
         isDetecting: false,
         isFinished: true,
-        result: queryResult,
+        result: result,
         error: null,
       }));
     } catch (error) {

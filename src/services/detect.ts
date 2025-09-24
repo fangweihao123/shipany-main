@@ -72,7 +72,7 @@ export class DetectionError extends Error {
 // Get default provider from environment or fallback to sightengine
 export function getDefaultProvider(): DetectionProvider {
   const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as DetectionProvider;
-  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'undetectableimg';
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'sightengineimg';
 }
 
 //调用放在client
