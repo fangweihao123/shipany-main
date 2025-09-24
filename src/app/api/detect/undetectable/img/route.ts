@@ -60,14 +60,13 @@ async function detectImage(data: DetectionImgRequest): Promise<DetectionImgRespo
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
   const user_uuid = await getUserUuid();
-  if (!user_uuid){
-    throw new Error("Please Login First");
+  if (user_uuid){
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 4,
+    });
   }
-  await decreaseCredits({
-    user_uuid,
-    trans_type: CreditsTransType.Ping,
-    credits: 1,
-  });
   return response.json();
 }
 

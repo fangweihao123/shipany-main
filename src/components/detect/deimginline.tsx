@@ -26,6 +26,7 @@ import { Upload as DetectUpload, State, DetectResult } from "@/types/blocks/dete
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
+import { useTrial } from '@/lib/trial';
 
 export default function DetectInline({ _upload, _state, _detectResult }: { _upload?: DetectUpload, _state?: State, _detectResult?: DetectResult }) {
   const { status } = useSession();
@@ -98,9 +99,41 @@ export default function DetectInline({ _upload, _state, _detectResult }: { _uplo
 
     // Require auth before detection
     if (status === 'unauthenticated') {
-      setShowAuthDialog(true);
-      setTimeout(() => router.push('/auth/signin'), 1200);
-      return;
+      if(!useTrial()){
+        setShowAuthDialog(true);
+        setTimeout(() => router.push('/auth/signin'), 2200);
+        return;
+      }
+    }else{
+      try {
+        const creditsResponse = await fetch('/api/get-user-credits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const creditsData = await creditsResponse.json();
+        
+        if (creditsData.message !== "ok" || creditsData.data?.left_credits < 4) {
+          setDetectionState(prev => ({
+            ...prev,
+            isLoading: false,
+            isUploading: false,
+            isDetecting: false,
+            isFinished: false,
+            error: _detectResult?.insufficient_credits ?? 'Insufficient credits. You need at least 4 credit for detection. Please upgrade your plan.',
+          }));
+          return;
+        }
+      } catch (error) {
+        setDetectionState(prev => ({
+          ...prev,
+          isLoading: false,
+          isUploading: false,
+          isDetecting: false,
+          isFinished: false,
+          error: _detectResult?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
+        }));
+        return;
+      }
     }
 
     setDetectionState(prev => ({
@@ -112,35 +145,7 @@ export default function DetectInline({ _upload, _state, _detectResult }: { _uplo
     }));
 
     // Check credits before detection
-    try {
-      const creditsResponse = await fetch('/api/get-user-credits', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      const creditsData = await creditsResponse.json();
-      
-      if (creditsData.message !== "ok" || creditsData.data?.left_credits < 1) {
-        setDetectionState(prev => ({
-          ...prev,
-          isLoading: false,
-          isUploading: false,
-          isDetecting: false,
-          isFinished: false,
-          error: _detectResult?.insufficient_credits ?? 'Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.',
-        }));
-        return;
-      }
-    } catch (error) {
-      setDetectionState(prev => ({
-        ...prev,
-        isLoading: false,
-        isUploading: false,
-        isDetecting: false,
-        isFinished: false,
-        error: _detectResult?.unable_verify_credits ?? 'Unable to verify credits. Please try again.',
-      }));
-      return;
-    }
+    
 
     try {
       const result = await detectImage(fileState.file, "undetectableimg");

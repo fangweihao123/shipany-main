@@ -62,6 +62,15 @@ async function detectAudio(data: DetectionAudRequest): Promise<DetectionAudioRes
     throw new Error(`Failed to detect audio: ${response.statusText}`);
   }
 
+  const user_uuid = await getUserUuid();
+  if (!user_uuid){
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits: 4,
+    });
+  }
+
   return response.json();
 }
 
@@ -167,15 +176,6 @@ export async function POST(request: NextRequest) {
 
     const detectionResponse = await detectAudio(detectionData);
     
-    const user_uuid = await getUserUuid();
-    if (!user_uuid){
-      throw new Error("Please Login First");
-    }
-    await decreaseCredits({
-      user_uuid,
-      trans_type: CreditsTransType.Ping,
-      credits: 1,
-    });
 
     return NextResponse.json(detectionResponse);
 

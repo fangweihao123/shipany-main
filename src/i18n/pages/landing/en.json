@@ -71,7 +71,7 @@
   },
   "hero": {
     "title": "Detect AI-Generated Images in Seconds",
-    "highlight_text": "AI-Generated Content",
+    "highlight_text": "AI-Generated Images",
     "description": "Advanced detection technology to identify artificial images and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
     "announcement": {
       "label": "BETA",
@@ -88,7 +88,7 @@
     "processing": "Processing...",
     "detection_complete": "Detection Complete",
     "detect_ai_generation": "Detect AI Generation",
-    "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
+    "auth_required": "Run out of free credits. Login to obtain extra credits.Redirecting to login page..."
   },
   "detectResult": {
     "result_detail": "Detection results will appear here",
