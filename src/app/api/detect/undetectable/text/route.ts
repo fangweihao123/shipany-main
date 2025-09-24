@@ -30,19 +30,17 @@ async function detectText(data: DetectionTextRequest): Promise<DetectionTextResp
   }
 
   const user_uuid = await getUserUuid();
-  if (!user_uuid) {
-    throw new Error("Please Login First");
+  if (user_uuid) {
+    // Calculate credits based on word count (0.1 credits per word)
+    const wordCount = data.text.trim().split(/\s+/).length;
+    const credits = Math.ceil(wordCount * 0.01);
+
+    await decreaseCredits({
+      user_uuid,
+      trans_type: CreditsTransType.Ping,
+      credits,
+    });
   }
-
-  // Calculate credits based on word count (0.1 credits per word)
-  const wordCount = data.text.trim().split(/\s+/).length;
-  const credits = Math.ceil(wordCount * 0.01);
-
-  await decreaseCredits({
-    user_uuid,
-    trans_type: CreditsTransType.Ping,
-    credits,
-  });
 
   return response.json();
 }

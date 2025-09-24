@@ -29,10 +29,11 @@ export function canUseTextTrial(): boolean{
 }
 
 export function useTextTrial(wordsCount: number): boolean{
-    if(!getTextTrialState()) return false;
+    if(!canUseTextTrial()) return false;
 
     const state = getTextTrialState();
     state.usedCount += wordsCount;
+    console.log("text trial ", state.usedCount)
     
     localStorage.setItem(TRIAL_KEY, JSON.stringify(state));
     sessionStorage.setItem(SESSION_KEY, JSON.stringify(state));
