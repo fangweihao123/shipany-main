@@ -1,3 +1,5 @@
+export type detectType = "detectimage" | "detecttext" | "detectaudio";
+
 export interface Upload{
   upload_tab?: string;
   upload_title?: string;
@@ -12,6 +14,8 @@ export interface Upload{
   file_upload_label?: string;
   word_count?: string;
   min_words_tip?: string;
+  icon?: string;
+  type?: detectType;
 }
 
 export interface State{
@@ -49,7 +53,5 @@ export interface DetectResult{
 
 export interface Detection{
   uploads?: Upload[];
-  state?: State;
-  detectResult?: DetectResult;
   max_audio_length?: number;
 }

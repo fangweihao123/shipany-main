@@ -3,17 +3,35 @@ import { useMemo, useState } from "react";
 import DetectMusicInline from "@/components/detect/detmusicinline";
 import DetectTextInline from "@/components/detect/detextinline";
 import DetectInline from "@/components/detect/deimginline";
-import { Volume2, FileText, Image } from "lucide-react";
-import { Detection } from "@/types/blocks/detect";
+import { Detection, DetectResult, State } from "@/types/blocks/detect";
+import Icon from "@/components/icon";
 
-export default function DetectionTabs({ detection }: { detection: Detection }){
+export default function DetectionTabs({ detection, state, detectResult }: { detection: Detection, state: State, detectResult: DetectResult}){
   const uploads = useMemo(() => detection?.uploads ?? [], [detection]);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const DetectionTypeSelector = () => {
+    switch(uploads[activeIndex].type){
+      case "detecttext":
+        return (
+          <DetectTextInline _upload={uploads[activeIndex]} _state={state} _detectResult={detectResult}/>
+        );
+      case "detectaudio":
+        return (
+          <DetectMusicInline _upload={uploads[activeIndex]} _state={state} _detectResult={detectResult} max_audio_length={30} />
+        );
+      case "detectimage":
+        return (
+          <DetectInline _upload={uploads[activeIndex]} _state={state} _detectResult={detectResult}/>
+        );
+    }
+    return (<div></div>);
+  };
   
   return (
     <div id="detect" className="container">
         {/* Tab Navigation */}
-        {uploads.length > 0 && (
+        {uploads.length > 1 && (
           <div className="flex justify-center mb-6">
             <div className="inline-flex rounded-lg border p-1">
               {uploads.map((u, i) => (
@@ -23,11 +41,7 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
                 className={`px-4 py-2 rounded-md flex items-center ${activeIndex === i? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
-                  {i === 0 ? (
-                    <Image className="w-4 h-4 mr-2" />
-                  ) : (
-                    i === 1 ? <FileText className="w-4 h-4 mr-2" /> : <Volume2 className="w-4 h-4 mr-2" />
-                  )}
+                  <Icon name={u.icon as string} className="size-6"/>
                   {u.upload_tab || u.upload_title}
                 </button>
               ))}
@@ -37,13 +51,7 @@ export default function DetectionTabs({ detection }: { detection: Detection }){
         {/* Detection Area */}
         <section id="detect-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
-            {activeIndex === 0 ? (
-              <DetectInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
-            ) : (
-              activeIndex === 1 ? 
-              <DetectTextInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult}/>
-              : <DetectMusicInline _upload={uploads[activeIndex]} _state={detection.state} _detectResult={detection.detectResult} max_audio_length={30} />
-            )}
+            {DetectionTypeSelector()}
           </div>
         </section>
       </div>

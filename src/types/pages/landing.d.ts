@@ -8,6 +8,14 @@ import { Detection } from "@/types/blocks/detect"
 export interface LandingPage {
   header?: Header;
   hero?: Hero;
+  state?: State;
+  detectResult?: DetectResult;
+  detection?: Detection;
+  texthero?: Hero;
+  textdetection?: Detection;
+  audiohero?: Hero;
+  audiodetection?: Detection;
+  hero?: Hero;
   detection?: Detection;
   branding?: Section;
   introduce?: Section;

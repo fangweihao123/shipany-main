@@ -290,7 +290,7 @@ export default function DetectTextInline({ _upload, _state, _detectResult }: { _
                   <div className="grid gap-2 text-sm">
                     {detectionState.result.result_details && (
                       <>
-                        <div className="flex justify-between items-center p-2 bg-green-50 rounded border border-green-200">
+                        <div className="flex justify-between items-center p-2 bg-background rounded border">
                           <span className="font-medium">{_detectResult?.human_score ?? 'Human Score'}</span>
                           <Badge variant="outline" className="bg-green-100 text-green-800">
                             {Math.round(detectionState.result.result_details.human)}%

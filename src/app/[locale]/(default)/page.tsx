@@ -51,7 +51,18 @@ export default async function LandingPage({
   return (
     <>
       {page.hero && <Hero hero={page.hero} />}
-      {page.detection && <DetectionTabs detection={page.detection}/>}
+      {page.detection && page.state && page.detectResult && 
+      <DetectionTabs 
+      detection={page.detection} 
+      state={page.state} 
+      detectResult={page.detectResult}/>}
+      {page.texthero && <Hero hero={page.texthero} />}
+
+      {page.textdetection && page.state && page.detectResult && 
+      <DetectionTabs 
+      detection={page.textdetection}
+      state={page.state} 
+      detectResult={page.detectResult}/>}
       {page.branding && <Branding section={page.branding} />}
       {page.introduce && <Feature1 section={page.introduce} />}
       {page.benefit && <Feature2 section={page.benefit} />}

@@ -82,6 +82,33 @@
     "show_happy_users": true,
     "show_badge": false
   },
+  "state": {
+    "uploading": "Uploading...",
+    "analyzing": "Analyzing...",
+    "processing": "Processing...",
+    "detection_complete": "Detection Complete",
+    "detect_ai_generation": "Detect AI Generation",
+    "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
+  },
+  "detectResult": {
+    "result_detail": "Detection results will appear here",
+    "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+    "unable_verify_credits": "Unable to verify credits. Please try again.",
+    "invalid_file": "Invalid file",
+    "preview_failed": "Failed to generate image preview",
+    "detection_failed": "Detection failed",
+    "confidence_level": "AI Level",
+    "human_score": "Human Score",
+    "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
+    "human_created": "Human Created: This file appears to be authentic or human-created.",
+    "analyze_again": "Analyze Again",
+    "understand": "Understanding the Results",
+    "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
+    "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
+    "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
+    "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity.",
+    "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
+  },
   "detection":{
     "uploads":[
       {
@@ -90,8 +117,33 @@
         "select_tip": "Select image file",
         "drag_drop_text": "Drag and drop your image here, or click to select",
         "click_different_file": "Click to select a different image",
-        "support_format": "Supports {formats}"
+        "support_format": "Supports {formats}",
+        "icon": "RiImage2Fill",
+        "type": "detectimage"
       },
+      {
+        "upload_tab": "Audio Detection",
+        "upload_title": "Upload an audio file",
+        "select_tip": "Select audio file",
+        "drag_drop_text": "Drag and drop your audio here, or click to select",
+        "click_different_file": "Click to select a different audio",
+        "support_format": "Supports {formats}",
+        "duration_limit_tip": "Supports up to {seconds}s audio",
+        "icon": "RiMusic2Line",
+        "type": "detectaudio"
+      }
+    ]
+  },
+  "texthero": {
+    "title": "Detect AI-Generated Text in Seconds",
+    "highlight_text": "AI-Generated Text",
+    "description": "Advanced AI text detector technology that identifies artificial intelligence images and prevents fake media.<br/>Protect yourself from deepfakes.",
+    "tip": "🔒 Your content will never be stored",
+    "show_happy_users": false,
+    "show_badge": false
+  },
+  "textdetection":{
+    "uploads":[
       {
         "upload_tab": "Text Detection",
         "upload_title": "Enter text",
@@ -103,44 +155,11 @@
         "text_input_label": "Enter Text",
         "file_upload_label": "Or Upload Text File",
         "word_count": "{count} words",
-        "min_words_tip": "Minimum 200 words recommended for best accuracy"
-      },
-      {
-        "upload_tab": "Audio Detection",
-        "upload_title": "Upload an audio file",
-        "select_tip": "Select audio file",
-        "drag_drop_text": "Drag and drop your audio here, or click to select",
-        "click_different_file": "Click to select a different audio",
-        "support_format": "Supports {formats}",
-        "duration_limit_tip": "Supports up to {seconds}s audio"
+        "min_words_tip": "Minimum 200 words recommended for best accuracy",
+        "icon": "RiTextSnippet",
+        "type": "detecttext"
       }
-    ],
-    "state": {
-      "uploading": "Uploading...",
-      "analyzing": "Analyzing...",
-      "processing": "Processing...",
-      "detection_complete": "Detection Complete",
-      "detect_ai_generation": "Detect AI Generation",
-      "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
-    },
-    "detectResult": {
-      "result_detail": "Detection results will appear here",
-      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
-      "unable_verify_credits": "Unable to verify credits. Please try again.",
-      "invalid_file": "Invalid file",
-      "preview_failed": "Failed to generate image preview",
-      "detection_failed": "Detection failed",
-      "confidence_level": "AI Level",
-      "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
-      "human_created": "Human Created: This file appears to be authentic or human-created.",
-      "analyze_again": "Analyze Again",
-      "understand": "Understanding the Results",
-      "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
-      "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
-      "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
-      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity.",
-      "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
-    }
+    ]
   },
   "imageGenerator": {
     "promptEngine":{
