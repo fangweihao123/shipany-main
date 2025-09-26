@@ -5,6 +5,13 @@ interface StorageConfig {
   secretKey: string;
 }
 
+interface PresignedUrlOptions {
+  key: string;
+  contentType?: string;
+  bucket?: string;
+  expiresIn?: number; // seconds, default 900 (15 minutes)
+}
+
 export function newStorage(config?: StorageConfig) {
   return new Storage(config);
 }
@@ -66,7 +73,7 @@ export class Storage {
     const request = new Request(url, {
       method: "PUT",
       headers,
-      body: bodyArray,
+      body: bodyArray as BodyInit,
     });
 
     const response = await client.fetch(request);
@@ -118,5 +125,56 @@ export class Storage {
       contentType,
       disposition,
     });
+  }
+
+  async generatePresignedUrl(options: PresignedUrlOptions) {
+    const {
+      key,
+      contentType = "application/octet-stream",
+      bucket,
+      expiresIn = 900, // 15 minutes default
+    } = options;
+
+    const uploadBucket = bucket || this.bucket;
+    if (!uploadBucket) {
+      throw new Error("Bucket is required");
+    }
+
+    const { AwsClient } = await import("aws4fetch");
+
+    const client = new AwsClient({
+      accessKeyId: this.accessKeyId,
+      secretAccessKey: this.secretAccessKey,
+      region: this.region,
+    });
+
+    const url = `${this.endpoint}/${uploadBucket}/${key}`;
+    const expirationDate = new Date(Date.now() + expiresIn * 1000);
+
+    // Create presigned URL for PUT request
+    const request = new Request(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": contentType,
+      },
+    });
+
+    const signedRequest = await client.sign(request, {
+      aws: { signQuery: true },
+    });
+
+    return {
+      url: signedRequest.url,
+      method: "PUT",
+      headers: {
+        "Content-Type": contentType,
+      },
+      key,
+      bucket: uploadBucket,
+      expiresAt: expirationDate.toISOString(),
+      publicUrl: process.env.STORAGE_DOMAIN
+        ? `${process.env.STORAGE_DOMAIN}/${key}`
+        : url,
+    };
   }
 }
