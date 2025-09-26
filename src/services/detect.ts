@@ -8,6 +8,12 @@ import {
   DetectionQueryRequest,
   TextInputState
 } from '@/types/detect';
+import {
+  R2DetectionRequest,
+  getPresignedUrl,
+  uploadToR2,
+  FileOperationError
+} from '@/lib/utils';
 import { stat } from 'fs';
 import { resolve } from 'path';
 
@@ -155,9 +161,11 @@ export async function pollDetectionResult(request:DetectionQueryRequest): Promis
   throw new Error('Detection timeout');
 }
 
+
 export async function detectImage(file: File, provider?: DetectionProvider): Promise<DetectionImgResponse> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
+  
   // Validate file with provider-specific limits
   const validation = validateFile(file, selectedProvider);
   if (!validation.isValid) {
@@ -165,30 +173,79 @@ export async function detectImage(file: File, provider?: DetectionProvider): Pro
   }
 
   const config = PROVIDER_CONFIGS[selectedProvider];
-  const formData = new FormData();
-  formData.append('file', file);
 
   try {
-    const response = await fetch(config.endpoint, {
-      method: 'POST',
-      body: formData,
-    });
+    // Use R2 upload for sightengine to avoid Vercel size limits
+    if (selectedProvider === 'sightengineimg') {
+      // Step 1: Get presigned URL
+      const presignedData = await getPresignedUrl(file);
+      
+      // Step 2: Upload file to R2
+      await uploadToR2(file, presignedData);
+      
+      // Step 3: Call detection API with R2 URL
+      const detectionRequest: R2DetectionRequest = {
+        fileUrl: presignedData.publicUrl,
+        provider: selectedProvider,
+        filename: file.name,
+        contentType: file.type,
+      };
 
-    const data = await response.json();
+      const response = await fetch(config.endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(detectionRequest),
+      });
 
-    if (!response.ok) {
-      const errorData = data as ApiErrorResponse;
-      throw new DetectionError(
-        errorData.error.message,
-        errorData.error.code,
-        errorData.error.details
-      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        const errorData = data as ApiErrorResponse;
+        throw new DetectionError(
+          errorData.error.message,
+          errorData.error.code,
+          errorData.error.details
+        );
+      }
+
+      return data as DetectionImgResponse;
+    } else {
+      // Use direct upload for other providers (legacy support)
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch(config.endpoint, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        const errorData = data as ApiErrorResponse;
+        throw new DetectionError(
+          errorData.error.message,
+          errorData.error.code,
+          errorData.error.details
+        );
+      }
+
+      return data as DetectionImgResponse;
     }
-
-    return data as DetectionImgResponse;
   } catch (error) {
     if (error instanceof DetectionError) {
       throw error;
+    }
+    
+    // Handle FileOperationError from utils functions
+    if (error instanceof FileOperationError) {
+      throw new DetectionError(
+        error.message,
+        error.code,
+        error.details
+      );
     }
     
     throw new DetectionError(
@@ -241,14 +298,6 @@ export function formatFileSize(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
-export function getImagePreview(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error('Failed to read file'));
-    reader.readAsDataURL(file);
-  });
-}
 
 // Helper function to get confidence color
 export function getConfidenceColor(confidence: number): string {
