@@ -14,11 +14,11 @@ import {
 import {
   detectMusic,
   validateFile,
-  getImagePreview,
   formatFileSize,
   getDefaultProvider,
   pollDetectionResult,
 } from '@/services/detect';
+import { getImagePreview } from '@/lib/utils';
 
 import { DetectionAudioResult } from './detmusicresult';
 import { FileUpload } from '../blocks/upload';

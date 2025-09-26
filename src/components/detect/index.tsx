@@ -14,12 +14,12 @@ import {
 import {
   detectImage,
   validateFile,
-  getImagePreview,
   formatFileSize,
   getConfidenceColor,
   getConfidenceDescription,
   getDefaultProvider
 } from '@/services/detect';
+import { getImagePreview } from '@/lib/utils';
 import { DetectionImageResult } from './detimgresult';
 import { FileUpload } from '../blocks/upload';
 
