@@ -107,7 +107,7 @@
     "label": "产品概览",
     "description": "Nano Banana（Google 的 Gemini 2.5 Flash Image）是一款新一代 AI 图像编辑器，它允许你通过自然语言提示来编辑和增强照片，为专业创作者和日常用户同时提供精准的变换、一致的人物与物体，以及无缝衔接的视觉品质。",
     "image": {
-      "src": "/imgs/showcases/nanodoll.jpg",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanodoll.jpg",
       "alt": "设计师使用 Nano Banana 构建营销视觉"
     },
     "items": [
@@ -425,21 +425,21 @@
       {
         "title": "超精细露珠",
         "image": {
-          "src": "/imgs/showcases/leaf.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/leaf.jpg",
           "alt": "Nano Banana 生成的带露珠叶片微距图"
         }
       },
       {
         "title": "未来科技城市",
         "image": {
-          "src": "/imgs/showcases/nanocity.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanocity.jpg",
           "alt": "Nano Banana 渲染的未来科技城市天际线"
         }
       },
       {
         "title": "猫咪手办",
         "image": {
-          "src": "/imgs/showcases/catstate.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/catstate.jpg",
           "alt": "Nano Banana 生成的商业化潮玩手办形象"
         }
       }

@@ -7,21 +7,21 @@
       {
         "title": "超精细露珠",
         "image": {
-          "src": "/imgs/showcases/leaf.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/leaf.jpg",
           "alt": "Nano Banana 生成的带露珠叶片微距图"
         }
       },
       {
         "title": "未来科技城市",
         "image": {
-          "src": "/imgs/showcases/nanocity.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanocity.jpg",
           "alt": "Nano Banana 渲染的未来科技城市天际线"
         }
       },
       {
         "title": "猫咪手办",
         "image": {
-          "src": "/imgs/showcases/catstate.jpg",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/catstate.jpg",
           "alt": "Nano Banana 生成的商业化潮玩手办形象"
         }
       }
