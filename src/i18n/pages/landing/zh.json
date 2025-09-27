@@ -105,26 +105,26 @@
     "name": "introduce",
     "title": "什么是 Nano Banana",
     "label": "产品概览",
-    "description": "nano banana 面向追求速度的营销、设计与产品团队，将提示词优化、素材版本管理、审稿批注与导出流程集中在同一处。作为专业的AI图像工作室，nano banana 不仅能够快速理解创意简报，还能根据品牌调性生成符合预期的视觉方案。每次变更都会被 nano banana 记录为可视化时间线，团队协作者可以随时接力，不怕灵感被零散工具拖慢。无论是电商产品图、社交媒体素材还是营销活动视觉，nano banana 都能在保证质量的前提下大幅提升创作效率。",
+    "description": "Nano Banana（Google 的 Gemini 2.5 Flash Image）是一款新一代 AI 图像编辑器，它允许你通过自然语言提示来编辑和增强照片，为专业创作者和日常用户同时提供精准的变换、一致的人物与物体，以及无缝衔接的视觉品质。",
     "image": {
       "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "设计师使用 Nano Banana 构建营销视觉"
     },
     "items": [
       {
-        "title": "极速生成",
-        "description": "探索阶段交给 nano banana，系统会根据简报即时产出多组高清方案并给出差异提示，帮你迅速锁定方向。",
-        "icon": "RiFlashlightLine"
-      },
-      {
-        "title": "智能重绘",
-        "description": "结合参考图时，nano banana 会保留品牌识别元素，同时尝试大胆的光影与材质组合，为你带来惊喜灵感。",
+        "title": "逼真的风格转换",
+        "description": "从照片写实主义到风格化艺术，Nano Banana 都能无缝适应您偏好的视觉方向。AI 模型可以处理复杂的艺术风格，同时保持真实性和清晰度。",
         "icon": "RiBrainLine"
       },
       {
-        "title": "内置隐私",
-        "description": "所有上传与导出都经过 nano banana 加密处理，交付完成后自动清理缓存，确保素材安全。",
+        "title": "可靠的多角色调整",
+        "description": "在单个帧中编辑多个角色一直是 AI 图像编辑中的一个挑战。Nano Banana 通过在编辑中保持比例、互动和表情的一致性来解决这个问题。",
         "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "极速生成",
+        "description": "探索阶段交给 nano banana，系统会根据简报即时产出多组高清方案并给出差异提示，帮你迅速锁定方向。",
+        "icon": "RiFlashlightLine"
       }
     ]
   },
@@ -205,13 +205,13 @@
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "项目级导出",
-        "description": "项目导出面板预置商城、演示、印刷规格，nano banana 自动校验色彩与尺寸。",
+        "title": "高级角色一致性",
+        "description": "在多次编辑中保持完美的角色细节和面部特征。我们的 AI 在保持身份和一致性方面表现出色，非常适合讲故事和品牌内容创作。",
         "icon": "RiFileTextLine"
       },
       {
-        "title": "随用随走，无需水印",
-        "description": "智能清理算法让 nano banana 生成的所有资产保持无水印状态，直接投入正式渠道。",
+        "title": "卓越的场景集成",
+        "description": "将编辑与原始背景和光照无缝融合。Nano Banana 在应用修改时保留场景上下文，确保自然的转换效果",
         "icon": "RiDownloadLine"
       }
     ]
@@ -223,20 +223,20 @@
     "description": "在了解套餐定价、技术支持或合规要求前，不妨先阅读这些关于 nano banana 的常见问答解析，随后再与我们的专业顾问深入沟通具体需求。这些问题涵盖了用户在使用 nano banana 过程中最关心的核心功能与安全保障。",
     "items": [
       {
-        "title": "Nano Banana 使用哪种生成模型？",
-        "description": "nano banana 编排扩散模型、控制网络与风格记忆层，兼顾速度与画面细腻度。"
+        "title": "什么是 Nano Banana？",
+        "description": "Nano Banana 是一个先进的 AI 图像编辑平台，通过智能提示理解和角色一致性来转换您的照片。它专长于自然语言驱动的编辑，同时保持场景完整性并提供高分辨率结果。"
       },
       {
-        "title": "可以上传自有素材吗？",
-        "description": "你可以上传产品图、草图、CAD 或品牌素材库，nano banana 会与文本提示协同推演。"
+        "title": "可以用于商业项目吗？",
+        "description": "当然可以！它非常适合创建 AI UGC 内容、社交媒体活动和营销材料。许多用户利用它创建一致的 AI 网红和产品摄影。高质量的输出适合专业使用。"
       },
       {
-        "title": "我的内容会被保存吗？",
-        "description": "所有数据在 nano banana 中加密传输，可自定义保留时长或选择即时删除策略。"
+        "title": "Nano Banana 适合初学者吗？",
+        "description": "是的！Nano Banana 的直观自然语言界面让专业图像编辑对每个人都变得可达。初学者可以通过简单描述他们的愿景获得惊人的结果，而专业人士可以利用高级功能进行复杂的编辑工作流程。"
       },
       {
-        "title": "积分如何扣费？",
-        "description": "积分消耗由 nano banana 实时统计，仪表盘展示趋势，方便选择适配套餐。"
+        "title": "它可以处理哪些类型的编辑？",
+        "description": "编辑器可以处理复杂的编辑，包括面部完成、背景更改、物体放置、风格转移和角色修改。它特别擅长理解诸如「放置在暴风雪中」或「创建完整面部」等上下文指令，同时保持照片级质量。"
       }
     ]
   },
@@ -264,7 +264,7 @@
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Nano Banana. 保留所有权利。",
+    "copyright": "© 2025 • AI-NanoBanana. 保留所有权利。",
     "nav": {
       "items": [
         {
@@ -304,15 +304,19 @@
         {
           "title": "服务条款",
           "url": "/terms-of-service"
+        },
+        {
+          "title": "退款政策",
+          "url": "/refund-policy"
         }
       ]
     }
   },
   "heroGeometic": {
-    "badge": "Nano Banana",
+    "badge": "AI-Nanobanana是一个独立的产品，与 Google 或其任何品牌没有隶属关系。",
     "title1": "Nano Banana",
     "title2": "AI 图像编辑器",
-    "description": "几何工作台让 nano banana 自动校准角色与镜头节奏。",
+    "description": "将任何图像通过简单文字提示进行转换。Nano-banana 的先进模型在角色编辑和场景保真方面超越了 Flux Kontext，带来一致且高质量的效果。体验 AI 图像编辑的未来。",
     "disabled": false
   },
   "imageGenerator": {

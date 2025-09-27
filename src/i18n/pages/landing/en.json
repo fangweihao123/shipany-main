@@ -64,10 +64,10 @@
     "disabled": true
   },
   "heroGeometic": {
-    "badge": "Nano Banana",
+    "badge": "AI-NanoBanana is an independent product and is not affiliate with Google or any of its brands",
     "title1": "Nano Banana",
     "title2": "AI Image Editor",
-    "description": "Inside the geometric workspace, nano banana stabilizes characters, props, and camera rhythm across every frame. The result is a toolkit that respects brand palettes while encouraging dramatic lighting experiments.",
+    "description": "Transform any image with simple text prompts. Nano-banana's advanced model delivers consistent character editing and scene preservation that surpasses Flux Kontext. Experience the future of AI image editing.",
     "disabled": false
   },
   "detection": {
@@ -207,26 +207,26 @@
     "name": "introduce",
     "title": "What is Nano Banana",
     "label": "Overview",
-    "description": "nano banana is built for fast-moving creatives who must balance imagination with measurable outcomes. Instead of juggling disconnected tools, nano banana supplies a unified studio that listens to your brief, proposes prompt angles, and maps visual directions to campaign goals. The platform captures feedback, learns every product nuance, and translates it into refined scene variations without slowing collaboration. With nano banana shaping your workflow, teams stay playful, executives stay confident, and polished deliverables leave the dashboard ready for launch.",
+    "description": "Nano Banana (Google's Gemini 2.5 Flash Image) is a next-generation AI image editor that lets you edit and enhance photos with natural language prompts, delivering precise transformations, consistent characters and objects, and seamless visual quality for creative professionals and everyday users alike.",
     "image": {
       "src": "/imgs/showcases/nanodoll.jpg",
       "alt": "Designer using Nano Banana to create marketing visuals"
     },
     "items": [
       {
-        "title": "Lightning-fast generation",
-        "description": "Blitz through concept exploration because nano banana delivers multiple high-resolution drafts before your inspiration cools, making comparison effortless.",
-        "icon": "RiFlashlightLine"
-      },
-      {
-        "title": "Guided reimagining",
-        "description": "Guide reimagining by pairing references with prompts; nano banana blends both sources into fresh yet on-brand compositions.",
+        "title": "Realistic Style Transformations",
+        "description": "From photorealism to stylized art, Nano Banana adapts seamlessly to your preferred visual direction. The AI model can handle complex artistic styles while maintaining authenticity and clarity.",
         "icon": "RiBrainLine"
       },
       {
-        "title": "Built-in privacy",
-        "description": "Protect sensitive material through privacy-first routing where the studio encrypts uploads and purges caches after export.",
+        "title": "Reliable Multi-Character Adjustments",
+        "description": "Editing multiple characters in a single frame has always been a challenge in AI image editing. Nano Banana solves this by keeping proportions, interactions, and expressions consistent across edits.",
         "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "Lightning-fast generation",
+        "description": "Blitz through concept exploration because nano banana delivers multiple high-resolution drafts before your inspiration cools, making comparison effortless.",
+        "icon": "RiFlashlightLine"
       }
     ]
   },
@@ -307,13 +307,13 @@
         "icon": "RiCheckboxCircleLine"
       },
       {
-        "title": "Project-ready exports",
-        "description": "Produce production-ready exports because nano banana maintains print ratios, web compressions, and motion storyboard sheets automatically.",
+        "title": "Consistent Character Editing",
+        "description": "Unlike many AI tools that struggle with continuity, Nano Banana excels in maintaining consistent characters across multiple edits. This makes it ideal for storytelling, game design, and creating branded content.",
         "icon": "RiFileTextLine"
       },
       {
-        "title": "Ready-to-go, watermark-free",
-        "description": "Deliver watermark-free visuals since the toolkit reconstructs gradients, micro-textures, and lettering with studio precision.",
+        "title": "Superior Scene Preservation",
+        "description": "Nano Banana keeps the original structure, perspective, and lighting of your image intact while applying edits. This results in natural-looking transformations without losing the essence of the original photo.",
         "icon": "RiDownloadLine"
       }
     ]
@@ -459,20 +459,20 @@
     "description": "Curious about infrastructure, licensing, or support? These nano banana answers set the foundation before you reach out.",
     "items": [
       {
-        "title": "What powers Nano Banana's generation?",
-        "description": "nano banana orchestrates diffusion, control nets, and style memory layers tuned for balance between speed and cinematic nuance."
+        "title": "What is Nano Banana?",
+        "description": "Nano Banana is an advanced AI image editing platform that transforms your photos through intelligent prompt understanding and character consistency. It specializes in natural language-driven edits while preserving scene integrity and delivering high-resolution results."
       },
       {
-        "title": "Can I upload my own assets?",
-        "description": "Upload product shots, sketches, CAD exports, or brand patterns and the engine fuses them with your textual direction."
+        "title": "Can I use it for commercial projects?",
+        "description": "Yes! It's perfect for creating AI UGC content, social media campaigns, and marketing materials. Many users leverage it for creating consistent AI influencers and product photography. The high-quality outputs are suitable for professional use."
       },
       {
-        "title": "Is my content private?",
-        "description": "Your content stays private because nano banana encrypts transfers, isolates containers, and honors custom retention windows."
+        "title": "Is Nano Banana suitable for beginners?",
+        "description": "Yes! Nano Banana's intuitive natural language interface makes professional image editing accessible to everyone. Beginners can achieve stunning results by simply describing their vision, while professionals can leverage advanced features for complex editing workflows."
       },
       {
-        "title": "How are credits consumed?",
-        "description": "Credits stay predictable as the dashboard meters usage per render, updates stats, and recommends right-sized plans."
+        "title": "What types of edits can it handle?",
+        "description": "The editor handles complex edits including face completion, background changes, object placement, style transfers, and character modifications. It excels at understanding contextual instructions like place in a blizzard or create the whole face while maintaining photorealistic quality."
       }
     ]
   },
@@ -500,7 +500,7 @@
       },
       "url": "/"
     },
-    "copyright": "© 2025 • Nano Banana. All rights reserved.",
+    "copyright": "© 2025 • AI-NanoBanana. All rights reserved.",
     "nav": {
       "items": [
         {
@@ -540,6 +540,10 @@
         {
           "title": "Terms of Service",
           "url": "/terms-of-service"
+        },
+        {
+          "title": "Refund Policy",
+          "url": "/refund-policy"
         }
       ]
     }
