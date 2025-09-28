@@ -6,15 +6,15 @@
     "description": "Choose the perfect plan for your AI image detection needs. Protect against fake images at an affordable price.",
     "groups": [
       {
-        "name": "monthly",
-        "title": "Monthly",
-        "is_featured": true,
-        "label": "Most Popular"
-      },
-      {
         "name": "yearly",
         "title": "Annually",
+        "is_featured": true,
         "label": "Save 20%"
+      },
+      {
+        "name": "monthly",
+        "title": "Monthly",
+        "label": "Most Popular"
       }
     ],
     "items": [
@@ -103,7 +103,7 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basicannually",
+        "product_id": "basic-annually",
         "product_name": "AI Image Detector Basic Annually",
         "credits": 1200,
         "valid_months": 12,
@@ -134,7 +134,7 @@
           "url": "/checkout?plan=professional-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professionalannually",
+        "product_id": "Professional-annually",
         "product_name": "AI Image Detector Professional Annually",
         "credits": 3000,
         "valid_months": 12,

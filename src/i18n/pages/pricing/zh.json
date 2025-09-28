@@ -6,15 +6,15 @@
     "description": "选择适合您AI图片检测需求的完美方案。以实惠价格保护您免受虚假图片侵害。",
     "groups": [
       {
-        "name": "monthly",
-        "title": "月付",
-        "is_featured": true,
-        "label": "最受欢迎"
-      },
-      {
         "name": "yearly",
         "title": "年付",
+        "is_featured": true,
         "label": "节省20%"
+      },
+      {
+        "name": "monthly",
+        "title": "月付",
+        "label": "最受欢迎"
       }
     ],
     "items": [
@@ -103,7 +103,7 @@
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basicannually",
+        "product_id": "basic-annually",
         "product_name": "AI图片检测器基础版年付",
         "credits": 1200,
         "valid_months": 12,
@@ -134,7 +134,7 @@
           "url": "/checkout?plan=professional-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professionalannually",
+        "product_id": "Professional-annually",
         "product_name": "AI图片检测器专业版年付",
         "credits": 3000,
         "valid_months": 12,

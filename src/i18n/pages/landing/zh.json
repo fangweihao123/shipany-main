@@ -167,7 +167,7 @@
     "label": "产品介绍",
     "description": "AI图像检测器使用先进的机器学习算法分析内容，识别是否由人工智能生成或人类创作。",
     "image": {
-      "src": "/imgs/features/detector.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/detector.jpg",
       "alt": "男子在电脑屏幕上检查内容是否为AI生成的插图"
     },
     "items": [
@@ -199,7 +199,7 @@
         "description": "识别用于虚假信息传播活动的AI生成图片，防范假新闻宣传。",
         "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/fake-news.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/fake-news.jpg",
           "alt": "显示通过网站和扬声器图标打击虚假新闻的插图"
         }
       },
@@ -208,7 +208,7 @@
         "description": "检测未经授权的AI复制原创艺术作品，保护知识产权权利。",
         "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/art-protection.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/art-protection.jpg",
           "alt": "防范艺术盗用的简约图形，带有框架艺术品和小偷图标"
         }
       },
@@ -217,7 +217,7 @@
         "description": "识别深度伪造头像和AI生成的身份文件，防范欺诈和诈骗。",
         "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/identity-protection.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/identity-protection.jpg",
           "alt": "阻止身份欺诈的简单插图，带有身份证和蒙面人物图标"
         }
       }
