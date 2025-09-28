@@ -6,15 +6,15 @@
     "description": "选择适合您去水印需求的完美方案。以实惠价格享受专业的AI去水印服务。",
     "groups": [
       {
-        "name": "monthly",
-        "title": "月付",
-        "is_featured": true,
-        "label": "最受欢迎"
-      },
-      {
         "name": "yearly",
         "title": "年付",
+        "is_featured": true,
         "label": "节省20%"
+      },
+      {
+        "name": "monthly",
+        "title": "月付",
+        "label": "最受欢迎"
       }
     ],
     "items": [

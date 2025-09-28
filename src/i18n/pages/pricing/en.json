@@ -6,15 +6,15 @@
     "description": "Choose the perfect plan for your EraseWatermark needs. Erase watermark from content at an affordable price.",
     "groups": [
       {
-        "name": "monthly",
-        "title": "Monthly",
-        "is_featured": true,
-        "label": "Most Popular"
-      },
-      {
         "name": "yearly",
         "title": "Annually",
+        "is_featured": true,
         "label": "Save 20%"
+      },
+      {
+        "name": "monthly",
+        "title": "Monthly",
+        "label": "Most Popular"
       }
     ],
     "items": [
