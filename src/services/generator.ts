@@ -2,6 +2,7 @@ import {
   ApiErrorResponse,
   TextInputState
 } from '@/types/detect';
+import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2 } from '@/lib/utils';
 
 import { GeneratorProvider } from '@/types/generator';
 
@@ -91,16 +92,34 @@ export async function editImage(files: File[], prompt: string, provider?: Genera
   });
 
   const config = PROVIDER_CONFIGS[selectedProvider];
-  const formData = new FormData();
-  formData.append('prompt', prompt);
-  files.forEach((file, index) => {
-    formData.append(`file`, file, file.name);
-  }); 
+
+  const filesUrl = await Promise.all(
+    files.map(async (file) => {
+      const request : R2PresignedUrlRequest = {
+        filename: file.name,
+        contentType: file.type,
+        fileSize: file.size
+      }; 
+      const response = await 
+      fetch("/api/upload/presigned-url", {
+        method: "POST",
+        body: JSON.stringify(request)
+      });
+      const data = await response.json();
+      if(data.success){
+        await uploadToR2(file, data);
+        return data.publicUrl;
+      }
+    })
+  );
 
   try {
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      body: formData
+      body: JSON.stringify({
+        "prompt": prompt,
+        "uploadUrls": filesUrl
+      })
     });
 
     const data = await response.json();
