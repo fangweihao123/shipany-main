@@ -105,11 +105,11 @@
     "label": "产品介绍",
     "description": "EraseWatermark使用先进的AI技术智能移除图片和视频中的水印，同时保持原始质量和细节。",
     "image": {
-      "src": "/imgs/beforeremove.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/beforeremove.png",
       "alt": "去水印处理过程的前后对比插图"
     },
     "imageAfter": {
-      "src": "/imgs/afterremove.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/afterremove.png",
       "alt": "去水印处理过程的前后对比插图"
     },
     "items": [
@@ -141,7 +141,7 @@
         "description": "我们先进的去水印工具使用尖端人工智能技术提供精确结果，同时保持图像质量并保留每个重要细节。",
         "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/aiwatermarkremover.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/aiwatermarkremover.jpg",
           "alt": "一幅紫色简洁风格的 AI 水印去除工具插图，包含 AI 芯片和去除水印的图片"
         }
       },
@@ -150,7 +150,7 @@
         "description": "体验闪电般快速的去水印性能，单张图片在几秒内完成处理。我们高效的去水印工具无缝处理批量操作，提供专业结果无延迟。",
         "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/fastproces.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/fastprocess.jpg",
           "alt": "一幅紫色简洁风格的快速水印去除处理工具插图，包含水印图像和表示高速处理的线条"
         }
       },
@@ -159,7 +159,7 @@
         "description": "您的隐私是我们的首要任务。我们的去水印工具安全处理文件，下载后自动删除。我们绝不存储、访问或分享您的内容，确保完全保密。",
         "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/securewatermark.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/securewatermark.jpg",
           "alt": "一幅淡紫色简洁风格的安全水印去除工具插图，包含带勾选的盾牌、水印图像以及突出安全性的文字"
         }
       }
@@ -169,10 +169,6 @@
     "name": "usage",
     "title": "如何使用去水印工具",
     "description": "通过三个简单步骤去除水印：",
-    "image": {
-      "src": "/imgs/features/detection-process.png",
-      "alt": "AI检测器处理流程工作图"
-    },
     "image_position": "left",
     "text_align": "center",
     "items": [

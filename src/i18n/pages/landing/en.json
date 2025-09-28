@@ -105,11 +105,11 @@
     "label": "Introduce",
     "description": "EraseWatermark uses advanced AI technology to intelligently remove watermarks from images and videos while preserving original quality and details.",
     "image": {
-      "src": "/imgs/beforeremove.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/beforeremove.png",
       "alt": "Illustration of watermark removal process with before and after comparison"
     },
     "imageAfter": {
-      "src": "/imgs/afterremove.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/afterremove.png",
       "alt": "Illustration of watermark removal process with before and after comparison"
     },
     "items": [
@@ -141,7 +141,7 @@
         "description": "Our advanced watermark remover uses cutting-edge artificial intelligence to deliver precise results while maintaining image quality and preserving every important detail.",
         "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/aiwatermarkremover.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/aiwatermarkremover.jpg",
           "alt": "Minimalist purple illustration of an AI-powered watermark remover showing an AI chip and an image with a watermark being removed."
         }
       },
@@ -150,7 +150,7 @@
         "description": "Experience lightning-fast watermark remover performance with single images processed in seconds. Our efficient watermark remover handles batch operations seamlessly, delivering professional results without delays.",
         "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/fastprocess.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/fastprocess.jpg",
           "alt": "Minimalist purple illustration of a fast watermark remover processing tool showing an image with a watermark and speed lines for rapid removal."
         }
       },
@@ -159,7 +159,7 @@
         "description": "Your privacy is our priority. Our watermark remover processes files securely with automatic deletion after download. We never store, access, or share your content, ensuring complete confidentiality.",
         "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/securewatermark.png",
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/securewatermark.jpg",
           "alt": "Soft lavender minimalist illustration of a secure watermark remover tool featuring a shield with a checkmark, an image with a watermark, and bold text emphasizing security"
         }
       }
