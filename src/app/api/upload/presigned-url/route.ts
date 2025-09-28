@@ -7,6 +7,8 @@ import {
 import { ApiErrorResponse } from '@/types/detect';
 import { getUserUuid } from '@/services/user';
 
+const projectName = process.env?.NEXT_PUBLIC_PROJECT_NAME;
+
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated (optional based on your auth requirements)
@@ -80,7 +82,7 @@ export async function POST(request: NextRequest) {
     // Generate unique key with timestamp and user ID
     const timestamp = Date.now();
     const fileExtension = filename.split('.').pop()?.toLowerCase() || '';
-    const key = `detect/${userUuid}/${timestamp}-${filename}`;
+    const key = `${projectName}/${userUuid}/${timestamp}-${filename}`;
 
     const presignedData = await storage.generatePresignedUrl({
       key,
