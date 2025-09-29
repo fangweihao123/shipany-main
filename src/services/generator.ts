@@ -2,7 +2,7 @@ import {
   ApiErrorResponse,
   TextInputState
 } from '@/types/detect';
-import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2, retryWithBackoff, RetryOptions } from '@/lib/utils';
+import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2 } from '@/lib/utils';
 
 import { GeneratorProvider } from '@/types/generator';
 

@@ -309,8 +309,11 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
             <Button 
               type="button"
               onClick={()=> setMode("i2v")}
-              className= {`w-30 rounded-none ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
+              className= {`w-30 rounded-none relative ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
               {promptEngine.image2VideoTab}
+              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow-lg border-2 border-white animate-pulse">
+                PRO
+              </span>
             </Button>
           </div>
         </div>
