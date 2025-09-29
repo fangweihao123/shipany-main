@@ -134,6 +134,13 @@
           "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
         }
       },
+      "image2VideoTab": "Image to Video",
+      "image2Video": {
+        "input": {
+          "title": "Main Prompt",
+          "textPlaceHolder": "Close up shot of melting icicles on a frozen rock wall with cool blue tones, zoomed in maintaining close-up detail of water drips."
+        }
+      },
       "generateButton": {
         "type": "button",
         "title": "Generate with Nano Banana",

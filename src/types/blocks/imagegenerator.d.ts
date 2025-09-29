@@ -10,6 +10,11 @@ export interface Image2Image{
   input?: PromptInput;
 }
 
+export interface Image2Video{
+  upload?: Upload;
+  input?: PromptInput;
+}
+
 export interface PromptEngine{
   title?: string;
   description?: string;
@@ -17,6 +22,8 @@ export interface PromptEngine{
   image2Image?: Image2Image;
   text2ImageTab?: string;
   text2Image?: Text2Image;
+  image2VideoTab?: string;
+  image2Video?: Image2Video;
   generateButton?: Button;
   auth_Required?: string;
   insufficient_credits?: string;

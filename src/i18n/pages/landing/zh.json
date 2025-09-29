@@ -345,6 +345,13 @@
           "textPlaceHolder": "鲜艳的香蕉叶微距特写，带露珠，电影级光线，35mm 镜头，超写实质感..."
         }
       },
+      "image2VideoTab": "图生视频",
+      "image2Video": {
+        "input": {
+          "title": "主要提示词",
+          "textPlaceHolder": "特写镜头：冰冻岩壁上正在融化的冰柱，呈现冷调蓝色，放大细节，清晰展现水滴的特写画面。"
+        }
+      },
       "generateButton": {
         "type": "button",
         "title": "使用 Nano Banana 生成",

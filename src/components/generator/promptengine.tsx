@@ -54,10 +54,11 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
 }
 
 export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
-  const [mode, setMode] = useState<"i2i" | "t2i">("i2i");
+  const [mode, setMode] = useState<"i2i" | "t2i" | "i2v">("i2i");
   const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
+  const [vfiles, setVFiles] = useState<File[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const { status } = useSession();
@@ -176,6 +177,22 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           </PromptInputBlock>
         </div>
       );
+    }else if(mode === "i2v"){
+      return (
+        <div>
+          <MultiImgUpload 
+            uploadInfo={promptEngine.image2Video?.upload}
+            maxFiles={3}
+            onChange={setVFiles}
+            >
+
+          </MultiImgUpload>
+          <PromptInputBlock
+            promptInput = {promptEngine.image2Video?.input}
+            onChange={onPromptChange}>
+          </PromptInputBlock>
+        </div>
+      );
     }
   };
 
@@ -219,6 +236,12 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
               onClick={()=> setMode("t2i")}
               className= {`w-30 rounded-none ${mode === "t2i" ? activeBtn : inactiveBtn}`} >
               {promptEngine.text2ImageTab}
+            </Button>
+            <Button 
+              type="button"
+              onClick={()=> setMode("i2v")}
+              className= {`w-30 rounded-none ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
+              {promptEngine.image2VideoTab}
             </Button>
           </div>
         </div>
