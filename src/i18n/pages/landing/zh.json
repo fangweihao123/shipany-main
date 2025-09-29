@@ -403,6 +403,7 @@
         "title": "使用 Nano Banana 生成",
         "loadingTitle": "魔法混合中..."
       },
+      "requireProTips": "视频生成需要 Pro 或 Max 套餐",
       "states": {
         "generating": "香蕉灵感酝酿中..."
       }

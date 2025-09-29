@@ -7,6 +7,7 @@ import { MultiImgUpload } from "./MultiImgUpload";
 import { editImage, generateImage, generateVideo, UploadFiles } from "@/services/generator";
 import { GeneratorOutput } from "@/types/generator";
 import { useSession } from "next-auth/react";
+import { useAppContext } from "@/contexts/app";
 import { useRouter } from "next/navigation";
 import { useTrial } from "@/lib/trial";
 import { GeneratorError } from "@/services/generator";
@@ -74,7 +75,9 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   const [negativePrompt, setNegativePrompt] = useState('');
   const [seed, setSeed] = useState<number | undefined>(undefined);
   const { status } = useSession();
+  const { user } = useAppContext();
   const router = useRouter();
+  console.log("user product id", user);
 
   const canGenerate = useMemo(() => {
     if (mode === "t2i") {
@@ -84,7 +87,10 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       return prompt.length > 0 && files.length > 0;
     }
     if (mode === "i2v") {
-      return prompt.length > 0 && vfiles.length > 0;
+      return prompt.length > 0 && vfiles.length > 0 
+        && user && user.credits 
+        && (user.credits.product_id.includes("Pro") 
+        || user.credits.product_id.includes("Max")); // Video generation costs 50 credits
     }
     return false;
   }, [mode, prompt, files, vfiles]);
@@ -175,6 +181,12 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       if(isGenerating){
         return generatingText;
       }else{
+        if(mode === "i2v"){
+          const isFreeVersion = user && user.credits && (user.credits.product_id.includes("Pro") || user.credits.product_id.includes("Max"));
+          if(!isFreeVersion){
+            return promptEngine?.requireProTips || "Video generation requires Pro or Max plan";
+          }
+        }
         return promptEngine.generateButton?.title;
       }
     }else if(failure === "apierror"){

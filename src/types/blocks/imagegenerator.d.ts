@@ -59,6 +59,7 @@ export interface PromptEngine{
   image2VideoTab?: string;
   image2Video?: Image2Video;
   generateButton?: Button;
+  requireProTips?: string;
   auth_Required?: string;
   insufficient_credits?: string;
   api_error?: string;

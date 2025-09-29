@@ -192,6 +192,7 @@
         "title": "Generate with Nano Banana",
         "loadingTitle": "Blending magic..."
       },
+      "requireProTips": "Video generation requires Pro or Max plan",
       "states": {
         "generating": "Brewing your banana..."
       }

@@ -31,6 +31,7 @@ export async function getUserCredits(user_uuid: string): Promise<UserCredits> {
     const first_paid_order = await getFirstPaidOrderByUserUuid(user_uuid);
     if (first_paid_order) {
       user_credits.is_recharged = true;
+      user_credits.product_id = first_paid_order.product_id || "";
     }
 
     const credits = await getUserValidCredits(user_uuid);
