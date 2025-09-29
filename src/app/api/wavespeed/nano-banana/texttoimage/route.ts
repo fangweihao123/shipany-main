@@ -19,7 +19,7 @@ if (!API_KEY) {
   console.error('API key is not set in environment variables');
 }
 
-async function generateImageWithPrompt(data: GenerateImgRequest): Promise<GenerateImgResponse> {
+async function generateImageWithPrompt(data: GenerateImgRequest, isRetry: boolean = false): Promise<GenerateImgResponse> {
   const response = await fetch(`${API_BASE_URL}/google/nano-banana/text-to-image`, {
     method: 'POST',
     headers: {
@@ -34,7 +34,7 @@ async function generateImageWithPrompt(data: GenerateImgRequest): Promise<Genera
   }
 
   const user_uuid = await getUserUuid();
-  if (user_uuid){
+  if (user_uuid && !isRetry){
     await decreaseCredits({
       user_uuid,
       trans_type: CreditsTransType.Ping,
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    const { prompt } = await request.json();
+    const { prompt, isRetry } = await request.json();
 
     const user_uuid = await getUserUuid();
     if(user_uuid.length > 0){
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
       prompt: prompt
     };
 
-    const generateImgResponse = await generateImageWithPrompt(generateImgRequest);
+    const generateImgResponse = await generateImageWithPrompt(generateImgRequest, isRetry);
 
     return NextResponse.json(generateImgResponse);
 

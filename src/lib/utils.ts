@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ApiErrorResponse } from "@/types/detect";
+import { GeneratorError } from "@/services/generator";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -87,12 +88,12 @@ export async function pollTaskResult(id: string): Promise<any>{
       return status;
     }
     if(status.data.status === 'failed'){
-      throw new Error('unwatermark failed');
+      throw new GeneratorError('Nano Banana Generation failed', status.data.code);
     }
     await new Promise(resolve => setTimeout(resolve, interval));
   }
 
-  throw new Error('Detection timeout');
+  throw new Error('Nano Banana Generation timeout');
 }
 
 // R2 File Upload Functions - moved from detect.ts for reusability

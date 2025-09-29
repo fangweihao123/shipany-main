@@ -2,7 +2,7 @@ import {
   ApiErrorResponse,
   TextInputState
 } from '@/types/detect';
-import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2 } from '@/lib/utils';
+import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2, retryWithBackoff, RetryOptions } from '@/lib/utils';
 
 import { GeneratorProvider } from '@/types/generator';
 
@@ -42,7 +42,7 @@ export function getDefaultProvider(): GeneratorProvider {
   return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobananat2i';
 }
 
-export async function generateImage(prompt: string, provider?: GeneratorProvider): Promise<string> {
+export async function generateImage(prompt: string, provider?: GeneratorProvider, isRetry: boolean = false): Promise<string> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   const config = PROVIDER_CONFIGS[selectedProvider];
@@ -51,7 +51,8 @@ export async function generateImage(prompt: string, provider?: GeneratorProvider
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( {
-        "prompt": prompt
+        "prompt": prompt,
+        "isRetry": isRetry
       })
     });
 
@@ -80,19 +81,15 @@ export async function generateImage(prompt: string, provider?: GeneratorProvider
   }
 }
 
-export async function editImage(files: File[], prompt: string, provider?: GeneratorProvider): Promise<string> {
+export async function UploadFiles(files: File[], provider?: GeneratorProvider): Promise<string[]> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
-  // Validate file with provider-specific limits
   files.forEach(file => {
     const validation = validateFile(file, selectedProvider);
     if (!validation.isValid) {
       throw new GeneratorError(validation.error || 'Invalid file', 400);
     }
   });
-
-  const config = PROVIDER_CONFIGS[selectedProvider];
-
   const filesUrl = await Promise.all(
     files.map(async (file) => {
       const request : R2PresignedUrlRequest = {
@@ -112,13 +109,21 @@ export async function editImage(files: File[], prompt: string, provider?: Genera
       }
     })
   );
+  return filesUrl;
+}
 
+export async function editImage(filesUrl: string[], prompt: string, provider?: GeneratorProvider, isRetry: boolean = false): Promise<string> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  // Validate file with provider-specific limits
+  const config = PROVIDER_CONFIGS[selectedProvider];
   try {
     const response = await fetch(config.endpoint, {
       method: 'POST',
       body: JSON.stringify({
         "prompt": prompt,
-        "uploadUrls": filesUrl
+        "uploadUrls": filesUrl,
+        "isRetry": isRetry
       })
     });
 

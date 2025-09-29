@@ -4,15 +4,16 @@ import { Button } from "../ui/button";
 import { useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
-import { editImage, generateImage } from "@/services/generator";
-import { pollTaskResult } from "@/lib/utils";
+import { editImage, generateImage, UploadFiles } from "@/services/generator";
 import { GeneratorOutput } from "@/types/generator";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTrial } from "@/lib/trial";
 import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
+import { pollTaskResult } from "@/lib/utils";
 
+const MAX_GENERATE_ATTEMPTS = 3;
 
 interface PromptEngineProps {
   promptEngine: PromptEngine;
@@ -91,19 +92,29 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
-
-      if(mode === "t2i"){
-        const id = await generateImage(prompt, "nanobananat2i");
-        const queryResult = await pollTaskResult(id);
-        const normalized = normalizeOutputs(queryResult);
-        onOutputsChange?.(normalized);
-        console.log("final query result", queryResult);
-      }else if(mode === "i2i"){
-        const id = await editImage(files, prompt, "nanobananai2i");
-        const queryResult = await pollTaskResult(id);
-        const normalized = normalizeOutputs(queryResult);
-        onOutputsChange?.(normalized);
-        console.log("final query result", queryResult);
+      for(let attempt = 1; attempt <= MAX_GENERATE_ATTEMPTS; attempt++){
+        try{
+          let id = "";
+          if(mode === "t2i"){
+            id = await generateImage(prompt, "nanobananat2i", attempt > 1);
+          }else if(mode === "i2i"){
+            const filesUrl = await UploadFiles(files, "nanobananai2i");
+            id = await editImage(filesUrl, prompt, "nanobananai2i", attempt > 1);
+          }
+          const queryResult = await pollTaskResult(id);
+          const normalized = normalizeOutputs(queryResult);
+          onOutputsChange?.(normalized);
+          console.log("final query result", queryResult);
+          break;
+        }catch(error){
+          const generatorError = error as GeneratorError;
+          if(generatorError){
+            if(generatorError.code === 500){
+              continue;
+            }
+          }
+          throw error;
+        }
       }
     } catch (error) {
       console.error("failed to generate", error);

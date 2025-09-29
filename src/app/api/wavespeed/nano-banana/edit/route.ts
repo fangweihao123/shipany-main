@@ -22,7 +22,7 @@ if (!API_KEY) {
   console.error('UNDETECTABLE_AI_API_KEY is not set in environment variables');
 }
 
-async function EditImage(data: EditImgRequest): Promise<UnwatermarkImgResponse> {
+async function EditImage(data: EditImgRequest, isRetry: boolean = false): Promise<UnwatermarkImgResponse> {
   const response = await fetch(`${API_BASE_URL}/google/nano-banana/edit`, {
     method: 'POST',
     headers: {
@@ -36,7 +36,7 @@ async function EditImage(data: EditImgRequest): Promise<UnwatermarkImgResponse> 
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
   const user_uuid = await getUserUuid();
-  if (user_uuid){
+  if (user_uuid && !isRetry){
     await decreaseCredits({
       user_uuid,
       trans_type: CreditsTransType.Ping,
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let { prompt, uploadUrls } = await request.json();
+    let { prompt, uploadUrls, isRetry } = await request.json();
 
     if (uploadUrls.length === 0) {
       return NextResponse.json(
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
       images : uploadUrls
     };
 
-    const Response = await EditImage(editRequest);
+    const Response = await EditImage(editRequest, isRetry);
 
     return NextResponse.json(Response);
 
