@@ -39,9 +39,9 @@ async function generateVideoWithImage(data: GenerateVideoRequest, isRetry: boole
     await decreaseCredits({
       user_uuid,
       trans_type: CreditsTransType.Ping,
-      credits: 5, // Video generation costs more credits
+      credits: 50, // Video generation costs more credits
     });
-    console.log('generate video success with 5 credits consumption');
+    console.log('generate video success with 50 credits consumption');
   }
   return response.json();
 }
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     const user_uuid = await getUserUuid();
     if(user_uuid.length > 0){
       const usercredits : UserCredits = await getUserCredits(user_uuid);
-      if(usercredits.left_credits < 5){
+      if(usercredits.left_credits < 50){
         return NextResponse.json(
           {
             success: false,

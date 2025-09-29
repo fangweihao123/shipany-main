@@ -33,12 +33,40 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
       return;
     }
     const itemId = item.id ?? item.src;
+    const isVideo = item.mimeType?.startsWith('video/') || item.src.includes('.mp4') || item.src.includes('video');
+    
+    // 智能确定文件扩展名
+    let fileExtension = '.png'; // 默认为png
+    if (isVideo) {
+      fileExtension = '.mp4';
+    } else {
+      // 根据mimeType确定图片格式
+      if (item.mimeType?.includes('jpeg') || item.mimeType?.includes('jpg')) {
+        fileExtension = '.jpg';
+      } else if (item.mimeType?.includes('png')) {
+        fileExtension = '.png';
+      } else if (item.mimeType?.includes('webp')) {
+        fileExtension = '.webp';
+      } else {
+        // 从URL中推断文件扩展名
+        const urlLower = item.src.toLowerCase();
+        if (urlLower.includes('.jpg') || urlLower.includes('.jpeg')) {
+          fileExtension = '.jpg';
+        } else if (urlLower.includes('.png')) {
+          fileExtension = '.png';
+        } else if (urlLower.includes('.webp')) {
+          fileExtension = '.webp';
+        }
+        // 如果都无法确定，保持默认的.png
+      }
+    }
+    
     setDownloadingId(itemId);
 
     const fallback = () => {
       const anchor = document.createElement("a");
       anchor.href = item.src;
-      anchor.download = `${itemId}.png`;
+      anchor.download = `${itemId}${fileExtension}`;
       anchor.rel = "noopener";
       anchor.target = "_blank";
       document.body.appendChild(anchor);
@@ -54,7 +82,7 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
 
       const response = await fetch(item.src);
       if (!response.ok) {
-        throw new Error(`Failed to download image: ${response.status} ${response.statusText}`);
+        throw new Error(`Failed to download ${isVideo ? 'video' : 'image'}: ${response.status} ${response.statusText}`);
       }
 
       const blob = await response.blob();
@@ -62,7 +90,7 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
 
       const anchor = document.createElement("a");
       anchor.href = url;
-      anchor.download = `${itemId}.png`;
+      anchor.download = `${itemId}${fileExtension}`;
       anchor.rel = "noopener";
       anchor.target = "_blank";
       document.body.appendChild(anchor);
@@ -102,13 +130,26 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
               <div className="w-full gap-4">
                 {galleryItems.map((item) => {
                   const itemId = item.id ?? item.src;
+                  const isVideo = item.mimeType?.startsWith('video/') || item.src.includes('.mp4') || item.src.includes('video');
+                  
                   return (
                     <div key={itemId} className="flex">
-                      <img
-                        src={item.src}
-                        alt={imageAlt}
-                        className="flex h-full w-full rounded-lg border object-cover"
-                      />
+                      {isVideo ? (
+                        <video
+                          src={item.src}
+                          controls
+                          className="flex h-full w-full rounded-lg border object-cover"
+                          style={{ maxHeight: '500px' }}
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img
+                          src={item.src}
+                          alt={imageAlt}
+                          className="flex h-full w-full rounded-lg border object-cover"
+                        />
+                      )}
                     </div>
                   );
                 })}

@@ -32,6 +32,26 @@ export interface PricingItem {
   group?: string;
 }
 
+export interface CreditUseage {
+  annualTotal?: {
+    prefix?: string;  // "年度总价：" / "Annual total:"
+    suffix?: string;  // "/ 年" / "/ year"
+  };
+  cnPayment?: {
+    label?: string;   // "人民币支付 👉" / "CNY Payment 👉"
+  };
+  userNotice?: {
+    creditsUsage?: {
+      label?: string;  // "积分消费说明：" / "Credits Usage:"
+      text?: string;   // "每生成一张图片消耗 2 个积分。" / "Each image generation consumes 2 credit."
+    };
+    cancellation?: {
+      label?: string;  // "取消政策：" / "Cancellation:"
+      text?: string;   // "随时可以取消订阅，无任何违约金。" / "Cancel anytime without any penalties or fees."
+    };
+  };
+}
+
 export interface Pricing {
   disabled?: boolean;
   name?: string;
@@ -39,4 +59,5 @@ export interface Pricing {
   description?: string;
   items?: PricingItem[];
   groups?: PricingGroup[];
+  creditusage?: CreditUseage;
 }

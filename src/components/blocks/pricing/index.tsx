@@ -206,19 +206,11 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
                       {item.interval === "year" && item.price && item.unit?.includes("month") && (
                         <div className="mb-4 text-left">
                           <p className="text-base text-muted-foreground">
-                            {locale === "zh" ? (
-                              <>
-                                年度总价：<span className="font-semibold text-primary">
-                                  ￥{(parseFloat(item.price.replace(/[￥$]/g, '')) * 12).toFixed(0)}
-                                </span> / 年
-                              </>
-                            ) : (
-                              <>
-                                Annual total: <span className="font-semibold text-primary">
-                                  ${(parseFloat(item.price.replace('$', '')) * 12).toFixed(0)}
-                                </span> / year
-                              </>
-                            )}
+                            {pricing.creditusage?.annualTotal?.prefix || "Annual total:"}{" "}
+                            <span className="font-semibold text-primary">
+                              {locale === "zh" ? "￥" : "$"}{(parseFloat(item.price.replace(/[￥$]/g, '')) * 12).toFixed(0)}
+                            </span>{" "}
+                            {pricing.creditusage?.annualTotal?.suffix || "/ year"}
                           </p>
                         </div>
                       )}
@@ -248,7 +240,7 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
                     <div className="flex flex-col gap-2">
                       {item.cn_amount && item.cn_amount > 0 ? (
                         <div className="flex items-center gap-x-2 mt-2">
-                          <span className="text-sm">人民币支付 👉</span>
+                          <span className="text-sm">{pricing.creditusage?.cnPayment?.label || "CNY Payment 👉"}</span>
                           <div
                             className="inline-block p-2 hover:cursor-pointer hover:bg-base-200 rounded-md"
                             onClick={() => {
@@ -310,21 +302,10 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
             <div className="max-w-3xl mx-auto border-2 border-primary/20 bg-primary/5 rounded-xl p-6">
               <div className="text-center space-y-3">
                 <p className="text-foreground text-base leading-relaxed">
-                  {locale === "zh" ? (
-                    <>
-                      💡 <strong className="text-primary">积分消费说明：</strong>每生成一张图片消耗 2 个积分。
-                      <br />
-                      🔄 <strong className="text-primary">取消政策：</strong>随时可以取消订阅，无任何违约金。
-                      <br />
-                    </>
-                  ) : (
-                    <>
-                      💡 <strong className="text-primary">Credits Usage:</strong> Each image generation consumes 2 credit.
-                      <br />
-                      🔄 <strong className="text-primary">Cancellation:</strong> Cancel anytime without any penalties or fees.
-                      <br />
-                    </>
-                  )}
+                  💡 <strong className="text-primary">{pricing.creditusage?.userNotice?.creditsUsage?.label || "Credits Usage:"}</strong> {pricing.creditusage?.userNotice?.creditsUsage?.text || "Each image generation consumes 2 credit."}
+                  <br />
+                  🔄 <strong className="text-primary">{pricing.creditusage?.userNotice?.cancellation?.label || "Cancellation:"}</strong> {pricing.creditusage?.userNotice?.cancellation?.text || "Cancel anytime without any penalties or fees."}
+                  <br />
                 </p>
               </div>
             </div>
