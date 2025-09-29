@@ -22,6 +22,14 @@ export const PROVIDER_CONFIGS = {
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/wavespeed/nano-banana/edit',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
+  nanobananai2v: {
+    name: 'Nano Banana',
+    description: 'Advanced Video Generator Engine',
+    model: "veo3-fast",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/wavespeed/nano-banana/image2video',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   }
 } as const;
 
@@ -42,7 +50,7 @@ export function getDefaultProvider(): GeneratorProvider {
   return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobananat2i';
 }
 
-export async function generateImage(prompt: string, provider?: GeneratorProvider, isRetry: boolean = false): Promise<string> {
+export async function generateImage(prompt: string, provider?: GeneratorProvider, isRetry: boolean = false, output_format: string = 'png'): Promise<string> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   const config = PROVIDER_CONFIGS[selectedProvider];
@@ -52,7 +60,8 @@ export async function generateImage(prompt: string, provider?: GeneratorProvider
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify( {
         "prompt": prompt,
-        "isRetry": isRetry
+        "isRetry": isRetry,
+        "output_format": output_format
       })
     });
 
@@ -112,7 +121,7 @@ export async function UploadFiles(files: File[], provider?: GeneratorProvider): 
   return filesUrl;
 }
 
-export async function editImage(filesUrl: string[], prompt: string, provider?: GeneratorProvider, isRetry: boolean = false): Promise<string> {
+export async function editImage(filesUrl: string[], prompt: string, provider?: GeneratorProvider, isRetry: boolean = false, output_format: string = 'png'): Promise<string> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
   // Validate file with provider-specific limits
@@ -123,7 +132,8 @@ export async function editImage(filesUrl: string[], prompt: string, provider?: G
       body: JSON.stringify({
         "prompt": prompt,
         "uploadUrls": filesUrl,
-        "isRetry": isRetry
+        "isRetry": isRetry,
+        "output_format": output_format
       })
     });
 
@@ -212,6 +222,61 @@ export async function pollTaskResult(id: string): Promise<any>{
   throw new Error('Detection timeout');
 }
 
+
+export async function generateVideo(
+  imageUrl: string, 
+  prompt: string, 
+  provider?: GeneratorProvider, 
+  isRetry: boolean = false,
+  options?: {
+    aspect_ratio?: "16:9" | "9:16";
+    duration?: number;
+    resolution?: "720p" | "1080p";
+    generate_audio?: boolean;
+    negative_prompt?: string;
+    seed?: number;
+  }
+): Promise<string> {
+  const defaultProvider = 'nanobananai2v' as GeneratorProvider;
+  const selectedProvider = provider || defaultProvider;
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt: prompt,
+        imageUrl: imageUrl,
+        isRetry: isRetry,
+        ...options
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new GeneratorError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data.data.id;
+  } catch (error) {
+    if (error instanceof GeneratorError) {
+      throw error;
+    }
+    
+    throw new GeneratorError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
 
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes';

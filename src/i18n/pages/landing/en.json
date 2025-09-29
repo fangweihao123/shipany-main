@@ -125,6 +125,14 @@
         "input": {
           "title": "Guidance Prompt",
           "textPlaceHolder": "Describe how you want to transform the reference image—lighting, camera angle, style, extra details..."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "outputFormat": {
+            "label": "Output Format",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
         }
       },
       "text2ImageTab": "Text to Image",
@@ -132,13 +140,51 @@
         "input": {
           "title": "Main Prompt",
           "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "outputFormat": {
+            "label": "Output Format",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
         }
       },
       "image2VideoTab": "Image to Video",
       "image2Video": {
+        "upload": {
+          "upload_title": "Reference image",
+          "select_tip": "Add reference image",
+          "max_file_size_tip": "Max 10MB"
+        },
         "input": {
           "title": "Main Prompt",
           "textPlaceHolder": "Close up shot of melting icicles on a frozen rock wall with cool blue tones, zoomed in maintaining close-up detail of water drips."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "aspectRatio": {
+            "label": "Aspect Ratio",
+            "landscape": "16:9 (Landscape)",
+            "portrait": "9:16 (Portrait)"
+          },
+          "resolution": {
+            "label": "Resolution"
+          },
+          "duration": {
+            "label": "Duration (seconds)"
+          },
+          "generateAudio": {
+            "label": "Generate Audio"
+          },
+          "negativePrompt": {
+            "label": "Negative Prompt (Optional)",
+            "placeholder": "Describe what you don't want in the video..."
+          },
+          "seed": {
+            "label": "Seed (Optional)",
+            "placeholder": "Leave empty for random generation"
+          }
         }
       },
       "generateButton": {

@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let { prompt, uploadUrls, isRetry } = await request.json();
+    let { prompt, uploadUrls, isRetry, output_format = 'png' } = await request.json();
 
     if (uploadUrls.length === 0) {
       return NextResponse.json(
@@ -99,10 +99,11 @@ export async function POST(request: NextRequest) {
       return uploadUrl;
     });
 
-    // Step 3: Detect image
+    // Step 3: Edit image
     const editRequest: EditImgRequest = {
       prompt: prompt,
-      images : uploadUrls
+      images : uploadUrls,
+      output_format: output_format
     };
 
     const Response = await EditImage(editRequest, isRetry);

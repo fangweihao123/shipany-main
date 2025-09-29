@@ -336,6 +336,14 @@
         "input": {
           "title": "指导提示词",
           "textPlaceHolder": "描述希望如何重塑参考图——光线、机位、风格或额外细节..."
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "outputFormat": {
+            "label": "输出格式",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
         }
       },
       "text2ImageTab": "文生图",
@@ -343,13 +351,51 @@
         "input": {
           "title": "主要提示词",
           "textPlaceHolder": "鲜艳的香蕉叶微距特写，带露珠，电影级光线，35mm 镜头，超写实质感..."
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "outputFormat": {
+            "label": "输出格式",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
         }
       },
       "image2VideoTab": "图生视频",
       "image2Video": {
+        "upload": {
+          "upload_title": "参考图片",
+          "select_tip": "添加参考图片",
+          "max_file_size_tip": "最大 10MB"
+        },
         "input": {
           "title": "主要提示词",
           "textPlaceHolder": "特写镜头：冰冻岩壁上正在融化的冰柱，呈现冷调蓝色，放大细节，清晰展现水滴的特写画面。"
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "aspectRatio": {
+            "label": "宽高比",
+            "landscape": "16:9 (横向)",
+            "portrait": "9:16 (竖向)"
+          },
+          "resolution": {
+            "label": "分辨率"
+          },
+          "duration": {
+            "label": "视频时长 (秒)"
+          },
+          "generateAudio": {
+            "label": "生成音频"
+          },
+          "negativePrompt": {
+            "label": "负面提示词 (可选)",
+            "placeholder": "描述你不希望在视频中出现的内容..."
+          },
+          "seed": {
+            "label": "种子值 (可选)",
+            "placeholder": "留空则随机生成"
+          }
         }
       },
       "generateButton": {

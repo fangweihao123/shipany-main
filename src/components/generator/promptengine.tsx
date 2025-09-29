@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
-import { editImage, generateImage, UploadFiles } from "@/services/generator";
+import { editImage, generateImage, generateVideo, UploadFiles } from "@/services/generator";
 import { GeneratorOutput } from "@/types/generator";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import { useTrial } from "@/lib/trial";
 import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
 import { pollTaskResult } from "@/lib/utils";
+import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
 
 const MAX_GENERATE_ATTEMPTS = 3;
 
@@ -61,6 +62,17 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   const [vfiles, setVFiles] = useState<File[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showAuthDialog, setShowAuthDialog] = useState(false);
+  
+  // Advanced options for image generation
+  const [outputFormat, setOutputFormat] = useState<'png' | 'jpeg'>('png');
+  
+  // Advanced options for video generation
+  const [aspectRatio, setAspectRatio] = useState<'16:9' | '9:16'>('16:9');
+  const [duration, setDuration] = useState(8);
+  const [resolution, setResolution] = useState<'720p' | '1080p'>('720p');
+  const [generateAudio, setGenerateAudio] = useState(false);
+  const [negativePrompt, setNegativePrompt] = useState('');
+  const [seed, setSeed] = useState<number | undefined>(undefined);
   const { status } = useSession();
   const router = useRouter();
 
@@ -71,8 +83,11 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     if (mode === "i2i") {
       return prompt.length > 0 && files.length > 0;
     }
+    if (mode === "i2v") {
+      return prompt.length > 0 && vfiles.length > 0;
+    }
     return false;
-  }, [mode, prompt, files]);
+  }, [mode, prompt, files, vfiles]);
 
   const onGenerateClick = async () => {
     if (!canGenerate || isGenerating) {
@@ -93,28 +108,45 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
-      for(let attempt = 1; attempt <= MAX_GENERATE_ATTEMPTS; attempt++){
-        try{
-          let id = "";
-          if(mode === "t2i"){
-            id = await generateImage(prompt, "nanobananat2i", attempt > 1);
-          }else if(mode === "i2i"){
-            const filesUrl = await UploadFiles(files, "nanobananai2i");
-            id = await editImage(filesUrl, prompt, "nanobananai2i", attempt > 1);
-          }
-          const queryResult = await pollTaskResult(id);
-          const normalized = normalizeOutputs(queryResult);
-          onOutputsChange?.(normalized);
-          console.log("final query result", queryResult);
-          break;
-        }catch(error){
-          const generatorError = error as GeneratorError;
-          if(generatorError){
-            if(generatorError.code === 500){
-              continue;
+      if(mode === "i2v"){
+        const filesUrl = await UploadFiles(vfiles, "nanobananai2v");
+        const videoOptions = {
+          aspect_ratio: aspectRatio,
+          duration: duration,
+          resolution: resolution,
+          generate_audio: generateAudio,
+          ...(negativePrompt && { negative_prompt: negativePrompt }),
+          ...(seed && { seed: seed })
+        };
+        const id = await generateVideo(filesUrl[0], prompt, "nanobananai2v", false, videoOptions);
+        const queryResult = await pollTaskResult(id);
+        const normalized = normalizeOutputs(queryResult);
+        onOutputsChange?.(normalized);
+        console.log("final query result", queryResult);
+      }else{
+        for(let attempt = 1; attempt <= MAX_GENERATE_ATTEMPTS; attempt++){
+          try{
+            let id = "";
+            if(mode === "t2i"){
+              id = await generateImage(prompt, "nanobananat2i", attempt > 1, outputFormat);
+            }else if(mode === "i2i"){
+              const filesUrl = await UploadFiles(files, "nanobananai2i");
+              id = await editImage(filesUrl, prompt, "nanobananai2i", attempt > 1, outputFormat);
             }
+            const queryResult = await pollTaskResult(id);
+            const normalized = normalizeOutputs(queryResult);
+            onOutputsChange?.(normalized);
+            console.log("final query result", queryResult);
+            break;
+          }catch(error){
+            const generatorError = error as GeneratorError;
+            if(generatorError){
+              if(generatorError.code === 500){
+                continue;
+              }
+            }
+            throw error;
           }
-          throw error;
         }
       }
     } catch (error) {
@@ -155,7 +187,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   const promptEngineSelector = () => {
     if(mode === "i2i"){
       return (
-        <div>
+        <div className="space-y-4">
           <MultiImgUpload 
             uploadInfo={promptEngine.image2Image?.upload}
             onChange={setFiles}
@@ -166,23 +198,33 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
             promptInput = {promptEngine.text2Image?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
+          <ImageAdvancedOptions
+            outputFormat={outputFormat}
+            onOutputFormatChange={setOutputFormat}
+            advancedOptions={promptEngine.image2Image?.advancedOptions}
+          />
         </div>
       );
     }else if(mode === "t2i"){
       return (
-        <div>
+        <div className="space-y-4">
           <PromptInputBlock
             promptInput = {promptEngine.text2Image?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
+          <ImageAdvancedOptions
+            outputFormat={outputFormat}
+            onOutputFormatChange={setOutputFormat}
+            advancedOptions={promptEngine.text2Image?.advancedOptions}
+          />
         </div>
       );
     }else if(mode === "i2v"){
       return (
-        <div>
+        <div className="space-y-4">
           <MultiImgUpload 
             uploadInfo={promptEngine.image2Video?.upload}
-            maxFiles={3}
+            maxFiles={1}
             onChange={setVFiles}
             >
 
@@ -191,6 +233,21 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
             promptInput = {promptEngine.image2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
+          <VideoAdvancedOptions
+            aspectRatio={aspectRatio}
+            onAspectRatioChange={setAspectRatio}
+            duration={duration}
+            onDurationChange={setDuration}
+            resolution={resolution}
+            onResolutionChange={setResolution}
+            generateAudio={generateAudio}
+            onGenerateAudioChange={setGenerateAudio}
+            negativePrompt={negativePrompt}
+            onNegativePromptChange={setNegativePrompt}
+            seed={seed}
+            onSeedChange={setSeed}
+            advancedOptions={promptEngine.image2Video?.advancedOptions}
+          />
         </div>
       );
     }
@@ -245,7 +302,9 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
             </Button>
           </div>
         </div>
-        {promptEngineSelector()}
+        <div className="p-4">
+          {promptEngineSelector()}
+        </div>
       </div>
       <div className="flex w-full justify-start">
         <Button

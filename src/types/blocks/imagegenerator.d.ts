@@ -1,18 +1,52 @@
 import { PromptInput, Button, DataCard } from "./base"
 import { Upload } from "./detect";
 
+export interface AdvancedOptions {
+  title?: string;
+  outputFormat?: {
+    label?: string;
+    png?: string;
+    jpeg?: string;
+  };
+  aspectRatio?: {
+    label?: string;
+    landscape?: string;
+    portrait?: string;
+  };
+  resolution?: {
+    label?: string;
+  };
+  duration?: {
+    label?: string;
+  };
+  generateAudio?: {
+    label?: string;
+  };
+  negativePrompt?: {
+    label?: string;
+    placeholder?: string;
+  };
+  seed?: {
+    label?: string;
+    placeholder?: string;
+  };
+}
+
 export interface Text2Image{
   input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
 }
 
 export interface Image2Image{
   upload?: Upload;
   input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
 }
 
 export interface Image2Video{
   upload?: Upload;
   input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
 }
 
 export interface PromptEngine{
