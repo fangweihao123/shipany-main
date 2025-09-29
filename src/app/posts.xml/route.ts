@@ -42,7 +42,7 @@ export async function GET() {
               : `${locale}/posts/${encodeURIComponent(post.slug)}`;
             
             postUrls.push({
-              loc: `${PUBLIC_WEB_URL}${urlPath}`,
+              loc: `${PUBLIC_WEB_URL}/${urlPath}`,
               lastmod: formatDate(post.updated_at || post.created_at),
               changefreq: 'monthly',
               priority: locale === defaultLocale ? '0.7' : '0.6'
