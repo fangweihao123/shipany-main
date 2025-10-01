@@ -24,14 +24,16 @@ import { getVideoPreview } from '@/lib/utils';
 import { FileUpload } from '@/components/blocks/upload';
 import { Upload as DetectUpload, State, UnwatermarkResult } from "@/types/blocks/unwatermarklocale";
 import { useSession } from 'next-auth/react';
+import { useAppContext } from "@/contexts/app";
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 import { ShowVideoResult } from './ShowVideoResult';
-import { format } from 'path';
+import { useMemo } from 'react';
 
 export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
   const router = useRouter();
+  const { user } = useAppContext();
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const apiProvider : UnwatermarkProvider = "wavespeedunwatermarkvideo";
   const [formats, scope] = getSupportFileType(apiProvider);
@@ -52,6 +54,30 @@ export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDet
     uploadProgress: 0,
     provider: getDefaultProvider(),
   });
+
+  const ButtonText = () => {
+    if(unwatermarkState.isUploading || unwatermarkState.isDetecting){
+      return (
+        <>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        {unwatermarkState.isUploading ? _state?.uploading ?? "Uploading...": 
+        unwatermarkState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
+        </>
+      );
+    }else{
+      if(unwatermarkState.isFinished){
+        return (
+          <>
+          <CheckCircle className="mr-2 h-4 w-4" />
+          {_state?.detection_complete ?? "Detection Complete"}
+          </>
+        ); 
+      }else{
+        return  (
+          _state?.detect_ai_generation ?? "Detect AI Generation"
+      )};
+    }
+  };
 
   const handleFileSelect = useCallback(async (file: File) => {
     // Reset states
@@ -242,20 +268,7 @@ export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDet
             className="w-full"
             size="lg"
             >
-            {unwatermarkState.isUploading || unwatermarkState.isDetecting ? (
-                <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {unwatermarkState.isUploading ? _state?.uploading ?? "Uploading...": 
-                 unwatermarkState.isDetecting ? _state?.analyzing ?? "Analyzing..." : _state?.processing ?? "Processsing..."}
-                </>
-            ) : unwatermarkState.isFinished ? (
-                <>
-                <CheckCircle className="mr-2 h-4 w-4" />
-                {_state?.detection_complete ?? "Detection Complete"}
-                </>
-            ) : (
-                _state?.detect_ai_generation ?? "Detect AI Generation"
-            )}
+            {ButtonText()}
             </Button>
         )}
 

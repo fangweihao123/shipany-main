@@ -140,7 +140,7 @@ export async function queryTaskStatus(id:string):Promise<any>{
 }
 
 export async function pollTaskResult(id: string): Promise<any>{
-  const maxAttempts = 60;
+  const maxAttempts = 100;
   const interval = 2000;
 
   for(let attempt = 0; attempt < maxAttempts; attempt++){

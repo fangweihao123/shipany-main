@@ -83,11 +83,12 @@
         "icon": "RiScissorsLine"
       },
       {
-        "upload_tab": "Erase Video Background",
+        "upload_tab": "Erase Video Watermark",
         "upload_title": "Upload an video file",
         "select_tip": "Select video file",
         "drag_drop_text": "Drag and drop your video here, or click to select",
         "click_different_file": "Click to select a different video",
+        "requireProTips": "Require Basic or Pro Plan to use this feature. Please Upgrade!",
         "support_format": "Supports {formats}",
         "duration_limit_tip": "Supports up to {seconds}s video",
         "type": "unwatermarkvideo",
