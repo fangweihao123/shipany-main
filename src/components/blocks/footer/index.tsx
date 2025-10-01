@@ -58,7 +58,7 @@ function BadgeScroller({ badges }: { badges: FooterType["badges"] }) {
           }
         }
         .animate-scroll-horizontal {
-          animation: scroll-horizontal 30s linear infinite;
+          animation: scroll-horizontal 10s linear infinite;
         }
         .animate-scroll-horizontal:hover {
           animation-play-state: paused;
@@ -151,12 +151,6 @@ export default function Footer({ footer }: { footer: FooterType }) {
                 )}
               </p>
             )}
-            <a href="https://toolfame.com/item/ai-nanobanana" target="_blank" rel="noopener noreferrer">
-              <img src="https://toolfame.com/badge-light.svg" alt="Featured on toolfame.com" className="height: 54px; width: auto;" />
-            </a>
-            <a target="_blank" href="https://goodaitools.com">
-            <img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" className="height:54px"/>
-            </a>
             {footer.agreement && (
               <ul className="flex justify-center gap-4 lg:justify-start">
                 {footer.agreement.items?.map((item, i) => (
