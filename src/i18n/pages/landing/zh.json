@@ -67,7 +67,9 @@
         "drag_drop_text": "将图片拖放到这里，或点击选择",
         "click_different_file": "点击选择其他图片",
         "support_format": "支持 {formats} 格式",
-        "duration_limit_tip": "支持最长 {seconds}s 的音频"
+        "duration_limit_tip": "支持最长 {seconds}s 的音频",
+        "type": "unwatermarkimage",
+        "icon": "RiImageLine"
       },
        {
         "upload_tab": "图片去背景",
@@ -76,7 +78,20 @@
         "drag_drop_text": "将图片拖放到这里，或点击选择",
         "click_different_file": "点击选择其他图片",
         "support_format": "支持 {formats} 格式",
-        "duration_limit_tip": "支持最长 {seconds}s 的音频"
+        "duration_limit_tip": "支持最长 {seconds}s 的音频",
+        "type": "removebg", 
+        "icon": "RiScissorsLine"
+      },
+      {
+        "upload_tab": "视频去水印",
+        "upload_title": "上传视频文件",
+        "select_tip": "选择视频文件",
+        "drag_drop_text": "将视频拖放到这里，或点击选择",
+        "click_different_file": "点击选择其他视频",
+        "support_format": "支持 {formats} 格式",
+        "duration_limit_tip": "支持最长 {seconds}s 的视频",
+        "type": "unwatermarkvideo",
+        "icon": "RiVideoLine"
       }
     ],
     "state": {

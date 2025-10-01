@@ -45,9 +45,10 @@ export async function POST(request: NextRequest) {
     // Validate file type
     const supportedTypes = [
       'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 
-      'image/heic', 'image/avif', 'image/bmp', 'image/tiff'
+      'image/heic', 'image/avif', 'image/bmp', 'image/tiff',
+      'video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-matroska'
     ];
-    
+
     if (!supportedTypes.includes(contentType)) {
       return NextResponse.json(
         {

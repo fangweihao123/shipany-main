@@ -1,3 +1,4 @@
+import { uploadFileToR2 } from '@/lib/utils';
 import {
   ApiErrorResponse,
   TextInputState
@@ -59,16 +60,16 @@ export async function unwatermarkImage(file: File, provider?: UnwatermarkProvide
   if (!validation.isValid) {
     throw new UnwatermarkError(validation.error || 'Invalid file', 400);
   }
-
   const config = PROVIDER_CONFIGS[selectedProvider];
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('provider', selectedProvider);
+  const {publicUrl, key} = await uploadFileToR2(file);
 
   try {
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      body: formData,
+      body: JSON.stringify({
+        fileUrl: publicUrl,
+        provider: selectedProvider,
+      }),
     });
 
     const data = await response.json();
@@ -139,7 +140,7 @@ export async function queryTaskStatus(id:string):Promise<any>{
 }
 
 export async function pollTaskResult(id: string): Promise<any>{
-  const maxAttempts = 30;
+  const maxAttempts = 60;
   const interval = 2000;
 
   for(let attempt = 0; attempt < maxAttempts; attempt++){

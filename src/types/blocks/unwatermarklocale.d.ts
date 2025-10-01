@@ -1,3 +1,5 @@
+export type unwatermarkType = "unwatermarkimage" | "removebg" | "unwatermarkvideo";
+
 export interface Upload{
   upload_tab?: string;
   upload_title?: string;
@@ -11,6 +13,8 @@ export interface Upload{
   file_upload_label?: string;
   word_count?: string;
   min_words_tip?: string;
+  type?: unwatermarkType;
+  icon?: string;
 }
 
 export interface State{

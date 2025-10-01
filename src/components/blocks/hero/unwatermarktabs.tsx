@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Image, FileVideo } from "lucide-react";
+import Icon from "@/components/icon";
 import UnwatermarkBlock from "@/components/unwatermark/unwatermarkblock";
 import { Unwatermark } from "@/types/blocks/unwatermarklocale";
 import RemoveBGBlock from "@/components/unwatermark/removebgblock";
@@ -9,7 +9,24 @@ import UnwatermarkVideoBlock from "@/components/unwatermark/unwatermarkvideobloc
 export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwatermark }){
   const uploads = useMemo(() => unwatermark?.uploads ?? [], [unwatermark]);
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
+  const UnwatermarkTypeSelector = () => {
+    switch(uploads[activeIndex].type){
+      case "unwatermarkimage":
+        return (
+          <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+        );
+      case "removebg":
+        return (
+          <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+        );
+      case "unwatermarkvideo":
+        return (
+          <UnwatermarkVideoBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
+        );
+    }
+    return (<div></div>);
+  };
   return (
     <div id="unwatermark" className="container">
         {/* Tab Navigation */}
@@ -23,13 +40,7 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
                 className={`px-4 py-2 rounded-md flex items-center ${activeIndex === i? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground'}`}
                 >
-                  {i === 0 ? (
-                    <Image className="w-4 h-4 mr-2" />
-                  ) : (
-                    i === 1 ? 
-                    (<Image className="w-4 h-4 mr-2" />)
-                    :(<Image className="w-4 h-4 mr-2" />)
-                  )}
+                  <Icon name={u.icon as string} className="size-6"/>
                   {u.upload_tab || u.upload_title}
                 </button>
               ))}
@@ -39,15 +50,10 @@ export default function UnwatermarkTabs({ unwatermark }: { unwatermark: Unwaterm
         {/* Detection Area */}
         <section id="unwatermark-area" className="mt-6 scroll-mt-24">
           <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6">
-            {activeIndex === 0 ? (
-              <UnwatermarkBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
-            ) : (
-              activeIndex === 1 
-              ? <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
-              : <RemoveBGBlock _upload={uploads[activeIndex]} _state={unwatermark.state} _unwatermarkDetails={unwatermark.unwatermarkResult} />
-            )}
+            {UnwatermarkTypeSelector()}
           </div>
         </section>
       </div>
   );
 }
+
