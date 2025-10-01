@@ -85,7 +85,9 @@ export default function Footer({ footer }: { footer: FooterType }) {
                 )}
               </p>
             )}
-
+            <a href="https://toolfame.com/item/ai-nanobanana" target="_blank" rel="noopener noreferrer">
+              <img src="https://toolfame.com/badge-light.svg" alt="Featured on toolfame.com" className="height: 54px; width: auto;" />
+            </a>
             {footer.agreement && (
               <ul className="flex justify-center gap-4 lg:justify-start">
                 {footer.agreement.items?.map((item, i) => (
