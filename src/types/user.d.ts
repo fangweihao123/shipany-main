@@ -26,4 +26,5 @@ export interface UserCredits {
   free_credits?: number;
   is_recharged?: boolean;
   is_pro?: boolean;
+  product_id?: string;
 }
