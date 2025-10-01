@@ -11,6 +11,7 @@ export interface Upload{
   text_input_placeholder?: string;
   text_input_label?: string;
   file_upload_label?: string;
+  requireProTips?: string;
   word_count?: string;
   min_words_tip?: string;
   type?: unwatermarkType;
