@@ -1,5 +1,12 @@
 import { Brand, Social, Nav, Agreement } from "@/types/blocks/base";
 
+export interface Badge {
+  url: string;
+  src: string;
+  alt: string;
+  height?: number;
+}
+
 export interface Footer {
   disabled?: boolean;
   name?: string;
@@ -8,4 +15,5 @@ export interface Footer {
   copyright?: string;
   social?: Social;
   agreement?: Agreement;
+  badges?: Badge[];
 }
