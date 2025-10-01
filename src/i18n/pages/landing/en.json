@@ -551,6 +551,20 @@
         }
       ]
     },
+    "badges" : [
+      {
+        "url": "https://startupbenchmarks.com",
+        "src": "https://startupbenchmarks.com/assets/images/badge.png",
+        "alt": "Startup Benchmarks",
+        "height": "54"  
+      },
+      {
+        "url": "https://aitechviral.com",
+        "src": "https://aitechviral.com/assets/images/badge.png",
+        "alt": "AI Tech Viral",
+        "height": "54"  
+      }
+    ],
     "social": {
       "items": [
         {

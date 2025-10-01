@@ -1,6 +1,72 @@
+"use client";
+
 import { Footer as FooterType } from "@/types/blocks/footer";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
+
+function BadgeScroller({ badges }: { badges: FooterType["badges"] }) {
+  if (!badges || badges.length === 0) return null;
+
+  // 如果数量少于4个，重复显示以填充空间
+  const displayBadges = badges.length < 4
+    ? [...badges, ...badges, ...badges]
+    : badges;
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div className="flex animate-scroll-horizontal">
+        {/* 第一组 */}
+        {displayBadges.map((badge, index) => (
+          <div
+            key={`first-${index}`}
+            className="flex-shrink-0 px-8 md:px-12 lg:px-16"
+          >
+            <a href={badge.url} target="_blank" rel="noopener noreferrer">
+              <img
+                src={badge.src}
+                alt={badge.alt}
+                height={badge.height || 54}
+                className="max-h-14 object-contain"
+              />
+            </a>
+          </div>
+        ))}
+        {/* 第二组，用于无缝循环 */}
+        {displayBadges.map((badge, index) => (
+          <div
+            key={`second-${index}`}
+            className="flex-shrink-0 px-8 md:px-12 lg:px-16"
+          >
+            <a href={badge.url} target="_blank" rel="noopener noreferrer">
+              <img
+                src={badge.src}
+                alt={badge.alt}
+                height={badge.height || 54}
+                className="max-h-14 object-contain"
+              />
+            </a>
+          </div>
+        ))}
+      </div>
+      <style jsx>{`
+        @keyframes scroll-horizontal {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll-horizontal {
+          animation: scroll-horizontal 30s linear infinite;
+        }
+        .animate-scroll-horizontal:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
+  );
+}
 
 export default function Footer({ footer }: { footer: FooterType }) {
   if (footer.disabled) {
@@ -98,6 +164,12 @@ export default function Footer({ footer }: { footer: FooterType }) {
               </ul>
             )}
           </div>
+
+          {footer.badges && footer.badges.length > 0 && (
+            <div className="mt-8 border-t pt-8">
+              <BadgeScroller badges={footer.badges} />
+            </div>
+          )}
         </footer>
       </div>
     </section>
