@@ -29,6 +29,7 @@ import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogDescription } from '@/components/ui/dialog';
 import { ShowVideoResult } from './ShowVideoResult';
 import { useMemo } from 'react';
+import { useVideoTrial } from '@/lib/videoTrial';
 
 export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDetails }: { _upload?: DetectUpload, _state?: State, _unwatermarkDetails?: UnwatermarkResult }) {
   const { status } = useSession();
@@ -127,9 +128,11 @@ export default function UnwatermarkVideoBlock({ _upload, _state, _unwatermarkDet
 
      // Require auth before detection
     if (status === 'unauthenticated') {
-      setShowAuthDialog(true);
-      setTimeout(() => router.push('/auth/signin'), 1200);
-      return;
+      if(!useVideoTrial()){
+        setShowAuthDialog(true);
+        setTimeout(() => router.push('/auth/signin'), 1200);
+        return;
+      }
     }
 
     setUnwatermarkState(prev => ({
