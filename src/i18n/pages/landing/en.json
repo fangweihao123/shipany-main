@@ -302,6 +302,38 @@
         }
       ]
     },
+    "badges" : [
+      {
+        "url": "https://toolfame.com/item/ai-nanobanana",
+        "src": "https://toolfame.com/badge-light.svg",
+        "alt": "Featured on toolfame.com",
+        "height": "54"  
+      },
+      {
+        "url": "https://goodaitools.com",
+        "src": "https://goodaitools.com/assets/images/badge.png",
+        "alt": "Good AI Tools",
+        "height": "54"  
+      },
+      {
+        "url": "https://startupbenchmarks.com",
+        "src": "https://startupbenchmarks.com/assets/images/badge.png",
+        "alt": "Startup Benchmarks",
+        "height": "54"  
+      },
+      {
+        "url": "https://aitechviral.com",
+        "src": "https://aitechviral.com/assets/images/badge.png",
+        "alt": "AI Tech Viral",
+        "height": "54"  
+      },
+      {
+        "url": "https://aixcollection.com",
+        "src": "https://aixcollection.com/assets/images/badge.png",
+        "alt": "AI X Collection",
+        "height": "54"  
+      }
+    ],
     "social": {
       "items": [
         {
