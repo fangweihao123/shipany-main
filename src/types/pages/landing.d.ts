@@ -17,6 +17,7 @@ export interface LandingPage {
   usage?: Section;
   feature?: Section;
   showcase?: Section;
+  showcase1?: Section;
   stats?: Section;
   pricing?: Pricing;
   testimonial?: Section;

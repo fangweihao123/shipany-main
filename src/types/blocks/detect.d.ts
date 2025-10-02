@@ -6,6 +6,7 @@ export interface Upload{
   click_different_file?: string;
   support_format?: string;
   duration_limit_tip?: string;
+  max_file_size_tip?: string;
   text_input_placeholder?: string;
   text_input_label?: string;
   file_upload_label?: string;

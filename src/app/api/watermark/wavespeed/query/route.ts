@@ -40,9 +40,7 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-
-    const body = await request.json();
-    const id : string = body.id;
+    const {id} = await request.json();
 
     const queryStatusResponse = await queryTaskStatus(id);
     
