@@ -56,7 +56,7 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
   });
 }
 
-export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
+export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i" | "t2v" | "i2v">("t2v");
   const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
@@ -104,13 +104,13 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     setFailure("normal");
 
     // 梳理一下逻辑 即先检测一下是否登录了 未登录则之间扣除本地的点数 如果登陆了先检测一下credits是否够用
-    /*if (status === 'unauthenticated'){
+    if (status === 'unauthenticated'){
       if(!useTrial()){
         setShowAuthDialog(true);
         setTimeout(() => router.push('/auth/signin'), 2200);
         return;
       }
-    }*/
+    }
 
     try {
       setIsGenerating(true);
