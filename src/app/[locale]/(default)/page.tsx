@@ -11,7 +11,7 @@ import Showcase from "@/components/blocks/showcase";
 import Showcase1 from "@/components/blocks/showcase1";
 import Stats from "@/components/blocks/stats";
 import Testimonial from "@/components/blocks/testimonial";
-import DetectionTabs from "@/components/blocks/hero/detectiontabs";
+import DetectionTabs from "@/components/detect/detectiontabs";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 
