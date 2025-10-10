@@ -2,16 +2,16 @@
   "template": "shipany-template-one",
   "theme": "dark",
   "meta": {
-    "title": "AI Detector - Detect AI-Generated Content Instantly | detect-ai.me",
-    "description": "Professional AI Detector tool to identify AI-generated images, text, and media. Fast, accurate detection with 95%+ accuracy rate. Try our AI Detector free today.",
-    "keywords": "AI Detector, AI detection, artificial intelligence detection, deepfake detection, AI content identification"
+    "title": "SoVideo - Generate Cinematic Video from Text & Images",
+    "description": "SoVideo is the production-ready video generation platform for builders. Turn text prompts and reference images into cinematic footage, orchestrate multi-scene stories, and deliver streaming previews inside your product.",
+    "keywords": "SoVideo, AI video generation, text to video, image to video, generative video platform, video generation API"
   },
   "header": {
     "brand": {
-      "title": "SoVeo",
+      "title": "SoVideo",
       "logo": {
-        "src": "/detect-ai-icon.svg",
-        "alt": "SoVeo"
+        "src": "/icon.svg",
+        "alt": "SoVideo"
       },
       "url": "/"
     },
@@ -28,19 +28,18 @@
           "icon": "RiMoneyDollarCircleLine"
         },
         {
-          "title": "How it Works",
+          "title": "Workflow",
           "url": "/#usage",
-          "icon": "RiSearchLine"
+          "icon": "RiPlayCircleLine"
         },
         {
-          "title": "Blog",
-          "url": "/posts",
-          "icon": "RiArticleLine"
+          "title": "Showcase",
+          "url": "/#showcase",
+          "icon": "RiMovieLine"
         }
       ]
     },
-    "buttons": [
-    ],
+    "buttons": [],
     "show_sign": true,
     "show_theme": true,
     "show_locale": true
@@ -48,75 +47,87 @@
   "hero": {
     "title": "Bring Your Ideas to Life with Sora2",
     "highlight_text": "Sora2",
-    "description": "Transform any text or image into captivating videos with simple prompts. Sora2's advanced AI model delivers stunning video generation and scene creativity that brings your ideas to life. Experience the future of AI video creation.",
+    "description": "Transform product ideas into cinematic footage with the SoVideo. Compose scenes, steer camera motion, and publish stunning clips straight from your app—no video team required.",
     "announcement": {
       "label": "NEW",
       "title": "🎬 Powered by Sora2 Video API",
       "url": "/#feature"
     },
-    "tip": "⚡ Start creating in minutes",
+    "tip": "⚡ Launch studio-quality clips in minutes",
     "videoBg": [
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/hero.mp4"
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/ski.mp4",
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/chase.mp4",
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/fly.mp4",
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/oldman.mp4"
     ],
     "show_happy_users": true,
     "show_badge": false
   },
-  "detection":{
-    "uploads":[
+  "detection": {
+    "uploads": [
       {
-        "upload_tab": "Audio Detection",
-        "upload_title": "Upload an audio file",
-        "select_tip": "Select audio file",
-        "drag_drop_text": "Drag and drop your audio here, or click to select",
-        "click_different_file": "Click to select a different image",
+        "upload_tab": "Text to Video",
+        "upload_title": "Describe your scene",
+        "select_tip": "Start with a curated prompt template",
+        "drag_drop_text": "Paste your script or drop a .txt file to begin rendering",
+        "click_different_file": "Upload a different script",
         "support_format": "Supports {formats}",
-        "duration_limit_tip": "Supports up to {seconds}s audio"
+        "duration_limit_tip": "Render clips up to {seconds}s per request"
+      },
+      {
+        "upload_tab": "Image to Video",
+        "upload_title": "Upload reference frames",
+        "select_tip": "Add mood boards or keyframes",
+        "drag_drop_text": "Drop up to 9 images or click to select inspiration frames",
+        "click_different_file": "Replace selected images",
+        "support_format": "Supports {formats}",
+        "duration_limit_tip": "Works best with high-resolution references"
       }
     ],
     "state": {
-      "uploading": "Uploading...",
-      "analyzing": "Analyzing...",
-      "processing": "Processing...",
-      "detection_complete": "Detection Complete",
-      "detect_ai_generation": "Detect AI Generation",
-      "auth_required": "Please sign in to use AI detection. Redirecting to login page..."
+      "uploading": "Uploading assets...",
+      "analyzing": "Understanding your prompt...",
+      "processing": "Rendering with Sora2...",
+      "detection_complete": "Render complete",
+      "detect_ai_generation": "Generate Video",
+      "auth_required": "Please sign in to render with Sora2. Redirecting to login..."
     },
     "detectResult": {
-      "result_detail": "Detection results will appear here",
-      "insufficient_credits": "Insufficient credits. You need at least 1 credit for detection. Please upgrade your plan.",
+      "result_detail": "Your rendered clips will appear here",
+      "insufficient_credits": "Insufficient credits. You need at least 1 credit to render a video. Please upgrade your plan.",
       "unable_verify_credits": "Unable to verify credits. Please try again.",
-      "invalid_file": "Invalid file",
-      "preview_failed": "Failed to generate image preview",
-      "detection_failed": "Detection failed",
-      "confidence_level": "AI Level",
-      "ai_generated": "AI Generated: This file appears to have been created by artificial intelligence.",
-      "human_created": "Human Created: This file appears to be authentic or human-created.",
-      "analyze_again": "Analyze Again",
-      "understand": "Understanding the Results",
-      "confidence_score_desc": "Confidence Score: Indicates how certain the AI model is about its prediction. Higher scores mean more confidence in the result.",
-      "ai_generated_desc": "AI Generated: The image shows characteristics typical of AI-generated content, such as specific artifacts, patterns, or inconsistencies.",
-      "human_created_desc": "Human Created: The image appears to be photographed, hand-drawn, or created through traditional digital art methods.",
-      "note": "Note: No detection method is 100% accurate. Results should be considered alongside other evidence when making important decisions about image authenticity.",
-      "audio_too_long": "Audio length exceeds limit. Please upload an audio file of {seconds}s or shorter."
+      "invalid_file": "Unsupported file",
+      "preview_failed": "Failed to generate video preview",
+      "detection_failed": "Render failed",
+      "confidence_level": "Quality score",
+      "ai_generated": "AI Rendered: This clip was generated by the Sora2 diffusion model.",
+      "human_created": "Uploaded Footage: This clip uses your original media.",
+      "analyze_again": "Render Again",
+      "understand": "Understanding the Output",
+      "confidence_score_desc": "Quality Score: Indicates how confident the model is in delivering a clean, artifact-free render. Higher scores mean better fidelity.",
+      "ai_generated_desc": "AI Rendered: Generated from prompts or reference frames using Sora2's video pipeline.",
+      "human_created_desc": "Uploaded Footage: Imported directly from your media without additional generation.",
+      "note": "Note: Rendering quality depends on prompt clarity and provided assets. Iterate on your prompt or adjust settings for the best results.",
+      "audio_too_long": "Clip duration exceeds limit. Please request a video of {seconds}s or shorter."
     }
   },
-   "imageGenerator": {
+  "imageGenerator": {
     "promptEngine": {
-      "title": "Nano Banana Studio",
-      "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
-      "auth_Required": "Ran out of free credits. Please Log in to try more.",
-      "insufficient_credits": "Not Enough credits. Please top up credits.",
-      "api_error": "Encounter Error, please change prompt or try it later",
+      "title": "Sora2 Prompt Engine",
+      "description": "Compose cinematic prompts, connect visual references, and fine-tune render parameters before you ship.",
+      "auth_Required": "Free quota exhausted. Log in to keep generating with Sora2.",
+      "insufficient_credits": "Not enough credits. Please top up to continue rendering.",
+      "api_error": "Render failed. Adjust the prompt or try again later.",
       "text2VideoTab": "Text to Video",
       "text2Video": {
         "input": {
           "title": "Main Prompt",
-          "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
+          "textPlaceHolder": "Cinematic shot of a neon-lit Tokyo alley in the rain, slow tracking camera, 24fps, volumetric lighting..."
         },
         "advancedOptions": {
           "title": "Advanced Options",
           "outputFormat": {
-            "label": "Output Format",
+            "label": "Preview Format",
             "png": "PNG",
             "jpeg": "JPEG"
           }
@@ -125,13 +136,13 @@
       "image2VideoTab": "Image to Video",
       "image2Video": {
         "upload": {
-          "upload_title": "Reference image",
-          "select_tip": "Add reference image",
-          "max_file_size_tip": "Max 10MB"
+          "upload_title": "Reference frames",
+          "select_tip": "Add inspiration images",
+          "max_file_size_tip": "Max 10MB each"
         },
         "input": {
-          "title": "Main Prompt",
-          "textPlaceHolder": "Close up shot of melting icicles on a frozen rock wall with cool blue tones, zoomed in maintaining close-up detail of water drips."
+          "title": "Prompt",
+          "textPlaceHolder": "Slow push-in on a handcrafted clay dragon coming to life, inspired by stop-motion lighting..."
         },
         "advancedOptions": {
           "title": "Advanced Options",
@@ -151,45 +162,45 @@
           },
           "negativePrompt": {
             "label": "Negative Prompt (Optional)",
-            "placeholder": "Describe what you don't want in the video..."
+            "placeholder": "Describe what you want to avoid in the video..."
           },
           "seed": {
             "label": "Seed (Optional)",
-            "placeholder": "Leave empty for random generation"
+            "placeholder": "Leave empty for a new render each time"
           }
         }
       },
       "generateButton": {
         "type": "button",
-        "title": "Generate with Nano Banana",
-        "loadingTitle": "Blending magic..."
+        "title": "Generate with Sora2",
+        "loadingTitle": "Rendering..."
       },
-      "requireProTips": "Video generation requires Pro or Max plan",
+      "requireProTips": "Video generation requires a Pro or Max plan",
       "states": {
-        "generating": "Brewing your banana..."
+        "generating": "Rendering your scene..."
       }
     },
     "outputGallery": {
-      "title": "Output Gallery",
-      "description": "Your generated images and watermark-free results appear instantly.",
+      "title": "Render Gallery",
+      "description": "Access generated clips, image previews, and download watermark-free results instantly.",
       "dataCard": {
-        "title": "Ready for instant creation",
-        "description": "Add a prompt or upload a reference to get started."
+        "title": "Ready to create",
+        "description": "Add a prompt or upload a reference to generate your first clip."
       },
       "downloadButton": {
         "type": "button",
-        "title": "Download",
+        "title": "Download clip",
         "loadingTitle": "Preparing download..."
       },
       "messages": {
-        "loading": "Generating, hang tight...",
-        "empty": "Your visuals will appear here",
-        "imageAlt": "Generated image"
+        "loading": "Rendering, hang tight...",
+        "empty": "Your renders will appear here",
+        "imageAlt": "Generated render"
       }
     }
   },
   "branding": {
-    "title": "ShipAny is built on the shoulders of giants",
+    "title": "Sora2 fits into your modern AI stack",
     "items": [
       {
         "title": "Next.js",
@@ -230,162 +241,162 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "What is AI Detector",
-    "label": "Introduce",
-    "description": "AI Detector uses advanced machine learning algorithms to analyze content and identify whether it was generated by artificial intelligence or created by humans.",
+    "title": "Meet SoVideo",
+    "label": "Overview",
+    "description": "SoVideo gives developers a studio-grade video generation engine with clear prompt controls, reference support, and scalable infrastructure.",
     "image": {
       "src": "/imgs/features/detector.png",
-      "alt": "Illustration of a man checking if content is AI-generated on a computer screen"
+      "alt": "Interface mockup showing Sora2 video generation dashboard"
     },
     "items": [
       {
-        "title": "Instant Detection",
-        "description": "Upload any image and get results in seconds with our real-time AI analysis technology.",
-        "icon": "RiFlashlightLine"
+        "title": "Cinematic Quality",
+        "description": "Generate 4K-ready footage with natural motion, realistic lighting, and controllable camera paths.",
+        "icon": "RiMovie2Line"
       },
       {
-        "title": "Advanced Algorithms",
-        "description": "Uses state-of-the-art machine learning models trained on millions of images for accurate detection.",
-        "icon": "RiBrainLine"
+        "title": "Flexible Workflows",
+        "description": "Blend text prompts, reference images, and negative cues to direct every frame of your story.",
+        "icon": "RiFlowChart"
       },
       {
-        "title": "Privacy First",
-        "description": "Your uploaded images are processed securely and never stored on our servers.",
+        "title": "Secure by Design",
+        "description": "Content is processed securely and automatically purged after delivery to protect your intellectual property.",
         "icon": "RiShieldCheckLine"
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why Choose AI Detector",
+    "title": "Why Teams Choose Sora2",
     "label": "Benefits",
-    "description": "Protect yourself and your organization from AI-generated content fraud with our industry-leading AI Detector technology.",
+    "description": "Ship cinematic experiences faster with a video generation platform designed for product teams, agencies, and creators.",
     "items": [
       {
-        "title": "Combat Fake News",
-        "description": "Identify AI-generated images used in misinformation campaigns and protect against fake news propaganda.",
-        "icon": "RiShieldLine",
+        "title": "Launch Stunning Marketing",
+        "description": "Craft promotional videos, product reveals, and launch teasers without hiring an external studio.",
+        "icon": "RiMegaphoneLine",
         "image": {
           "src": "/imgs/features/fake-news.png",
-          "alt": "Illustration showing combat fake news with website and megaphone icon"
+          "alt": "Illustration of marketing assets generated with Sora2"
         }
       },
       {
-        "title": "Prevent Art Theft",
-        "description": "Detect unauthorized AI reproductions of original artwork and protect intellectual property rights.",
-        "icon": "RiCopyrightLine",
+        "title": "Prototype New IP",
+        "description": "Test story ideas, game cutscenes, and cinematic worlds with rapid prompt iterations.",
+        "icon": "RiLightbulbFlashLine",
         "image": {
           "src": "/imgs/features/art-protection.png",
-          "alt": "Minimalist graphic prevent art theft with framed artwork and thief icon"
+          "alt": "Concept art brought to life with Sora2 video generation"
         }
       },
       {
-        "title": "Stop Identity Fraud",
-        "description": "Identify deepfake profile pictures and AI-generated identity documents to prevent fraud and scams.",
-        "icon": "RiUserForbidLine",
+        "title": "Scale Personalized Content",
+        "description": "Automate localized product videos, onboarding flows, and educational explainers with reusable templates.",
+        "icon": "RiUserVoiceLine",
         "image": {
           "src": "/imgs/features/identity-protection.png",
-          "alt": "Simple illustration stop identity fraud with ID card and masked figure icon"
+          "alt": "Personalized video variations produced with Sora2"
         }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "How to Use AI Detector",
-    "description": "Identify AI-generated content in three simple steps:",
+    "title": "How to Build with Sora2",
+    "description": "Create cinematic video in three simple steps:",
     "image": {
       "src": "/imgs/features/detection-process.png",
-      "alt": "AI Detector process workflow diagram"
+      "alt": "Sora2 generation workflow diagram"
     },
     "image_position": "left",
     "text_align": "center",
     "items": [
       {
-        "title": "Upload Your Content",
-        "description": "Drag and drop any file or paste a URL. Supports images, text, and other common formats.",
+        "title": "Compose Your Prompt",
+        "description": "Describe the scene, camera motion, and style. Optionally add reference images to guide the look.",
         "image": {
           "src": "/imgs/features/upload.png",
-          "alt": "Upload interface for AI Detector content analysis"
+          "alt": "Prompt composition interface"
         }
       },
       {
-        "title": "AI Analysis",
-        "description": "Our advanced algorithms analyze the content for telltale signs of AI generation in seconds.",
+        "title": "Tune Advanced Settings",
+        "description": "Select aspect ratio, resolution, duration, negative prompts, and seeds for consistent reruns.",
         "image": {
           "src": "/imgs/features/analyze.png",
-          "alt": "AI Detector analysis dashboard showing detection process"
+          "alt": "Advanced video settings panel"
         }
       },
       {
-        "title": "Get Results",
-        "description": "Receive a confidence score and detailed analysis showing why the content was flagged as AI or human-created.",
+        "title": "Render & Publish",
+        "description": "Preview your clip in the dashboard, download the master file, or push directly to your product via API.",
         "image": {
           "src": "/imgs/features/results.png",
-          "alt": "AI Detector results screen with confidence score and analysis"
+          "alt": "Sora2 render results screen"
         }
       }
     ]
   },
   "feature": {
     "name": "feature",
-    "title": "Key Features of AI Detector",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Key Features of Sora2",
+    "description": "Everything you need to generate, iterate, and ship cinematic video with confidence.",
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
-        "icon": "RiFlashlightLine"
+        "title": "Text & Image to Video",
+        "description": "Blend natural language prompts with reference images to control composition and motion.",
+        "icon": "RiMessage2Line"
       },
       {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
-        "icon": "RiCheckboxCircleLine"
+        "title": "Scene-Level Controls",
+        "description": "Define camera moves, pacing, and lighting with structured parameters and negative prompts.",
+        "icon": "RiSlideshowLine"
       },
       {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
-        "icon": "RiUploadLine"
+        "title": "Streaming Previews",
+        "description": "Review low-latency previews while the full-resolution render completes in the background.",
+        "icon": "RiLiveLine"
       },
       {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "icon": "RiFileTextLine"
+        "title": "Production Pipeline",
+        "description": "Export MP4 or WebM, manage versions, and integrate webhooks for automated delivery.",
+        "icon": "RiStackLine"
       }
     ]
   },
   "showcase": {
     "name": "showcase",
-    "title": "showcase",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Showcase",
+    "description": "Explore what teams are shipping with the Sora2 video generation stack.",
     "image": {
       "src": "/imgs/users/1.png"
     },
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
+        "title": "Launch Trailers",
+        "description": "Product teams produce cinematic launch trailers overnight with prompt-controlled motion graphics.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
+        "title": "Game Cutscenes",
+        "description": "Studios rapidly explore new story beats with multi-shot sequences rendered in minutes.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
+        "title": "Learning Content",
+        "description": "Educators spin up narrative explainers and localized tutorials without hiring actors.",
         "image": {
           "src": "/imgs/users/1.png"
         }
       },
       {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
+        "title": "Fashion Capsules",
+        "description": "Brands visualize entire fashion drops with dynamic motion lookbooks and stylized scenes.",
         "image": {
           "src": "/imgs/users/1.png"
         }
@@ -394,136 +405,73 @@
   },
   "showcase1": {
     "name": "showcase1",
-    "title": "showcase1",
-    "description": "Advanced technology to identify AI-generated content with precision and speed.",
+    "title": "Loved by Builders",
+    "description": "From indie creators to enterprise teams, Sora2 powers the next generation of video experiences.",
     "items": [
       {
-        "title": "Real-time Detection",
-        "description": "Get instant results with our lightning-fast analysis that processes content in seconds.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "High Accuracy Rate",
-        "description": "Industry-leading detection accuracy trained on millions of AI and human-generated content.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Multiple Upload Methods",
-        "description": "Support for drag-and-drop, file upload, URL input, and clipboard paste for maximum convenience.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Detailed Reports",
-        "description": "Comprehensive analysis reports with confidence scores and detection reasoning.",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      }
-    ]
-  },
-  "stats": {
-    "name": "stats",
-    "label": "Stats",
-    "title": "People Love ShipAny",
-    "description": "for it's easy to use and fast to ship.",
-    "icon": "FaRegHeart",
-    "items": [
-      {
-        "title": "Trusted by",
-        "label": "99+",
-        "description": "Customers"},
-      {
-        "title": "Built in",
-        "label": "20+",
-        "description": "Components"
-      },
-      {
-        "title": "Ship Fast in",
-        "label": "5",
-        "description": "Minutes"
-      }
-    ]
-  },
-  "testimonial": {
-    "name": "testimonial",
-    "label": "Testimonial",
-    "title": "What Users Say About ShipAny",
-    "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
-    "icon": "GoThumbsup",
-    "items": [
-      {
-        "title": "David Chen",
-        "label": "Founder of AIWallpaper.shop",
-        "description": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
-        "image": {
-          "src": "/imgs/users/1.png"
-        }
-      },
-      {
-        "title": "Rachel Kim",
-        "label": "CTO at HeyBeauty.ai",
-        "description": "The pre-built AI infrastructure is a game-changer. We didn't have to worry about architecture - just focused on our AI beauty tech and went live fast.",
+        "title": "Creative Agencies",
+        "description": "Pitch high-end concepts faster with bespoke mood films and interactive previews.",
         "image": {
           "src": "/imgs/users/2.png"
         }
       },
       {
-        "title": "Marcus Thompson",
-        "label": "Solo Developer",
-        "description": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+        "title": "Product Teams",
+        "description": "Embed the SoVideo into onboarding flows, feature announcements, and support tutorials.",
         "image": {
           "src": "/imgs/users/3.png"
         }
       },
       {
-        "title": "Sofia Garcia",
-        "label": "CEO of Melodisco",
-        "description": "The templates are production-ready and highly customizable. We built our AI music platform in hours instead of months. Incredible time-to-market!",
+        "title": "Game Studios",
+        "description": "Prototype cinematics with consistent characters and art direction before heading to production.",
         "image": {
           "src": "/imgs/users/4.png"
         }
       },
       {
-        "title": "James Wilson",
-        "label": "Tech Lead at GPTs.works",
-        "description": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
+        "title": "Education Platforms",
+        "description": "Deliver modular video lessons with localized voiceover and branded visuals.",
         "image": {
           "src": "/imgs/users/5.png"
         }
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "People Love Sora2",
+    "description": "Hear from teams who generate and ship cinematic content with Sora2 every day.",
+    "items": [
+      {
+        "title": "Lena Ortiz",
+        "label": "Head of Creative Studio at HaloWorks",
+        "description": "Sora2 lets us iterate on launch trailers in hours instead of weeks. The prompt engine gives us film-grade control.",
+        "image": {
+          "src": "/imgs/users/3.png"
+        }
       },
       {
-        "title": "Anna Zhang",
-        "label": "Startup Founder",
-        "description": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
+        "title": "Marcus Lee",
+        "label": "Founder at Driftwave",
+        "description": "We embedded Sora2 into our app and now generate personalized onboarding videos at scale. The API is rock solid.",
+        "image": {
+          "src": "/imgs/users/4.png"
+        }
+      },
+      {
+        "title": "Priya Desai",
+        "label": "Product Lead at StorySeed",
+        "description": "Prompt, preview, publish—Sora2 handles it all. Our creative team finally prototypes ideas as fast as we can dream them up.",
         "image": {
           "src": "/imgs/users/6.png"
+        }
+      },
+      {
+        "title": "Noah Carter",
+        "label": "CTO at Atlas Labs",
+        "description": "Enterprise security, predictable costs, and gorgeous output. Sora2 is the backbone of our automated video workflows.",
+        "image": {
+          "src": "/imgs/users/1.png"
         }
       }
     ]
@@ -531,52 +479,52 @@
   "faq": {
     "name": "faq",
     "label": "FAQ",
-    "title": "Frequently Asked Questions About AI Detector",
-    "description": "Have another question? Contact us by email or check our documentation.",
+    "title": "Frequently Asked Questions About Sora2",
+    "description": "Need more details? Reach out by email or explore our documentation.",
     "items": [
       {
-        "title": "How accurate is the AI Detector?",
-        "description": "Our AI Detector achieves over 95% accuracy in identifying AI-generated images and audio content. The system is trained on millions of samples and continuously updated to detect the latest AI generation techniques."
+        "title": "What resolutions does Sora2 support?",
+        "description": "Sora2 renders up to 1080p. Choose the resolution and aspect ratio that fits your workflow."
       },
       {
-        "title": "What types of AI-generated content can it detect?",
-        "description": "We can detect images created by DALL-E, Midjourney, Stable Diffusion and audio generated by AI voice tools. Our AI Detector identifies common artifacts and patterns specific to AI generation in both visual and audio content."
+        "title": "Can I combine text prompts with reference images?",
+        "description": "Yes. Upload reference frames or mood boards and Sora2 will align the motion, lighting, and style to your assets."
       },
       {
-        "title": "Is my uploaded content data stored or shared?",
-        "description": "No, we prioritize your privacy. Uploaded images and audio files are processed in real-time and immediately deleted after analysis. We never store, share, or use your content for any other purpose."
+        "title": "How are my assets handled?",
+        "description": "Uploaded files and generated clips are stored securely, encrypted at rest, and automatically deleted after delivery unless you opt-in to save them."
       },
       {
-        "title": "What should I do if I get an incorrect result?",
-        "description": "While our system is highly accurate, no detection method is 100% perfect. We're currently in BETA and continuously improving. You can report incorrect results to help us enhance our algorithms."
+        "title": "Do you offer commercial usage rights?",
+        "description": "All paid plans include full commercial usage. Contact us for enterprise agreements or dedicated capacity."
       }
     ]
   },
   "cta": {
     "name": "cta",
-    "title": "Start Using AI Detector Today",
-    "description": "Protect yourself from AI-generated content fraud and misinformation.",
+    "title": "Start Building with Sora2 Today",
+    "description": "Create cinematic video from text and images with the SoVideo and launch your next big idea.",
     "buttons": [
       {
-        "title": "Try Detector",
+        "title": "Try Sora2",
         "url": "#detect",
         "target": "_self",
-        "icon": "RiScanLine"
+        "icon": "RiMovie2Line"
       }
     ]
   },
   "footer": {
     "name": "footer",
     "brand": {
-      "title": "AI Detector",
-      "description": "Advanced AI Detector technology to identify artificial content and protect against fake media, deepfakes, and content fraud.",
+      "title": "SoVideo",
+      "description": "The developer-first video generation platform for crafting cinematic experiences from text, images, and datasets.",
       "logo": {
-        "src": "/detect-ai-icon.svg",
-        "alt": "AI Detector"
+        "src": "/icon.svg",
+        "alt": "SoVideo"
       },
       "url": "/"
     },
-    "copyright": "© 2025 • AI Detector All rights reserved.",
+    "copyright": "© 2025 • SoVideo. All rights reserved.",
     "nav": {
       "items": [
         {
@@ -588,7 +536,7 @@
               "target": "_self"
             },
             {
-              "title": "How it Works",
+              "title": "Workflow",
               "url": "/#usage",
               "target": "_self"
             },
@@ -601,28 +549,16 @@
         }
       ]
     },
-    "badges" : [
-      {
-        "url": "https://startupbenchmarks.com",
-        "src": "https://startupbenchmarks.com/assets/images/badge.png",
-        "alt": "Startup Benchmarks",
-        "height": "54"  
-      },
-      {
-        "url": "https://aitechviral.com",
-        "src": "https://aitechviral.com/assets/images/badge.png",
-        "alt": "AI Tech Viral",
-        "height": "54"  
-      }
+    "badges": [
     ],
     "social": {
       "items": [
         {
           "title": "Email",
           "icon": "RiMailLine",
-          "url": "mailto:support@detect-ai.me",
+          "url": "mailto:support@sora2-ai.top",
           "target": "_self",
-          "description": "support@detect-ai.me"
+          "description": "support@sora2-ai.top"
         }
       ]
     },

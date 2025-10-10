@@ -69,7 +69,7 @@ export default function Hero({ hero }: { hero: HeroType }) {
               )}
 
               <p
-                className="m mx-auto max-w-3xl text-muted-foreground lg:text-xl"
+                className="m mx-auto max-w-3xl lg:text-xl"
                 dangerouslySetInnerHTML={{ __html: hero.description || "" }}
               />
               {hero.buttons && (
