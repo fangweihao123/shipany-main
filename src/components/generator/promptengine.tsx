@@ -56,7 +56,7 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
 }
 
 export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
-  const [mode, setMode] = useState<"i2i" | "t2i" | "i2v">("i2i");
+  const [mode, setMode] = useState<"i2i" | "t2i" | "t2v" | "i2v">("t2v");
   const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
@@ -115,7 +115,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       setIsGenerating(true);
       onGeneratingChange?.(true);
       if(mode === "i2v"){
-        const filesUrl = await UploadFiles(vfiles, "nanobananai2v");
+        const filesUrl = await UploadFiles(vfiles, "sora2i2v");
         const videoOptions = {
           aspect_ratio: aspectRatio,
           duration: duration,
@@ -124,36 +124,25 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           ...(negativePrompt && { negative_prompt: negativePrompt }),
           ...(seed && { seed: seed })
         };
-        const id = await generateVideo(filesUrl[0], prompt, "nanobananai2v", false, videoOptions);
+        const id = await generateVideo(filesUrl, prompt, "sora2i2v", false, videoOptions);
         const queryResult = await pollTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
         console.log("final query result", queryResult);
-      }else{
-        for(let attempt = 1; attempt <= MAX_GENERATE_ATTEMPTS; attempt++){
-          try{
-            let id = "";
-            if(mode === "t2i"){
-              id = await generateImage(prompt, "nanobananat2i", attempt > 1, outputFormat);
-            }else if(mode === "i2i"){
-              const filesUrl = await UploadFiles(files, "nanobananai2i");
-              id = await editImage(filesUrl, prompt, "nanobananai2i", attempt > 1, outputFormat);
-            }
-            const queryResult = await pollTaskResult(id);
-            const normalized = normalizeOutputs(queryResult);
-            onOutputsChange?.(normalized);
-            console.log("final query result", queryResult);
-            break;
-          }catch(error){
-            const generatorError = error as GeneratorError;
-            if(generatorError){
-              if(generatorError.code === 500){
-                continue;
-              }
-            }
-            throw error;
-          }
-        }
+      }else if(mode === "t2v"){
+        const videoOptions = {
+          aspect_ratio: aspectRatio,
+          duration: duration,
+          resolution: resolution,
+          generate_audio: generateAudio,
+          ...(negativePrompt && { negative_prompt: negativePrompt }),
+          ...(seed && { seed: seed })
+        };
+        const id = await generateVideo([], prompt, "sora2t2v", false, videoOptions);
+        const queryResult = await pollTaskResult(id);
+        const normalized = normalizeOutputs(queryResult);
+        onOutputsChange?.(normalized);
+        console.log("final query result", queryResult);
       }
     } catch (error) {
       console.error("failed to generate", error);
@@ -207,7 +196,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
 
           </MultiImgUpload>
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}
+            promptInput = {promptEngine.text2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
           <ImageAdvancedOptions
@@ -221,13 +210,38 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       return (
         <div className="space-y-4">
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}
+            promptInput = {promptEngine.text2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
           <ImageAdvancedOptions
             outputFormat={outputFormat}
             onOutputFormatChange={setOutputFormat}
-            advancedOptions={promptEngine.text2Image?.advancedOptions}
+            advancedOptions={promptEngine.text2Video?.advancedOptions}
+          />
+        </div>
+      );
+    }
+    else if(mode === "t2v"){
+      return (
+        <div className="space-y-4">
+          <PromptInputBlock
+            promptInput = {promptEngine.image2Video?.input}
+            onChange={onPromptChange}>
+          </PromptInputBlock>
+          <VideoAdvancedOptions
+            aspectRatio={aspectRatio}
+            onAspectRatioChange={setAspectRatio}
+            duration={duration}
+            onDurationChange={setDuration}
+            resolution={resolution}
+            onResolutionChange={setResolution}
+            generateAudio={generateAudio}
+            onGenerateAudioChange={setGenerateAudio}
+            negativePrompt={negativePrompt}
+            onNegativePromptChange={setNegativePrompt}
+            seed={seed}
+            onSeedChange={setSeed}
+            advancedOptions={promptEngine.image2Video?.advancedOptions}
           />
         </div>
       );
@@ -236,7 +250,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         <div className="space-y-4">
           <MultiImgUpload 
             uploadInfo={promptEngine.image2Video?.upload}
-            maxFiles={1}
+            maxFiles={9}
             onChange={setVFiles}
             >
 
@@ -296,24 +310,15 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           <div className="inline-flex rounded-lg overflow-hidden">
             <Button 
               type="button"
-              onClick={()=>setMode("i2i")}
-              className= {`w-30 rounded-none ${mode === "i2i" ? activeBtn : inactiveBtn}`}>
-              {promptEngine.image2ImageTab}
-            </Button>
-            <Button 
-              type="button"
-              onClick={()=> setMode("t2i")}
-              className= {`w-30 rounded-none ${mode === "t2i" ? activeBtn : inactiveBtn}`} >
-              {promptEngine.text2ImageTab}
+              onClick={()=> setMode("t2v")}
+              className= {`w-30 rounded-none ${mode === "t2v" ? activeBtn : inactiveBtn}`} >
+              {promptEngine.text2VideoTab}
             </Button>
             <Button 
               type="button"
               onClick={()=> setMode("i2v")}
               className= {`w-30 rounded-none relative ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
               {promptEngine.image2VideoTab}
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-primary to-primary text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow-lg border-2 border-white animate-pulse">
-                PRO
-              </span>
             </Button>
           </div>
         </div>
