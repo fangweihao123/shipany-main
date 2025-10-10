@@ -127,7 +127,10 @@ export function MultiImgUpload({ uploadInfo, maxFiles = 9, onChange }: MultiImgU
           disabled={isAtLimit}
         />
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className={cn(
+          "grid gap-3",
+          maxFiles === 1 ? "grid-cols-1" : "grid-cols-3"
+        )}>
           {images.map((item) => (
             <div key={item.id} className="group relative aspect-square w-full overflow-hidden rounded-xl border bg-background">
               <img src={item.preview} alt={item.file.name} className="size-full object-cover" />
