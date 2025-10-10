@@ -6,25 +6,12 @@ import {
 } from '@/lib/utils';
 import { ApiErrorResponse } from '@/types/detect';
 import { getUserUuid } from '@/services/user';
+import { getUuid } from '@/lib/hash';
 
 const projectName = process.env?.NEXT_PUBLIC_PROJECT_NAME;
 
 export async function POST(request: NextRequest) {
   try {
-    // Verify user is authenticated (optional based on your auth requirements)
-    const userUuid = await getUserUuid();
-    if (!userUuid) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 401,
-            message: 'Authentication required',
-          },
-        } as ApiErrorResponse,
-        { status: 401 }
-      );
-    }
 
     const body: R2PresignedUrlRequest = await request.json();
     const { filename, contentType, fileSize } = body;
@@ -82,7 +69,8 @@ export async function POST(request: NextRequest) {
     // Generate unique key with timestamp and user ID
     const timestamp = Date.now();
     const fileExtension = filename.split('.').pop()?.toLowerCase() || '';
-    const key = `${projectName}/${userUuid}/${timestamp}-${filename}`;
+    const uuid = getUuid();
+    const key = `${projectName}/${uuid}-${timestamp}-${filename}`;
 
     const presignedData = await storage.generatePresignedUrl({
       key,
