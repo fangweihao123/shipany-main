@@ -104,31 +104,11 @@
     "promptEngine": {
       "title": "Nano Banana Studio",
       "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
-      "image2ImageTab": "Image to Image",
       "auth_Required": "Ran out of free credits. Please Log in to try more.",
       "insufficient_credits": "Not Enough credits. Please top up credits.",
       "api_error": "Encounter Error, please change prompt or try it later",
-      "image2Image": {
-        "upload": {
-          "upload_title": "Reference image",
-          "select_tip": "Add reference image",
-          "max_file_size_tip": "Max 10MB"
-        },
-        "input": {
-          "title": "Guidance Prompt",
-          "textPlaceHolder": "Describe how you want to transform the reference image—lighting, camera angle, style, extra details..."
-        },
-        "advancedOptions": {
-          "title": "Advanced Options",
-          "outputFormat": {
-            "label": "Output Format",
-            "png": "PNG",
-            "jpeg": "JPEG"
-          }
-        }
-      },
-      "text2ImageTab": "Text to Image",
-      "text2Image": {
+      "text2VideoTab": "Text to Video",
+      "text2Video": {
         "input": {
           "title": "Main Prompt",
           "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
