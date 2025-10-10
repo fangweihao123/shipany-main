@@ -24,7 +24,7 @@ export default async function AdminLayout({
     brand: {
       title: "Detect AI",
       logo: {
-        src: "/detect-ai-icon.svg",
+        src: "/icon.svg",
         alt: "Detect AI",
       },
       url: "/admin",
