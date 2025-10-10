@@ -9,7 +9,7 @@ export function baseOptions(locale: string): BaseLayoutProps {
       title: (
         <>
           <Image
-            src="/detect-ai-icon.svg"
+            src="/icon.svg"
             alt="Logo"
             width={28}
             height={28}
