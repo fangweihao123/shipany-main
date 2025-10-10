@@ -2,16 +2,33 @@ import {
   ApiErrorResponse,
   TextInputState
 } from '@/types/detect';
+import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2 } from '@/lib/utils';
 
 import { GeneratorProvider } from '@/types/generator';
 
 export const PROVIDER_CONFIGS = {
-  nanobanana: {
+  nanobananat2i: {
     name: 'Nano Banana',
     description: 'Advanced Image Generator Engine',
     model: "gemini-2.5-flash-image-preview",
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/service/gen-image',
+    endpoint: '/api/wavespeed/nano-banana/texttoimage',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
+  nanobananai2i: {
+    name: 'Nano Banana',
+    description: 'Advanced Image Generator Engine',
+    model: "gemini-2.5-flash-image-preview",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/wavespeed/nano-banana/edit',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
+  nanobananai2v: {
+    name: 'Nano Banana',
+    description: 'Advanced Video Generator Engine',
+    model: "veo3-fast",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/wavespeed/nano-banana/image2video',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   }
 } as const;
@@ -30,30 +47,94 @@ export class GeneratorError extends Error {
 // Get default provider from environment or fallback to sightengine
 export function getDefaultProvider(): GeneratorProvider {
   const envProvider = process.env.NEXT_PUBLIC_DEFAULT_DETECTION_PROVIDER as GeneratorProvider;
-  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobanana';
+  return envProvider && envProvider in PROVIDER_CONFIGS ? envProvider : 'nanobananat2i';
 }
 
-export async function generateImage(files: File[], prompt: string, provider?: GeneratorProvider): Promise<string> {
+export async function generateImage(prompt: string, provider?: GeneratorProvider, isRetry: boolean = false, output_format: string = 'png'): Promise<string> {
   const defaultProvider = getDefaultProvider();
   const selectedProvider = provider || defaultProvider;
-  // Validate file with provider-specific limits
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( {
+        "prompt": prompt,
+        "isRetry": isRetry,
+        "output_format": output_format
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new GeneratorError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data.data.id;
+  } catch (error) {
+    if (error instanceof GeneratorError) {
+      throw error;
+    }
+    
+    throw new GeneratorError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+export async function UploadFiles(files: File[], provider?: GeneratorProvider): Promise<string[]> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
   files.forEach(file => {
     const validation = validateFile(file, selectedProvider);
     if (!validation.isValid) {
       throw new GeneratorError(validation.error || 'Invalid file', 400);
     }
   });
+  const filesUrl = await Promise.all(
+    files.map(async (file) => {
+      const request : R2PresignedUrlRequest = {
+        filename: file.name,
+        contentType: file.type,
+        fileSize: file.size
+      }; 
+      const response = await 
+      fetch("/api/upload/presigned-url", {
+        method: "POST",
+        body: JSON.stringify(request)
+      });
+      const data = await response.json();
+      if(data.success){
+        await uploadToR2(file, data);
+        return data.publicUrl;
+      }
+    })
+  );
+  return filesUrl;
+}
 
+export async function editImage(filesUrl: string[], prompt: string, provider?: GeneratorProvider, isRetry: boolean = false, output_format: string = 'png'): Promise<string> {
+  const defaultProvider = getDefaultProvider();
+  const selectedProvider = provider || defaultProvider;
+  // Validate file with provider-specific limits
   const config = PROVIDER_CONFIGS[selectedProvider];
-  const formData = new FormData();
-  formData.append('prompt', prompt);
-  formData.append('provider', provider?.toString() ?? "");
-  formData.append('model', config.model);
-
   try {
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      body: formData,
+      body: JSON.stringify({
+        "prompt": prompt,
+        "uploadUrls": filesUrl,
+        "isRetry": isRetry,
+        "output_format": output_format
+      })
     });
 
     const data = await response.json();
@@ -141,6 +222,61 @@ export async function pollTaskResult(id: string): Promise<any>{
   throw new Error('Detection timeout');
 }
 
+
+export async function generateVideo(
+  imageUrl: string, 
+  prompt: string, 
+  provider?: GeneratorProvider, 
+  isRetry: boolean = false,
+  options?: {
+    aspect_ratio?: "16:9" | "9:16";
+    duration?: number;
+    resolution?: "720p" | "1080p";
+    generate_audio?: boolean;
+    negative_prompt?: string;
+    seed?: number;
+  }
+): Promise<string> {
+  const defaultProvider = 'nanobananai2v' as GeneratorProvider;
+  const selectedProvider = provider || defaultProvider;
+  const config = PROVIDER_CONFIGS[selectedProvider];
+  
+  try {
+    const response = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt: prompt,
+        imageUrl: imageUrl,
+        isRetry: isRetry,
+        ...options
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorData = data as ApiErrorResponse;
+      throw new GeneratorError(
+        errorData.error.message,
+        errorData.error.code,
+        errorData.error.details
+      );
+    }
+
+    return data.data.id;
+  } catch (error) {
+    if (error instanceof GeneratorError) {
+      throw error;
+    }
+    
+    throw new GeneratorError(
+      'Network error occurred',
+      500,
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
 
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes';

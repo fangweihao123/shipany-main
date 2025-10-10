@@ -1,13 +1,52 @@
 import { PromptInput, Button, DataCard } from "./base"
 import { Upload } from "./detect";
 
+export interface AdvancedOptions {
+  title?: string;
+  outputFormat?: {
+    label?: string;
+    png?: string;
+    jpeg?: string;
+  };
+  aspectRatio?: {
+    label?: string;
+    landscape?: string;
+    portrait?: string;
+  };
+  resolution?: {
+    label?: string;
+  };
+  duration?: {
+    label?: string;
+  };
+  generateAudio?: {
+    label?: string;
+  };
+  negativePrompt?: {
+    label?: string;
+    placeholder?: string;
+  };
+  seed?: {
+    label?: string;
+    placeholder?: string;
+  };
+}
+
 export interface Text2Image{
   input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
 }
 
 export interface Image2Image{
   upload?: Upload;
   input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
+}
+
+export interface Image2Video{
+  upload?: Upload;
+  input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
 }
 
 export interface PromptEngine{
@@ -17,7 +56,16 @@ export interface PromptEngine{
   image2Image?: Image2Image;
   text2ImageTab?: string;
   text2Image?: Text2Image;
+  image2VideoTab?: string;
+  image2Video?: Image2Video;
   generateButton?: Button;
+  requireProTips?: string;
+  auth_Required?: string;
+  insufficient_credits?: string;
+  api_error?: string;
+  states?: {
+    generating?: string;
+  };
 }
 
 export interface OutputGallery{
@@ -25,6 +73,11 @@ export interface OutputGallery{
   description?: string;
   dataCard?: DataCard;
   downloadButton?: Button;
+  messages?: {
+    loading?: string;
+    empty?: string;
+    imageAlt?: string;
+  };
 }
 
 export interface ImageGenerator{
