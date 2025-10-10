@@ -14,7 +14,7 @@ export const PROVIDER_CONFIGS = {
     name: 'Unwatermark Image',
     description: 'Remove Watermark From Image',
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/watermark/wavespeed/img',
+    endpoint: '/api/wavespeed/watermark',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff'] as const,
   }
 } as const;
@@ -106,7 +106,7 @@ export function validateFile(file: File, provider?: UnwatermarkProvider): { isVa
 
 
 export async function queryTaskStatus(id:string):Promise<any>{
-  const response = await fetch('/api/watermark/wavespeed/query',{
+  const response = await fetch('/api/wavespeed/query',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

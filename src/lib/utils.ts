@@ -61,7 +61,7 @@ export function getVideoPreview(file: File): Promise<string> {
 }
 
 export async function queryTaskStatus(id:string):Promise<any>{
-  const response = await fetch('/api/watermark/wavespeed/query',{
+  const response = await fetch('/api/wavespeed/query',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
