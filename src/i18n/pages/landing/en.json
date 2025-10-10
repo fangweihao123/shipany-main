@@ -1,6 +1,6 @@
 {
   "template": "shipany-template-one",
-  "theme": "light",
+  "theme": "dark",
   "meta": {
     "title": "AI Detector - Detect AI-Generated Content Instantly | detect-ai.me",
     "description": "Professional AI Detector tool to identify AI-generated images, text, and media. Fast, accurate detection with 95%+ accuracy rate. Try our AI Detector free today.",
@@ -8,10 +8,10 @@
   },
   "header": {
     "brand": {
-      "title": "AI Detector",
+      "title": "SoVeo",
       "logo": {
         "src": "/detect-ai-icon.svg",
-        "alt": "AI Detector"
+        "alt": "SoVeo"
       },
       "url": "/"
     },
@@ -46,15 +46,18 @@
     "show_locale": true
   },
   "hero": {
-    "title": "Detect AI-Generated Content in Seconds",
-    "highlight_text": "AI-Generated Content",
-    "description": "Advanced AI Detector technology to identify artificial content and protect against fake media.<br/>Protect yourself from deepfakes, art theft, and content fraud.",
+    "title": "Bring Your Ideas to Life with Sora2",
+    "highlight_text": "Sora2",
+    "description": "Transform any text or image into captivating videos with simple prompts. Sora2's advanced AI model delivers stunning video generation and scene creativity that brings your ideas to life. Experience the future of AI video creation.",
     "announcement": {
-      "label": "BETA",
-      "title": "🤖 Now serving AI Detector worldwide",
+      "label": "NEW",
+      "title": "🎬 Powered by Sora2 Video API",
       "url": "/#feature"
     },
-    "tip": "🔒 Your images are never stored",
+    "tip": "⚡ Start creating in minutes",
+    "videoBg": [
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/hero.mp4"
+    ],
     "show_happy_users": true,
     "show_badge": false
   },

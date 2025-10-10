@@ -3,10 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import HappyUsers from "./happy-users";
 import HeroBg from "./bg";
+import VeoBG from "./Veobg";
 import { Hero as HeroType } from "@/types/blocks/hero";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
-import DetectionTabs from "./detectiontabs"; 
+import DetectionTabs from "../../detect/detectiontabs"; 
 
 export default function Hero({ hero }: { hero: HeroType }) {
 
@@ -22,72 +23,80 @@ export default function Hero({ hero }: { hero: HeroType }) {
 
   return (
     <>
-      <HeroBg />
-      <section className="py-24">
-        <div className="container">
-          {hero.show_badge && (
-            <div className="flex items-center justify-center mb-8">
-              <img
-                src="/imgs/badges/phdaily.svg"
-                alt="phdaily"
-                className="h-10 object-cover"
-              />
-            </div>
-          )}
-          <div className="text-center">
-            {hero.announcement && (
-              <Link
-                href={hero.announcement.url as any}
-                className="mx-auto mb-3 inline-flex items-center gap-3 rounded-full border px-2 py-1 text-sm"
-              >
-                {hero.announcement.label && (
-                  <Badge>{hero.announcement.label}</Badge>
-                )}
-                {hero.announcement.title}
-              </Link>
-            )}
-
-            {texts && texts.length > 1 ? (
-              <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
-                {texts[0]}
-                <span className="bg-linear-to-r from-primary via-primary to-primary bg-clip-text text-transparent">
-                  {highlightText}
-                </span>
-                {texts[1]}
-              </h1>
+      <section className="relative isolate overflow-hidden bg-background min-h-[900px]">
+        {hero.videoBg ? 
+          (<VeoBG videoUrls={hero.videoBg} />
             ) : (
-              <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
-                {hero.title}
-              </h1>
-            )}
+            <HeroBg />
+          )
+        }
 
-            <p
-              className="m mx-auto max-w-3xl text-muted-foreground lg:text-xl"
-              dangerouslySetInnerHTML={{ __html: hero.description || "" }}
-            />
-            {hero.buttons && (
-              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                {hero.buttons.map((item, i) => {
-                  return (
-                    <Link
-                      key={i}
-                      href={item.url as any}
-                      target={item.target || ""}
-                      className="flex items-center"
-                    >
-                      <Button
-                        className="w-full"
-                        size="lg"
-                        variant={item.variant || "default"}
-                      >
-                        {item.icon && <Icon name={item.icon} className="" />}
-                        {item.title}
-                      </Button>
-                    </Link>
-                  );
-                })}
+        <div className="relative z-10 flex h-full min-h-[900px] items-center justify-center">
+          <div className="container flex flex-col items-center">
+            {hero.show_badge && (
+              <div className="flex items-center justify-center mb-8">
+                <img
+                  src="/imgs/badges/phdaily.svg"
+                  alt="phdaily"
+                  className="h-10 object-cover"
+                />
               </div>
             )}
+            <div className="text-center">
+              {hero.announcement && (
+                <Link
+                  href={hero.announcement.url as any}
+                  className="mx-auto mb-3 inline-flex items-center gap-3 rounded-full border px-2 py-1 text-sm"
+                >
+                  {hero.announcement.label && (
+                    <Badge>{hero.announcement.label}</Badge>
+                  )}
+                  {hero.announcement.title}
+                </Link>
+              )}
+
+              {texts && texts.length > 1 ? (
+                <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
+                  {texts[0]}
+                  <span className="bg-linear-to-r from-primary via-primary to-primary bg-clip-text text-transparent">
+                    {highlightText}
+                  </span>
+                  {texts[1]}
+                </h1>
+              ) : (
+                <h1 className="mx-auto mb-3 mt-4 max-w-6xl text-balance text-4xl font-bold lg:mb-7 lg:text-7xl">
+                  {hero.title}
+                </h1>
+              )}
+
+              <p
+                className="m mx-auto max-w-3xl text-muted-foreground lg:text-xl"
+                dangerouslySetInnerHTML={{ __html: hero.description || "" }}
+              />
+              {hero.buttons && (
+                <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+                  {hero.buttons.map((item, i) => {
+                    return (
+                      <Link
+                        key={i}
+                        href={item.url as any}
+                        target={item.target || ""}
+                        className="flex items-center"
+                      >
+                        <Button
+                          className="w-full"
+                          size="lg"
+                          variant={item.variant || "default"}
+                        >
+                          {item.icon && <Icon name={item.icon} className="" />}
+                          {item.title}
+                        </Button>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
