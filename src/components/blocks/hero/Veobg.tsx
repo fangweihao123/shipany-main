@@ -1,15 +1,28 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-export default function Veobg(videoUrls: string[]) {
+interface VeobgProps {
+  videoUrls: string[];
+}
+
+export default function Veobg( { videoUrls } : VeobgProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [current, setCurrent] = useState(0);
+  const hasMutiple = videoUrls.length > 1;
+  const active = videoUrls[current];
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleEnded = () => setCurrent((prev) => (prev + 1) % videoUrls.length);
+    const handleEnded = () => {
+      if (hasMutiple) {
+        setCurrent((prev) => (prev + 1) % videoUrls.length);
+      }else{
+        video.currentTime = 0;
+        void video.play();
+      }
+    };
     video.addEventListener("ended", handleEnded);
 
     video.load();
@@ -17,9 +30,8 @@ export default function Veobg(videoUrls: string[]) {
 
     })
     return () => video.removeEventListener("ended", handleEnded); 
-  }, [current]);
+  }, [current, hasMutiple, videoUrls]);
   
-  const active = videoUrls[current];
 
   return (
     <div className="absolute inset-0 -z-10 h-full w-full overflow-hidden">

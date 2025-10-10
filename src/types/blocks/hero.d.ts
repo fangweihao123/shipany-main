@@ -12,6 +12,7 @@ export interface Hero {
   name?: string;
   disabled?: boolean;
   announcement?: Announcement;
+  videoBg?: string[];
   title?: string;
   highlight_text?: string;
   description?: string;
