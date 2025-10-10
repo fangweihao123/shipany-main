@@ -24,38 +24,6 @@ interface PromptEngineProps {
 }
 
 function normalizeOutputs(result: any): GeneratorOutput[] {
-  const outputs: unknown[] = result?.data?.outputs ?? result?.outputs ?? [];
-  if (!Array.isArray(outputs)) {
-    return [];
-  }
-
-  return outputs.flatMap((entry: any, index) => {
-    const image = entry?.image ?? entry;
-    if (!image) {
-      return [];
-    }
-
-    const base64Payload = image?.b64_json || image?.base64 || image?.b64 || image?.data || image?.image_base64 || null;
-    const mimeType = image?.mime_type || image?.mimeType || (base64Payload ? "image/png" : undefined);
-    const dataUrl = base64Payload ? `data:${mimeType};base64,${base64Payload}` : undefined;
-    const remoteUrl = image?.url || image?.public_url || image?.publicUrl || image?.image_url || image?.signed_url;
-    const explicitDataUrl = image?.data_url || image?.dataUrl;
-    const directString = typeof image === "string" ? image : undefined;
-
-    const src = explicitDataUrl || dataUrl || remoteUrl || directString;
-    if (!src) {
-      return [];
-    }
-
-    return [{
-      id: entry?.id ?? result?.data?.id ?? String(index),
-      src,
-      mimeType,
-    }];
-  });
-}
-
-function normalizeKieOutputs(result: any): GeneratorOutput[] {
   const resultJson = JSON.parse(result.data.resultJson); 
   const outputs: unknown[] = resultJson?.resultUrls ?? [];
   if (!Array.isArray(outputs)) {
@@ -159,7 +127,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         };
         const id = await generateVideo(filesUrl, prompt, "sora2i2v", false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
-        const normalized = normalizeKieOutputs(queryResult);
+        const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
         console.log("final query result", queryResult);
       }else if(mode === "t2v"){
@@ -173,7 +141,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         };
         const id = await generateVideo([], prompt, "sora2t2v", false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
-        const normalized = normalizeKieOutputs(queryResult);
+        const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
         console.log("final query result", queryResult);
       }
