@@ -7,7 +7,6 @@ import VeoBG from "./Veobg";
 import { Hero as HeroType } from "@/types/blocks/hero";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
-import DetectionTabs from "../../detect/detectiontabs"; 
 
 export default function Hero({ hero }: { hero: HeroType }) {
 

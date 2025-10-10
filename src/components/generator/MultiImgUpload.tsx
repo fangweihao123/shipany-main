@@ -157,13 +157,13 @@ export function MultiImgUpload({ uploadInfo, maxFiles = 9, onChange }: MultiImgU
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               className={cn(
-                "flex aspect-square w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-amber-400 bg-background text-center transition-colors",
-                isDragActive && "border-amber-500 bg-primary",
+                "flex aspect-square w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-primary bg-background text-center transition-colors",
+                isDragActive && "border-primary bg-primary",
                 isAtLimit && "cursor-not-allowed opacity-60"
               )}
             >
-              <Plus className="size-8 text-amber-500" />
-              <p className="mt-1 text-sm font-medium text-amber-500">{uploadInfo?.select_tip}</p>
+              <Plus className="size-8 text-primary" />
+              <p className="mt-1 text-sm font-medium text-primary">{uploadInfo?.select_tip}</p>
               <p className="text-xs text-muted-foreground">{uploadInfo?.max_file_size_tip}</p>
             </label>
           )}
