@@ -96,7 +96,7 @@ export async function pollTaskResult(id: string): Promise<any>{
 }
 
 export async function pollKieTaskResult(id: string): Promise<any>{
-  const maxAttempts = 30;
+  const maxAttempts = 100;
   const interval = 2000;
 
   for(let attempt = 0; attempt < maxAttempts; attempt++){

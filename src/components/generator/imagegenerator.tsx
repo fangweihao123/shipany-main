@@ -6,6 +6,7 @@ import { PromptEngineBlock } from "./promptengine";
 import { useState } from "react";
 import { GeneratorOutput } from "@/types/generator";
 import { motion } from "framer-motion";
+import { SoraPromptEngineBlock } from "./sorapromptengine";
 
 export interface ImageGeneratorProps{
   imageGenerator?: ImageGenerator;
@@ -39,7 +40,7 @@ export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
          <div className="mx-auto flex w-full max-w-[80rem] flex-col gap-10 lg:flex-row lg:items-stretch">
           {imageGenerator?.promptEngine && (
             <div className="flex flex-1">
-              <PromptEngineBlock
+              <SoraPromptEngineBlock
                 promptEngine={imageGenerator.promptEngine}
                 onOutputsChange={setOutputs}
                 onGeneratingChange={setIsGenerating}
