@@ -3,15 +3,15 @@ import {
   ApiErrorResponse
 } from '@/types/detect';
 
-const API_BASE_URL = process.env.WAVESPEED_API_QUERY_ENDPOINT || "";
-const API_KEY = process.env.WAVESPEED_API_KEY;
+const API_BASE_URL = process.env.KIEAI_API_BASE_ENDPOINT || "https://api.kie.ai/api/v1";
+const API_KEY = process.env.KIEAI_API_KEY;
 
 if (!API_KEY) {
-  console.error('ERASE_WATERMARK_API_KEY is not set in environment variables');
+  console.error('KIEAI_API_KEY is not set in environment variables');
 }
 
 async function queryTaskStatus(id: string): Promise<string> {
-  const url: string = API_BASE_URL.replace("{requestId}", id);
+  const url: string = `${API_BASE_URL}/jobs/recordInfo?taskId=${id}`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(queryStatusResponse);
 
   } catch (error) {
-    console.error('Detection API error:', error);
+    console.error('Sora2 API error:', error);
     
     return NextResponse.json(
       {

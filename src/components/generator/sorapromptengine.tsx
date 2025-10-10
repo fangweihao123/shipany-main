@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useTrial } from "@/lib/trial";
 import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
-import { pollTaskResult } from "@/lib/utils";
+import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
 
 const MAX_GENERATE_ATTEMPTS = 3;
@@ -55,8 +55,41 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
   });
 }
 
+function normalizeKieOutputs(result: any): GeneratorOutput[] {
+  const resultJson = JSON.parse(result.data.resultJson); 
+  const outputs: unknown[] = resultJson?.resultUrls ?? [];
+  if (!Array.isArray(outputs)) {
+    return [];
+  }
+
+  return outputs.flatMap((entry: any, index) => {
+    const image = entry?.image ?? entry;
+    if (!image) {
+      return [];
+    }
+
+    const base64Payload = image?.b64_json || image?.base64 || image?.b64 || image?.data || image?.image_base64 || null;
+    const mimeType = image?.mime_type || image?.mimeType || (base64Payload ? "image/png" : undefined);
+    const dataUrl = base64Payload ? `data:${mimeType};base64,${base64Payload}` : undefined;
+    const remoteUrl = image?.url || image?.public_url || image?.publicUrl || image?.image_url || image?.signed_url;
+    const explicitDataUrl = image?.data_url || image?.dataUrl;
+    const directString = typeof image === "string" ? image : undefined;
+
+    const src = explicitDataUrl || dataUrl || remoteUrl || directString;
+    if (!src) {
+      return [];
+    }
+
+    return [{
+      id: entry?.id ?? result?.data?.id ?? String(index),
+      src,
+      mimeType,
+    }];
+  });
+}
+
 export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
-  const [mode, setMode] = useState<"i2i" | "t2i" | "i2v">("i2i");
+  const [mode, setMode] = useState<"i2i" | "t2i" | "t2v" | "i2v">("t2v");
   const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
@@ -87,10 +120,10 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       return prompt.length > 0 && files.length > 0;
     }
     if (mode === "i2v") {
-      return prompt.length > 0 && vfiles.length > 0 
-        && user && user.credits 
-        && (user.credits.product_id.includes("Pro") 
-        || user.credits.product_id.includes("Max")); // Video generation costs 50 credits
+      return prompt.length > 0 && vfiles.length > 0;
+    }
+    if (mode === "t2v") {
+      return prompt.length > 0;
     }
     return false;
   }, [mode, prompt, files, vfiles]);
@@ -103,19 +136,19 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
     setFailure("normal");
 
     // 梳理一下逻辑 即先检测一下是否登录了 未登录则之间扣除本地的点数 如果登陆了先检测一下credits是否够用
-    if (status === 'unauthenticated'){
+    /*if (status === 'unauthenticated'){
       if(!useTrial()){
         setShowAuthDialog(true);
         setTimeout(() => router.push('/auth/signin'), 2200);
         return;
       }
-    }
+    }*/
 
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
       if(mode === "i2v"){
-        const filesUrl = await UploadFiles(vfiles, "nanobananai2v");
+        const filesUrl = await UploadFiles(vfiles, "sora2i2v");
         const videoOptions = {
           aspect_ratio: aspectRatio,
           duration: duration,
@@ -124,36 +157,25 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           ...(negativePrompt && { negative_prompt: negativePrompt }),
           ...(seed && { seed: seed })
         };
-        const id = await generateVideo(filesUrl[0], prompt, "nanobananai2v", false, videoOptions);
-        const queryResult = await pollTaskResult(id);
-        const normalized = normalizeOutputs(queryResult);
+        const id = await generateVideo(filesUrl, prompt, "sora2i2v", false, videoOptions);
+        const queryResult = await pollKieTaskResult(id);
+        const normalized = normalizeKieOutputs(queryResult);
         onOutputsChange?.(normalized);
         console.log("final query result", queryResult);
-      }else{
-        for(let attempt = 1; attempt <= MAX_GENERATE_ATTEMPTS; attempt++){
-          try{
-            let id = "";
-            if(mode === "t2i"){
-              id = await generateImage(prompt, "nanobananat2i", attempt > 1, outputFormat);
-            }else if(mode === "i2i"){
-              const filesUrl = await UploadFiles(files, "nanobananai2i");
-              id = await editImage(filesUrl, prompt, "nanobananai2i", attempt > 1, outputFormat);
-            }
-            const queryResult = await pollTaskResult(id);
-            const normalized = normalizeOutputs(queryResult);
-            onOutputsChange?.(normalized);
-            console.log("final query result", queryResult);
-            break;
-          }catch(error){
-            const generatorError = error as GeneratorError;
-            if(generatorError){
-              if(generatorError.code === 500){
-                continue;
-              }
-            }
-            throw error;
-          }
-        }
+      }else if(mode === "t2v"){
+        const videoOptions = {
+          aspect_ratio: aspectRatio,
+          duration: duration,
+          resolution: resolution,
+          generate_audio: generateAudio,
+          ...(negativePrompt && { negative_prompt: negativePrompt }),
+          ...(seed && { seed: seed })
+        };
+        const id = await generateVideo([], prompt, "sora2t2v", false, videoOptions);
+        const queryResult = await pollKieTaskResult(id);
+        const normalized = normalizeKieOutputs(queryResult);
+        onOutputsChange?.(normalized);
+        console.log("final query result", queryResult);
       }
     } catch (error) {
       console.error("failed to generate", error);
@@ -181,12 +203,6 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       if(isGenerating){
         return generatingText;
       }else{
-        if(mode === "i2v"){
-          const isFreeVersion = user && user.credits && (user.credits.product_id.includes("Pro") || user.credits.product_id.includes("Max"));
-          if(!isFreeVersion){
-            return promptEngine?.requireProTips || "Video generation requires Pro or Max plan";
-          }
-        }
         return promptEngine.generateButton?.title;
       }
     }else if(failure === "apierror"){
@@ -207,7 +223,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
 
           </MultiImgUpload>
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}
+            promptInput = {promptEngine.text2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
           <ImageAdvancedOptions
@@ -221,13 +237,38 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       return (
         <div className="space-y-4">
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}
+            promptInput = {promptEngine.text2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
           <ImageAdvancedOptions
             outputFormat={outputFormat}
             onOutputFormatChange={setOutputFormat}
-            advancedOptions={promptEngine.text2Image?.advancedOptions}
+            advancedOptions={promptEngine.text2Video?.advancedOptions}
+          />
+        </div>
+      );
+    }
+    else if(mode === "t2v"){
+      return (
+        <div className="space-y-4">
+          <PromptInputBlock
+            promptInput = {promptEngine.image2Video?.input}
+            onChange={onPromptChange}>
+          </PromptInputBlock>
+          <VideoAdvancedOptions
+            aspectRatio={aspectRatio}
+            onAspectRatioChange={setAspectRatio}
+            duration={duration}
+            onDurationChange={setDuration}
+            resolution={resolution}
+            onResolutionChange={setResolution}
+            generateAudio={generateAudio}
+            onGenerateAudioChange={setGenerateAudio}
+            negativePrompt={negativePrompt}
+            onNegativePromptChange={setNegativePrompt}
+            seed={seed}
+            onSeedChange={setSeed}
+            advancedOptions={promptEngine.image2Video?.advancedOptions}
           />
         </div>
       );
@@ -236,7 +277,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         <div className="space-y-4">
           <MultiImgUpload 
             uploadInfo={promptEngine.image2Video?.upload}
-            maxFiles={1}
+            maxFiles={9}
             onChange={setVFiles}
             >
 
@@ -296,24 +337,15 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           <div className="inline-flex rounded-lg overflow-hidden">
             <Button 
               type="button"
-              onClick={()=>setMode("i2i")}
-              className= {`w-30 rounded-none ${mode === "i2i" ? activeBtn : inactiveBtn}`}>
-              {promptEngine.image2ImageTab}
-            </Button>
-            <Button 
-              type="button"
-              onClick={()=> setMode("t2i")}
-              className= {`w-30 rounded-none ${mode === "t2i" ? activeBtn : inactiveBtn}`} >
-              {promptEngine.text2ImageTab}
+              onClick={()=> setMode("t2v")}
+              className= {`w-30 rounded-none ${mode === "t2v" ? activeBtn : inactiveBtn}`} >
+              {promptEngine.text2VideoTab}
             </Button>
             <Button 
               type="button"
               onClick={()=> setMode("i2v")}
               className= {`w-30 rounded-none relative ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
               {promptEngine.image2VideoTab}
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow-lg border-2 border-white animate-pulse">
-                PRO
-              </span>
             </Button>
           </div>
         </div>

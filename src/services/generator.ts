@@ -37,14 +37,14 @@ export const PROVIDER_CONFIGS = {
     model: "sora-2-image-to-video",
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/kieai/sora2/imagetovideo',
-    supportedFormats: ['mp4']  
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   },
   sora2t2v: {
     name: 'Sora2',
     description: 'Advanced Video Generator Engine',
     model: "sora-2-text-to-video",
     maxFileSize: 10 * 1024 * 1024, // 10MB
-    endpoint: '/api/kieai/sora2/textvideo',
+    endpoint: '/api/kieai/sora2/texttovideo',
     supportedFormats: ['mp4']  
   }
 } as const;
@@ -281,7 +281,7 @@ export async function generateVideo(
       );
     }
 
-    return data.data.id;
+    return data.data.id || data.data.taskId;
   } catch (error) {
     if (error instanceof GeneratorError) {
       throw error;
