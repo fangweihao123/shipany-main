@@ -95,6 +95,41 @@ export async function pollTaskResult(id: string): Promise<any>{
   throw new Error('Detection timeout');
 }
 
+export async function pollKieTaskResult(id: string): Promise<any>{
+  const maxAttempts = 30;
+  const interval = 2000;
+
+  for(let attempt = 0; attempt < maxAttempts; attempt++){
+    const status = await queryKieTaskStatus(id);
+    if(status.data.state === 'success'){
+      return status;
+    }
+    if(status.data.state === 'fail'){
+      throw new Error(`Sora2 Generation failed ${status.data.failMsg || ''}`);
+    }
+    await new Promise(resolve => setTimeout(resolve, interval));
+  }
+
+  throw new Error('Sora2 timeout');
+}
+
+export async function queryKieTaskStatus(id:string):Promise<any>{
+  const response = await fetch('/api/kieai/query',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id}),
+  });
+  if(!response.ok){
+    throw new Error(`Query failed: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  console.log("query result", result);
+  return result;
+}
+
 // R2 File Upload Functions - moved from detect.ts for reusability
 
 /**
