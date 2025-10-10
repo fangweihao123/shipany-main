@@ -30,6 +30,22 @@ export const PROVIDER_CONFIGS = {
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/wavespeed/nano-banana/image2video',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
+  sora2i2v: {
+    name: 'Sora2',
+    description: 'Advanced Video Generator Engine',
+    model: "sora-2-image-to-video",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/kieai/sora2/imagetovideo',
+    supportedFormats: ['mp4']  
+  },
+  sora2t2v: {
+    name: 'Sora2',
+    description: 'Advanced Video Generator Engine',
+    model: "sora-2-text-to-video",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/kieai/sora2/textvideo',
+    supportedFormats: ['mp4']  
   }
 } as const;
 
@@ -224,8 +240,8 @@ export async function pollTaskResult(id: string): Promise<any>{
 
 
 export async function generateVideo(
-  imageUrl: string, 
-  prompt: string, 
+  imageUrls?: string[], 
+  prompt?: string, 
   provider?: GeneratorProvider, 
   isRetry: boolean = false,
   options?: {
@@ -247,7 +263,8 @@ export async function generateVideo(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         prompt: prompt,
-        imageUrl: imageUrl,
+        model: config.model,
+        imageUrls: imageUrls,
         isRetry: isRetry,
         ...options
       })

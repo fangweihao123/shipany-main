@@ -37,6 +37,11 @@ export interface Text2Image{
   advancedOptions?: AdvancedOptions;
 }
 
+export interface Text2Video{
+  input?: PromptInput;
+  advancedOptions?: AdvancedOptions;
+}
+
 export interface Image2Image{
   upload?: Upload;
   input?: PromptInput;
@@ -56,6 +61,8 @@ export interface PromptEngine{
   image2Image?: Image2Image;
   text2ImageTab?: string;
   text2Image?: Text2Image;
+  text2VideoTab?: string;
+  text2Video?: Text2Video;
   image2VideoTab?: string;
   image2Video?: Image2Video;
   generateButton?: Button;
