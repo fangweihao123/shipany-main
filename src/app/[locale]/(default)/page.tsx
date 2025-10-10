@@ -12,6 +12,7 @@ import Showcase1 from "@/components/blocks/showcase1";
 import Stats from "@/components/blocks/stats";
 import Testimonial from "@/components/blocks/testimonial";
 import DetectionTabs from "@/components/detect/detectiontabs";
+import { ImageGeneratorBlock } from "@/components/generator/imagegenerator";
 import { getLandingPage } from "@/services/page";
 import { setRequestLocale } from "next-intl/server";
 
@@ -51,7 +52,7 @@ export default async function LandingPage({
   return (
     <>
       {page.hero && <Hero hero={page.hero} />}
-      {page.detection && <DetectionTabs detection={page.detection}/>}
+      {page.imageGenerator && <ImageGeneratorBlock imageGenerator={page.imageGenerator} />}
       {page.branding && <Branding section={page.branding} />}
       {page.introduce && <Feature1 section={page.introduce} />}
       {page.benefit && <Feature2 section={page.benefit} />}
