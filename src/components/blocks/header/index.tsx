@@ -60,7 +60,7 @@ export default function Header({ header }: { header: HeaderType }) {
                 </span>
               )}
             </Link>
-            <div className="flex items-center">
+            <div className="flex items-center z-20">
               <NavigationMenu>
                 <NavigationMenuList>
                   {header.nav?.items?.map((item, i) => {
