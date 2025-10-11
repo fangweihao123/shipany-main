@@ -3,8 +3,10 @@
 import { Footer as FooterType } from "@/types/blocks/footer";
 import Icon from "@/components/icon";
 import { Link } from "@/i18n/navigation";
+import { usePathname } from "next/navigation";
 
 function BadgeScroller({ badges }: { badges: FooterType["badges"] }) {
+
   if (!badges || badges.length === 0) return null;
 
   // 如果数量少于4个，重复显示以填充空间
@@ -69,6 +71,10 @@ function BadgeScroller({ badges }: { badges: FooterType["badges"] }) {
 }
 
 export default function Footer({ footer }: { footer: FooterType }) {
+  const badgeVisibleRoute = ["/", "/zh"];
+  const pathname = usePathname();
+  const showBadges = badgeVisibleRoute.includes(pathname);
+
   if (footer.disabled) {
     return null;
   }
@@ -164,7 +170,7 @@ export default function Footer({ footer }: { footer: FooterType }) {
             )}
           </div>
 
-          {footer.badges && footer.badges.length > 0 && (
+          {showBadges && footer.badges && footer.badges.length > 0 && (
             <div className="mt-8 border-t pt-8">
               <BadgeScroller badges={footer.badges} />
             </div>
