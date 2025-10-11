@@ -1,0 +1,303 @@
+{
+  "introduce": {
+    "name": "introduce",
+    "title": "什么是 Nano Banana",
+    "label": "产品概览",
+    "description": "Nano Banana（Google 的 Gemini 2.5 Flash Image）是一款新一代 AI 图像编辑器，它允许你通过自然语言提示来编辑和增强照片，为专业创作者和日常用户同时提供精准的变换、一致的人物与物体，以及无缝衔接的视觉品质。",
+    "image": {
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanodoll.jpg",
+      "alt": "设计师使用 Nano Banana 构建营销视觉"
+    },
+    "items": [
+      {
+        "title": "逼真的风格转换",
+        "description": "从照片写实主义到风格化艺术，Nano Banana 都能无缝适应您偏好的视觉方向。AI 模型可以处理复杂的艺术风格，同时保持真实性和清晰度。",
+        "icon": "RiBrainLine"
+      },
+      {
+        "title": "可靠的多角色调整",
+        "description": "在单个帧中编辑多个角色一直是 AI 图像编辑中的一个挑战。Nano Banana 通过在编辑中保持比例、互动和表情的一致性来解决这个问题。",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "极速生成",
+        "description": "探索阶段交给 nano banana，系统会根据简报即时产出多组高清方案并给出差异提示，帮你迅速锁定方向。",
+        "icon": "RiFlashlightLine"
+      }
+    ]
+  },
+  "imageGenerator": {
+    "promptEngine": {
+      "title": "Nano Banana Studio",
+      "description": "借助 Nano Banana 生成新创意或重塑现有素材。",
+      "image2ImageTab": "图生图",
+      "auth_Required": "已用完免费额度。请登录使用更多功能。",
+      "insufficient_credits": "额度不够，请充值。",
+      "api_error": "生成问题，请修改提示词或者稍后尝试。",
+      "image2Image": {
+        "upload": {
+          "upload_title": "参考图片",
+          "select_tip": "添加参考图片",
+          "max_file_size_tip": "最大 10MB"
+        },
+        "input": {
+          "title": "指导提示词",
+          "textPlaceHolder": "描述希望如何重塑参考图——光线、机位、风格或额外细节..."
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "outputFormat": {
+            "label": "输出格式",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
+        }
+      },
+      "text2ImageTab": "文生图",
+      "text2Image": {
+        "input": {
+          "title": "主要提示词",
+          "textPlaceHolder": "鲜艳的香蕉叶微距特写，带露珠，电影级光线，35mm 镜头，超写实质感..."
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "outputFormat": {
+            "label": "输出格式",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
+        }
+      },
+      "image2VideoTab": "图生视频",
+      "image2Video": {
+        "upload": {
+          "upload_title": "参考图片",
+          "select_tip": "添加参考图片",
+          "max_file_size_tip": "最大 10MB"
+        },
+        "input": {
+          "title": "主要提示词",
+          "textPlaceHolder": "特写镜头：冰冻岩壁上正在融化的冰柱，呈现冷调蓝色，放大细节，清晰展现水滴的特写画面。"
+        },
+        "advancedOptions": {
+          "title": "高级选项",
+          "aspectRatio": {
+            "label": "宽高比",
+            "landscape": "16:9 (横向)",
+            "portrait": "9:16 (竖向)"
+          },
+          "resolution": {
+            "label": "分辨率"
+          },
+          "duration": {
+            "label": "视频时长 (秒)"
+          },
+          "generateAudio": {
+            "label": "生成音频"
+          },
+          "negativePrompt": {
+            "label": "负面提示词 (可选)",
+            "placeholder": "描述你不希望在视频中出现的内容..."
+          },
+          "seed": {
+            "label": "种子值 (可选)",
+            "placeholder": "留空则随机生成"
+          }
+        }
+      },
+      "generateButton": {
+        "type": "button",
+        "title": "使用 Nano Banana 生成",
+        "loadingTitle": "魔法混合中..."
+      },
+      "requireProTips": "视频生成需要 Pro 或 Max 套餐",
+      "states": {
+        "generating": "香蕉灵感酝酿中..."
+      }
+    },
+    "outputGallery": {
+      "title": "输出画廊",
+      "description": "生成的图像与去水印结果会即时呈现。",
+      "dataCard": {
+        "title": "随时准备创作",
+        "description": "输入提示词或上传参考图即可开始。"
+      },
+      "downloadButton": {
+        "type": "button",
+        "title": "下载",
+        "loadingTitle": "准备下载..."
+      },
+      "messages": {
+        "loading": "正在生成，请稍候...",
+        "empty": "你的作品会显示在这里",
+        "imageAlt": "生成的图像"
+      }
+    }
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "团队选择 Nano Banana 的理由",
+    "label": "核心优势",
+    "disabled": true,
+    "description": "团队选择 nano banana，是因为它把头脑风暴、成片制作、版本同步与审批交付串成无缝闭环。",
+    "items": [
+      {
+        "title": "加速活动发布",
+        "description": "nano banana 会拆解简报、生成提示词模板、自动匹配渠道尺寸，让活动物料快速进入制作阶段。",
+        "icon": "RiShieldLine",
+        "image": {
+          "src": "/imgs/features/fake-news.png",
+          "alt": "市场团队使用 Nano Banana 发布活动素材"
+        }
+      },
+      {
+        "title": "守护品牌资产",
+        "description": "面对复杂材质与细节，nano banana 能重建金属反光、面料纹理与品牌标识，保持整体质感一致。",
+        "icon": "RiCopyrightLine",
+        "image": {
+          "src": "/imgs/features/art-protection.png",
+          "alt": "Nano Banana 精修的产品摄影作品"
+        }
+      },
+      {
+        "title": "协作更安心",
+        "description": "角色权限、批注记录、导出历史都由 nano banana 留档，跨部门协作时清晰追踪每一步。",
+        "icon": "RiUserForbidLine",
+        "image": {
+          "src": "/imgs/features/identity-protection.png",
+          "alt": "团队协作使用 Nano Banana 的工作界面"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "Nano Banana 如何工作",
+    "description": "在 nano banana 内完成创意落地只需三步，既保留实验空间又让流程井然有序。",
+    "image": {
+      "src": "/imgs/features/detection-process.png",
+      "alt": "Nano Banana 工作流示意图"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "描述或上传创意",
+        "description": "上传描述或素材后，nano banana 会解析情绪、主体与投放渠道，给出合适的初稿建议。"
+      },
+      {
+        "title": "调节风格与细节",
+        "description": "调节风格时，nano banana 将灯光、镜头、色调与叙事节奏关联成可复用预设，保证每轮输出一致。"
+      },
+      {
+        "title": "立即下载并分享",
+        "description": "导出阶段，nano banana 同步生成分层文件、透明背景与品牌安全档案，方便各渠道即时上线。"
+      }
+    ]
+  },
+  "feature": {
+    "name": "feature",
+    "title": "Nano Banana 的核心能力",
+    "description": "nano banana 将复杂的AI生成能力封装成直观易用的模块化工具，让新成员能够快速上手创作，资深创作者也能保留对细节的精细控制。通过智能算法优化，nano banana 确保每次生成都能达到商用级别的品质标准。",
+    "items": [
+      {
+        "title": "文生图生成",
+        "description": "文生图引擎由 nano banana 训练，可理解日常语言中的情绪与镜头描述，呈现电影感画面。",
+        "icon": "RiFlashlightLine"
+      },
+      {
+        "title": "图生图重塑",
+        "description": "图生图流程保留主体结构与姿态，nano banana 在此基础上探索风格、材质与细节变奏。",
+        "icon": "RiCheckboxCircleLine"
+      },
+      {
+        "title": "高级角色一致性",
+        "description": "在多次编辑中保持完美的角色细节和面部特征。我们的 AI 在保持身份和一致性方面表现出色，非常适合讲故事和品牌内容创作。",
+        "icon": "RiFileTextLine"
+      },
+      {
+        "title": "卓越的场景集成",
+        "description": "将编辑与原始背景和光照无缝融合。Nano Banana 在应用修改时保留场景上下文，确保自然的转换效果",
+        "icon": "RiDownloadLine"
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "常见问题",
+    "title": "Nano Banana 常见问题",
+    "description": "在了解套餐定价、技术支持或合规要求前，不妨先阅读这些关于 nano banana 的常见问答解析，随后再与我们的专业顾问深入沟通具体需求。这些问题涵盖了用户在使用 nano banana 过程中最关心的核心功能与安全保障。",
+    "items": [
+      {
+        "title": "什么是 Nano Banana？",
+        "description": "Nano Banana 是一个先进的 AI 图像编辑平台，通过智能提示理解和角色一致性来转换您的照片。它专长于自然语言驱动的编辑，同时保持场景完整性并提供高分辨率结果。"
+      },
+      {
+        "title": "可以用于商业项目吗？",
+        "description": "当然可以！它非常适合创建 AI UGC 内容、社交媒体活动和营销材料。许多用户利用它创建一致的 AI 网红和产品摄影。高质量的输出适合专业使用。"
+      },
+      {
+        "title": "Nano Banana 适合初学者吗？",
+        "description": "是的！Nano Banana 的直观自然语言界面让专业图像编辑对每个人都变得可达。初学者可以通过简单描述他们的愿景获得惊人的结果，而专业人士可以利用高级功能进行复杂的编辑工作流程。"
+      },
+      {
+        "title": "它可以处理哪些类型的编辑？",
+        "description": "编辑器可以处理复杂的编辑，包括面部完成、背景更改、物体放置、风格转移和角色修改。它特别擅长理解诸如「放置在暴风雪中」或「创建完整面部」等上下文指令，同时保持照片级质量。"
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "立即使用 Nano Banana 创作",
+    "description": "立即加入 nano banana 创作者社群，把灵感在一个平台内转化为成品级素材，并随时同步给团队。",
+    "buttons": [
+      {
+        "title": "开启工作室",
+        "url": "#generator",
+        "target": "_self",
+        "icon": "RiSparkling2Line"
+      }
+    ]
+  },
+  "branding": {
+    "title": "Nano Banana 由世界级平台驱动",
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn/UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ],
+    "disabled": true
+  }
+}

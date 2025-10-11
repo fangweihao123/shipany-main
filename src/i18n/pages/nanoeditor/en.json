@@ -1,0 +1,239 @@
+{
+  "imageGenerator": {
+    "promptEngine": {
+      "title": "Nano Banana Studio",
+      "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
+      "image2ImageTab": "Image to Image",
+      "auth_Required": "Ran out of free credits. Please Log in to try more.",
+      "insufficient_credits": "Not Enough credits. Please top up credits.",
+      "api_error": "Encounter Error, please change prompt or try it later",
+      "image2Image": {
+        "upload": {
+          "upload_title": "Reference image",
+          "select_tip": "Add reference image",
+          "max_file_size_tip": "Max 10MB"
+        },
+        "input": {
+          "title": "Guidance Prompt",
+          "textPlaceHolder": "Describe how you want to transform the reference image—lighting, camera angle, style, extra details..."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "outputFormat": {
+            "label": "Output Format",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
+        }
+      },
+      "text2ImageTab": "Text to Image",
+      "text2Image": {
+        "input": {
+          "title": "Main Prompt",
+          "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "outputFormat": {
+            "label": "Output Format",
+            "png": "PNG",
+            "jpeg": "JPEG"
+          }
+        }
+      },
+      "image2VideoTab": "Image to Video",
+      "image2Video": {
+        "upload": {
+          "upload_title": "Reference image",
+          "select_tip": "Add reference image",
+          "max_file_size_tip": "Max 10MB"
+        },
+        "input": {
+          "title": "Main Prompt",
+          "textPlaceHolder": "Close up shot of melting icicles on a frozen rock wall with cool blue tones, zoomed in maintaining close-up detail of water drips."
+        },
+        "advancedOptions": {
+          "title": "Advanced Options",
+          "aspectRatio": {
+            "label": "Aspect Ratio",
+            "landscape": "16:9 (Landscape)",
+            "portrait": "9:16 (Portrait)"
+          },
+          "resolution": {
+            "label": "Resolution"
+          },
+          "duration": {
+            "label": "Duration (seconds)"
+          },
+          "generateAudio": {
+            "label": "Generate Audio"
+          },
+          "negativePrompt": {
+            "label": "Negative Prompt (Optional)",
+            "placeholder": "Describe what you don't want in the video..."
+          },
+          "seed": {
+            "label": "Seed (Optional)",
+            "placeholder": "Leave empty for random generation"
+          }
+        }
+      },
+      "generateButton": {
+        "type": "button",
+        "title": "Generate with Nano Banana",
+        "loadingTitle": "Blending magic..."
+      },
+      "requireProTips": "Video generation requires Pro or Max plan",
+      "states": {
+        "generating": "Brewing your banana..."
+      }
+    },
+    "outputGallery": {
+      "title": "Output Gallery",
+      "description": "Your generated images and watermark-free results appear instantly.",
+      "dataCard": {
+        "title": "Ready for instant creation",
+        "description": "Add a prompt or upload a reference to get started."
+      },
+      "downloadButton": {
+        "type": "button",
+        "title": "Download",
+        "loadingTitle": "Preparing download..."
+      },
+      "messages": {
+        "loading": "Generating, hang tight...",
+        "empty": "Your visuals will appear here",
+        "imageAlt": "Generated image"
+      }
+    }
+  },
+  "branding": {
+    "title": "Nano Banana is powered by world-class platforms",
+    "disabled": true,
+    "items": [
+      {
+        "title": "Next.js",
+        "image": {
+          "src": "/imgs/logos/nextjs.svg",
+          "alt": "Next.js"
+        }
+      },
+      {
+        "title": "React",
+        "image": {
+          "src": "/imgs/logos/react.svg",
+          "alt": "React"
+        }
+      },
+      {
+        "title": "TailwindCSS",
+        "image": {
+          "src": "/imgs/logos/tailwindcss.svg",
+          "alt": "TailwindCSS"
+        }
+      },
+      {
+        "title": "Shadcn/UI",
+        "image": {
+          "src": "/imgs/logos/shadcn.svg",
+          "alt": "Shadcn/UI"
+        }
+      },
+      {
+        "title": "Vercel",
+        "image": {
+          "src": "/imgs/logos/vercel.svg",
+          "alt": "Vercel"
+        }
+      }
+    ]
+  },
+  "introduce": {
+    "name": "introduce",
+    "title": "What is Nano Banana",
+    "label": "Overview",
+    "description": "Nano Banana (Google's Gemini 2.5 Flash Image) is a next-generation AI image editor that lets you edit and enhance photos with natural language prompts, delivering precise transformations, consistent characters and objects, and seamless visual quality for creative professionals and everyday users alike.",
+    "image": {
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanodoll.jpg",
+      "alt": "Designer using Nano Banana to create marketing visuals"
+    },
+    "items": [
+      {
+        "title": "Realistic Style Transformations",
+        "description": "From photorealism to stylized art, Nano Banana adapts seamlessly to your preferred visual direction. The AI model can handle complex artistic styles while maintaining authenticity and clarity.",
+        "icon": "RiBrainLine"
+      },
+      {
+        "title": "Reliable Multi-Character Adjustments",
+        "description": "Editing multiple characters in a single frame has always been a challenge in AI image editing. Nano Banana solves this by keeping proportions, interactions, and expressions consistent across edits.",
+        "icon": "RiShieldCheckLine"
+      },
+      {
+        "title": "Lightning-fast generation",
+        "description": "Blitz through concept exploration because nano banana delivers multiple high-resolution drafts before your inspiration cools, making comparison effortless.",
+        "icon": "RiFlashlightLine"
+      }
+    ]
+  },
+  "benefit": {
+    "name": "benefit",
+    "title": "Why teams choose Nano Banana",
+    "label": "Benefits",
+    "disabled": true,
+    "description": "Teams choose nano banana to anchor brainstorming, production, and delivery inside one adaptive environment.",
+    "items": [
+      {
+        "title": "Launch campaigns faster",
+        "description": "Accelerate campaign launches as nano banana interprets briefs, surfaces template prompts, and auto-sizes assets for every channel.",
+        "icon": "RiShieldLine",
+        "image": {
+          "src": "/imgs/features/fake-news.png",
+          "alt": "Marketing team launching campaign assets with Nano Banana"
+        }
+      },
+      {
+        "title": "Protect your brand assets",
+        "description": "Defend brand equity when the platform rebuilds textures, packaging gleam, and typography fidelity across every render.",
+        "icon": "RiCopyrightLine",
+        "image": {
+          "src": "/imgs/features/art-protection.png",
+          "alt": "Product photography enhanced by Nano Banana"
+        }
+      },
+      {
+        "title": "Collaborate confidently",
+        "description": "Unlock transparent collaboration because the studio tracks versions, highlights decisions, and streamlines sign-off loops.",
+        "icon": "RiUserForbidLine",
+        "image": {
+          "src": "/imgs/features/identity-protection.png",
+          "alt": "Team collaborating on Nano Banana workflow"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "name": "usage",
+    "title": "How Nano Banana works",
+    "description": "Turning imagination into launch-ready imagery takes three grounded stages inside nano banana.",
+    "image": {
+      "src": "/imgs/features/detection-process.png",
+      "alt": "Nano Banana workflow diagram"
+    },
+    "image_position": "left",
+    "text_align": "center",
+    "items": [
+      {
+        "title": "Describe or upload your vision",
+        "description": "Describe or upload your vision and nano banana reads tone, subject, and context before proposing starting compositions."
+      },
+      {
+        "title": "Fine-tune style and details",
+        "description": "Fine-tune style and details with sliders that link to lighting, lens, and narrative presets for consistent output."
+      },
+      {
+        "title": "Download and share instantly",
+        "description": "Download and share instantly while the system packages layered files, transparent PNGs, and brand-safe archives."
+      }
+    ]
+  }
+}

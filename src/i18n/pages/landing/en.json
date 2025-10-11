@@ -18,9 +18,21 @@
     "nav": {
       "items": [
         {
-          "title": "Generator",
-          "url": "/#generator",
-          "icon": "RiSparkling2Line"
+          "title": "Product",
+          "icon": "RiSparkling2Line",
+          "children": [
+            {
+              "title": "Generator",
+              "url": "/#generator",
+              "icon": "RiSparkling2Line"
+            },
+            {
+              "title": "PhotoEditor",
+              "url": "/nano-editor",
+              "icon": "RiSparkling2Line"
+            }
+             
+          ]
         },
         {
           "title": "Pricing",
