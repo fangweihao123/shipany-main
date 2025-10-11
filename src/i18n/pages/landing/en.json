@@ -55,7 +55,7 @@
     },
     "tip": "⚡ Launch studio-quality clips in minutes",
     "videoBg": [
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/herobg.mp4"
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/bghero1080.mp4"
     ],
     "show_happy_users": true,
     "show_badge": false
@@ -243,7 +243,7 @@
     "label": "Overview",
     "description": "SoVideo gives developers a studio-grade video generation engine with clear prompt controls, reference support, and scalable infrastructure.",
     "image": {
-      "src": "/imgs/features/detector.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/cloud.png",
       "alt": "Interface mockup showing Sora2 video generation dashboard"
     },
     "items": [

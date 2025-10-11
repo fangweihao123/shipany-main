@@ -55,7 +55,7 @@
     },
     "tip": "⚡ 几分钟内生成工作室级视频",
     "videoBg": [
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/herobg.mp4"
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/bghero1080.mp4"
     ],
     "show_happy_users": true,
     "show_badge": false
@@ -243,7 +243,7 @@
     "label": "产品概览",
     "description": "SoVideo 提供工作室级别的视频生成引擎，提示词控制清晰可预期，支持参考素材与弹性扩容基础设施。",
     "image": {
-      "src": "/imgs/features/detector.png",
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/cloud.png",
       "alt": "Sora2 视频生成控制台界面示意"
     },
     "items": [

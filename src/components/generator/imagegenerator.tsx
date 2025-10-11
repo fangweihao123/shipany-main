@@ -30,7 +30,7 @@ export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
   };
 
   return (
-    <div id="generator" className="container">
+    <div id="generator" className="container my-40">
       <motion.div
         custom={2}
         variants={fadeUpVariants}
