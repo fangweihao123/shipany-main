@@ -124,7 +124,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           ...(negativePrompt && { negative_prompt: negativePrompt }),
           ...(seed && { seed: seed })
         };
-        const id = await generateVideo(filesUrl[0], prompt, "nanobananai2v", false, videoOptions);
+        const id = await generateVideo(filesUrl, prompt, "nanobananai2v", false, videoOptions);
         const queryResult = await pollTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
