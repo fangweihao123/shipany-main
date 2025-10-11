@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "AI Detector - Detect AI Content Instantly | detect-ai.me",
-    "description": "Professional AI Detector for images, text & media. 95%+ accuracy detecting deepfakes & AI content. Free tool with instant results. Protect against AI fraud.",
-    "keywords": "AI Detector, AI detection, deepfake detection, AI content verification, fake content detection"
+    "title": "SoVideo - Cinematic AI Video Creation with Sora2 API",
+    "description": "SoVideo lets you turn text prompts and reference images into cinematic footage using the Sora2 video generation API. Build multi-scene stories, render in minutes, and deliver production-ready clips inside your product.",
+    "keywords": "SoVideo, Sora2 API, AI video generation, text to video, image to video, cinematic video platform, video generation API"
   },
   "user": {
     "sign_in": "Sign In",

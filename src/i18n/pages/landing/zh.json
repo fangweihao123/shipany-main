@@ -55,10 +55,7 @@
     },
     "tip": "⚡ 几分钟内生成工作室级视频",
     "videoBg": [
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/ski.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/chase.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/fly.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/oldman.mp4"
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/herobg.mp4"
     ],
     "show_happy_users": true,
     "show_badge": false
@@ -201,6 +198,7 @@
   },
   "branding": {
     "title": "Sora2 轻松接入你的 AI 技术栈",
+    "disabled": true,
     "items": [
       {
         "title": "Next.js",
@@ -270,6 +268,7 @@
     "name": "benefit",
     "title": "团队选择 Sora2 的理由",
     "label": "核心优势",
+    "disabled": true,
     "description": "为产品团队、创意机构与创作者打造的电影级视频生成平台，让创作与交付更高效。",
     "items": [
       {
@@ -368,6 +367,7 @@
   "showcase": {
     "name": "showcase",
     "title": "案例演示",
+    "disabled": true,
     "description": "了解各类团队如何借助 Sora2 交付新一代视频体验。",
     "image": {
       "src": "/imgs/users/1.png"
@@ -406,6 +406,7 @@
   "showcase1": {
     "name": "showcase1",
     "title": "深受创作者喜爱",
+    "disabled": true,
     "description": "从独立创作者到企业团队，Sora2 正在重新定义视频生产方式。",
     "items": [
       {

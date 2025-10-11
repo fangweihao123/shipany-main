@@ -55,10 +55,7 @@
     },
     "tip": "⚡ Launch studio-quality clips in minutes",
     "videoBg": [
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/ski.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/chase.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/fly.mp4",
-      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/oldman.mp4"
+      "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/upload/herobg.mp4"
     ],
     "show_happy_users": true,
     "show_badge": false
@@ -201,6 +198,7 @@
   },
   "branding": {
     "title": "Sora2 fits into your modern AI stack",
+    "disabled": true,
     "items": [
       {
         "title": "Next.js",
@@ -270,6 +268,7 @@
     "name": "benefit",
     "title": "Why Teams Choose Sora2",
     "label": "Benefits",
+    "disabled": true,
     "description": "Ship cinematic experiences faster with a video generation platform designed for product teams, agencies, and creators.",
     "items": [
       {
@@ -368,6 +367,7 @@
   "showcase": {
     "name": "showcase",
     "title": "Showcase",
+    "disabled": true,
     "description": "Explore what teams are shipping with the Sora2 video generation stack.",
     "image": {
       "src": "/imgs/users/1.png"
@@ -406,6 +406,7 @@
   "showcase1": {
     "name": "showcase1",
     "title": "Loved by Builders",
+    "disabled": true,
     "description": "From indie creators to enterprise teams, Sora2 powers the next generation of video experiences.",
     "items": [
       {
