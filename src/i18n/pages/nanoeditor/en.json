@@ -1,9 +1,9 @@
 {
+  "title": "Nano Banana Image Editing",
   "imageGenerator": {
     "promptEngine": {
-      "title": "Nano Banana Studio",
+      "title": "Image Editing Studio",
       "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
-      "image2ImageTab": "Image to Image",
       "auth_Required": "Ran out of free credits. Please Log in to try more.",
       "insufficient_credits": "Not Enough credits. Please top up credits.",
       "api_error": "Encounter Error, please change prompt or try it later",
@@ -23,58 +23,6 @@
             "label": "Output Format",
             "png": "PNG",
             "jpeg": "JPEG"
-          }
-        }
-      },
-      "text2ImageTab": "Text to Image",
-      "text2Image": {
-        "input": {
-          "title": "Main Prompt",
-          "textPlaceHolder": "Vibrant macro photo of a dew-covered banana leaf, cinematic lighting, 35mm lens, hyperrealistic texture..."
-        },
-        "advancedOptions": {
-          "title": "Advanced Options",
-          "outputFormat": {
-            "label": "Output Format",
-            "png": "PNG",
-            "jpeg": "JPEG"
-          }
-        }
-      },
-      "image2VideoTab": "Image to Video",
-      "image2Video": {
-        "upload": {
-          "upload_title": "Reference image",
-          "select_tip": "Add reference image",
-          "max_file_size_tip": "Max 10MB"
-        },
-        "input": {
-          "title": "Main Prompt",
-          "textPlaceHolder": "Close up shot of melting icicles on a frozen rock wall with cool blue tones, zoomed in maintaining close-up detail of water drips."
-        },
-        "advancedOptions": {
-          "title": "Advanced Options",
-          "aspectRatio": {
-            "label": "Aspect Ratio",
-            "landscape": "16:9 (Landscape)",
-            "portrait": "9:16 (Portrait)"
-          },
-          "resolution": {
-            "label": "Resolution"
-          },
-          "duration": {
-            "label": "Duration (seconds)"
-          },
-          "generateAudio": {
-            "label": "Generate Audio"
-          },
-          "negativePrompt": {
-            "label": "Negative Prompt (Optional)",
-            "placeholder": "Describe what you don't want in the video..."
-          },
-          "seed": {
-            "label": "Seed (Optional)",
-            "placeholder": "Leave empty for random generation"
           }
         }
       },
@@ -150,70 +98,69 @@
   },
   "introduce": {
     "name": "introduce",
-    "title": "What is Nano Banana",
+    "title": "Edit your photo with Nano Banana Image Editor",
     "label": "Overview",
-    "description": "Nano Banana (Google's Gemini 2.5 Flash Image) is a next-generation AI image editor that lets you edit and enhance photos with natural language prompts, delivering precise transformations, consistent characters and objects, and seamless visual quality for creative professionals and everyday users alike.",
     "image": {
-      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanodoll.jpg",
-      "alt": "Designer using Nano Banana to create marketing visuals"
+      "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot2.png",
+      "alt": " A dapper rabbit with a monocle running through a playing-card town as cards float in the air."
     },
     "items": [
       {
-        "title": "Realistic Style Transformations",
-        "description": "From photorealism to stylized art, Nano Banana adapts seamlessly to your preferred visual direction. The AI model can handle complex artistic styles while maintaining authenticity and clarity.",
+        "title": "Transform any image in just a few clicks",
+        "description": "The world now welcomes an innovative period of user-friendly editing tools. The Nano Banana image editor automatically detects all elements in your design so you can easily select and move or delete or swap any component at any time. Just click on any part of your photo and rework it as easily as editing a template.",
         "icon": "RiBrainLine"
       },
       {
-        "title": "Reliable Multi-Character Adjustments",
-        "description": "Editing multiple characters in a single frame has always been a challenge in AI image editing. Nano Banana solves this by keeping proportions, interactions, and expressions consistent across edits.",
+        "title": "Blend multiple photos into one unique image",
+        "description": "The Nano Banana Image Editor enables users to combine multiple photos into one perfectly unified image. The AI system combines lighting and depth and perspective data to produce dreamlike artistic works that create an enchanting and distinctive visual experience.",
         "icon": "RiShieldCheckLine"
       },
       {
-        "title": "Lightning-fast generation",
-        "description": "Blitz through concept exploration because nano banana delivers multiple high-resolution drafts before your inspiration cools, making comparison effortless.",
+        "title": "Generate the perfect background",
+        "description": "Nano Banana Image Editor enables you to transform your artistic ideas into reality. Nano Banana will create the scene you describe through its lighting and mood effects which will merge your subject into a completely new environment.",
         "icon": "RiFlashlightLine"
       }
     ]
   },
   "benefit": {
     "name": "benefit",
-    "title": "Why teams choose Nano Banana",
+    "title": "Why teams choose Nano Banana Image Editor",
     "label": "Benefits",
-    "disabled": true,
+    "disabled": false,
     "description": "Teams choose nano banana to anchor brainstorming, production, and delivery inside one adaptive environment.",
     "items": [
       {
-        "title": "Launch campaigns faster",
-        "description": "Accelerate campaign launches as nano banana interprets briefs, surfaces template prompts, and auto-sizes assets for every channel.",
+        "title": "In-Context Image Generation",
+        "description": "Nano Banana Image Editing combines text and image inputs for seamless visual concept extraction and modification, delivering coherent renderings every time.",
         "icon": "RiShieldLine",
         "image": {
-          "src": "/imgs/features/fake-news.png",
-          "alt": "Marketing team launching campaign assets with Nano Banana"
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot5.png",
+          "alt": "Astronauts sit around a giant creamy swirl crater on the Moon, as if exploring a dessert planet."
         }
       },
       {
-        "title": "Protect your brand assets",
-        "description": "Defend brand equity when the platform rebuilds textures, packaging gleam, and typography fidelity across every render.",
+        "title": "Character Consistency",
+        "description": "Nano Banana preserves unique elements like reference characters or objects across multiple scenes and environments with unmatched accuracy.",
         "icon": "RiCopyrightLine",
         "image": {
-          "src": "/imgs/features/art-protection.png",
-          "alt": "Product photography enhanced by Nano Banana"
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot6.png",
+          "alt": "A horse carved from ice with a flaming heart inside, creating a striking contrast between fire and ice."
         }
       },
       {
-        "title": "Collaborate confidently",
-        "description": "Unlock transparent collaboration because the studio tracks versions, highlights decisions, and streamlines sign-off loops.",
+        "title": "Local Editing Precision",
+        "description": "Make targeted modifications of specific elements with Nano Banana without affecting the rest of your image, enabling flexible instant editing.",
         "icon": "RiUserForbidLine",
         "image": {
-          "src": "/imgs/features/identity-protection.png",
-          "alt": "Team collaborating on Nano Banana workflow"
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot7.png",
+          "alt": "A tiny puppy stands on a human fingertip against a blue sky with fluffy clouds, looking adorable and delicate."
         }
       }
     ]
   },
   "usage": {
     "name": "usage",
-    "title": "How Nano Banana works",
+    "title": "How Nano Banana Image Editor works",
     "description": "Turning imagination into launch-ready imagery takes three grounded stages inside nano banana.",
     "image": {
       "src": "/imgs/features/detection-process.png",
@@ -233,6 +180,74 @@
       {
         "title": "Download and share instantly",
         "description": "Download and share instantly while the system packages layered files, transparent PNGs, and brand-safe archives."
+      }
+    ]
+  },
+  "showcase": {
+    "name": "showcase",
+    "title": "Built with Nano Banana Image Editor",
+    "description": "Across ecommerce, entertainment, education, and SaaS, teams rely on nano banana to storyboard futures, spotlight products, and concept mascots their audiences adore.",
+    "image": {
+      "src": "/imgs/users/1.png"
+    },
+    "items": [
+      {
+        "title": "Cute animal characters",
+        "image": {
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot1.png",
+          "alt": "Cute animal characters relaxing in wooden hot tubs under skylight, surrounded by trees and warm lights"
+        }
+      },
+      {
+        "title": "Dreamy fairytale setting",
+        "image": {
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot3.png",
+          "alt": "Whimsical scene with a glowing tent, small elephant, and toy-like figures in a dreamy fairytale setting."
+        }
+      },
+      {
+        "title": "Colorful balloon sculptures",
+        "image": {
+          "src": "https://pub-13f232b13ff74daead00f9922efecbb5.r2.dev/showcases/nanobanana/nanot4.png",
+          "alt": "Colorful balloon sculptures shaped like burgers, hot dogs, cake, and vegetables arranged on a plate."
+        }
+      }
+    ]
+  },
+  "faq": {
+    "name": "faq",
+    "label": "FAQ",
+    "title": "Frequently asked about Nano Banana Image Editor",
+    "description": "Curious about infrastructure, licensing, or support? These nano banana image editor answers set the foundation before you reach out.",
+    "items": [
+      {
+        "title": "What is Nano Banana Image Editor?",
+        "description": "Nano Banana Image Editor is an advanced AI image editing platform that transforms your photos through intelligent prompt understanding and character consistency. It specializes in natural language-driven edits while preserving scene integrity and delivering high-resolution results."
+      },
+      {
+        "title": "Can I use it for commercial projects?",
+        "description": "Yes! It's perfect for creating AI UGC content, social media campaigns, and marketing materials. Many users leverage it for creating consistent AI influencers and product photography. The high-quality outputs are suitable for professional use."
+      },
+      {
+        "title": "Is Nano Banana Image Editor suitable for beginners?",
+        "description": "Yes! Nano Banana Image Editor's intuitive natural language interface makes professional image editing accessible to everyone. Beginners can achieve stunning results by simply describing their vision, while professionals can leverage advanced features for complex editing workflows."
+      },
+      {
+        "title": "What types of edits can it handle?",
+        "description": "The editor handles complex edits including face completion, background changes, object placement, style transfers, and character modifications. It excels at understanding contextual instructions like place in a blizzard or create the whole face while maintaining photorealistic quality."
+      }
+    ]
+  },
+  "cta": {
+    "name": "cta",
+    "title": "Start creating with Nano Banana Image Editor",
+    "description": "Join creators worldwide who rely on nano banana to turn half-formed ideas into polished visuals without derailing production.",
+    "buttons": [
+      {
+        "title": "Launch Studio",
+        "url": "#generator",
+        "target": "_self",
+        "icon": "RiSparkling2Line"
       }
     ]
   }

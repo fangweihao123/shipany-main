@@ -207,7 +207,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
 
           </MultiImgUpload>
           <PromptInputBlock
-            promptInput = {promptEngine.text2Image?.input}
+            promptInput = {promptEngine.image2Image?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
           <ImageAdvancedOptions
@@ -294,19 +294,21 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         </div>
         <div className="flex py-4 justify-center">
           <div className="inline-flex rounded-lg overflow-hidden">
-            <Button 
+            {promptEngine.image2ImageTab ? <Button 
               type="button"
               onClick={()=>setMode("i2i")}
               className= {`w-30 rounded-none ${mode === "i2i" ? activeBtn : inactiveBtn}`}>
               {promptEngine.image2ImageTab}
-            </Button>
-            <Button 
+            </Button> : <></>}
+            
+            {promptEngine.text2ImageTab ? <Button 
               type="button"
               onClick={()=> setMode("t2i")}
               className= {`w-30 rounded-none ${mode === "t2i" ? activeBtn : inactiveBtn}`} >
               {promptEngine.text2ImageTab}
-            </Button>
-            <Button 
+            </Button> : <></>}
+            
+            {promptEngine.image2VideoTab ? <Button 
               type="button"
               onClick={()=> setMode("i2v")}
               className= {`w-30 rounded-none relative ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
@@ -314,7 +316,8 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
               <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow-lg border-2 border-white animate-pulse">
                 PRO
               </span>
-            </Button>
+            </Button> : <></>}
+            
           </div>
         </div>
         <div className="p-4">

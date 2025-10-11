@@ -18,9 +18,20 @@
     "nav": {
       "items": [
         {
-          "title": "图像生成器",
-          "url": "zh/#generator",
-          "icon": "RiSparkling2Line"
+          "title": "产品",
+          "icon": "RiSparkling2Line",
+          "children": [
+            {
+              "title": "图像生成器",
+              "url": "zh/#generator",
+              "icon": "RiSparkling2Line"
+            },
+            {
+              "title": "图像编辑器",
+              "url": "zh/nano-editor",
+              "icon": "RiSparkling2Line"
+            }
+          ]
         },
         {
           "title": "定价",

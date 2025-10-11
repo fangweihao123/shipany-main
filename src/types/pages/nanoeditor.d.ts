@@ -8,6 +8,7 @@ import { HeroGeometic } from "@/types/blocks/heroGeometic";
 import { ImageGenerator } from "@/types/blocks/imagegenerator";
 
 export interface NanoEditorPage {
+  title?: string;
   imageGenerator?: ImageGenerator;
   branding?: Section;
   introduce?: Section;
