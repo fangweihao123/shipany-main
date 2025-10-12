@@ -14,6 +14,7 @@ import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
 import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
+import Icon from "../icon";
 
 const MAX_GENERATE_ATTEMPTS = 3;
 
@@ -166,12 +167,54 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     setPrompt(value);
   };
 
+  const CreditsText = () => {
+    if (mode === "i2i" && promptEngine.image2ImageCredits) {
+      const { icon, title } = promptEngine.image2ImageCredits;
+      return (
+        <span className="flex items-center gap-2" title={title}>
+          {icon && <Icon name={icon} className="size-6" />}
+          {title && <span className="text-sm text-muted-foreground">{title}</span>}
+        </span>
+      );
+    }else if (mode === "i2v" && promptEngine.image2VideoCredits) {
+      const { icon, title } = promptEngine.image2VideoCredits;
+      return (
+        <span className="flex items-center gap-2" title={title}>
+          {icon && <Icon name={icon} className="size-6" />}
+          {title && <span className="text-sm text-muted-foreground">{title}</span>}
+        </span>
+      );
+    }else if (mode === "t2i" && promptEngine.text2ImageCredits) {
+      const { icon, title } = promptEngine.text2ImageCredits;
+      return (
+        <span className="flex items-center gap-2" title={title}>
+          {icon && <Icon name={icon} className="size-6" />}
+          {title && <span className="text-sm text-muted-foreground">{title}</span>}
+        </span>
+      );
+    }else if (mode === "t2v" && promptEngine.text2VideoCredits) {
+      const { icon, title } = promptEngine.text2VideoCredits;
+      return (
+        <span className="flex items-center gap-2" title={title}>
+          {icon && <Icon name={icon} className="size-6" />}
+          {title && <span className="text-sm text-muted-foreground">{title}</span>}
+        </span>
+      );
+    }
+    return null;
+  };
+
   const ButtonText = () => {
     if(failure === "normal"){
       if(isGenerating){
         return generatingText;
       }else{
-        return promptEngine.generateButton?.title;
+        return (
+            <span className="flex items-center gap-2">
+              {promptEngine.generateButton?.title}
+              {CreditsText() || ""}
+            </span>
+          );
       }
     }else if(failure === "apierror"){
       return promptEngine.api_error;
