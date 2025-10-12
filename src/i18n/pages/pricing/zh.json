@@ -2,143 +2,293 @@
   "pricing": {
     "name": "pricing",
     "label": "定价方案",
-    "title": "简单透明的定价方案",
-    "description": "选择适合您AI检测需求的完美方案。以实惠价格保护您免受虚假内容侵害。",
+    "title": "简单透明的定价",
+    "description": "为您的 SoVideo 生成需求选择最合适的方案。",
     "groups": [
       {
-        "name": "monthly",
-        "title": "月付",
-        "is_featured": true,
-        "label": "最受欢迎"
+        "name": "creditspacks",
+        "title": "积分包",
+        "label": "永不过期"
       },
       {
         "name": "yearly",
         "title": "年付",
+        "is_featured": true,
         "label": "节省20%"
+      },
+      {
+        "name": "monthly",
+        "title": "月付",
+        "label": "最受欢迎"
       }
     ],
     "items": [
       {
         "title": "基础版",
-        "description": "适合个人用户和小团队使用。",
-        "features_title": "包含功能",
+        "description": "适合个人和小团队。",
+        "features_title": "包含内容",
         "features": [
-          "每月100积分检测次数",
-          "高质量内容检测",
+          "每月 600 点 AI 生成积分",
+          "视频无水印",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "1080p 视频分辨率",
+          "最长 8 秒",
+          "商业授权与无限制使用权"
         ],
         "interval": "month",
-        "amount": 890,
+        "amount": 2990,
         "currency": "USD",
-        "price": "￥59",
-        "original_price": "￥69",
+        "price": "$29.9",
         "unit": "/ 月",
         "is_featured": false,
         "tip": "入门的完美选择！",
         "button": {
-          "title": "开始使用基础版",
+          "title": "立即开始",
           "url": "/checkout?plan=basic-monthly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic",
-        "product_name": "AI检测器基础版月付",
+        "product_id": "Basic",
+        "product_name": "Sora2 视频生成器基础版月付",
+        "credits": 600,
+        "valid_months": 1,
+        "group": "monthly"
+      },
+      {
+        "title": "专业版",
+        "description": "为专业创作者和团队打造。",
+        "label": "热门",
+        "features_title": "包含内容",
+        "features": [
+          "每月 1000 点 AI 生成积分",
+          "视频无水印",
+          "优先邮件支持",
+          "1080p 视频分辨率",
+          "最长 15 秒",
+          "专业级生成质量",
+          "商业授权与无限制使用权"
+        ],
+        "interval": "month",
+        "amount": 4990,
+        "currency": "USD",
+        "price": "$49.9",
+        "unit": "/ 月",
+        "is_featured": true,
+        "tip": "企业最受欢迎的选择！",
+        "button": {
+          "title": "立即开始",
+          "url": "/checkout?plan=pro-monthly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "Pro",
+        "product_name": "Sora2 视频生成器专业版月付",
         "credits": 1000,
         "valid_months": 1,
         "group": "monthly"
       },
       {
-        "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
-        "label": "热门",
-        "features_title": "包含基础版所有功能，另加",
+        "title": "旗舰版",
+        "description": "专为大型企业和专业工作室打造。",
+        "features_title": "包含内容",
         "features": [
-          "每月200积分检测次数",
-          "高质量内容检测",
+          "每月 2000 点 AI 生成积分",
+          "视频无水印",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "1080p 视频分辨率",
+          "最长 15 秒",
+          "专业级生成质量",
+          "商业授权与无限制使用权"
         ],
         "interval": "month",
-        "amount": 1690,
+        "amount": 9990,
         "currency": "USD",
-        "price": "￥119",
-        "original_price": "￥139",
+        "price": "$99.9",
         "unit": "/ 月",
-        "is_featured": true,
-        "tip": "企业用户的最佳选择！",
+        "tip": "为大型企业量身打造！",
         "button": {
-          "title": "选择专业版",
-          "url": "/checkout?plan=professional-monthly",
+          "title": "立即开始",
+          "url": "/checkout?plan=max-monthly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional",
-        "product_name": "AI检测器专业版月付",
-        "credits": 5000,
+        "product_id": "Max",
+        "product_name": "Sora2 视频生成器旗舰版月付",
+        "credits": 2000,
         "valid_months": 1,
         "group": "monthly"
       },
       {
         "title": "基础版",
-        "description": "适合个人用户和小团队使用。",
-        "features_title": "包含功能",
+        "description": "适合个人和小团队。",
+        "features_title": "包含内容",
         "features": [
-          "每年2400积分检测次数",
-          "高质量内容检测",
+          "每月 600 点 AI 生成积分",
+          "视频无水印",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "1080p 视频分辨率",
+          "最长 8 秒",
+          "商业授权与无限制使用权"
         ],
         "interval": "year",
-        "amount": 8280,
+        "amount": 2990,
         "currency": "USD",
-        "price": "￥49",
-        "original_price": "￥59",
+        "price": "$24.9",
+        "original_price": "$29.9",
         "unit": "/ 月",
         "is_featured": false,
-        "tip": "年付可节省20%！",
+        "tip": "入门的完美选择！",
         "button": {
-          "title": "开始使用基础版",
+          "title": "立即开始",
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic-annually",
-        "product_name": "AI检测器基础版年付",
-        "credits": 12000,
+        "product_id": "BasicAnnual",
+        "product_name": "Sora2 视频生成器基础版年付",
+        "credits": 7200,
         "valid_months": 12,
         "group": "yearly"
       },
       {
         "title": "专业版",
-        "description": "最适合企业和安全团队使用。",
+        "description": "为专业创作者和团队打造。",
         "label": "热门",
-        "features_title": "包含基础版所有功能，另加",
+        "features_title": "包含内容",
         "features": [
-          "每年72000积分检测次数",
-          "高质量内容检测",
+          "每月 1000 点 AI 生成积分",
+          "视频无水印",
           "优先邮件支持",
-          "自定义检测阈值",
-          "通过AI检测器验证"
+          "1080p 视频分辨率",
+          "最长 15 秒",
+          "专业级生成质量",
+          "商业授权与无限制使用权"
         ],
         "interval": "year",
-        "amount": 15480,
+        "amount": 4990,
         "currency": "USD",
-        "price": "￥89",
-        "original_price": "￥119",
+        "price": "$40.9",
+        "original_price": "$49.9",
         "unit": "/ 月",
         "is_featured": true,
-        "tip": "最受欢迎！年付节省20%！",
+        "tip": "企业最受欢迎的选择！",
         "button": {
-          "title": "选择专业版",
-          "url": "/checkout?plan=professional-yearly",
+          "title": "立即开始",
+          "url": "/checkout?plan=pro-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional-annually",
-        "product_name": "AI检测器专业版年付",
-        "credits": 60000,
+        "product_id": "ProAnnual",
+        "product_name": "Sora2 视频生成器专业版年付",
+        "credits": 12000,
         "valid_months": 12,
         "group": "yearly"
+      },
+      {
+        "title": "旗舰版",
+        "description": "专为大型企业和专业工作室打造。",
+        "features_title": "包含内容",
+        "features": [
+          "每月 2000 点 AI 生成积分",
+          "视频无水印",
+          "优先邮件支持",
+          "1080p 视频分辨率",
+          "最长 15 秒",
+          "专业级生成质量",
+          "商业授权与无限制使用权"
+        ],
+        "interval": "year",
+        "amount": 9990,
+        "currency": "USD",
+        "price": "$85.9",
+        "original_price": "$99.9",
+        "unit": "/ 月",
+        "tip": "为大型企业量身打造！",
+        "button": {
+          "title": "立即开始",
+          "url": "/checkout?plan=max-yearly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "MaxAnnual",
+        "product_name": "Sora2 视频生成器旗舰版年付",
+        "credits": 24000,
+        "valid_months": 12,
+        "group": "yearly"
+      },
+      {
+        "title": "基础积分包",
+        "description": "一次性购买，积分永不过期。",
+        "features_title": "包含内容",
+        "features": [
+          "500 点 AI 生成积分",
+          "永不过期",
+          "解锁全部功能"
+        ],
+        "interval": "year",
+        "amount": 2990,
+        "currency": "USD",
+        "price": "$29.9",
+        "is_featured": false,
+        "tip": "入门的完美选择！",
+        "button": {
+          "title": "立即购买",
+          "url": "/checkout?plan=basic-credits",
+          "icon": "RiScanLine"
+        },
+        "product_id": "BasicCredits",
+        "product_name": "Sora2 视频生成器基础积分包",
+        "credits": 500,
+        "valid_months": 12,
+        "group": "creditspacks"
+      },
+      {
+        "title": "专业积分包",
+        "description": "一次性购买，积分永不过期。",
+        "label": "热门",
+        "features_title": "包含内容",
+        "features": [
+          "2000 点 AI 生成积分",
+          "永不过期",
+          "解锁全部功能"
+        ],
+        "interval": "year",
+        "amount": 4990,
+        "currency": "USD",
+        "price": "$99.9",
+        "is_featured": true,
+        "tip": "企业最受欢迎的选择！",
+        "button": {
+          "title": "立即购买",
+          "url": "/checkout?plan=pro-credits",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "ProCredits",
+        "product_name": "Sora2 视频生成器专业积分包",
+        "credits": 2000,
+        "valid_months": 12,
+        "group": "creditspacks"
+      },
+      {
+        "title": "旗舰积分包",
+        "description": "一次性购买，积分永不过期。",
+        "features_title": "包含内容",
+        "features": [
+          "4000 点 AI 生成积分",
+          "永不过期",
+          "解锁全部功能",
+          "优先客户支持",
+          "专业级生成质量"
+        ],
+        "interval": "year",
+        "amount": 4990,
+        "currency": "USD",
+        "price": "$199.9",
+        "tip": "企业最受欢迎的选择！",
+        "button": {
+          "title": "立即购买",
+          "url": "/checkout?plan=max-credits",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "MaxCredits",
+        "product_name": "Sora2 视频生成器旗舰积分包",
+        "credits": 4000,
+        "valid_months": 12,
+        "group": "creditspacks"
       }
     ]
   }

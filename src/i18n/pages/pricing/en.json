@@ -3,18 +3,23 @@
     "name": "pricing",
     "label": "Pricing",
     "title": "Simple, Transparent Pricing",
-    "description": "Choose the perfect plan for your AI image detection needs. Protect against fake images at an affordable price.",
+    "description": "Choose the perfect plan for your SoVideo generation needs.",
     "groups": [
       {
-        "name": "monthly",
-        "title": "Monthly",
-        "is_featured": true,
-        "label": "Most Popular"
+        "name": "creditspacks",
+        "title": "Credits Packs",
+        "label": "Never Expire"
       },
       {
         "name": "yearly",
         "title": "Annually",
+        "is_featured": true,
         "label": "Save 20%"
+      },
+      {
+        "name": "monthly",
+        "title": "Monthly",
+        "label": "Most Popular"
       }
     ],
     "items": [
@@ -23,59 +28,90 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "100 credits detections per month",
-          "High quality, legible content",
+          "600 AI generation credits per month",
+          "Watermark Free Video",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "1080p video resolution",
+          "Max 8 Seconds",
+          "Commercial license & Unrestricted usage rights"
         ],
         "interval": "month",
-        "amount": 890,
+        "amount": 2990,
         "currency": "USD",
-        "price": "$8.9",
-        "original_price": "$9.9",
+        "price": "$29.9",
         "unit": "/ month",
         "is_featured": false,
         "tip": "Perfect for getting started!",
         "button": {
-          "title": "Start Basic",
+          "title": "Get Started",
           "url": "/checkout?plan=basic-monthly",
           "icon": "RiScanLine"
         },
-        "product_id": "basic",
-        "product_name": "AI Image Detector Basic Monthly",
-        "credits": 100,
+        "product_id": "Basic",
+        "product_name": "Sora2 Video Generator Basic Monthly",
+        "credits": 600,
         "valid_months": 1,
         "group": "monthly"
       },
       {
-        "title": "Professional",
-        "description": "Best for businesses and security teams.",
+        "title": "Pro",
+        "description": "For professional creators and teams.",
         "label": "Popular",
-        "features_title": "Everything in Basic, plus",
+        "features_title": "Includes",
         "features": [
-          "200 credits detections per month",
-          "High quality, legible content",
+          "1000 AI generation credits per month",
+          "Watermark Free Video",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "1080p video resolution",
+          "Max 15 Seconds",
+          "Professional generation quality",
+          "Commercial license & Unrestricted usage rights"
         ],
         "interval": "month",
-        "amount": 1690,
+        "amount": 4990,
         "currency": "USD",
-        "price": "$16.9",
-        "original_price": "$19.9",
+        "price": "$49.9",
         "unit": "/ month",
         "is_featured": true,
         "tip": "Most popular choice for businesses!",
         "button": {
-          "title": "Go Professional",
-          "url": "/checkout?plan=professional-monthly",
+          "title": "Get Started",
+          "url": "/checkout?plan=pro-monthly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professional",
-        "product_name": "AI Image Detector Professional Monthly",
-        "credits": 200,
+        "product_id": "Pro",
+        "product_name": "Sora2 Video Generator Pro Monthly",
+        "credits": 1000,
+        "valid_months": 1,
+        "group": "monthly"
+      },
+      {
+        "title": "Max",
+        "description": "Designed for large enterprises and professional studios",
+        "features_title": "Includes",
+        "features": [
+          "2000 AI generation credits per month",
+          "Watermark Free Video",
+          "Priority email support",
+          "1080p video resolution",
+          "Max 15 Seconds",
+          "Professional generation quality",
+          "Commercial license & Unrestricted usage rights"
+        ],
+        "interval": "month",
+        "amount": 9990,
+        "currency": "USD",
+        "price": "$99.9",
+        "unit": "/ month",
+        "tip": "Designed for large enterprises!",
+        "button": {
+          "title": "Get Started",
+          "url": "/checkout?plan=max-monthly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "Max",
+        "product_name": "Sora2 Video Generator Max Monthly",
+        "credits": 2000,
         "valid_months": 1,
         "group": "monthly"
       },
@@ -84,61 +120,175 @@
         "description": "Perfect for individuals and small teams.",
         "features_title": "Includes",
         "features": [
-          "1200 credits detections per month",
-          "High quality, legible content",
+          "600 AI generation credits per month",
+          "Watermark Free Video",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "1080p video resolution",
+          "Max 8 Seconds",
+          "Commercial license & Unrestricted usage rights"
         ],
         "interval": "year",
-        "amount": 8280,
+        "amount": 2990,
         "currency": "USD",
-        "price": "$6.9",
-        "original_price": "$8.9",
+        "price": "$24.9",
+        "original_price": "$29.9",
         "unit": "/ month",
         "is_featured": false,
-        "tip": "Save 20% with annual billing!",
+        "tip": "Perfect for getting started!",
         "button": {
-          "title": "Start Basic",
+          "title": "Get Started",
           "url": "/checkout?plan=basic-yearly",
           "icon": "RiScanLine"
         },
-        "product_id": "basicannually",
-        "product_name": "AI Image Detector Basic Annually",
-        "credits": 1200,
+        "product_id": "BasicAnnual",
+        "product_name": "Sora2 Video Generator Basic Yearly",
+        "credits": 7200,
         "valid_months": 12,
         "group": "yearly"
       },
       {
-        "title": "Professional",
-        "description": "Best for businesses and security teams.",
+        "title": "Pro",
+        "description": "For professional creators and teams.",
         "label": "Popular",
-        "features_title": "Everything in Basic, plus",
+        "features_title": "Includes",
         "features": [
-          "3000 credits detections per month",
-          "High quality, legible content",
+          "1000 AI generation credits per month",
+          "Watermark Free Video",
           "Priority email support",
-          "Custom detection thresholds",
-          "Passes AI detectors"
+          "1080p video resolution",
+          "Max 15 Seconds",
+          "Professional generation quality",
+          "Commercial license & Unrestricted usage rights"
         ],
         "interval": "year",
-        "amount": 15480,
+        "amount": 4990,
         "currency": "USD",
-        "price": "$12.9",
-        "original_price": "$16.9",
+        "price": "$40.9",
+        "original_price": "$49.9",
         "unit": "/ month",
         "is_featured": true,
-        "tip": "Most popular! Save 20% annually!",
+        "tip": "Most popular choice for businesses!",
         "button": {
-          "title": "Go Professional",
-          "url": "/checkout?plan=professional-yearly",
+          "title": "Get Started",
+          "url": "/checkout?plan=pro-yearly",
           "icon": "RiVipCrownLine"
         },
-        "product_id": "Professionalannually",
-        "product_name": "AI Image Detector Professional Annually",
-        "credits": 3000,
+        "product_id": "ProAnnual",
+        "product_name": "Sora2 Video Generator Pro Yearly",
+        "credits": 12000,
         "valid_months": 12,
         "group": "yearly"
+      },
+      {
+        "title": "Max",
+        "description": "Designed for large enterprises and professional studios",
+        "features_title": "Includes",
+        "features": [
+          "2000 AI generation credits per month",
+          "Watermark Free Video",
+          "Priority email support",
+          "1080p video resolution",
+          "Max 15 Seconds",
+          "Professional generation quality",
+          "Commercial license & Unrestricted usage rights"
+        ],
+        "interval": "year",
+        "amount": 9990,
+        "currency": "USD",
+        "price": "$85.9",
+        "original_price": "$99.9",
+        "unit": "/ month",
+        "tip": "Designed for large enterprises!",
+        "button": {
+          "title": "Get Started",
+          "url": "/checkout?plan=max-yearly",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "MaxAnnual",
+        "product_name": "Sora2 Video Generator Max Yearly",
+        "credits": 24000,
+        "valid_months": 12,
+        "group": "yearly"
+      },
+      {
+        "title": "Basic Credits Pack",
+        "description": "One-time purchase, credits never expire",
+        "features_title": "Includes",
+        "features": [
+          "500 AI generation credits per month",
+          "Never expire",
+          "Unlock all features"
+        ],
+        "interval": "year",
+        "amount": 2990,
+        "currency": "USD",
+        "price": "$29.9",
+        "is_featured": false,
+        "tip": "Perfect for getting started!",
+        "button": {
+          "title": "Buy Now",
+          "url": "/checkout?plan=basic-credits",
+          "icon": "RiScanLine"
+        },
+        "product_id": "BasicCredits",
+        "product_name": "Sora2 Video Generator Basic Credits Pack",
+        "credits": 500,
+        "valid_months": 12,
+        "group": "creditspacks"
+      },
+      {
+        "title": "Pro Credits Packs",
+        "description": "One-time purchase, credits never expire",
+        "label": "Popular",
+        "features_title": "Includes",
+        "features": [
+          "2000 AI generation credits per month",
+          "Never expire",
+          "Unlock all features"
+        ],
+        "interval": "year",
+        "amount": 4990,
+        "currency": "USD",
+        "price": "$99.9",
+        "is_featured": true,
+        "tip": "Most popular choice for businesses!",
+        "button": {
+          "title": "Buy Now",
+          "url": "/checkout?plan=pro-credits",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "ProCredits",
+        "product_name": "Sora2 Video Generator Pro Credits Pack",
+        "credits": 2000,
+        "valid_months": 12,
+        "group": "creditspacks"
+      },
+      {
+        "title": "Max Credits Packs",
+        "description": "One-time purchase, credits never expire",
+        "features_title": "Includes",
+        "features": [
+          "4000 AI generation credits per month",
+          "Never expire",
+          "Unlock all features",
+          "Priority customer support",
+          "Professional generation quality"
+        ],
+        "interval": "year",
+        "amount": 4990,
+        "currency": "USD",
+        "price": "$199.9",
+        "tip": "Most popular choice for businesses!",
+        "button": {
+          "title": "Buy Now",
+          "url": "/checkout?plan=max-credits",
+          "icon": "RiVipCrownLine"
+        },
+        "product_id": "MaxCredits",
+        "product_name": "Sora2 Video Generator Max Credits Pack",
+        "credits": 4000,
+        "valid_months": 12,
+        "group": "creditspacks"
       }
     ]
   }
