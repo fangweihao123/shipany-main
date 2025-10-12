@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ApiErrorResponse } from "@/types/detect";
+import { GeneratorError } from "@/services/generator";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -87,7 +88,7 @@ export async function pollTaskResult(id: string): Promise<any>{
       return status;
     }
     if(status.data.status === 'failed'){
-      throw new Error('unwatermark failed');
+      throw new GeneratorError('failed', 200);
     }
     await new Promise(resolve => setTimeout(resolve, interval));
   }
@@ -105,7 +106,7 @@ export async function pollKieTaskResult(id: string): Promise<any>{
       return status;
     }
     if(status.data.state === 'fail'){
-      throw new Error(`Sora2 Generation failed ${status.data.failMsg || ''}`);
+      throw new GeneratorError(`Sora2 Generation failed ${status.data.failMsg || ''}`, 200);
     }
     await new Promise(resolve => setTimeout(resolve, interval));
   }

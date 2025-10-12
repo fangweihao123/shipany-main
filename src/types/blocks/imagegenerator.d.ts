@@ -1,4 +1,4 @@
-import { PromptInput, Button, DataCard } from "./base"
+import { PromptInput, Button, DataCard, Tip } from "./base"
 import { Upload } from "./detect";
 
 export interface AdvancedOptions {
@@ -59,12 +59,16 @@ export interface PromptEngine{
   description?: string;
   image2ImageTab?: string;
   image2Image?: Image2Image;
+  image2ImageCredits?: Tip;
   text2ImageTab?: string;
   text2Image?: Text2Image;
+  text2ImageCredits?: Tip;
   text2VideoTab?: string;
   text2Video?: Text2Video;
+  text2VideoCredits?: Tip;
   image2VideoTab?: string;
   image2Video?: Image2Video;
+  image2VideoCredits?: Tip;
   generateButton?: Button;
   requireProTips?: string;
   auth_Required?: string;
