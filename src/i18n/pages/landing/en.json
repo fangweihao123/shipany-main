@@ -130,6 +130,10 @@
           }
         }
       },
+      "text2VideoCredits":{
+        "icon": "RiCoinLine",
+        "title": "10"
+      },
       "image2VideoTab": "Image to Video",
       "image2Video": {
         "upload": {
@@ -166,6 +170,10 @@
             "placeholder": "Leave empty for a new render each time"
           }
         }
+      },
+      "image2VideoCredits":{
+        "icon": "RiCoinLine",
+        "title": "10"
       },
       "generateButton": {
         "type": "button",

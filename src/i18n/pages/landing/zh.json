@@ -130,6 +130,10 @@
           }
         }
       },
+      "text2VideoCredits":{
+        "icon": "RiCoinLine",
+        "title": "10"
+      },
       "image2VideoTab": "图像转视频",
       "image2Video": {
         "upload": {
@@ -166,6 +170,10 @@
             "placeholder": "留空以获取全新的渲染"
           }
         }
+      },
+      "image2VideoCredits":{
+        "icon": "RiCoinLine",
+        "title": "10"
       },
       "generateButton": {
         "type": "button",

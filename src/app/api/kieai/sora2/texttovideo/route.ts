@@ -36,7 +36,7 @@ async function generateVideoWithPrompt(data: GenerateVideoRequest, isRetry:boole
     await decreaseCredits({
       user_uuid,
       trans_type: CreditsTransType.Ping,
-      credits: 50, // Video generation costs more credits
+      credits: 10, // Video generation costs more credits
     });
     console.log('generate video success with 50 credits consumption');
   }

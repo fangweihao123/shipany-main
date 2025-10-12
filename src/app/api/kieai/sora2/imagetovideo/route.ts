@@ -38,7 +38,7 @@ async function generateVideoWithImage(data: GenerateVideoRequest, isRetry:boolea
     await decreaseCredits({
       user_uuid,
       trans_type: CreditsTransType.Ping,
-      credits: 50, // Video generation costs more credits
+      credits: 10, // Video generation costs more credits
     });
     console.log('generate video success with 50 credits consumption');
   }
