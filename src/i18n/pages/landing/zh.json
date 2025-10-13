@@ -49,8 +49,7 @@
     "highlight_text": "Sora2",
     "description": "借助 SoVideo，将产品创意转化为电影级画面。编排镜头、掌控摄影机运动，让精美短片在您的应用里一键成片。",
     "announcement": {
-      "label": "全新",
-      "title": "🎬 由 Sora2 Video API 驱动",
+      "title": "SoVideo 是一款独立产品，与 OpenAI 或其任何品牌无关",
       "url": "/#feature"
     },
     "tip": "⚡ 几分钟内生成工作室级视频",
