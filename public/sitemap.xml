@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://detect-ai.me/main-sitemap.xml</loc>
+    <loc>https://sora2-ai.top/main-sitemap.xml</loc>
     <lastmod>2025-02-15T10:00:00+00:00</lastmod>
   </sitemap>
   
   <sitemap>
-    <loc>https://detect-ai.me/posts.xml</loc>
+    <loc>https://sora2-ai.top/posts.xml</loc>
   </sitemap>
 </sitemapindex>
