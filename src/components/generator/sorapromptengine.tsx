@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dia
 import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
 import Icon from "../icon";
+import { ErrorCode } from "@/services/constant";
 
 const MAX_GENERATE_ATTEMPTS = 3;
 
@@ -59,7 +60,7 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
 
 export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i" | "t2v" | "i2v">("t2v");
-  const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
+  const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "runoutfree" |"normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [vfiles, setVFiles] = useState<File[]>([]);
@@ -101,18 +102,7 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     if (!canGenerate || isGenerating) {
       return;
     }
-
     setFailure("normal");
-
-    // 梳理一下逻辑 即先检测一下是否登录了 未登录则之间扣除本地的点数 如果登陆了先检测一下credits是否够用
-    if (status === 'unauthenticated'){
-      if(!useTrial()){
-        setShowAuthDialog(true);
-        setTimeout(() => router.push('/auth/signin'), 2200);
-        return;
-      }
-    }
-
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
@@ -150,12 +140,17 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
       console.error("failed to generate", error);
       const generatorError = error as GeneratorError;
       if(generatorError){
-        if(generatorError.code === 100){
+        if(generatorError.code === ErrorCode.APIError){
           setFailure("insuficientcredits");
-        }else if(generatorError.code === 200){
+        }else if(generatorError.code === ErrorCode.APIError){
           setFailure("apierror");
+        }else if(generatorError.code === ErrorCode.RunOutTrial){
+          setFailure("runoutfree");
+          setShowAuthDialog(true);
+          setTimeout(() => router.push('/auth/signin'), 2200);
         }
       }
+
       onOutputsChange?.([]);
     } finally {
       setIsGenerating(false);

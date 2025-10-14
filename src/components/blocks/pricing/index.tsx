@@ -312,16 +312,12 @@ export default function Pricing({ pricing }: { pricing: PricingType }) {
                 <p className="text-foreground text-base leading-relaxed">
                   {locale === "zh" ? (
                     <>
-                      💡 <strong className="text-primary">积分消费说明：</strong>每检测一张图片或一个音频文件消耗 1 个积分。
-                      <br />
                       🔄 <strong className="text-primary">取消政策：</strong>随时可以取消订阅，无任何违约金。
                       <br />
                       🎁 <strong className="text-primary">新用户福利：</strong>注册即送 3 个免费积分体验服务。
                     </>
                   ) : (
                     <>
-                      💡 <strong className="text-primary">Credits Usage:</strong> Each image or audio detection consumes 1 credit.
-                      <br />
                       🔄 <strong className="text-primary">Cancellation:</strong> Cancel anytime without any penalties or fees.
                       <br />
                       🎁 <strong className="text-primary">New User Bonus:</strong> Get 3 free credits upon registration to try our service.

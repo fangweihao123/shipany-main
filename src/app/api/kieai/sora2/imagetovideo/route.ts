@@ -4,11 +4,14 @@ import {
 } from '@/types/detect';
 
 import { decreaseCredits, CreditsTransType, getUserCredits } from '@/services/credit';
-import { getUserUuid } from '@/services/user';
-import { newStorage, Storage } from '@/lib/storage';
-import { getUuid } from '@/lib/hash';
+import { getUserInfo, getUserUuid } from '@/services/user';
 import { GenerateVideoRequest, GenerateVideoResponse } from '@/types/kieai/sora2/video';
-import { UserCredits } from '@/types/user';
+import { HasEnoughCredits } from '@/services/credits/credit.lib';
+import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
+import { GeneratorProvider } from '@/types/generator';
+import { TaskProvider } from '@/types/task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
+import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
 
 const API_BASE_URL = process.env.KIEAI_API_BASE_ENDPOINT;
 const API_KEY = process.env.KIEAI_API_KEY;
@@ -73,20 +76,35 @@ export async function POST(request: NextRequest) {
     } = await request.json();
 
     const user_uuid = await getUserUuid();
-    if(user_uuid.length > 0){
-      const usercredits : UserCredits = await getUserCredits(user_uuid);
-      if(usercredits.left_credits < 50){
+    const generatorModel : GeneratorProvider = "sora2i2v";
+    const task_code : TaskProvider = "GenerateVideo";
+    const taskCreditsConsuption: number = TaskCreditsConsumption[generatorModel];
+    const ip: string = await getClientIp();
+    const fingerPrint = await getSerialCode();
+    if(user_uuid){
+      if(!await HasEnoughCredits(user_uuid, taskCreditsConsuption)){
         return NextResponse.json(
           {
             success: false,
             error: {
-              code: 100,
+              code: ErrorCode.InSufficientCredits,
               message: 'InSufficient Credits',
             },
           } as ApiErrorResponse,
           { status: 500 }
         );
       }
+    }else if(!await canUseTrialService({fingerPrint, ip, task_code})){
+      return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: ErrorCode.RunOutTrial,
+              message: 'Run out of Free Trial',
+            },
+          } as ApiErrorResponse,
+          { status: 500 }
+        );
     }
 
     const processedImageUrls = (imageUrls ?? []).map((url: string) => {
@@ -108,6 +126,20 @@ export async function POST(request: NextRequest) {
     };
 
     const generateVideoResponse = await generateVideoWithImage(generateVideoRequest);
+    
+    if(!isRetry){
+      if (user_uuid){
+        await decreaseCredits({
+          user_uuid,
+          trans_type: CreditsTransType.Ping,
+          credits: taskCreditsConsuption, // Video generation costs more credits
+        });
+        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
+      }else{
+        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
+        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
+      }
+    }
 
     return NextResponse.json(generateVideoResponse);
 
