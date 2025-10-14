@@ -153,7 +153,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       if(generatorError){
         if(generatorError.code === ErrorCode.InSufficientCredits){
           setFailure("insuficientcredits");
-        }else if(generatorError.code === ErrorCode.RunOutTrial){
+        }else if(generatorError.code === ErrorCode.APIError){
           setFailure("apierror");
         }else if(generatorError.code === ErrorCode.RunOutTrial){
           setFailure("runoutfree");
