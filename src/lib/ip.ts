@@ -12,3 +12,12 @@ export async function getClientIp() {
 
   return ip;
 }
+
+export async function getSerialCode(){
+  const h = await headers();
+
+  const serialCode =
+    h.get("serial-code");
+
+  return serialCode || "";
+}

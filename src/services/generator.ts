@@ -5,6 +5,7 @@ import {
 import { R2PresignedUrlRequest, R2PresignedUrlResponse, uploadToR2 } from '@/lib/utils';
 
 import { GeneratorProvider } from '@/types/generator';
+import { getFingerPrint } from '@/lib/localstorage/webfingerprint';
 
 export const PROVIDER_CONFIGS = {
   nanobananat2i: {
@@ -242,9 +243,13 @@ export async function generateVideo(
   const config = PROVIDER_CONFIGS[selectedProvider];
   
   try {
+    const fingerPrint: string = await getFingerPrint();
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'serial-code' : fingerPrint 
+      },
       body: JSON.stringify({
         prompt: prompt,
         imageUrl: imageUrl,
@@ -263,8 +268,7 @@ export async function generateVideo(
         errorData.error.details
       );
     }
-
-    return data.data.id;
+    return data.data.id || data.data.taskId;
   } catch (error) {
     if (error instanceof GeneratorError) {
       throw error;
