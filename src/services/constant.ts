@@ -19,13 +19,14 @@ export const AffiliateRewardAmount = {
 };
 
 export const TrialTaskMaxAttempts = {
-  GenerateVideo: 1
+  GenerateVideo: 1,
+  GenerateImage: 1
 } as const;
 
 export const TaskCreditsConsumption = {
   nanobananat2i: 2,
   nanobananai2i: 2,
-  nanobananai2v: 2,
+  nanobananai2v: 50,
   sora2i2v: 10,
   sora2t2v: 10
 } as const;

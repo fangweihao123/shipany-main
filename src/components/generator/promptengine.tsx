@@ -14,6 +14,7 @@ import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
 import { pollTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
+import { ErrorCode } from "@/services/constant";
 
 const MAX_GENERATE_ATTEMPTS = 3;
 
@@ -57,7 +58,7 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
 
 export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i" | "i2v">("i2i");
-  const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "normal">("normal");
+  const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "runoutfree" | "normal">("normal");
   const [prompt, setPrompt] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const [vfiles, setVFiles] = useState<File[]>([]);
@@ -102,15 +103,6 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
 
     setFailure("normal");
 
-    // 梳理一下逻辑 即先检测一下是否登录了 未登录则之间扣除本地的点数 如果登陆了先检测一下credits是否够用
-    if (status === 'unauthenticated'){
-      if(!useTrial()){
-        setShowAuthDialog(true);
-        setTimeout(() => router.push('/auth/signin'), 2200);
-        return;
-      }
-    }
-
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
@@ -124,7 +116,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           ...(negativePrompt && { negative_prompt: negativePrompt }),
           ...(seed && { seed: seed })
         };
-        const id = await generateVideo(filesUrl, prompt, "nanobananai2v", false, videoOptions);
+        const id = await generateVideo(filesUrl[0], prompt, "nanobananai2v", false, videoOptions);
         const queryResult = await pollTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
@@ -159,10 +151,14 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       console.error("failed to generate", error);
       const generatorError = error as GeneratorError;
       if(generatorError){
-        if(generatorError.code === 100){
+        if(generatorError.code === ErrorCode.InSufficientCredits){
           setFailure("insuficientcredits");
-        }else if(generatorError.code === 200){
+        }else if(generatorError.code === ErrorCode.RunOutTrial){
           setFailure("apierror");
+        }else if(generatorError.code === ErrorCode.RunOutTrial){
+          setFailure("runoutfree");
+          setShowAuthDialog(true);
+          setTimeout(() => router.push('/auth/signin'), 2200);
         }
       }
       onOutputsChange?.([]);

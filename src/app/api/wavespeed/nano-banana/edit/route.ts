@@ -1,17 +1,22 @@
+import {
+  EditImgRequest,
+  GenerateImgRequest,
+  GenerateImgResponse
+} from '@/types/wavespeed/nanobanana/image'
 import { NextRequest, NextResponse } from 'next/server';
 import {
   ApiErrorResponse,
 } from '@/types/detect';
+import { getUserInfo, getUserUuid } from '@/services/user';
+import { HasEnoughCredits } from '@/services/credits/credit.lib';
+import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
+import { GeneratorProvider } from '@/types/generator';
+import { TaskProvider } from '@/types/task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
+import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
+import { CreditsTransType, decreaseCredits } from '@/services/credit';
+import { UnwatermarkImgResponse } from '@/types/unwatermark';
 
-import {
-  UnwatermarkImgResponse
-} from '@/types/unwatermark'
-import { decreaseCredits, CreditsTransType, getUserCredits } from '@/services/credit';
-import { getUserUuid } from '@/services/user';
-import { newStorage, Storage } from '@/lib/storage';
-import { getUuid } from '@/lib/hash';
-import { EditImgRequest } from '@/types/wavespeed/nanobanana/image';
-import { UserCredits } from "@/types/user";
 
 const API_BASE_URL = process.env.WAVESPEED_API_BASE_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
@@ -35,15 +40,6 @@ async function EditImage(data: EditImgRequest, isRetry: boolean = false): Promis
   if (!response.ok) {
     throw new Error(`Failed to detect image: ${response.statusText}`);
   }
-  const user_uuid = await getUserUuid();
-  if (user_uuid && !isRetry){
-    await decreaseCredits({
-      user_uuid,
-      trans_type: CreditsTransType.Ping,
-      credits: 2,
-    });
-    console.log('edit image sucess with 2 credits consuption');
-  }
   return response.json();
 }
 
@@ -63,23 +59,36 @@ export async function POST(request: NextRequest) {
     }
 
     const user_uuid = await getUserUuid();
-
-    if(user_uuid.length > 0){
-      const usercredits : UserCredits = await getUserCredits(user_uuid);
-      if(usercredits.left_credits < 2){
+    const generatorModel : GeneratorProvider = "nanobananai2i";
+    const task_code : TaskProvider = "GenerateImage";
+    const taskCreditsConsuption: number = TaskCreditsConsumption[generatorModel];
+    const ip: string = await getClientIp();
+    const fingerPrint = await getSerialCode();
+    if(user_uuid){
+      if(!await HasEnoughCredits(user_uuid, taskCreditsConsuption)){
         return NextResponse.json(
           {
             success: false,
             error: {
-              code: 100,
+              code: ErrorCode.InSufficientCredits,
               message: 'InSufficient Credits',
             },
           } as ApiErrorResponse,
           { status: 500 }
         );
       }
+    }else if(!await canUseTrialService({fingerPrint, ip, task_code})){
+      return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: ErrorCode.RunOutTrial,
+              message: 'Run out of Free Trial',
+            },
+          } as ApiErrorResponse,
+          { status: 500 }
+        );
     }
-    
 
     let { prompt, uploadUrls, isRetry, output_format = 'png' } = await request.json();
 
@@ -111,6 +120,19 @@ export async function POST(request: NextRequest) {
     };
 
     const Response = await EditImage(editRequest, isRetry);
+    if(!isRetry){
+      if (user_uuid){
+        await decreaseCredits({
+          user_uuid,
+          trans_type: CreditsTransType.Ping,
+          credits: taskCreditsConsuption, // Video generation costs more credits
+        });
+        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
+      }else{
+        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
+        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
+      }
+    }
 
     return NextResponse.json(Response);
 
