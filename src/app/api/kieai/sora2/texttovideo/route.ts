@@ -8,7 +8,12 @@ import { getUserUuid } from '@/services/user';
 import { newStorage, Storage } from '@/lib/storage';
 import { getUuid } from '@/lib/hash';
 import { GenerateVideoRequest, GenerateVideoResponse } from '@/types/kieai/sora2/video';
-import { UserCredits } from '@/types/user';
+import { HasEnoughCredits } from '@/services/credits/credit.lib';
+import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
+import { GeneratorProvider } from '@/types/generator';
+import { TaskProvider } from '@/types/task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
+import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
 
 const API_BASE_URL = process.env.KIEAI_API_BASE_ENDPOINT;
 const API_KEY = process.env.KIEAI_API_KEY;

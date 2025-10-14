@@ -33,15 +33,6 @@ async function generateVideoWithImage(data: GenerateVideoRequest, isRetry:boolea
     throw new Error(`Failed to generate image: ${response.statusText}`);
   }
 
-  const user_uuid = await getUserUuid();
-  if (user_uuid && !isRetry){
-    await decreaseCredits({
-      user_uuid,
-      trans_type: CreditsTransType.Ping,
-      credits: 50, // Video generation costs more credits
-    });
-    console.log('generate video success with 50 credits consumption');
-  }
   return response.json();
 }
 
