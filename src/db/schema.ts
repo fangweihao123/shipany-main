@@ -142,3 +142,37 @@ export const feedbacks = pgTable("feedbacks", {
   content: text(),
   rating: integer(),
 });
+
+export const deviceTrialUsage = pgTable(
+  "device_trial_usage",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    web_fingerprint: varchar({ length: 255 }).notNull(),
+    ip_address: varchar({ length: 45 }).notNull(),
+    task_code: varchar({ length: 100 }).notNull(),
+    attempts_used: integer().notNull().default(0),
+    first_used_at: timestamp({ withTimezone: true }),
+    last_used_at: timestamp({ withTimezone: true }),
+  },
+  (table) => [
+    uniqueIndex("device_trial_usage_unique").on(
+      table.web_fingerprint,
+      table.ip_address,
+      table.task_code
+    ),
+  ]
+);
+
+export const taskTrialConfig = pgTable(
+  "task_trial_config",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    task_code: varchar({ length: 100 }).notNull(),
+    max_attempts: integer().notNull(),
+    period_unit: varchar({ length: 20 }).notNull().default("lifetime"), // 可选 day/week/month/lifetime
+    period_value: integer(), // 例如 1 天 / 7 天；lifetime 可留空
+    description: varchar({ length: 255 }),
+    updated_at: timestamp({ withTimezone: true }),
+  },
+  (table) => [uniqueIndex("task_trial_config_unique").on(table.task_code)]
+);
