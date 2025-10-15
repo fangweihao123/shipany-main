@@ -89,6 +89,12 @@ export function InviteUploader({
       setDigits(Array(SEGMENT_COUNT).fill(""));
       inputsRef.current[0]?.focus();
       alert(formatTemplate(copy.successMessage, { code }));
+    } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : copy.errorIncomplete;
+      setError(message);
     } finally {
       setSubmitting(false);
     }
