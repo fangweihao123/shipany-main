@@ -36,6 +36,13 @@
       "when": 1760407507391,
       "tag": "0004_lucky_chamber",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1760495692548,
+      "tag": "0005_many_boomer",
+      "breakpoints": true
     }
   ]
 }
