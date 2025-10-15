@@ -28,6 +28,11 @@
           "icon": "RiMoneyDollarCircleLine"
         },
         {
+          "title": "Invite Code",
+          "url": "/invitecode",
+          "icon": "RiMovieLine"
+        },
+        {
           "title": "Workflow",
           "url": "/#usage",
           "icon": "RiPlayCircleLine"
