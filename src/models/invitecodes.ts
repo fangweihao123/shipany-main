@@ -1,12 +1,23 @@
 import { invite_codes, invite_codes_vote } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, and, lt } from "drizzle-orm";
+import { desc, eq, lt } from "drizzle-orm";
 
 export async function insertInvitecode(
   data: typeof invite_codes.$inferInsert
 ): Promise<typeof invite_codes.$inferSelect | undefined> {
   const [invitecode] = await db().insert(invite_codes).values(data).returning();
   return invitecode;
+}
+
+export async function findInvitecodeByCode(
+  inviteCode: string
+): Promise<typeof invite_codes.$inferSelect | undefined> {
+  const [record] = await db()
+    .select()
+    .from(invite_codes)
+    .where(eq(invite_codes.invite_code, inviteCode))
+    .limit(1);
+  return record;
 }
 
 export async function voteInviteCode(
@@ -40,10 +51,12 @@ export async function voteInviteCode(
 export async function queryInviteCodes(
   limit: number = 10,
   max_votedown: number = 2
-): Promise<typeof invite_codes.$inferSelect | undefined>{
-  const [invite_codes_data] = await db().select().from(invite_codes)
-  .orderBy(desc(invite_codes.created_at))
-  .where(lt(invite_codes.votedown, max_votedown))
-  .limit(limit);
-  return invite_codes_data;
+): Promise<typeof invite_codes.$inferSelect[]>{
+  const inviteCodes = await db()
+    .select()
+    .from(invite_codes)
+    .orderBy(desc(invite_codes.created_at))
+    .where(lt(invite_codes.votedown, max_votedown))
+    .limit(limit);
+  return inviteCodes;
 }

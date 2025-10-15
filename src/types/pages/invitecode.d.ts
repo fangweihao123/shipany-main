@@ -26,16 +26,20 @@ export interface InviteCodePage {
         };
         list: {
             title: string;
-            description: string;
-            searchPlaceholder: string;
-            loadMore: string;
-            loadMoreAlert: string;
-            reportAlert: string;
-            instructions: {
-                title: string;
-                items: Array<{
-                    text: string;
-                    link?: {
+        description: string;
+        searchPlaceholder: string;
+        loadMore: string;
+        loadMoreAlert: string;
+        reportAlert: string;
+        refresh: {
+            label: string;
+            loading: string;
+        };
+        instructions: {
+            title: string;
+            items: Array<{
+                text: string;
+                link?: {
                         label: string;
                         url: string;
                     };

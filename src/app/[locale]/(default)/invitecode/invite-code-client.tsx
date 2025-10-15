@@ -6,35 +6,45 @@ import { InviteUploader } from "./components/invite-uploader";
 import { InviteCard } from "./components/invite-card";
 import { InstructionsPanel } from "./components/instructions-panel";
 import {
-  addInviteCodeToMockServer,
-  fetchMockInviteCodes,
-  getMockServerSnapshot,
+  fetchInviteCodes,
   mapApiItemToInviteCode,
-  recordVoteOnMockServer,
   REFRESH_INTERVAL,
+  submitInviteCode,
+  voteOnInviteCode,
 } from "./components/mock-service";
+import { formatTemplate } from "./utils";
 
 export default function InviteCodeListPageClient({
   copy,
 }: {
   copy: InviteCodePage["invitecode"];
 }) {
-  const [items, setItems] = useState<InviteCode[]>(() =>
-    getMockServerSnapshot().map(mapApiItemToInviteCode)
-  );
+  const [items, setItems] = useState<InviteCode[]>([]);
+  const [nextRefreshAt, setNextRefreshAt] = useState<number | null>(null);
+  const [countdown, setCountdown] = useState<number>(0);
 
   useEffect(() => {
     let cancelled = false;
+    const controllers = new Set<AbortController>();
 
     const load = async () => {
+      const controller = new AbortController();
+      controllers.add(controller);
+      if (!cancelled) {
+        setNextRefreshAt(Date.now() + REFRESH_INTERVAL);
+      }
       try {
-        const res = await fetchMockInviteCodes();
-        if (!cancelled && res.code === 0 && Array.isArray(res.data)) {
-          const next = res.data.map(mapApiItemToInviteCode);
+        const data = await fetchInviteCodes(controller.signal);
+        if (!cancelled) {
+          const next = data.map(mapApiItemToInviteCode);
           setItems(next);
         }
       } catch (error) {
-        console.warn("mock invite code fetch failed", error);
+        if (!cancelled) {
+          console.warn("invite code fetch failed", error);
+        }
+      } finally {
+        controllers.delete(controller);
       }
     };
 
@@ -43,34 +53,86 @@ export default function InviteCodeListPageClient({
 
     return () => {
       cancelled = true;
+      controllers.forEach((ctrl) => ctrl.abort());
       clearInterval(timer);
     };
   }, []);
 
+  useEffect(() => {
+    if (!nextRefreshAt) {
+      setCountdown(0);
+      return;
+    }
+    const tick = () => {
+      setCountdown(Math.max(0, Math.ceil((nextRefreshAt - Date.now()) / 1000)));
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [nextRefreshAt]);
+
   async function onUpload(code: string) {
-    const newServerItem = addInviteCodeToMockServer(code);
-    const newInvite = mapApiItemToInviteCode(newServerItem);
-    setItems((prev) => [newInvite, ...prev]);
+    const created = await submitInviteCode(code);
+    const newInvite = mapApiItemToInviteCode(created);
+    setItems((prev) => {
+      const filtered = prev.filter((item) => item.code !== newInvite.code);
+      return [newInvite, ...filtered];
+    });
+
+    try {
+      const data = await fetchInviteCodes();
+      setItems(data.map(mapApiItemToInviteCode));
+    } catch (error) {
+      console.warn("refresh invite codes after submit failed", error);
+    }
   }
 
   async function onVote(id: InviteCode["id"], dir: 1 | -1) {
-    recordVoteOnMockServer(id, dir);
+    const current = items.find((item) => item.id === id);
+    if (!current) {
+      return;
+    }
+
     setItems((prev) =>
-      prev.map((x) =>
-        x.id === id
+      prev.map((item) =>
+        item.id === id
           ? {
-              ...x,
-              upvotes: (x.upvotes || 0) + (dir === 1 ? 1 : 0),
-              downvotes: (x.downvotes || 0) + (dir === -1 ? 1 : 0),
+              ...item,
+              upvotes: (item.upvotes || 0) + (dir === 1 ? 1 : 0),
+              downvotes: (item.downvotes || 0) + (dir === -1 ? 1 : 0),
             }
-          : x
+          : item
       )
     );
+
+    try {
+      await voteOnInviteCode(current.code, dir === 1);
+    } catch (error) {
+      console.warn("vote invite code failed", error);
+      setItems((prev) =>
+        prev.map((item) => (item.id === id ? current : item))
+      );
+      return;
+    }
+
+    try {
+      const data = await fetchInviteCodes();
+      setItems(data.map(mapApiItemToInviteCode));
+    } catch (error) {
+      console.warn("refresh invite codes after vote failed", error);
+    }
   }
 
   async function onReport(id: InviteCode["id"]) {
     alert(copy.list.reportAlert);
   }
+
+  const refreshLabel = nextRefreshAt
+    ? formatTemplate(copy.list.refresh.label, {
+        time: new Date(nextRefreshAt).toLocaleTimeString([], { hour12: false }),
+        seconds: countdown.toString(),
+      })
+    : copy.list.refresh.loading;
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8 xl:max-w-6xl">
@@ -85,6 +147,7 @@ export default function InviteCodeListPageClient({
         <p className="mt-1 text-sm text-muted-foreground">
           {copy.list.description}
         </p>
+        <p className="mt-2 text-xs text-muted-foreground">{refreshLabel}</p>
       </header>
 
       <div className="lg:grid lg:grid-cols-[minmax(0,1.6fr)_320px] lg:items-start lg:gap-8">
@@ -98,15 +161,6 @@ export default function InviteCodeListPageClient({
               onReport={onReport}
             />
           ))}
-
-          <div className="flex justify-center pt-4">
-            <button
-              className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-sm transition hover:bg-muted"
-              onClick={() => alert(copy.list.loadMoreAlert)}
-            >
-              {copy.list.loadMore}
-            </button>
-          </div>
         </div>
 
         <InstructionsPanel instructions={copy.list.instructions} />

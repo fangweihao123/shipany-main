@@ -17,6 +17,10 @@
       "loadMore": "Load more",
       "loadMoreAlert": "Load more… hook this to your paging API",
       "reportAlert": "Thanks for the report. We'll review this code.",
+      "refresh": {
+        "label": "Next refresh: {{time}} ({{seconds}}s)",
+        "loading": "Calculating next refresh…"
+      },
       "instructions": {
         "title": "How to use this invite code",
         "items": [

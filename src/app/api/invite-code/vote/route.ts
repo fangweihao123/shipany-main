@@ -5,7 +5,7 @@ import { voteInviteCodeService } from "@/services/invitecode/invitecode";
 export async function POST(req: Request) {
   try {
     let { invite_code, is_support } = await req.json();
-    if (!invite_code) {
+    if (!invite_code || typeof is_support !== "boolean") {
       return respErr("invalid params");
     }
     const ip: string = await getClientIp();

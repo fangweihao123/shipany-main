@@ -8,98 +8,77 @@ export type InviteCodeApiItem = {
   created_at: string;
 };
 
-export type InviteCodeApiResponse = {
+export type InviteCodeApiResponse<T = InviteCodeApiItem[]> = {
   code: number;
   message: string;
-  data: InviteCodeApiItem[];
+  data: T;
 };
 
-const now = Date.now();
-const INITIAL_MOCK_SERVER_DATA: InviteCodeApiItem[] = [
-  {
-    id: 1,
-    invite_code: "GKC4SH",
-    voteup: 12,
-    votedown: 5,
-    created_at: new Date(now - 60 * 60 * 1000).toISOString(),
-  },
-  {
-    id: 2,
-    invite_code: "7F3Q9L",
-    voteup: 30,
-    votedown: 3,
-    created_at: new Date(now - 45 * 60 * 1000).toISOString(),
-  },
-  {
-    id: 3,
-    invite_code: "BETA01",
-    voteup: 3,
-    votedown: 16,
-    created_at: new Date(now - 30 * 60 * 1000).toISOString(),
-  },
-  {
-    id: 4,
-    invite_code: "HELLO8",
-    voteup: 11,
-    votedown: 4,
-    created_at: new Date(now - 15 * 60 * 1000).toISOString(),
-  },
-];
+type RequestOptions = {
+  method: "POST";
+  body?: Record<string, unknown>;
+  signal?: AbortSignal;
+};
 
-let mockServerData: InviteCodeApiItem[] = [...INITIAL_MOCK_SERVER_DATA];
+const API_ENDPOINTS = {
+  add: "/api/invite-code/add",
+  query: "/api/invite-code/query",
+  vote: "/api/invite-code/vote",
+} as const;
 
-const MOCK_FETCH_DELAY = 300;
+async function requestInviteApi<T>(
+  url: string,
+  { method, body, signal }: RequestOptions
+): Promise<InviteCodeApiResponse<T>> {
+  const response = await fetch(url, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    signal,
+  });
 
-function mutateMockServerData() {
-  mockServerData = mockServerData
-    .map((item) => {
-      const upDelta = Math.random() < 0.35 ? 1 : 0;
-      const downDelta = Math.random() < 0.15 ? 1 : 0;
+  if (!response.ok) {
+    throw new Error(`request failed with status ${response.status}`);
+  }
 
-      return {
-        ...item,
-        voteup: item.voteup + upDelta,
-        votedown: item.votedown + downDelta,
-      };
-    })
-    .sort(
-      (a, b) =>
-        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    );
+  const payload = (await response.json()) as InviteCodeApiResponse<T>;
+  if (payload.code !== 0) {
+    throw new Error(payload.message || "request failed");
+  }
+
+  return payload;
 }
 
-export async function fetchMockInviteCodes(): Promise<InviteCodeApiResponse> {
-  mutateMockServerData();
-  await new Promise((resolve) => setTimeout(resolve, MOCK_FETCH_DELAY));
-  return {
-    code: 0,
-    message: "ok",
-    data: mockServerData.map((item) => ({ ...item })),
-  };
+export const REFRESH_INTERVAL = 60_000;
+
+export async function fetchInviteCodes(
+  signal?: AbortSignal
+): Promise<InviteCodeApiItem[]> {
+  const { data } = await requestInviteApi<InviteCodeApiItem[]>(API_ENDPOINTS.query, {
+    method: "POST",
+    signal,
+  });
+  return Array.isArray(data) ? data : [];
 }
 
-export function addInviteCodeToMockServer(code: string): InviteCodeApiItem {
-  const newItem: InviteCodeApiItem = {
-    id: Date.now(),
-    invite_code: code,
-    voteup: 0,
-    votedown: 0,
-    created_at: new Date().toISOString(),
-  };
-  mockServerData = [newItem, ...mockServerData];
-  return newItem;
+export async function submitInviteCode(code: string): Promise<InviteCodeApiItem> {
+  const { data } = await requestInviteApi<InviteCodeApiItem>(API_ENDPOINTS.add, {
+    method: "POST",
+    body: { invite_code: code },
+  });
+  if (!data) {
+    throw new Error("invalid server response");
+  }
+  return data;
 }
 
-export function recordVoteOnMockServer(id: InviteCode["id"], dir: 1 | -1) {
-  mockServerData = mockServerData.map((item) =>
-    item.id === id
-      ? {
-          ...item,
-          voteup: dir === 1 ? item.voteup + 1 : item.voteup,
-          votedown: dir === -1 ? item.votedown + 1 : item.votedown,
-        }
-      : item
-  );
+export async function voteOnInviteCode(inviteCode: string, isSupport: boolean) {
+  await requestInviteApi<unknown>(API_ENDPOINTS.vote, {
+    method: "POST",
+    body: { invite_code: inviteCode, is_support: isSupport },
+  });
 }
 
 export function mapApiItemToInviteCode(item: InviteCodeApiItem): InviteCode {
@@ -110,10 +89,4 @@ export function mapApiItemToInviteCode(item: InviteCodeApiItem): InviteCode {
     downvotes: item.votedown,
     createdAt: item.created_at,
   };
-}
-
-export const REFRESH_INTERVAL = 60_000;
-
-export function getMockServerSnapshot(): InviteCodeApiItem[] {
-  return mockServerData.map((item) => ({ ...item }));
 }

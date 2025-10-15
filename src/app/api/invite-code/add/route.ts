@@ -15,6 +15,8 @@ export async function POST(req: Request) {
     return respData(inviteCode);
   } catch (e) {
     console.log("add invite code failed", e);
-    return respErr("add invite code failed");
+    const message =
+      e instanceof Error && e.message ? e.message : "add invite code failed";
+    return respErr(message);
   }
 }
