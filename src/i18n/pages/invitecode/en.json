@@ -1,0 +1,47 @@
+{
+  "invitecode": {
+    "name": "invitecode",
+    "upload": {
+      "title": "Submit Invite Code",
+      "description": "Enter a six-character invite code to share with the community.",
+      "submit": "Submit Code",
+      "submitting": "Submitting…",
+      "errorIncomplete": "Please fill all six characters before submitting.",
+      "successMessage": "Invite code submitted: {{code}}",
+      "digitAria": "Invite code digit {{index}}"
+    },
+    "list": {
+      "title": "Invite Codes",
+      "description": "Community-reported invite codes. Vote to help others.",
+      "searchPlaceholder": "Search code…",
+      "loadMore": "Load more",
+      "loadMoreAlert": "Load more… hook this to your paging API",
+      "reportAlert": "Thanks for the report. We'll review this code.",
+      "instructions": {
+        "title": "How to use this invite code",
+        "items": [
+          { "text": "Copy the invite code." },
+          {
+            "text": "Visit {{link}} and enter the invite code.",
+            "link": {
+              "label": "sora.chagpt.com/explore",
+              "url": "https://sora.chagpt.com/explore"
+            }
+          },
+          { "text": "Vote on whether the invite code worked for you." },
+          { "text": "Submit your own invite code to help the community." }
+        ]
+      },
+      "card": {
+        "title": "Invite Code",
+        "copy": "Copy",
+        "copied": "Copied",
+        "copyHint": "Click to copy",
+        "question": "Did this code work?",
+        "yes": "Yes",
+        "no": "No",
+        "report": "Report"
+      }
+    }
+  }
+}
