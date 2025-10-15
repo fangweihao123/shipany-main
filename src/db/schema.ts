@@ -9,6 +9,7 @@ import {
   unique,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { number } from "zod";
 
 // Users table
 export const users = pgTable(
@@ -176,3 +177,28 @@ export const taskTrialConfig = pgTable(
   },
   (table) => [uniqueIndex("task_trial_config_unique").on(table.task_code)]
 );
+
+export const invite_codes = pgTable(
+  "invite_codes",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    invite_code: varchar({ length: 100 }).notNull(),
+    web_fingerprint: varchar({ length: 255 }).notNull(),
+    ip_address: varchar({ length: 45 }).notNull(),
+    voteup: integer().notNull().default(0),
+    votedown: integer().notNull().default(0),
+    created_at: timestamp({ withTimezone: true }),
+  }
+)
+
+export const invite_codes_vote = pgTable(
+  "invite_codes_votes",  
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    invite_code: varchar({ length: 100 }).notNull(),
+    web_fingerprint: varchar({ length: 255 }).notNull(),
+    ip_address: varchar({ length: 45 }).notNull(),
+    is_support: boolean("is_support").notNull(),
+    created_at: timestamp({ withTimezone: true }),
+  }
+)
