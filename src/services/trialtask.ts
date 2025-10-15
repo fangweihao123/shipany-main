@@ -1,7 +1,6 @@
 import { deviceTrialUsage } from "@/db/schema";
 import { getIsoTimestr } from "@/lib/time";
 import { deviceTrialUsageProps, findDeviceTrialUsage, insertDeviceTrialUsage, updateDeviceTrialUsage } from "@/models/deviceTrialUsage";
-import { findTaskTrialConfig } from "@/models/taskTrialConfig";
 import { TrialTaskMaxAttempts } from "./constant";
 import { TaskProvider } from "@/types/task";
 
