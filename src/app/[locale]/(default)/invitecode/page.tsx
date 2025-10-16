@@ -4,6 +4,9 @@ import { InviteCodePage } from "@/types/pages/invitecode";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import InviteCodeListPageClient from "./invite-code-client";
+import Feature from "@/components/blocks/feature";
+import Feature2 from "@/components/blocks/feature2";
+import Feature3 from "@/components/blocks/feature3";
 
 async function getInviteCodePage(locale: string): Promise<InviteCodePage> {
   return (await getPage("invitecode", locale)) as InviteCodePage;
@@ -21,29 +24,19 @@ export async function generateMetadata({
 
   const baseUrl =
     process.env.NEXT_PUBLIC_WEB_URL?.replace(/\/$/, "") ?? "https://sora2.ai";
-  const canonicalPath = locale === "en" ? "/invitecode" : `/${locale}/invitecode`;
-  const canonicalUrl = `${baseUrl}${canonicalPath}`;
+  let canonicalUrl = `${process.env.NEXT_PUBLIC_WEB_URL}`;
 
-  const defaultKeywords = t("metadata.keywords")
-    ?.split(",")
-    .map((item: string) => item.trim())
-    .filter(Boolean);
+  if (locale !== "en") {
+    canonicalUrl = `${process.env.NEXT_PUBLIC_WEB_URL}/${locale}`;
+  }
+  canonicalUrl += "invitecode";
 
   return {
     title: seo?.title ?? t("metadata.title"),
     description: seo?.description ?? t("metadata.description"),
-    keywords: seo?.keywords ?? (defaultKeywords?.length ? defaultKeywords : ["sora2 invite code"]),
+    keywords: seo?.keywords ?? t("metadata.keywords"),
     alternates: {
       canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: seo?.title ?? t("metadata.title"),
-      description: seo?.description ?? t("metadata.description"),
-      url: canonicalUrl,
-    },
-    twitter: {
-      title: seo?.title ?? t("metadata.title"),
-      description: seo?.description ?? t("metadata.description"),
     },
   };
 }
@@ -58,15 +51,14 @@ export default async function InviteCodePageFunc({
 
   const page = await getInviteCodePage(locale);
   const content = page.invitecode;
-  const { heroSection, supportingSections, articleParagraphs, keywordSection } =
-    content;
+  const { heroSection, supportingSections } = content;
 
   return (
     <>
       <InviteCodeListPageClient copy={content} />
-      {heroSection && <Feature1 section={heroSection} />}
+      {heroSection && <Feature section={heroSection} />}
       {supportingSections?.map((section, index) => (
-        <Feature1
+        <Feature
           key={section.name ?? `section-${index}`}
           section={section}
         />

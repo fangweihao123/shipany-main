@@ -11,7 +11,7 @@ import {
   REFRESH_INTERVAL,
   submitInviteCode,
   voteOnInviteCode,
-} from "./components/mock-service";
+} from "@/services/invitecode/invitecode.reactive";
 import { formatTemplate } from "./utils";
 
 export default function InviteCodeListPageClient({
