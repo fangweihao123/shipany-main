@@ -1,55 +1,105 @@
 {
   "invitecode": {
     "name": "invitecode",
+    "seo": {
+      "title": "sora2 invite code 实时更新｜获取 Sora2 邀请码的完整指南",
+      "description": "通过专属的 sora2 invite code 实时更新、校验流程和实战技巧，快速完成注册并保障内容创作合规性。了解社区票选、自动提醒与风险标注，确保邀请资格不错过。",
+      "keywords": [
+        "sora2 invite code",
+        "sora2 邀请码",
+        "Sora2 注册",
+        "Sora2 邀请链接"
+      ]
+    },
+    "heroSection": {
+      "name": "overview",
+      "title": "sora2 invite code 实时获取指南",
+      "description": "基于社区实时校验的 sora2 invite code 资源，为创作者提供安全、合规且可操作的注册帮助。",
+      "items": [
+        {
+          "title": "7×24 小时监控",
+          "description": "智能监控 sora2 invite code 更新节奏，结合投票数据与举报状态同步评估有效性。"
+        },
+        {
+          "title": "合规流程图",
+          "description": "提供使用 sora2 invite code 的逐步检查清单，覆盖验证码、身份验证与风控要求。"
+        },
+        {
+          "title": "多端操作指引",
+          "description": "桌面与移动端同步支持 sora2 invite code 录入，减少跨设备切换的学习成本。"
+        }
+      ]
+    },
+    "supportingSections": [
+      {
+        "name": "workflow",
+        "title": "用 sora2 invite code 打造可复制的创作体验",
+        "description": "围绕创作目标构建可复用的流程，让每一次 sora2 invite code 使用都能稳步推进项目。",
+        "items": [
+          {
+            "title": "社区精选榜",
+            "description": "通过票选机制展示高评分的 sora2 invite code，附带使用时段统计与风险标签。"
+          },
+          {
+            "title": "多渠道提醒",
+            "description": "将可信的 sora2 invite code 推送到 Slack、邮件或短信，避免错过开放窗口。"
+          },
+          {
+            "title": "透明数据板",
+            "description": "以可视化日志回溯每个 sora2 invite code 的成功率、失败原因与反馈记录。"
+          }
+        ]
+      }
+    ],
     "upload": {
-      "title": "提交邀请码",
-      "description": "输入六位邀请码，与社区成员共享。",
-      "submit": "提交邀请码",
-      "submitting": "提交中…",
-      "errorIncomplete": "请在提交前填写完整的六位字符。",
-      "errorDuplicate": "该邀请码已被其他用户分享。",
-      "errorAlreadySubmitted": "每位用户只能提交一个邀请码。",
-      "errorMissingFingerprint": "无法验证您的设备信息，请刷新页面后重试。",
-      "errorUnknown": "提交失败，请稍后再试。",
-      "successMessage": "邀请码 {{code}} 提交成功",
-      "digitAria": "邀请码第 {{index}} 位"
+      "title": "提交你的 sora2 invite code",
+      "description": "输入六位的 sora2 invite code，与社区成员共享最新资格。",
+      "submit": "提交 sora2 invite code",
+      "submitting": "正在提交 sora2 invite code…",
+      "errorIncomplete": "提交前请填写完整的 sora2 invite code 六位字符。",
+      "errorDuplicate": "该 sora2 invite code 已被其他用户分享。",
+      "errorAlreadySubmitted": "每位用户只能提交一个 sora2 invite code。",
+      "errorMissingFingerprint": "无法验证您的设备信息，请刷新页面后重新提交 sora2 invite code。",
+      "errorUnknown": "提交 sora2 invite code 失败，请稍后再试。",
+      "successMessage": "sora2 invite code {{code}} 提交成功",
+      "digitAria": "sora2 invite code 第 {{index}} 位"
     },
     "list": {
-      "title": "邀请码列表",
-      "description": "社区成员上传的邀请码，投票帮助他人判断是否有效。",
-      "limitNotice": "每位用户只能提交一个邀请码；针对同一个邀请码，每位用户仅能投票一次。",
-      "searchPlaceholder": "搜索邀请码…",
-      "loadMore": "加载更多",
-      "loadMoreAlert": "加载更多…请接入分页接口",
-      "reportAlert": "感谢反馈，我们会尽快核实该邀请码。",
+      "title": "sora2 invite code 列表",
+      "description": "社区成员上传的 sora2 invite code，投票帮助他人判断是否有效。",
+      "limitNotice": "每位用户只能提交一个 sora2 invite code；针对同一个 sora2 invite code，每位用户仅能投票一次。",
+      "searchPlaceholder": "搜索 sora2 invite code…",
+      "loadMore": "加载更多 sora2 invite code",
+      "loadMoreAlert": "加载更多 sora2 invite code…请接入分页接口",
+      "reportAlert": "感谢反馈，我们会尽快核实该 sora2 invite code。",
       "refresh": {
-        "label": "下一次刷新：{{time}}（{{seconds}} 秒）",
-        "loading": "正在计算下一次刷新时间…"
+        "label": "下一次刷新 sora2 invite code：{{time}}（{{seconds}} 秒）",
+        "loading": "正在计算下一次 sora2 invite code 刷新时间…"
       },
       "instructions": {
-        "title": "如何使用邀请码",
+        "title": "如何使用 sora2 invite code",
         "items": [
-          { "text": "复制邀请码。" },
+          { "text": "复制 sora2 invite code。" },
           {
-            "text": "访问 {{link}} 并输入邀请码。",
+            "text": "访问 {{link}} 并输入 sora2 invite code。",
             "link": {
               "label": "sora.chagpt.com/explore",
               "url": "https://sora.chagpt.com/explore"
             }
           },
-          { "text": "根据邀请码是否有效进行投票。" },
-          { "text": "提交你自己的邀请码帮助社区。" }
+          { "text": "根据 sora2 invite code 是否有效进行投票。" },
+          { "text": "提交你自己的 sora2 invite code 帮助社区。" }
         ]
       },
       "card": {
-        "title": "邀请码",
-        "copy": "复制",
-        "copied": "已复制",
-        "copyHint": "点击复制",
-        "question": "该邀请码有效吗？",
-        "yes": "有效",
-        "no": "无效",
-        "report": "举报"
+        "title": "sora2 invite code",
+        "copy": "复制 sora2 invite code",
+        "copied": "已复制 sora2 invite code",
+        "copyHint": "点击复制 sora2 invite code",
+        "question": "该 sora2 invite code 有效吗？",
+        "yes": "sora2 invite code 有效",
+        "no": "sora2 invite code 无效",
+        "report": "举报 sora2 invite code"
       }
     }
   }

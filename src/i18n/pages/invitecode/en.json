@@ -1,55 +1,105 @@
 {
   "invitecode": {
     "name": "invitecode",
+    "seo": {
+      "title": "sora2 invite code Updates and Playbook for Trusted Access",
+      "description": "Access validated sora2 invite code drops with compliance checklists, automation tips, and community analytics that accelerate onboarding while keeping projects secure.",
+      "keywords": [
+        "sora2 invite code",
+        "sora2 invitation code",
+        "sora2 access guide",
+        "sora2 onboarding tips"
+      ]
+    },
+    "heroSection": {
+      "name": "overview",
+      "title": "Stay Ahead With Every sora2 invite code",
+      "description": "Leverage curated sora2 invite code intelligence to enter the platform safely, efficiently, and with full compliance context.",
+      "items": [
+        {
+          "title": "Continuous verification",
+          "description": "Track sora2 invite code updates in real time with validation metrics, vote signals, and report handling."
+        },
+        {
+          "title": "Guided compliance",
+          "description": "Follow detailed checklists for each sora2 invite code covering captcha timing, identity steps, and policy reviews."
+        },
+        {
+          "title": "Cross-device readiness",
+          "description": "Apply a sora2 invite code seamlessly on desktop or mobile so creative projects never pause mid-setup."
+        }
+      ]
+    },
+    "supportingSections": [
+      {
+        "name": "workflow",
+        "title": "Operationalize Your sora2 invite code Workflow",
+        "description": "Scale experimentation with structured resources that reinforce every stage of inviting, testing, and sharing.",
+        "items": [
+          {
+            "title": "Community leaderboard",
+            "description": "Surface top-rated sora2 invite code entries with annotated heatmaps, vote trends, and comment trails."
+          },
+          {
+            "title": "Automated alerts",
+            "description": "Send critical sora2 invite code notices to Slack, email, or SMS instantly to prevent missed windows."
+          },
+          {
+            "title": "Insight dashboards",
+            "description": "Review historical sora2 invite code performance alongside risk status, queue times, and feedback logs."
+          }
+        ]
+      }
+    ],
     "upload": {
-      "title": "Submit Invite Code",
-      "description": "Enter a six-character invite code to share with the community.",
-      "submit": "Submit Code",
-      "submitting": "Submitting…",
-      "errorIncomplete": "Please fill all six characters before submitting.",
-      "errorDuplicate": "This invite code has already been shared.",
-      "errorAlreadySubmitted": "You can only submit one invite code.",
-      "errorMissingFingerprint": "Unable to verify your device. Please refresh the page and try again.",
-      "errorUnknown": "Submission failed. Please try again later.",
-      "successMessage": "Invite code submitted: {{code}}",
-      "digitAria": "Invite code digit {{index}}"
+      "title": "Submit Your sora2 invite code",
+      "description": "Enter a six-character sora2 invite code to share with the community.",
+      "submit": "Submit sora2 invite code",
+      "submitting": "Submitting sora2 invite code…",
+      "errorIncomplete": "Please fill all six characters of the sora2 invite code before submitting.",
+      "errorDuplicate": "This sora2 invite code has already been shared.",
+      "errorAlreadySubmitted": "You can only submit one sora2 invite code.",
+      "errorMissingFingerprint": "Unable to verify your device. Please refresh the page and try again with the sora2 invite code.",
+      "errorUnknown": "sora2 invite code submission failed. Please try again later.",
+      "successMessage": "sora2 invite code submitted: {{code}}",
+      "digitAria": "sora2 invite code digit {{index}}"
     },
     "list": {
-      "title": "Invite Codes",
-      "description": "Community-reported invite codes. Vote to help others.",
-      "limitNotice": "Each user can submit only one invite code. You may vote once per invite code.",
-      "searchPlaceholder": "Search code…",
-      "loadMore": "Load more",
-      "loadMoreAlert": "Load more… hook this to your paging API",
-      "reportAlert": "Thanks for the report. We'll review this code.",
+      "title": "sora2 invite code Directory",
+      "description": "Community-reported sora2 invite code entries. Vote to help others.",
+      "limitNotice": "Each user can submit only one sora2 invite code. You may vote once per sora2 invite code.",
+      "searchPlaceholder": "Search sora2 invite code…",
+      "loadMore": "Load more sora2 invite code results",
+      "loadMoreAlert": "Load more sora2 invite code… hook this to your paging API",
+      "reportAlert": "Thanks for the report. We'll review this sora2 invite code.",
       "refresh": {
-        "label": "Next refresh: {{time}} ({{seconds}}s)",
-        "loading": "Calculating next refresh…"
+        "label": "Next sora2 invite code refresh: {{time}} ({{seconds}}s)",
+        "loading": "Calculating the next sora2 invite code refresh…"
       },
       "instructions": {
-        "title": "How to use this invite code",
+        "title": "How to use a sora2 invite code",
         "items": [
-          { "text": "Copy the invite code." },
+          { "text": "Copy the sora2 invite code." },
           {
-            "text": "Visit {{link}} and enter the invite code.",
+            "text": "Visit {{link}} and enter the sora2 invite code.",
             "link": {
               "label": "sora.chagpt.com/explore",
               "url": "https://sora.chagpt.com/explore"
             }
           },
-          { "text": "Vote on whether the invite code worked for you." },
-          { "text": "Submit your own invite code to help the community." }
+          { "text": "Vote on whether the sora2 invite code worked for you." },
+          { "text": "Submit your own sora2 invite code to help the community." }
         ]
       },
       "card": {
-        "title": "Invite Code",
-        "copy": "Copy",
-        "copied": "Copied",
-        "copyHint": "Click to copy",
-        "question": "Did this code work?",
-        "yes": "Yes",
-        "no": "No",
-        "report": "Report"
+        "title": "sora2 invite code",
+        "copy": "Copy sora2 invite code",
+        "copied": "sora2 invite code copied",
+        "copyHint": "Click to copy the sora2 invite code",
+        "question": "Did this sora2 invite code work?",
+        "yes": "sora2 invite code worked",
+        "no": "sora2 invite code failed",
+        "report": "Report sora2 invite code"
       }
     }
   }

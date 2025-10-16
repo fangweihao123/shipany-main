@@ -28,6 +28,11 @@
           "icon": "RiMoneyDollarCircleLine"
         },
         {
+          "title": "邀请码",
+          "url": "/invitecode",
+          "icon": "RiMovieLine"
+        },
+        {
           "title": "工作流程",
           "url": "/#usage",
           "icon": "RiPlayCircleLine"

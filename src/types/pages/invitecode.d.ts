@@ -1,4 +1,6 @@
 
+import type { Section } from "@/types/blocks/section";
+
 // ==== Types ====
 export type InviteCode = {
     id: string | number;
@@ -12,9 +14,26 @@ export type UpvotedInviteCode = {
     votedCode: string[];
 }
 
+type InviteCodeSeo = {
+    title: string;
+    description: string;
+    keywords: string[];
+};
+
+type InviteCodeKeywordSection = {
+    title: string;
+    description: string;
+    highlights: string[];
+};
+
 export interface InviteCodePage {
     invitecode: {
         name: string;
+        seo?: InviteCodeSeo;
+        heroSection?: Section;
+        supportingSections?: Section[];
+        keywordSection?: InviteCodeKeywordSection;
+        articleParagraphs?: string[];
         upload: {
             title: string;
             description: string;
