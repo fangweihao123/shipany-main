@@ -563,6 +563,11 @@
       ]
     },
     "badges": [
+      {
+        "url": "https://www.showmebest.ai",
+        "src": "https://www.showmebest.ai/badge/feature-badge-white.webp",
+        "alt": "Featured on ShowMeBestAI"
+      }
     ],
     "social": {
       "items": [
