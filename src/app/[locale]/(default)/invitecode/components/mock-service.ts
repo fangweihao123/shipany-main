@@ -1,4 +1,5 @@
 import type { InviteCode } from "@/types/pages/invitecode";
+import { getFingerPrint } from "@/lib/localstorage/webfingerprint";
 
 export type InviteCodeApiItem = {
   id: number;
@@ -30,10 +31,12 @@ async function requestInviteApi<T>(
   url: string,
   { method, body, signal }: RequestOptions
 ): Promise<InviteCodeApiResponse<T>> {
+  const fingerPrint = await getFingerPrint();
   const response = await fetch(url, {
     method,
     headers: {
       "Content-Type": "application/json",
+      "serial-code": fingerPrint,
     },
     body: body ? JSON.stringify(body) : undefined,
     signal,

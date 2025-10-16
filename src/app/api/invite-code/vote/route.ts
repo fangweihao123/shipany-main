@@ -15,6 +15,8 @@ export async function POST(req: Request) {
     return respData(inviteCode);
   } catch (e) {
     console.log("vote invite code failed", e);
-    return respErr("vote invite code failed");
+    const message =
+      e instanceof Error && e.message ? e.message : "vote invite code failed";
+    return respErr(message);
   }
 }

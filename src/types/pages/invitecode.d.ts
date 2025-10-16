@@ -21,25 +21,30 @@ export interface InviteCodePage {
             submit: string;
             submitting: string;
             errorIncomplete: string;
+            errorDuplicate: string;
+            errorAlreadySubmitted: string;
+            errorMissingFingerprint: string;
+            errorUnknown: string;
             successMessage: string;
             digitAria: string;
         };
         list: {
             title: string;
-        description: string;
-        searchPlaceholder: string;
-        loadMore: string;
-        loadMoreAlert: string;
-        reportAlert: string;
-        refresh: {
-            label: string;
-            loading: string;
-        };
-        instructions: {
-            title: string;
-            items: Array<{
-                text: string;
-                link?: {
+            description: string;
+            limitNotice: string;
+            searchPlaceholder: string;
+            loadMore: string;
+            loadMoreAlert: string;
+            reportAlert: string;
+            refresh: {
+                label: string;
+                loading: string;
+            };
+            instructions: {
+                title: string;
+                items: Array<{
+                    text: string;
+                    link?: {
                         label: string;
                         url: string;
                     };

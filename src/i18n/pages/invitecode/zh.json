@@ -1,0 +1,56 @@
+{
+  "invitecode": {
+    "name": "invitecode",
+    "upload": {
+      "title": "提交邀请码",
+      "description": "输入六位邀请码，与社区成员共享。",
+      "submit": "提交邀请码",
+      "submitting": "提交中…",
+      "errorIncomplete": "请在提交前填写完整的六位字符。",
+      "errorDuplicate": "该邀请码已被其他用户分享。",
+      "errorAlreadySubmitted": "每位用户只能提交一个邀请码。",
+      "errorMissingFingerprint": "无法验证您的设备信息，请刷新页面后重试。",
+      "errorUnknown": "提交失败，请稍后再试。",
+      "successMessage": "邀请码 {{code}} 提交成功",
+      "digitAria": "邀请码第 {{index}} 位"
+    },
+    "list": {
+      "title": "邀请码列表",
+      "description": "社区成员上传的邀请码，投票帮助他人判断是否有效。",
+      "limitNotice": "每位用户只能提交一个邀请码；针对同一个邀请码，每位用户仅能投票一次。",
+      "searchPlaceholder": "搜索邀请码…",
+      "loadMore": "加载更多",
+      "loadMoreAlert": "加载更多…请接入分页接口",
+      "reportAlert": "感谢反馈，我们会尽快核实该邀请码。",
+      "refresh": {
+        "label": "下一次刷新：{{time}}（{{seconds}} 秒）",
+        "loading": "正在计算下一次刷新时间…"
+      },
+      "instructions": {
+        "title": "如何使用邀请码",
+        "items": [
+          { "text": "复制邀请码。" },
+          {
+            "text": "访问 {{link}} 并输入邀请码。",
+            "link": {
+              "label": "sora.chagpt.com/explore",
+              "url": "https://sora.chagpt.com/explore"
+            }
+          },
+          { "text": "根据邀请码是否有效进行投票。" },
+          { "text": "提交你自己的邀请码帮助社区。" }
+        ]
+      },
+      "card": {
+        "title": "邀请码",
+        "copy": "复制",
+        "copied": "已复制",
+        "copyHint": "点击复制",
+        "question": "该邀请码有效吗？",
+        "yes": "有效",
+        "no": "无效",
+        "report": "举报"
+      }
+    }
+  }
+}

@@ -7,12 +7,17 @@
       "submit": "Submit Code",
       "submitting": "Submitting…",
       "errorIncomplete": "Please fill all six characters before submitting.",
+      "errorDuplicate": "This invite code has already been shared.",
+      "errorAlreadySubmitted": "You can only submit one invite code.",
+      "errorMissingFingerprint": "Unable to verify your device. Please refresh the page and try again.",
+      "errorUnknown": "Submission failed. Please try again later.",
       "successMessage": "Invite code submitted: {{code}}",
       "digitAria": "Invite code digit {{index}}"
     },
     "list": {
       "title": "Invite Codes",
       "description": "Community-reported invite codes. Vote to help others.",
+      "limitNotice": "Each user can submit only one invite code. You may vote once per invite code.",
       "searchPlaceholder": "Search code…",
       "loadMore": "Load more",
       "loadMoreAlert": "Load more… hook this to your paging API",

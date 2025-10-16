@@ -1,6 +1,6 @@
 import { invite_codes, invite_codes_vote } from "@/db/schema";
 import { db } from "@/db";
-import { desc, eq, lt } from "drizzle-orm";
+import { and, desc, eq, lt } from "drizzle-orm";
 
 export async function insertInvitecode(
   data: typeof invite_codes.$inferInsert
@@ -16,6 +16,34 @@ export async function findInvitecodeByCode(
     .select()
     .from(invite_codes)
     .where(eq(invite_codes.invite_code, inviteCode))
+    .limit(1);
+  return record;
+}
+
+export async function findInvitecodeByFingerPrint(
+  fingerPrint: string
+): Promise<typeof invite_codes.$inferSelect | undefined> {
+  const [record] = await db()
+    .select()
+    .from(invite_codes)
+    .where(eq(invite_codes.web_fingerprint, fingerPrint))
+    .limit(1);
+  return record;
+}
+
+export async function findInvitecodeVoteByFingerPrint(
+  inviteCode: string,
+  fingerPrint: string
+): Promise<typeof invite_codes_vote.$inferSelect | undefined> {
+  const [record] = await db()
+    .select()
+    .from(invite_codes_vote)
+    .where(
+      and(
+        eq(invite_codes_vote.invite_code, inviteCode),
+        eq(invite_codes_vote.web_fingerprint, fingerPrint)
+      )
+    )
     .limit(1);
   return record;
 }

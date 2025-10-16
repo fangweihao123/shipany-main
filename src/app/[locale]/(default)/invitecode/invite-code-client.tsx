@@ -109,6 +109,9 @@ export default function InviteCodeListPageClient({
       await voteOnInviteCode(current.code, dir === 1);
     } catch (error) {
       console.warn("vote invite code failed", error);
+      if (error instanceof Error && error.message === "invite_code_vote_duplicate") {
+        alert(copy.list.limitNotice);
+      }
       setItems((prev) =>
         prev.map((item) => (item.id === id ? current : item))
       );
@@ -147,7 +150,12 @@ export default function InviteCodeListPageClient({
         <p className="mt-1 text-sm text-muted-foreground">
           {copy.list.description}
         </p>
-        <p className="mt-2 text-xs text-muted-foreground">{refreshLabel}</p>
+        <p className="mt-2 text-sm font-medium text-muted-foreground">
+          {copy.list.limitNotice}
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground md:text-base">
+          {refreshLabel}
+        </p>
       </header>
 
       <div className="lg:grid lg:grid-cols-[minmax(0,1.6fr)_320px] lg:items-start lg:gap-8">

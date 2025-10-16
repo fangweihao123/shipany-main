@@ -85,7 +85,7 @@ export function InviteCard({
           <button
             onClick={() => vote(1)}
             disabled={busy !== null}
-            className="col-span-2 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary/10 px-4 py-3 text-primary ring-1 ring-inset ring-primary/30 transition hover:bg-primary/15 disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary/10 px-4 py-3 text-primary ring-1 ring-inset ring-primary/30 transition hover:bg-primary/15 disabled:opacity-60"
           >
             ✅ {copy.yes}
           </button>
@@ -95,16 +95,6 @@ export function InviteCard({
             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-muted px-4 py-3 text-muted-foreground ring-1 ring-inset ring-border/60 transition hover:bg-muted/80 disabled:opacity-60"
           >
             🚫 {copy.no}
-          </button>
-        </div>
-
-        <div className="mt-3">
-          <button
-            onClick={report}
-            disabled={busy !== null}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-destructive/10 px-4 py-3 text-destructive ring-1 ring-inset ring-destructive/30 transition hover:bg-destructive/15 disabled:opacity-60"
-          >
-            ⚠️ {copy.report}
           </button>
         </div>
       </div>

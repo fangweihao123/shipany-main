@@ -27,6 +27,21 @@ export function InviteUploader({
   const normalize = (value: string) =>
     value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 1).toUpperCase();
 
+  const resolveServerMessage = (message: string | undefined | null) => {
+    switch (message) {
+      case "invite_code_duplicate":
+        return copy.errorDuplicate;
+      case "invite_code_already_submitted_by_user":
+        return copy.errorAlreadySubmitted;
+      case "invite_code_missing_fingerprint":
+        return copy.errorMissingFingerprint;
+      case "invite_code_required":
+        return copy.errorIncomplete;
+      default:
+        return copy.errorUnknown;
+    }
+  };
+
   const updateDigit = (idx: number, value: string) => {
     const next = [...digits];
     next[idx] = value;
@@ -90,11 +105,9 @@ export function InviteUploader({
       inputsRef.current[0]?.focus();
       alert(formatTemplate(copy.successMessage, { code }));
     } catch (err) {
-      const message =
-        err instanceof Error && err.message
-          ? err.message
-          : copy.errorIncomplete;
+      const message = err instanceof Error ? resolveServerMessage(err.message) : copy.errorUnknown;
       setError(message);
+      alert(message);
     } finally {
       setSubmitting(false);
     }
