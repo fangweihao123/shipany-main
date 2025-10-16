@@ -22,7 +22,7 @@ export async function canUseTrialService(
   }else{
     return true;
   }
-  console.log(`No valid taskTrialConfig for ${task_code}`);
+  console.log(`${fingerPrint} | ${ip} No valid taskTrialConfig for ${task_code}`);
   return false;
 }
 
