@@ -72,9 +72,13 @@ export async function generateImage(prompt: string, provider?: GeneratorProvider
   const selectedProvider = provider || defaultProvider;
   const config = PROVIDER_CONFIGS[selectedProvider];
   try {
+    const fingerPrint: string = await getFingerPrint();
     const response = await fetch(config.endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'serial-code' : fingerPrint 
+      },
       body: JSON.stringify( {
         "prompt": prompt,
         "isRetry": isRetry,
@@ -144,8 +148,13 @@ export async function editImage(filesUrl: string[], prompt: string, provider?: G
   // Validate file with provider-specific limits
   const config = PROVIDER_CONFIGS[selectedProvider];
   try {
+    const fingerPrint: string = await getFingerPrint();
     const response = await fetch(config.endpoint, {
       method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'serial-code' : fingerPrint 
+      },
       body: JSON.stringify({
         "prompt": prompt,
         "uploadUrls": filesUrl,
