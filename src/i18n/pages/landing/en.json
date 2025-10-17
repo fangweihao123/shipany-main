@@ -125,6 +125,7 @@
       "description": "Generate new concepts or restyle existing visuals with NanoBanana.",
       "image2ImageTab": "Image to Image",
       "auth_Required": "Ran out of free credits. Please Log in to try more.",
+      "require_Login": "This feature require log in to continue",
       "insufficient_credits": "Not Enough credits. Please top up credits.",
       "api_error": "Encounter Error, please change prompt or try it later",
       "image2Image": {
@@ -203,7 +204,7 @@
         "title": "Generate with Nano Banana",
         "loadingTitle": "Blending magic..."
       },
-      "requireProTips": "Video generation requires Pro or Max plan",
+      "requireProTips": "Video generation requires login and at least 50 credits",
       "states": {
         "generating": "Brewing your banana..."
       }

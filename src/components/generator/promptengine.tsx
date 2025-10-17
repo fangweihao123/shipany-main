@@ -79,6 +79,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
   const { user } = useAppContext();
   const router = useRouter();
   console.log("user product id", user);
+  const isAuthenticated = status === "authenticated";
 
   const canGenerate = useMemo(() => {
     if (mode === "t2i") {
@@ -88,20 +89,24 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       return prompt.length > 0 && files.length > 0;
     }
     if (mode === "i2v") {
-      return prompt.length > 0 && vfiles.length > 0 
-        && user && user.credits 
-        && (user.credits.product_id.includes("Pro") 
-        || user.credits.product_id.includes("Max")); // Video generation costs 50 credits
+      return prompt.length > 0 && vfiles.length > 0;
     }
     return false;
   }, [mode, prompt, files, vfiles]);
+  const isGenerateDisabled = isGenerating || !canGenerate;
 
   const onGenerateClick = async () => {
-    if (!canGenerate || isGenerating) {
+    if (isGenerateDisabled) {
       return;
     }
 
     setFailure("normal");
+
+    if (mode === "i2v" && !isAuthenticated) {
+      setShowAuthDialog(true);
+      setTimeout(() => router.push('/auth/signin'), 2200);
+      return;
+    }
 
     try {
       setIsGenerating(true);
@@ -177,12 +182,6 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       if(isGenerating){
         return generatingText;
       }else{
-        if(mode === "i2v"){
-          const isFreeVersion = user && user.credits && (user.credits.product_id.includes("Pro") || user.credits.product_id.includes("Max"));
-          if(!isFreeVersion){
-            return promptEngine?.requireProTips || "Video generation requires Pro or Max plan";
-          }
-        }
         return promptEngine.generateButton?.title;
       }
     }else if(failure === "apierror"){
@@ -278,7 +277,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
         </DialogTitle>
         <DialogContent className="sm:max-w-[420px]">
             <DialogDescription>
-              {promptEngine?.auth_Required || ''}
+              { mode === "i2v" ? promptEngine.require_Login :  promptEngine.auth_Required}
             </DialogDescription>
           </DialogContent>
       </Dialog>
@@ -309,9 +308,6 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
               onClick={()=> setMode("i2v")}
               className= {`w-30 rounded-none relative ${mode === "i2v" ? activeBtn : inactiveBtn}`} >
               {promptEngine.image2VideoTab}
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full shadow-lg border-2 border-white animate-pulse">
-                PRO
-              </span>
             </Button> : <></>}
             
           </div>
@@ -325,7 +321,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
           type="button"
           onClick={onGenerateClick}
           className="w-full"
-          disabled={!canGenerate || isGenerating}
+          disabled={isGenerateDisabled}
           >
           {ButtonText()}
         </Button>

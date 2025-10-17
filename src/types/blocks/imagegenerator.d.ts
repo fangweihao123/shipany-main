@@ -61,6 +61,7 @@ export interface PromptEngine{
   generateButton?: Button;
   requireProTips?: string;
   auth_Required?: string;
+  require_Login?: string;
   insufficient_credits?: string;
   api_error?: string;
   states?: {

@@ -368,6 +368,7 @@
       "description": "借助 Nano Banana 生成新创意或重塑现有素材。",
       "image2ImageTab": "图生图",
       "auth_Required": "已用完免费额度。请登录使用更多功能。",
+      "require_Login": "这个功能需要登录后使用",
       "insufficient_credits": "额度不够，请充值。",
       "api_error": "生成问题，请修改提示词或者稍后尝试。",
       "image2Image": {
@@ -446,7 +447,7 @@
         "title": "使用 Nano Banana 生成",
         "loadingTitle": "魔法混合中..."
       },
-      "requireProTips": "视频生成需要 Pro 或 Max 套餐",
+      "requireProTips": "视频生成需要登录，并且至少保留 50 积分",
       "states": {
         "generating": "香蕉灵感酝酿中..."
       }
