@@ -116,7 +116,7 @@
     "promptEngine": {
       "title": "Sora2 Prompt Engine",
       "description": "Compose cinematic prompts, connect visual references, and fine-tune render parameters before you ship.",
-      "auth_Required": "Free quota exhausted. Log in to keep generating with Sora2.",
+      "auth_Required": "Log in to gain free 10 credtis to generate video!",
       "insufficient_credits": "Not enough credits. Please top up to continue rendering.",
       "api_error": "Render failed. Adjust the prompt or try again later.",
       "text2VideoTab": "Text to Video",

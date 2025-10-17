@@ -33,5 +33,6 @@ export const TaskCreditsConsumption = {
 export const ErrorCode = {
   InSufficientCredits: 100,
   APIError: 200,
-  RunOutTrial: 300
-}
+  RunOutTrial: 300,
+  Unauthorized: 400,
+} 

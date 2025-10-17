@@ -3,15 +3,11 @@ import {
   ApiErrorResponse,
 } from '@/types/detect';
 
-import { decreaseCredits, CreditsTransType, getUserCredits } from '@/services/credit';
-import { getUserInfo, getUserUuid } from '@/services/user';
+import { decreaseCredits, CreditsTransType } from '@/services/credit';
+import { getUserUuid } from '@/services/user';
 import { GenerateVideoRequest, GenerateVideoResponse } from '@/types/kieai/sora2/video';
 import { HasEnoughCredits } from '@/services/credits/credit.lib';
 import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
-import { GeneratorProvider } from '@/types/generator';
-import { TaskProvider } from '@/types/task';
-import { getClientIp, getSerialCode } from '@/lib/ip';
-import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
 
 const API_BASE_URL = process.env.KIEAI_API_BASE_ENDPOINT;
 const API_KEY = process.env.KIEAI_API_KEY;
@@ -67,35 +63,31 @@ export async function POST(request: NextRequest) {
     } = await request.json();
 
     const user_uuid = await getUserUuid();
-    const generatorModel : GeneratorProvider = "sora2i2v";
-    const task_code : TaskProvider = "GenerateVideo";
-    const taskCreditsConsuption: number = TaskCreditsConsumption[generatorModel];
-    const ip: string = await getClientIp();
-    const fingerPrint = await getSerialCode();
-    if(user_uuid){
-      if(!await HasEnoughCredits(user_uuid, taskCreditsConsuption)){
-        return NextResponse.json(
-          {
-            success: false,
-            error: {
-              code: ErrorCode.InSufficientCredits,
-              message: 'InSufficient Credits',
-            },
-          } as ApiErrorResponse,
-          { status: 500 }
-        );
-      }
-    }else if(!await canUseTrialService({fingerPrint, ip, task_code})){
+    if(!user_uuid){
       return NextResponse.json(
           {
             success: false,
             error: {
-              code: ErrorCode.RunOutTrial,
-              message: 'Run out of Free Trial',
+              code: ErrorCode.Unauthorized,
+              message: 'Please sign in to continue',
             },
           } as ApiErrorResponse,
-          { status: 500 }
+          { status: 401 }
         );
+    }
+
+    const taskCreditsConsumption: number = TaskCreditsConsumption.sora2i2v;
+    if(!await HasEnoughCredits(user_uuid, taskCreditsConsumption)){
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: ErrorCode.InSufficientCredits,
+            message: 'InSufficient Credits',
+          },
+        } as ApiErrorResponse,
+        { status: 402 }
+      );
     }
 
     const processedImageUrls = (imageUrls ?? []).map((url: string) => {
@@ -119,17 +111,12 @@ export async function POST(request: NextRequest) {
     const generateVideoResponse = await generateVideoWithImage(generateVideoRequest);
     
     if(!isRetry){
-      if (user_uuid){
-        await decreaseCredits({
-          user_uuid,
-          trans_type: CreditsTransType.Ping,
-          credits: taskCreditsConsuption, // Video generation costs more credits
-        });
-        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
-      }else{
-        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
-        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
-      }
+      await decreaseCredits({
+        user_uuid,
+        trans_type: CreditsTransType.Ping,
+        credits: taskCreditsConsumption, // Video generation costs more credits
+      });
+      console.log(`Generate video success with ${taskCreditsConsumption} credits consumption`);
     }
 
     return NextResponse.json(generateVideoResponse);

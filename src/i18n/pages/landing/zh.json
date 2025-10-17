@@ -116,7 +116,7 @@
     "promptEngine": {
       "title": "Sora2 Prompt Engine",
       "description": "编写电影级提示词、关联视觉参考并微调渲染参数，让创意可控落地。",
-      "auth_Required": "免费额度已用尽，请登录继续使用 Sora2。",
+      "auth_Required": "请登录免费获取10点额度，使用 Sora2生成视频！",
       "insufficient_credits": "积分不足，请充值后继续渲染。",
       "api_error": "渲染失败，请调整提示词或稍后再试。",
       "text2VideoTab": "文本转视频",

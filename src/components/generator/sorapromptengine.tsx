@@ -9,7 +9,6 @@ import { GeneratorOutput } from "@/types/generator";
 import { useSession } from "next-auth/react";
 import { useAppContext } from "@/contexts/app";
 import { useRouter } from "next/navigation";
-import { useTrial } from "@/lib/trial";
 import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
 import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
@@ -103,6 +102,16 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
       return;
     }
     setFailure("normal");
+    const requiresAuth = mode === "t2v" || mode === "i2v";
+    if (requiresAuth && status !== "authenticated") {
+      setFailure("runoutfree");
+      setShowAuthDialog(true);
+      if (status !== "loading") {
+        setTimeout(() => router.push('/auth/signin'), 2200);
+      }
+      return;
+    }
+
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
@@ -140,10 +149,14 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
       console.error("failed to generate", error);
       const generatorError = error as GeneratorError;
       if(generatorError){
-        if(generatorError.code === ErrorCode.APIError){
+        if(generatorError.code === ErrorCode.InSufficientCredits){
           setFailure("insuficientcredits");
         }else if(generatorError.code === ErrorCode.APIError){
           setFailure("apierror");
+        }else if(generatorError.code === ErrorCode.Unauthorized){
+          setFailure("runoutfree");
+          setShowAuthDialog(true);
+          setTimeout(() => router.push('/auth/signin'), 2200);
         }else if(generatorError.code === ErrorCode.RunOutTrial){
           setFailure("runoutfree");
           setShowAuthDialog(true);
@@ -215,6 +228,8 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
       return promptEngine.api_error;
     }else if(failure === "insuficientcredits"){
       return promptEngine.insufficient_credits;
+    }else if(failure === "runoutfree"){
+      return promptEngine?.auth_Required || promptEngine.insufficient_credits;
     }
   };
 
