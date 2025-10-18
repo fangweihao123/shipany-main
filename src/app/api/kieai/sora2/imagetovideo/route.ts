@@ -96,13 +96,17 @@ export async function POST(request: NextRequest) {
   });
 
     const frameCount = typeof n_frames === 'number' ? n_frames : Number(n_frames ?? 10);
+    const normalizedFrameCount = Number.isFinite(frameCount) ? frameCount : 10;
+    const frameCountString = typeof n_frames === 'string' && n_frames.trim() !== ''
+      ? n_frames
+      : String(normalizedFrameCount);
     const generateVideoRequest: GenerateVideoRequest = {
       model : model,
       input : {
         prompt: prompt,
         image_urls: processedImageUrls,
         aspect_ratio: aspect_ratio,
-        n_frames: Number.isFinite(frameCount) ? frameCount : 10,
+        n_frames: frameCountString,
         remove_watermark: Boolean(remove_watermark),
       }
     };

@@ -15,3 +15,11 @@ export interface GeneratorOutput {
   src: string;
   mimeType?: string;
 }
+
+export interface GenerationStatus {
+  active: boolean;
+  variant?: 'standard' | 'pro';
+  mode?: 't2v' | 'i2v';
+  etaMs?: number;
+  startedAt?: number;
+}

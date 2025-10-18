@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       imageUrls, 
       isRetry, 
       aspect_ratio = 'landscape',
-      n_frames = 10,
+      n_frames = '10',
       remove_watermark = true,
     } = await request.json();
     const user_uuid = await getUserUuid();
@@ -86,12 +86,16 @@ export async function POST(request: NextRequest) {
     }
     
     const frameCount = typeof n_frames === 'number' ? n_frames : Number(n_frames ?? 10);
+    const normalizedFrameCount = Number.isFinite(frameCount) ? frameCount : 10;
+    const frameCountString = typeof n_frames === 'string' && n_frames.trim() !== ''
+      ? n_frames
+      : String(normalizedFrameCount);
     const generateVideoRequest: GenerateVideoRequest = {
       model : model,
       input : {
         prompt: prompt,
         aspect_ratio: aspect_ratio,
-        n_frames: Number.isFinite(frameCount) ? frameCount : 10,
+        n_frames: frameCountString,
         remove_watermark: Boolean(remove_watermark),
       }
     };

@@ -2,9 +2,8 @@
 
 import { ImageGenerator } from "@/types/blocks/imagegenerator";
 import { OutputGalleryBlock } from "./outputgallery";
-import { PromptEngineBlock } from "./promptengine";
 import { useState } from "react";
-import { GeneratorOutput } from "@/types/generator";
+import { GenerationStatus, GeneratorOutput } from "@/types/generator";
 import { motion } from "framer-motion";
 import { SoraPromptEngineBlock } from "./sorapromptengine";
 
@@ -15,6 +14,7 @@ export interface ImageGeneratorProps{
 export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
   const [outputs, setOutputs] = useState<GeneratorOutput[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generationStatus, setGenerationStatus] = useState<GenerationStatus>({ active: false });
 
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -44,6 +44,7 @@ export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
                 promptEngine={imageGenerator.promptEngine}
                 onOutputsChange={setOutputs}
                 onGeneratingChange={setIsGenerating}
+                onGenerationStatusChange={setGenerationStatus}
               />
             </div>
           )}
@@ -54,6 +55,7 @@ export function ImageGeneratorBlock({ imageGenerator }: ImageGeneratorProps) {
                 outputGallery={imageGenerator.outputGallery}
                 outputs={outputs}
                 isGenerating={isGenerating}
+                generationStatus={generationStatus}
                 imagePreview={outputs[0]?.src}
               />
             </div>

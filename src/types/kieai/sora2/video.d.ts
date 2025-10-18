@@ -5,7 +5,7 @@ export interface GenerateVideoRequest {
       prompt: string;
       image_urls?: string[];
       aspect_ratio?: string;
-      n_frames?: number;
+      n_frames?: string;
       remove_watermark?: boolean;
     }
 }

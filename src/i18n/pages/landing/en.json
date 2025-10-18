@@ -121,6 +121,13 @@
       "api_error": "Render failed. Adjust the prompt or try again later.",
       "text2VideoTab": "Text to Video",
       "text2Video": {
+        "modelSelector": {
+          "label": "Model",
+          "standard": "Sora 2",
+          "pro": "Sora 2 Pro",
+          "proTag": "PRO",
+          "description": "Pro model unlocks higher fidelity rendering (30 credits per attempt)."
+        },
         "input": {
           "title": "Main Prompt",
           "textPlaceHolder": "Cinematic shot of a neon-lit Tokyo alley in the rain, slow tracking camera, 24fps, volumetric lighting..."

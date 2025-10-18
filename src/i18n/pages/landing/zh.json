@@ -121,6 +121,13 @@
       "api_error": "渲染失败，请调整提示词或稍后再试。",
       "text2VideoTab": "文本转视频",
       "text2Video": {
+        "modelSelector": {
+          "label": "模型选择",
+          "standard": "Sora 2 标准版",
+          "pro": "Sora 2 Pro 高保真",
+          "proTag": "PRO",
+          "description": "Pro 模型追求更高画质，单次消耗 30 点 Credits。"
+        },
         "input": {
           "title": "主提示词",
           "textPlaceHolder": "雨夜霓虹街道的电影镜头，缓慢推轨，24fps，体积光与倒影..."

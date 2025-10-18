@@ -1,17 +1,17 @@
 "use client";
 import { PromptEngine } from "@/types/blocks/imagegenerator";
 import { Button } from "../ui/button";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PromptInputBlock } from "./promptInput";
 import { MultiImgUpload } from "./MultiImgUpload";
 import { editImage, generateImage, generateVideo, UploadFiles } from "@/services/generator";
-import { GeneratorOutput } from "@/types/generator";
+import { GenerationStatus, GeneratorOutput } from "@/types/generator";
 import { useSession } from "next-auth/react";
 import { useAppContext } from "@/contexts/app";
 import { useRouter } from "next/navigation";
 import { GeneratorError } from "@/services/generator";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "../ui/dialog";
-import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
+import { pollKieTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
 import Icon from "../icon";
 import { ErrorCode } from "@/services/constant";
@@ -23,6 +23,7 @@ interface PromptEngineProps {
   promptEngine: PromptEngine;
   onOutputsChange?: (outputs: GeneratorOutput[]) => void;
   onGeneratingChange?: (isGenerating: boolean) => void;
+  onGenerationStatusChange?: (status: GenerationStatus) => void;
 }
 
 function normalizeOutputs(result: any): GeneratorOutput[] {
@@ -58,7 +59,7 @@ function normalizeOutputs(result: any): GeneratorOutput[] {
   });
 }
 
-export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange }: PromptEngineProps) {
+export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingChange, onGenerationStatusChange }: PromptEngineProps) {
   const [mode, setMode] = useState<"i2i" | "t2i" | "t2v" | "i2v">("t2v");
   const [failure, setFailure] = useState<"insuficientcredits" | "apierror" | "runoutfree" |"normal">("normal");
   const [prompt, setPrompt] = useState("");
@@ -79,6 +80,12 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
   const { user } = useAppContext();
   const router = useRouter();
   console.log("user product id", user);
+
+  useEffect(() => {
+    if (mode !== "t2v" && mode !== "i2v") {
+      onGenerationStatusChange?.({ active: false });
+    }
+  }, [mode, onGenerationStatusChange]);
 
   const canGenerate = useMemo(() => {
     if (mode === "t2i") {
@@ -114,6 +121,19 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
+      const isVideoMode = mode === "i2v" || mode === "t2v";
+      if (isVideoMode) {
+        const estimateMs = (videoModelVariant === 'pro' ? 10 : 3) * 60 * 1000;
+        onGenerationStatusChange?.({
+          active: true,
+          variant: videoModelVariant,
+          mode,
+          etaMs: estimateMs,
+          startedAt: Date.now()
+        });
+      } else {
+        onGenerationStatusChange?.({ active: false });
+      }
       const determineVideoProvider = () => {
         if (mode === "i2v") {
           return (videoModelVariant === 'pro' ? "sora2i2vPro" : "sora2i2v");
@@ -168,6 +188,7 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     } finally {
       setIsGenerating(false);
       onGeneratingChange?.(false);
+      onGenerationStatusChange?.({ active: false });
     }
   };
 
