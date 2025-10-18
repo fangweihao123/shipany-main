@@ -70,12 +70,9 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
   const [outputFormat, setOutputFormat] = useState<'png' | 'jpeg'>('png');
   
   // Advanced options for video generation
-  const [aspectRatio, setAspectRatio] = useState<'16:9' | '9:16'>('16:9');
-  const [duration, setDuration] = useState(8);
-  const [resolution, setResolution] = useState<'720p' | '1080p'>('720p');
-  const [generateAudio, setGenerateAudio] = useState(false);
-  const [negativePrompt, setNegativePrompt] = useState('');
-  const [seed, setSeed] = useState<number | undefined>(undefined);
+  const [aspectRatio, setAspectRatio] = useState<'landscape' | 'portrait'>('landscape');
+  const [frameCount, setFrameCount] = useState<'10' | '15'>('10');
+  const [removeWatermark, setRemoveWatermark] = useState(true);
   const { status } = useSession();
   const { user } = useAppContext();
   const router = useRouter();
@@ -119,11 +116,8 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
         const filesUrl = await UploadFiles(vfiles, "sora2i2v");
         const videoOptions = {
           aspect_ratio: aspectRatio,
-          duration: duration,
-          resolution: resolution,
-          generate_audio: generateAudio,
-          ...(negativePrompt && { negative_prompt: negativePrompt }),
-          ...(seed && { seed: seed })
+          n_frames: Number(frameCount),
+          remove_watermark: removeWatermark,
         };
         const id = await generateVideo(filesUrl, prompt, "sora2i2v", false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
@@ -133,11 +127,8 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
       }else if(mode === "t2v"){
         const videoOptions = {
           aspect_ratio: aspectRatio,
-          duration: duration,
-          resolution: resolution,
-          generate_audio: generateAudio,
-          ...(negativePrompt && { negative_prompt: negativePrompt }),
-          ...(seed && { seed: seed })
+          n_frames: Number(frameCount),
+          remove_watermark: removeWatermark,
         };
         const id = await generateVideo([], prompt, "sora2t2v", false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
@@ -279,16 +270,10 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
           <VideoAdvancedOptions
             aspectRatio={aspectRatio}
             onAspectRatioChange={setAspectRatio}
-            duration={duration}
-            onDurationChange={setDuration}
-            resolution={resolution}
-            onResolutionChange={setResolution}
-            generateAudio={generateAudio}
-            onGenerateAudioChange={setGenerateAudio}
-            negativePrompt={negativePrompt}
-            onNegativePromptChange={setNegativePrompt}
-            seed={seed}
-            onSeedChange={setSeed}
+            frameCount={frameCount}
+            onFrameCountChange={setFrameCount}
+            removeWatermark={removeWatermark}
+            onRemoveWatermarkChange={setRemoveWatermark}
             advancedOptions={promptEngine.image2Video?.advancedOptions}
           />
         </div>
@@ -310,16 +295,10 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
           <VideoAdvancedOptions
             aspectRatio={aspectRatio}
             onAspectRatioChange={setAspectRatio}
-            duration={duration}
-            onDurationChange={setDuration}
-            resolution={resolution}
-            onResolutionChange={setResolution}
-            generateAudio={generateAudio}
-            onGenerateAudioChange={setGenerateAudio}
-            negativePrompt={negativePrompt}
-            onNegativePromptChange={setNegativePrompt}
-            seed={seed}
-            onSeedChange={setSeed}
+            frameCount={frameCount}
+            onFrameCountChange={setFrameCount}
+            removeWatermark={removeWatermark}
+            onRemoveWatermarkChange={setRemoveWatermark}
             advancedOptions={promptEngine.image2Video?.advancedOptions}
           />
         </div>

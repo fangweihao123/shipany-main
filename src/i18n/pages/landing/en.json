@@ -152,26 +152,17 @@
         "advancedOptions": {
           "title": "Advanced Options",
           "aspectRatio": {
-            "label": "Aspect Ratio",
-            "landscape": "16:9 (Landscape)",
-            "portrait": "9:16 (Portrait)"
+            "label": "Video Aspect Ratio",
+            "landscape": "Landscape",
+            "portrait": "Portrait"
           },
-          "resolution": {
-            "label": "Resolution"
+          "frameCount": {
+            "label": "Clip Length",
+            "tenSeconds": "10s",
+            "fifteenSeconds": "15s"
           },
-          "duration": {
-            "label": "Duration (seconds)"
-          },
-          "generateAudio": {
-            "label": "Generate Audio"
-          },
-          "negativePrompt": {
-            "label": "Negative Prompt (Optional)",
-            "placeholder": "Describe what you want to avoid in the video..."
-          },
-          "seed": {
-            "label": "Seed (Optional)",
-            "placeholder": "Leave empty for a new render each time"
+          "removeWatermark": {
+            "label": "Remove Watermark"
           }
         }
       },

@@ -13,22 +13,15 @@ export interface AdvancedOptions {
     landscape?: string;
     portrait?: string;
   };
-  resolution?: {
+  frameCount?: {
     label?: string;
+    tenSeconds?: string;
+    fifteenSeconds?: string;
+    tenSecondsHint?: string;
+    fifteenSecondsHint?: string;
   };
-  duration?: {
+  removeWatermark?: {
     label?: string;
-  };
-  generateAudio?: {
-    label?: string;
-  };
-  negativePrompt?: {
-    label?: string;
-    placeholder?: string;
-  };
-  seed?: {
-    label?: string;
-    placeholder?: string;
   };
 }
 

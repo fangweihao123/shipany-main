@@ -152,26 +152,17 @@
         "advancedOptions": {
           "title": "进阶选项",
           "aspectRatio": {
-            "label": "画幅比例",
-            "landscape": "16:9（横版）",
-            "portrait": "9:16（竖版）"
+            "label": "画面比例",
+            "landscape": "横版（16:9）",
+            "portrait": "竖版（9:16）"
           },
-          "resolution": {
-            "label": "分辨率"
+          "frameCount": {
+            "label": "片段时长",
+            "tenSeconds": "10 秒",
+            "fifteenSeconds": "15 秒"
           },
-          "duration": {
-            "label": "时长（秒）"
-          },
-          "generateAudio": {
-            "label": "生成配乐"
-          },
-          "negativePrompt": {
-            "label": "反向提示词（可选）",
-            "placeholder": "描述你不希望出现在视频中的元素..."
-          },
-          "seed": {
-            "label": "随机种子（可选）",
-            "placeholder": "留空以获取全新的渲染"
+          "removeWatermark": {
+            "label": "移除水印"
           }
         }
       },

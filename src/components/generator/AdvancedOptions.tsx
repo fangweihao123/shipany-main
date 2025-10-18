@@ -6,9 +6,8 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Switch } from "../ui/switch";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import { AdvancedOptions } from "@/types/blocks/imagegenerator";
+import { cn } from "@/lib/utils";
 
 interface ImageAdvancedOptionsProps {
   outputFormat: 'png' | 'jpeg';
@@ -17,18 +16,12 @@ interface ImageAdvancedOptionsProps {
 }
 
 interface VideoAdvancedOptionsProps {
-  aspectRatio: '16:9' | '9:16';
-  onAspectRatioChange: (ratio: '16:9' | '9:16') => void;
-  duration: number;
-  onDurationChange: (duration: number) => void;
-  resolution: '720p' | '1080p';
-  onResolutionChange: (resolution: '720p' | '1080p') => void;
-  generateAudio: boolean;
-  onGenerateAudioChange: (generate: boolean) => void;
-  negativePrompt: string;
-  onNegativePromptChange: (prompt: string) => void;
-  seed?: number;
-  onSeedChange: (seed: number | undefined) => void;
+  aspectRatio: 'landscape' | 'portrait';
+  onAspectRatioChange: (ratio: 'landscape' | 'portrait') => void;
+  frameCount: '10' | '15';
+  onFrameCountChange: (value: '10' | '15') => void;
+  removeWatermark: boolean;
+  onRemoveWatermarkChange: (generate: boolean) => void;
   advancedOptions?: AdvancedOptions;
 }
 
@@ -77,19 +70,38 @@ export function ImageAdvancedOptions({
 export function VideoAdvancedOptions({
   aspectRatio,
   onAspectRatioChange,
-  duration,
-  onDurationChange,
-  resolution,
-  onResolutionChange,
-  generateAudio,
-  onGenerateAudioChange,
-  negativePrompt,
-  onNegativePromptChange,
-  seed,
-  onSeedChange,
+  frameCount,
+  onFrameCountChange,
+  removeWatermark,
+  onRemoveWatermarkChange,
   advancedOptions
 }: VideoAdvancedOptionsProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const aspectRatioOptions = [
+    {
+      value: 'landscape' as const,
+      ratio: '16:9',
+      orientation: advancedOptions?.aspectRatio?.landscape || 'Landscape',
+    },
+    {
+      value: 'portrait' as const,
+      ratio: '9:16',
+      orientation: advancedOptions?.aspectRatio?.portrait || 'Portrait',
+    },
+  ];
+
+  const frameCountOptions = [
+    {
+      value: '10' as const,
+      label: advancedOptions?.frameCount?.tenSeconds || '10s',
+      helper: advancedOptions?.frameCount?.tenSecondsHint || '',
+    },
+    {
+      value: '15' as const,
+      label: advancedOptions?.frameCount?.fifteenSeconds || '15s',
+      helper: advancedOptions?.frameCount?.fifteenSecondsHint || '',
+    },
+  ];
 
   return (
     <div className="border rounded-lg bg-background/50">
@@ -107,67 +119,99 @@ export function VideoAdvancedOptions({
       </Button>
       
       {isExpanded && (
-        <div className="p-4 pt-0 space-y-4">
-          <div className="grid grid-cols-2 gap-4 mt-2">
+        <div className="p-4 pt-0 space-y-6">
+          <div className="mt-2 space-y-4">
             <div className="space-y-2">
               <Label htmlFor="aspect-ratio">{advancedOptions?.aspectRatio?.label || "Aspect Ratio"}</Label>
-              <Select value={aspectRatio} onValueChange={onAspectRatioChange}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="16:9">{advancedOptions?.aspectRatio?.landscape || "16:9 (Landscape)"}</SelectItem>
-                  <SelectItem value="9:16">{advancedOptions?.aspectRatio?.portrait || "9:16 (Portrait)"}</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex flex-col gap-3 sm:flex-row" id="aspect-ratio">
+                {aspectRatioOptions.map((option) => {
+                  const isActive = option.value === aspectRatio;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      aria-pressed={isActive}
+                      onClick={() => onAspectRatioChange(option.value)}
+                      className={cn(
+                        "flex h-full w-full flex-col justify-center rounded-2xl border px-4 py-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:flex-1",
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground shadow-lg"
+                          : "border-border/60 bg-muted/30 hover:border-primary/50 hover:bg-muted/60"
+                      )}
+                    >
+                      <div className="flex items-center gap-4">
+                        <span
+                          className={cn(
+                            "flex h-12 w-12 items-center justify-center rounded-full border-2 transition-colors",
+                            isActive ? "border-primary-foreground bg-primary-foreground/10" : "border-border/60"
+                          )}
+                          aria-hidden="true"
+                        >
+                          <span
+                            className={cn(
+                              "rounded-lg border-2 transition-colors",
+                              option.value === "landscape" ? "h-4 w-7" : "h-7 w-4",
+                              isActive ? "border-primary-foreground" : "border-border/80"
+                            )}
+                          />
+                        </span>
+                        <div>
+                          <div className={cn("text-lg font-semibold leading-none", isActive ? "text-primary-foreground" : "text-foreground")}>
+                            {option.ratio}
+                          </div>
+                          <div className={cn("mt-1 text-sm", isActive ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                            {option.orientation}
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            
+
             <div className="space-y-2">
-              <Label htmlFor="resolution">{advancedOptions?.resolution?.label || "Resolution"}</Label>
-              <Select value={resolution} onValueChange={onResolutionChange}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="720p">720p</SelectItem>
-                  <SelectItem value="1080p">1080p</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label htmlFor="frame-count">{advancedOptions?.frameCount?.label || "Clip Length"}</Label>
+              <div className="flex flex-col gap-3 sm:flex-row" id="frame-count">
+                {frameCountOptions.map((option) => {
+                  const isActive = option.value === frameCount;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      aria-pressed={isActive}
+                      onClick={() => onFrameCountChange(option.value)}
+                      className={cn(
+                        "flex h-full w-full flex-col justify-center rounded-xl border px-4 py-3 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:flex-1",
+                        isActive
+                          ? "border-primary bg-primary text-primary-foreground shadow-lg"
+                          : "border-border/60 bg-muted/30 hover:border-primary/50 hover:bg-muted/60"
+                      )}
+                    >
+                      <span className={cn("text-base font-semibold", isActive ? "text-primary-foreground" : "text-foreground")}>
+                        {option.label}
+                      </span>
+                      {option.helper && (
+                        <span className={cn("mt-1 text-xs", isActive ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                          {option.helper}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <Switch
-              id="generate-audio"
-              checked={generateAudio}
-              onCheckedChange={onGenerateAudioChange}
+              id="remove-watermark"
+              checked={removeWatermark}
+              onCheckedChange={onRemoveWatermarkChange}
             />
-            <Label htmlFor="generate-audio">{advancedOptions?.generateAudio?.label || "Generate Audio"}</Label>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="negative-prompt">{advancedOptions?.negativePrompt?.label || "Negative Prompt (Optional)"}</Label>
-            <Textarea
-              id="negative-prompt"
-              placeholder={advancedOptions?.negativePrompt?.placeholder || "Describe what you don't want in the video..."}
-              value={negativePrompt}
-              onChange={(e) => onNegativePromptChange(e.target.value)}
-              rows={3}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="seed">{advancedOptions?.seed?.label || "Seed (Optional)"}</Label>
-            <Input
-              id="seed"
-              type="number"
-              placeholder={advancedOptions?.seed?.placeholder || "Leave empty for random generation"}
-              value={seed || ''}
-              onChange={(e) => {
-                const value = e.target.value;
-                onSeedChange(value ? Number(value) : undefined);
-              }}
-            />
+            <Label htmlFor="remove-watermark" className="cursor-pointer">
+              {advancedOptions?.removeWatermark?.label || "Remove Watermark"}
+            </Label>
           </div>
         </div>
       )}

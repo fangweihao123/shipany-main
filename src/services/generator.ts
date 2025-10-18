@@ -255,12 +255,9 @@ export async function generateVideo(
   provider?: GeneratorProvider, 
   isRetry: boolean = false,
   options?: {
-    aspect_ratio?: "16:9" | "9:16";
-    duration?: number;
-    resolution?: "720p" | "1080p";
-    generate_audio?: boolean;
-    negative_prompt?: string;
-    seed?: number;
+    aspect_ratio?: "landscape" | "portrait";
+    n_frames?: number;
+    remove_watermark?: boolean;
   }
 ): Promise<string> {
   const defaultProvider = 'nanobananai2v' as GeneratorProvider;

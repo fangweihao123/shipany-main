@@ -54,12 +54,9 @@ export async function POST(request: NextRequest) {
       model,
       imageUrls, 
       isRetry, 
-      ratio = '16:9', 
-      duration = 8, 
-      resolution = '720p', 
-      generate_audio = false,
-      negative_prompt,
-      seed
+      aspect_ratio = 'landscape',
+      n_frames = 10,
+      remove_watermark = true,
     } = await request.json();
 
     const user_uuid = await getUserUuid();
@@ -97,14 +94,15 @@ export async function POST(request: NextRequest) {
     return url;
   });
 
-    const aspect_ratio = ratio === "16:9" ? "landscape" : "portrait";
-    // Step 3: Detect image
+    const frameCount = typeof n_frames === 'number' ? n_frames : Number(n_frames ?? 10);
     const generateVideoRequest: GenerateVideoRequest = {
       model : model,
       input : {
         prompt: prompt,
         image_urls: processedImageUrls,
-        aspect_ratio: aspect_ratio
+        aspect_ratio: aspect_ratio,
+        n_frames: Number.isFinite(frameCount) ? frameCount : 10,
+        remove_watermark: Boolean(remove_watermark),
       }
     };
 
