@@ -73,7 +73,8 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    const taskCreditsConsumption: number = TaskCreditsConsumption.sora2i2v;
+    const isProModel = typeof model === 'string' && model.includes('-pro-');
+    const taskCreditsConsumption: number = isProModel ? TaskCreditsConsumption.sora2i2vPro : TaskCreditsConsumption.sora2i2v;
     if(!await HasEnoughCredits(user_uuid, taskCreditsConsumption)){
       return NextResponse.json(
         {

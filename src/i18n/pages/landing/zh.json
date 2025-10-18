@@ -140,6 +140,13 @@
       },
       "image2VideoTab": "图像转视频",
       "image2Video": {
+        "modelSelector": {
+          "label": "模型选择",
+          "standard": "Sora 2 标准版",
+          "pro": "Sora 2 Pro 高保真",
+          "proTag": "PRO",
+          "description": "Pro 模型画质更高，每次试用消耗 30 点 Credits。"
+        },
         "upload": {
           "upload_title": "参考图集",
           "select_tip": "添加灵感图片",

@@ -27,7 +27,9 @@ export const TaskCreditsConsumption = {
   nanobananai2i: 2,
   nanobananai2v: 2,
   sora2i2v: 10,
-  sora2t2v: 10
+  sora2t2v: 10,
+  sora2i2vPro: 30,
+  sora2t2vPro: 30
 } as const;
 
 export const ErrorCode = {

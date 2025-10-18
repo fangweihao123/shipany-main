@@ -40,10 +40,26 @@ export const PROVIDER_CONFIGS = {
     endpoint: '/api/kieai/sora2/imagetovideo',
     supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
   },
+  sora2i2vPro: {
+    name: 'Sora2 Pro',
+    description: 'High Fidelity Video Generator Engine',
+    model: "sora-2-pro-image-to-video",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/kieai/sora2/imagetovideo',
+    supportedFormats: ['jpg', 'jpeg', 'png', 'webp', 'heic', 'avif', 'bmp', 'tiff']  
+  },
   sora2t2v: {
     name: 'Sora2',
     description: 'Advanced Video Generator Engine',
     model: "sora-2-text-to-video",
+    maxFileSize: 10 * 1024 * 1024, // 10MB
+    endpoint: '/api/kieai/sora2/texttovideo',
+    supportedFormats: ['mp4']  
+  },
+  sora2t2vPro: {
+    name: 'Sora2 Pro',
+    description: 'High Fidelity Video Generator Engine',
+    model: "sora-2-pro-text-to-video",
     maxFileSize: 10 * 1024 * 1024, // 10MB
     endpoint: '/api/kieai/sora2/texttovideo',
     supportedFormats: ['mp4']  

@@ -25,6 +25,14 @@ export interface AdvancedOptions {
   };
 }
 
+export interface ModelSelectorCopy {
+  label?: string;
+  standard?: string;
+  pro?: string;
+  proTag?: string;
+  description?: string;
+}
+
 export interface Text2Image{
   input?: PromptInput;
   advancedOptions?: AdvancedOptions;
@@ -33,6 +41,7 @@ export interface Text2Image{
 export interface Text2Video{
   input?: PromptInput;
   advancedOptions?: AdvancedOptions;
+  modelSelector?: ModelSelectorCopy;
 }
 
 export interface Image2Image{
@@ -45,6 +54,7 @@ export interface Image2Video{
   upload?: Upload;
   input?: PromptInput;
   advancedOptions?: AdvancedOptions;
+  modelSelector?: ModelSelectorCopy;
 }
 
 export interface PromptEngine{

@@ -140,6 +140,13 @@
       },
       "image2VideoTab": "Image to Video",
       "image2Video": {
+        "modelSelector": {
+          "label": "Model",
+          "standard": "Sora 2",
+          "pro": "Sora 2 Pro",
+          "proTag": "PRO",
+          "description": "Pro model unlocks higher fidelity rendering (30 credits per attempt)."
+        },
         "upload": {
           "upload_title": "Reference frames",
           "select_tip": "Add inspiration images",

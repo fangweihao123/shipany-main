@@ -15,6 +15,7 @@ import { pollKieTaskResult, pollTaskResult } from "@/lib/utils";
 import { ImageAdvancedOptions, VideoAdvancedOptions } from "./AdvancedOptions";
 import Icon from "../icon";
 import { ErrorCode } from "@/services/constant";
+import { ModelSelector } from "./ModelSelector";
 
 const MAX_GENERATE_ATTEMPTS = 3;
 
@@ -73,6 +74,7 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
   const [aspectRatio, setAspectRatio] = useState<'landscape' | 'portrait'>('landscape');
   const [frameCount, setFrameCount] = useState<'10' | '15'>('10');
   const [removeWatermark, setRemoveWatermark] = useState(true);
+  const [videoModelVariant, setVideoModelVariant] = useState<'standard' | 'pro'>('standard');
   const { status } = useSession();
   const { user } = useAppContext();
   const router = useRouter();
@@ -112,14 +114,21 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     try {
       setIsGenerating(true);
       onGeneratingChange?.(true);
+      const determineVideoProvider = () => {
+        if (mode === "i2v") {
+          return (videoModelVariant === 'pro' ? "sora2i2vPro" : "sora2i2v");
+        }
+        return (videoModelVariant === 'pro' ? "sora2t2vPro" : "sora2t2v");
+      };
+      const videoProvider = determineVideoProvider();
       if(mode === "i2v"){
-        const filesUrl = await UploadFiles(vfiles, "sora2i2v");
+        const filesUrl = await UploadFiles(vfiles, videoProvider);
         const videoOptions = {
           aspect_ratio: aspectRatio,
           n_frames: Number(frameCount),
           remove_watermark: removeWatermark,
         };
-        const id = await generateVideo(filesUrl, prompt, "sora2i2v", false, videoOptions);
+        const id = await generateVideo(filesUrl, prompt, videoProvider, false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
@@ -130,7 +139,7 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
           n_frames: Number(frameCount),
           remove_watermark: removeWatermark,
         };
-        const id = await generateVideo([], prompt, "sora2t2v", false, videoOptions);
+        const id = await generateVideo([], prompt, videoProvider, false, videoOptions);
         const queryResult = await pollKieTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
@@ -166,40 +175,48 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     setPrompt(value);
   };
 
+  const modelSelectorCopy = promptEngine.image2Video?.modelSelector || promptEngine.text2Video?.modelSelector;
+  const isProModel = videoModelVariant === 'pro';
+  const proBadge = modelSelectorCopy?.proTag;
+
   const CreditsText = () => {
+    const renderCredits = (icon?: string, title?: string, allowProOverride: boolean = false) => {
+      const activeTitle = allowProOverride && isProModel ? '30' : title;
+      if (!activeTitle) {
+        return null;
+      }
+
+      return (
+        <span className="flex items-center gap-2" title={title}>
+          {icon && <Icon name={icon} className="size-6" />}
+          <span className="text-sm text-muted-foreground">
+            {activeTitle}
+            {isProModel && proBadge ? ` ${proBadge}` : ""}
+          </span>
+        </span>
+      );
+    };
+
     if (mode === "i2i" && promptEngine.image2ImageCredits) {
       const { icon, title } = promptEngine.image2ImageCredits;
-      return (
-        <span className="flex items-center gap-2" title={title}>
-          {icon && <Icon name={icon} className="size-6" />}
-          {title && <span className="text-sm text-muted-foreground">{title}</span>}
-        </span>
-      );
-    }else if (mode === "i2v" && promptEngine.image2VideoCredits) {
-      const { icon, title } = promptEngine.image2VideoCredits;
-      return (
-        <span className="flex items-center gap-2" title={title}>
-          {icon && <Icon name={icon} className="size-6" />}
-          {title && <span className="text-sm text-muted-foreground">{title}</span>}
-        </span>
-      );
-    }else if (mode === "t2i" && promptEngine.text2ImageCredits) {
-      const { icon, title } = promptEngine.text2ImageCredits;
-      return (
-        <span className="flex items-center gap-2" title={title}>
-          {icon && <Icon name={icon} className="size-6" />}
-          {title && <span className="text-sm text-muted-foreground">{title}</span>}
-        </span>
-      );
-    }else if (mode === "t2v" && promptEngine.text2VideoCredits) {
-      const { icon, title } = promptEngine.text2VideoCredits;
-      return (
-        <span className="flex items-center gap-2" title={title}>
-          {icon && <Icon name={icon} className="size-6" />}
-          {title && <span className="text-sm text-muted-foreground">{title}</span>}
-        </span>
-      );
+      return renderCredits(icon, title);
     }
+
+    if (mode === "i2v" && promptEngine.image2VideoCredits) {
+      const { icon, title } = promptEngine.image2VideoCredits;
+      return renderCredits(icon, title, true);
+    }
+
+    if (mode === "t2i" && promptEngine.text2ImageCredits) {
+      const { icon, title } = promptEngine.text2ImageCredits;
+      return renderCredits(icon, title);
+    }
+
+    if (mode === "t2v" && promptEngine.text2VideoCredits) {
+      const { icon, title } = promptEngine.text2VideoCredits;
+      return renderCredits(icon, title, true);
+    }
+
     return null;
   };
 
@@ -263,6 +280,12 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     else if(mode === "t2v"){
       return (
         <div className="space-y-4">
+          <ModelSelector
+            mode={mode}
+            copy={modelSelectorCopy}
+            value={videoModelVariant}
+            onChange={setVideoModelVariant}
+          />
           <PromptInputBlock
             promptInput = {promptEngine.image2Video?.input}
             onChange={onPromptChange}>
@@ -288,6 +311,12 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
             >
 
           </MultiImgUpload>
+          <ModelSelector
+            mode={mode}
+            copy={modelSelectorCopy}
+            value={videoModelVariant}
+            onChange={setVideoModelVariant}
+          />
           <PromptInputBlock
             promptInput = {promptEngine.image2Video?.input}
             onChange={onPromptChange}>
@@ -315,6 +344,7 @@ export function SoraPromptEngineBlock({ promptEngine, onOutputsChange, onGenerat
     || promptEngine.generateButton?.loadingTitle
     || promptEngine.generateButton?.title
     || "";
+
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <Dialog open={showAuthDialog}>
