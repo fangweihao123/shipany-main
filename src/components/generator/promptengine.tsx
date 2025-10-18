@@ -116,15 +116,7 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
       onGeneratingChange?.(true);
       if(mode === "i2v"){
         const filesUrl = await UploadFiles(vfiles, "nanobananai2v");
-        const videoOptions = {
-          aspect_ratio: aspectRatio,
-          duration: duration,
-          resolution: resolution,
-          generate_audio: generateAudio,
-          ...(negativePrompt && { negative_prompt: negativePrompt }),
-          ...(seed && { seed: seed })
-        };
-        const id = await generateVideo(filesUrl, prompt, "nanobananai2v", false, videoOptions);
+        const id = await generateVideo(filesUrl, prompt, "nanobananai2v", false);
         const queryResult = await pollTaskResult(id);
         const normalized = normalizeOutputs(queryResult);
         onOutputsChange?.(normalized);
@@ -245,21 +237,6 @@ export function PromptEngineBlock({ promptEngine, onOutputsChange, onGeneratingC
             promptInput = {promptEngine.image2Video?.input}
             onChange={onPromptChange}>
           </PromptInputBlock>
-          <VideoAdvancedOptions
-            aspectRatio={aspectRatio}
-            onAspectRatioChange={setAspectRatio}
-            duration={duration}
-            onDurationChange={setDuration}
-            resolution={resolution}
-            onResolutionChange={setResolution}
-            generateAudio={generateAudio}
-            onGenerateAudioChange={setGenerateAudio}
-            negativePrompt={negativePrompt}
-            onNegativePromptChange={setNegativePrompt}
-            seed={seed}
-            onSeedChange={setSeed}
-            advancedOptions={promptEngine.image2Video?.advancedOptions}
-          />
         </div>
       );
     }

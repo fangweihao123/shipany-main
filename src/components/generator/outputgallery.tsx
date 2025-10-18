@@ -36,7 +36,9 @@ export function OutputGalleryBlock({ outputGallery, imagePreview, outputs = [], 
     : generationStatus?.variant === 'standard'
       ? 'Sora 2'
       : undefined;
-  const primaryMessage = outputGallery.states?.generating || "AI is creating...";
+  const primaryMessage = generationStatus?.variant === 'pro'
+    ? "Rendering with Sora 2 Pro..."
+    : "AI is creating...";
   const secondaryMessage = outputGallery.messages?.loading || "Please wait a moment, something amazing is coming";
   const isDownloadInProgress = Boolean(downloadingId);
 
