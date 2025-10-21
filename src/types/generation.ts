@@ -8,6 +8,7 @@ export interface GenerationAsset {
   mimeType?: string;
   r2Url?: string;
   r2Key?: string;
+  publicUrl?: string;
   width?: number;
   height?: number;
   metadata?: Record<string, unknown>;

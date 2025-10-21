@@ -100,7 +100,45 @@ function determineExtension(mimeType: string): string {
   return mapping[mimeType.toLowerCase()] || "png";
 }
 
-async function uploadAssetFromBase64(base64: string, mimeType: string) {
+function getPublicBaseUrl() {
+  const candidates = [
+    process.env.STORAGE_PUBLIC_URL,
+    process.env.NEXT_PUBLIC_STORAGE_PUBLIC_URL,
+    process.env.STORAGE_DOMAIN,
+    process.env.NEXT_PUBLIC_STORAGE_DOMAIN,
+    process.env.NEXT_PUBLIC_R2_PUBLIC_URL,
+  ].filter(Boolean) as string[];
+
+  if (candidates.length === 0) {
+    const endpoint = process.env.STORAGE_ENDPOINT;
+    const bucket = process.env.STORAGE_BUCKET;
+    if (endpoint && bucket) {
+      candidates.push(`${endpoint.replace(/\/$/, "")}/${bucket}`);
+    }
+  }
+
+  const base = candidates[0] || "";
+  if (!base) {
+    return "";
+  }
+  return base.endsWith("/") ? base.slice(0, -1) : base;
+}
+
+function buildPublicUrl(key: string | undefined) {
+  if (!key) return "";
+  const base = getPublicBaseUrl();
+  if (!base) return "";
+  const normalizedKey = key.startsWith("/") ? key.slice(1) : key;
+  return `${base}/${normalizedKey}`;
+}
+
+interface UploadedAsset {
+  r2Url: string;
+  r2Key: string;
+  publicUrl: string;
+}
+
+async function uploadAssetFromBase64(base64: string, mimeType: string): Promise<UploadedAsset> {
   if (!base64) {
     throw new Error("Empty base64 payload");
   }
@@ -118,10 +156,11 @@ async function uploadAssetFromBase64(base64: string, mimeType: string) {
   return {
     r2Url: result.url,
     r2Key: key,
+    publicUrl: buildPublicUrl(key) || result.url,
   };
 }
 
-async function uploadAssetFromUrl(url: string, mimeType: string | undefined) {
+async function uploadAssetFromUrl(url: string, mimeType: string | undefined): Promise<UploadedAsset> {
   const storage = newStorage();
   const keyExtension = determineExtension(mimeType || "image/png");
   const key = `${PROJECT_NAME}/generations/${getUuid()}.${keyExtension}`;
@@ -135,6 +174,7 @@ async function uploadAssetFromUrl(url: string, mimeType: string | undefined) {
   return {
     r2Url: uploadResult.url,
     r2Key: key,
+    publicUrl: buildPublicUrl(key) || uploadResult.url,
   };
 }
 
@@ -163,7 +203,7 @@ async function convertOutputsToAssets(outputs: any[]): Promise<GenerationAsset[]
       image?.signed_url;
 
     const mimeType = determineMimeType(image);
-    let uploaded: { r2Url: string; r2Key: string } | null = null;
+    let uploaded: UploadedAsset | null = null;
 
     try {
       if (explicitDataUrl && explicitDataUrl.startsWith("data:")) {
@@ -197,6 +237,7 @@ async function convertOutputsToAssets(outputs: any[]): Promise<GenerationAsset[]
         sourceUrl: remoteUrl || undefined,
         r2Key: uploaded.r2Key,
         r2Url: uploaded.r2Url,
+        publicUrl: uploaded.publicUrl,
         metadata: {
           width: image?.width,
           height: image?.height,
@@ -208,7 +249,7 @@ async function convertOutputsToAssets(outputs: any[]): Promise<GenerationAsset[]
   return assets;
 }
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     if (ENVIRONMENT === "production"){
       ensureAuthorized(request);

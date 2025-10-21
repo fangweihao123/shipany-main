@@ -53,6 +53,7 @@ export async function listGenerationsForIdentity(options: {
   userUuid: string;
   limit?: number;
   offset?: number;
+  status?: GenerationStatus | GenerationStatus[];
 }) {
   return listUserGenerationsByIdentity(options);
 }

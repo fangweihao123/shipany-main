@@ -28,9 +28,9 @@
           "icon": "RiMoneyDollarCircleLine"
         },
         {
-          "title": "How it Works",
-          "url": "/#usage",
-          "icon": "RiSearchLine"
+          "title": "My Creation",
+          "url": "/my-creation",
+          "icon": "RiGalleryFill"
         },
         {
           "title": "Blog",

@@ -28,9 +28,9 @@
           "icon": "RiMoneyDollarCircleLine"
         },
         {
-          "title": "使用方法",
-          "url": "/#usage",
-          "icon": "RiSearchLine"
+          "title": "我的创作",
+          "url": "/my-creation",
+          "icon": "RiGalleryFill"
         },
         {
           "title": "博客",
