@@ -249,7 +249,7 @@ async function convertOutputsToAssets(outputs: any[]): Promise<GenerationAsset[]
   return assets;
 }
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     if (ENVIRONMENT === "production"){
       ensureAuthorized(request);
