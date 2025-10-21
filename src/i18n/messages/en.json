@@ -71,6 +71,33 @@
       "created_at": "Created At"
     }
   },
+  "my_creations": {
+    "title": "My Creations",
+    "description": "Review and manage your recent generation tasks.",
+    "empty": "No creations yet. Generate something to see it here.",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "status": {
+      "pending": "pending",
+      "processing": "processing",
+      "completed": "completed",
+      "failed": "failed"
+    },
+    "table": {
+      "id": "ID",
+      "model": "Model",
+      "status": "Status",
+      "output": "Outputs",
+      "created": "Created",
+      "actions": "Action"
+    },
+    "actions": {
+      "open": "Open",
+      "download": "Download"
+    }
+  },
   "api_keys": {
     "title": "API Keys",
     "tip": "Please keep your apikey safe to avoid leaks",
