@@ -6,10 +6,11 @@ import {
   boolean,
   integer,
   timestamp,
-  unique,
   uniqueIndex,
+  jsonb,
+  index,
 } from "drizzle-orm/pg-core";
-import { number } from "zod";
+import type { GenerationAsset } from "@/types/generation";
 
 // Users table
 export const users = pgTable(
@@ -178,27 +179,28 @@ export const taskTrialConfig = pgTable(
   (table) => [uniqueIndex("task_trial_config_unique").on(table.task_code)]
 );
 
-export const invite_codes = pgTable(
-  "invite_codes",
+export const userGenerations = pgTable(
+  "user_generations",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    invite_code: varchar({ length: 100 }).notNull(),
-    web_fingerprint: varchar({ length: 255 }).notNull(),
-    ip_address: varchar({ length: 45 }).notNull(),
-    voteup: integer().notNull().default(0),
-    votedown: integer().notNull().default(0),
-    created_at: timestamp({ withTimezone: true }),
-  }
-)
-
-export const invite_codes_vote = pgTable(
-  "invite_codes_votes",  
-  {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    invite_code: varchar({ length: 100 }).notNull(),
-    web_fingerprint: varchar({ length: 255 }).notNull(),
-    ip_address: varchar({ length: 45 }).notNull(),
-    is_support: boolean("is_support").notNull(),
-    created_at: timestamp({ withTimezone: true }),
-  }
-)
+    task_id: varchar({ length: 255 }).notNull(),
+    user_uuid: varchar({ length: 255 }),
+    device_fingerprint: varchar({ length: 255 }),
+    prompt: text().notNull(),
+    mode: varchar({ length: 32 }).notNull(),
+    status: varchar({ length: 32 }).notNull().default("pending"),
+    result_assets: jsonb().$type<GenerationAsset[] | null>().default(null),
+    error_message: text(),
+    retry_count: integer().notNull().default(0),
+    metadata: jsonb().$type<Record<string, unknown> | null>().default(null),
+    created_at: timestamp({ withTimezone: true }).defaultNow(),
+    updated_at: timestamp({ withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("user_generations_task_id_unique").on(table.task_id),
+    index("user_generations_user_created_idx").on(
+      table.user_uuid,
+      table.created_at
+    ),
+  ]
+);

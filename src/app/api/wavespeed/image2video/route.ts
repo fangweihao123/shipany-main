@@ -10,6 +10,8 @@ import {
 import { decreaseCredits, CreditsTransType, getUserCredits } from '@/services/credit';
 import { getUserUuid } from '@/services/user';
 import { UserCredits } from "@/types/user";
+import { logGenerationTask } from '@/services/generation-task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
 
 const API_BASE_URL = process.env.WAVESPEED_API_BASE_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
@@ -74,6 +76,8 @@ export async function POST(request: NextRequest) {
     } = await request.json();
 
     const user_uuid = await getUserUuid();
+    const fingerPrint = await getSerialCode();
+    const ip = await getClientIp();
     if(user_uuid.length > 0){
       const usercredits : UserCredits = await getUserCredits(user_uuid);
       if(usercredits.left_credits < 50){
@@ -109,6 +113,34 @@ export async function POST(request: NextRequest) {
     };
 
     const generateVideoResponse = await generateVideoWithImage(generateVideoRequest, isRetry);
+    const responsePayload = generateVideoResponse as unknown as Record<string, any>;
+    const taskId =
+      responsePayload?.data?.id ||
+      responsePayload?.data?.taskId ||
+      responsePayload?.id ||
+      responsePayload?.taskId ||
+      responsePayload?.requestId;
+
+    if (taskId && user_uuid) {
+      await logGenerationTask({
+        taskId,
+        prompt,
+        mode: "i2v",
+        userUuid: user_uuid,
+        metadata: {
+          aspect_ratio,
+          duration,
+          resolution,
+          generate_audio,
+          negative_prompt,
+          seed,
+          provider: "nanobananai2v",
+          sourceImage: processedImageUrl,
+          ip,
+          isRetry: Boolean(isRetry),
+        },
+      });
+    }
 
     return NextResponse.json(generateVideoResponse);
 

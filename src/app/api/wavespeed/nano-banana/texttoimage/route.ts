@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   ApiErrorResponse,
 } from '@/types/detect';
-
-import {
-  GenerateImgRequest,
-  GenerateImgResponse
-} from '@/types/wavespeed/nanobanana/image'
-import { decreaseCredits, CreditsTransType } from '@/services/credit';
-import { getUserUuid } from '@/services/user';
-import { newStorage, Storage } from '@/lib/storage';
-import { getUuid } from '@/lib/hash';
+import { getUserInfo, getUserUuid } from '@/services/user';
+import { HasEnoughCredits } from '@/services/credits/credit.lib';
+import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
+import { GeneratorProvider } from '@/types/generator';
+import { TaskProvider } from '@/types/task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
+import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
+import { CreditsTransType, decreaseCredits } from '@/services/credit';
+import { logGenerationTask } from '@/services/generation-task';
 
 const API_BASE_URL = process.env.WAVESPEED_API_BASE_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
@@ -57,7 +57,43 @@ export async function POST(request: NextRequest) {
       prompt: prompt
     };
 
-    const generateImgResponse = await generateImageWithPrompt(generateImgRequest);
+    const generateImgResponse = await generateImageWithPrompt(generateImgRequest, isRetry);
+    const responsePayload = generateImgResponse as unknown as Record<string, any>;
+    const taskId =
+      responsePayload?.data?.id ||
+      responsePayload?.data?.taskId ||
+      responsePayload?.id ||
+      responsePayload?.taskId ||
+      responsePayload?.requestId;
+
+    if (taskId && user_uuid) {
+      await logGenerationTask({
+        taskId,
+        prompt,
+        mode: "t2i",
+        userUuid: user_uuid,
+        metadata: {
+          output_format,
+          provider: generatorModel,
+          ip,
+          isRetry: Boolean(isRetry),
+        },
+      });
+    }
+
+    if(!isRetry){
+      if (user_uuid){
+        await decreaseCredits({
+          user_uuid,
+          trans_type: CreditsTransType.Ping,
+          credits: taskCreditsConsuption, // Video generation costs more credits
+        });
+        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
+      }else{
+        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
+        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
+      }
+    }
 
     return NextResponse.json(generateImgResponse);
 

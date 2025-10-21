@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ApiErrorResponse } from "@/types/detect";
 import { GeneratorError } from "@/services/generator";
+import type { GenerationAsset } from "@/types/generation";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -61,15 +62,67 @@ export function getVideoPreview(file: File): Promise<string> {
   });
 }
 
-export async function queryTaskStatus(id:string):Promise<any>{
-  const response = await fetch('/api/wavespeed/query',{
-    method: 'POST',
+async function fetchGenerationFromDatabase(id: string): Promise<any | null> {
+  try {
+    const response = await fetch(`/api/user/generations?taskId=${id}`, {
+      method: "GET",
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload = await response.json();
+    if (!payload?.success || !payload?.data) {
+      return null;
+    }
+
+    const record = payload.data as {
+      taskId: string;
+      status: string;
+      resultAssets?: GenerationAsset[] | null;
+      errorMessage?: string | null;
+    };
+
+    const outputs = (record.resultAssets || []).map((asset) => ({
+      id: asset.id || asset.r2Key || asset.r2Url,
+      image: {
+        url: asset.r2Url || asset.sourceUrl,
+        mime_type: asset.mimeType,
+        data_url: asset.r2Url?.startsWith("data:") ? asset.r2Url : undefined,
+      },
+    }));
+
+    const adapted: any = {
+      data: {
+        id: record.taskId,
+        status: record.status,
+        outputs,
+      },
+    };
+
+    if (record.errorMessage) {
+      adapted.data.error = {
+        message: record.errorMessage,
+      };
+    }
+
+    return adapted;
+  } catch {
+    return null;
+  }
+}
+
+export async function queryTaskStatus(id: string): Promise<any> {
+  const response = await fetch("/api/watermark/wavespeed/query", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({id}),
+    body: JSON.stringify({ id }),
   });
-  if(!response.ok){
+  if (!response.ok) {
     throw new Error(`Query failed: ${response.statusText}`);
   }
 
@@ -83,6 +136,16 @@ export async function pollTaskResult(id: string): Promise<any>{
   const interval = 2000;
 
   for(let attempt = 0; attempt < maxAttempts; attempt++){
+    const dbStatus = await fetchGenerationFromDatabase(id);
+    if (dbStatus?.data?.status === "completed") {
+      return dbStatus;
+    }
+    if (dbStatus?.data?.status === "failed") {
+      const errorMessage =
+        dbStatus?.data?.error?.message || "Nano Banana Generation failed";
+      throw new GeneratorError(errorMessage, 500);
+    }
+
     const status = await queryTaskStatus(id);
     if(status.data.status === 'completed'){
       return status;

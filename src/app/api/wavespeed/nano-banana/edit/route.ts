@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   ApiErrorResponse,
 } from '@/types/detect';
+import { getUserInfo, getUserUuid } from '@/services/user';
+import { HasEnoughCredits } from '@/services/credits/credit.lib';
+import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
+import { GeneratorProvider } from '@/types/generator';
+import { TaskProvider } from '@/types/task';
+import { getClientIp, getSerialCode } from '@/lib/ip';
+import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
+import { CreditsTransType, decreaseCredits } from '@/services/credit';
+import { UnwatermarkImgResponse } from '@/types/unwatermark';
+import { logGenerationTask } from '@/services/generation-task';
 
 import {
   UnwatermarkImgResponse
@@ -99,7 +109,42 @@ export async function POST(request: NextRequest) {
       images : uploadUrls
     };
 
-    const Response = await EditImage(editRequest);
+    const Response = await EditImage(editRequest, isRetry);
+    const responsePayload = Response as unknown as Record<string, any>;
+    const taskId =
+      responsePayload?.data?.id ||
+      responsePayload?.data?.taskId ||
+      responsePayload?.id ||
+      responsePayload?.taskId ||
+      responsePayload?.requestId;
+
+    if (taskId && user_uuid) {
+      await logGenerationTask({
+        taskId,
+        prompt,
+        mode: "i2i",
+        userUuid: user_uuid,
+        metadata: {
+          output_format,
+          provider: generatorModel,
+          isRetry: Boolean(isRetry),
+          uploads: uploadUrls,
+        },
+      });
+    }
+    if(!isRetry){
+      if (user_uuid){
+        await decreaseCredits({
+          user_uuid,
+          trans_type: CreditsTransType.Ping,
+          credits: taskCreditsConsuption, // Video generation costs more credits
+        });
+        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
+      }else{
+        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
+        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
+      }
+    }
 
     return NextResponse.json(Response);
 
