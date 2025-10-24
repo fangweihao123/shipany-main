@@ -1,116 +1,170 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {
-  ApiErrorResponse,
-} from '@/types/detect';
-import { getUserInfo, getUserUuid } from '@/services/user';
-import { HasEnoughCredits } from '@/services/credits/credit.lib';
-import { ErrorCode, TaskCreditsConsumption } from '@/services/constant';
-import { GeneratorProvider } from '@/types/generator';
-import { TaskProvider } from '@/types/task';
-import { getClientIp, getSerialCode } from '@/lib/ip';
-import { canUseTrialService, increaseTaskTrialUsage } from '@/services/trialtask';
-import { CreditsTransType, decreaseCredits } from '@/services/credit';
-import { UnwatermarkImgResponse } from '@/types/unwatermark';
-import { logGenerationTask } from '@/services/generation-task';
-
-import {
-  UnwatermarkImgResponse
-} from '@/types/unwatermark'
-import { decreaseCredits, CreditsTransType } from '@/services/credit';
-import { getUserUuid } from '@/services/user';
-import { newStorage, Storage } from '@/lib/storage';
-import { getUuid } from '@/lib/hash';
-import { EditImgRequest } from '@/types/wavespeed/nanobanana/image';
+import { NextRequest, NextResponse } from "next/server";
+import type { ApiErrorResponse } from "@/types/detect";
+import { getUserUuid } from "@/services/user";
+import { HasEnoughCredits } from "@/services/credits/credit.lib";
+import { ErrorCode, TaskCreditsConsumption } from "@/services/constant";
+import { GeneratorProvider } from "@/types/generator";
+import { TaskProvider } from "@/types/task";
+import { getClientIp, getSerialCode } from "@/lib/ip";
+import { canUseTrialService, increaseTaskTrialUsage } from "@/services/trialtask";
+import { CreditsTransType, decreaseCredits } from "@/services/credit";
+import { logGenerationTask } from "@/services/generation-task";
+import type {
+  EditImgRequest,
+  GenerateImgResponse,
+} from "@/types/wavespeed/nanobanana/image";
 
 const API_BASE_URL = process.env.WAVESPEED_API_BASE_ENDPOINT;
 const API_KEY = process.env.WAVESPEED_API_KEY;
-const STORAGE_PUBLIC_URL = process.env.STORAGE_PUBLIC_URL;
+
+const generatorModel: GeneratorProvider = "nanobananai2i";
+const taskCreditsConsumption = TaskCreditsConsumption[generatorModel] ?? 0;
+const taskCode: TaskProvider = "GenerateVideo";
+
+interface EditImagePayload {
+  prompt?: string;
+  uploadUrls?: unknown;
+  images?: unknown;
+  isRetry?: boolean;
+  output_format?: string;
+  enable_base64_output?: boolean;
+  enable_sync_mode?: boolean;
+}
 
 if (!API_KEY) {
-  console.error('UNDETECTABLE_AI_API_KEY is not set in environment variables');
+  console.error("Wavespeed API key is not set in environment variables");
 }
 
-async function uploadImage(file: Uint8Array<ArrayBufferLike>, contentType: string): Promise<string> {
-  const storage = newStorage();
-  const key = `upload/img_${getUuid()}.png`;
-  const response = await storage.uploadFile({
-    body: file,
-    key: key,
-    contentType: contentType
-  });
-  let url = response.url;
-  const firstSlashIndex = url.indexOf(key);
-  if(firstSlashIndex){
-    url = url.substring(firstSlashIndex - 1);
-    url = STORAGE_PUBLIC_URL + url;
+function normalizeImageList(input: unknown): string[] {
+  if (Array.isArray(input)) {
+    return input
+      .filter((item): item is string => typeof item === "string")
+      .map((item) => item.trim())
+      .filter((item) => item.length > 0);
   }
-  return url;
+
+  if (typeof input === "string" && input.trim()) {
+    return [input.trim()];
+  }
+
+  return [];
 }
 
-async function EditImage(data: EditImgRequest): Promise<UnwatermarkImgResponse> {
+async function editImage(
+  data: EditImgRequest
+): Promise<GenerateImgResponse> {
   const response = await fetch(`${API_BASE_URL}/google/nano-banana/edit`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify(data),
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to detect image: ${response.statusText}`);
+    throw new Error(`Failed to edit image: ${response.statusText}`);
   }
+
   return response.json();
+}
+
+function buildErrorResponse(
+  status: number,
+  code: number,
+  message: string,
+  details?: string
+) {
+  return NextResponse.json(
+    {
+      success: false,
+      error: {
+        code,
+        message,
+        ...(details ? { details } : {}),
+      },
+    } satisfies ApiErrorResponse,
+    { status }
+  );
 }
 
 export async function POST(request: NextRequest) {
   try {
     if (!API_KEY) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 500,
-            message: 'API key not configured',
-          },
-        } as ApiErrorResponse,
-        { status: 500 }
+      return buildErrorResponse(500, 500, "API key not configured");
+    }
+
+    const payload: EditImagePayload = await request.json();
+    const {
+      prompt,
+      output_format = "png",
+      isRetry = false,
+      enable_base64_output,
+      enable_sync_mode,
+    } = payload;
+
+    if (!prompt || !prompt.trim()) {
+      return buildErrorResponse(400, 400, "Prompt is required");
+    }
+
+    const images = normalizeImageList(payload.images ?? payload.uploadUrls);
+    if (images.length === 0) {
+      return buildErrorResponse(400, 400, "At least one image is required");
+    }
+
+    const user_uuid = await getUserUuid();
+    const fingerPrint = await getSerialCode();
+    const ip = await getClientIp();
+
+    if (!user_uuid && !fingerPrint && !isRetry) {
+      return buildErrorResponse(
+        400,
+        ErrorCode.APIError,
+        "Missing device identifier for trial usage"
       );
     }
 
-    const formData = await request.formData();
-    const prompt = formData.get('prompt') as string;
-    const files = formData.getAll('file') as File[];
-
-    if (files.length === 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 400,
-            message: 'No file provided',
-          },
-        } as ApiErrorResponse,
-        { status: 400 }
-      );
+    if (!isRetry) {
+      if (user_uuid) {
+        const enoughCredits = await HasEnoughCredits(
+          user_uuid,
+          taskCreditsConsumption
+        );
+        if (!enoughCredits) {
+          return buildErrorResponse(
+            402,
+            ErrorCode.InSufficientCredits,
+            "Insufficient credits"
+          );
+        }
+      } else {
+        const canTrial = await canUseTrialService({
+          fingerPrint,
+          ip,
+          task_code: taskCode,
+        });
+        if (!canTrial) {
+          return buildErrorResponse(
+            429,
+            ErrorCode.RunOutTrial,
+            "Trial limit reached"
+          );
+        }
+      }
     }
 
-    // Validate file type
-    const uploadUrls = await Promise.all(
-      files.map(async (file) => {
-        const fileBuffer = await file.bytes();
-        return uploadImage(fileBuffer, file.type);
-      })
-    );
-
-    // Step 3: Detect image
     const editRequest: EditImgRequest = {
-      prompt: prompt,
-      images : uploadUrls
+      prompt,
+      images,
+      ...(output_format ? { output_format } : {}),
+      ...(enable_base64_output !== undefined
+        ? { enable_base64_output }
+        : {}),
+      ...(enable_sync_mode !== undefined ? { enable_sync_mode } : {}),
     };
 
-    const Response = await EditImage(editRequest, isRetry);
-    const responsePayload = Response as unknown as Record<string, any>;
+    const editResponse = await editImage(editRequest);
+    const responsePayload = editResponse as unknown as Record<string, any>;
     const taskId =
       responsePayload?.data?.id ||
       responsePayload?.data?.taskId ||
@@ -118,49 +172,55 @@ export async function POST(request: NextRequest) {
       responsePayload?.taskId ||
       responsePayload?.requestId;
 
-    if (taskId && user_uuid) {
+    if (taskId) {
       await logGenerationTask({
         taskId,
         prompt,
         mode: "i2i",
-        userUuid: user_uuid,
+        userUuid: user_uuid || undefined,
+        deviceFingerprint: fingerPrint || undefined,
         metadata: {
           output_format,
           provider: generatorModel,
+          uploads: images,
+          ip,
           isRetry: Boolean(isRetry),
-          uploads: uploadUrls,
         },
       });
     }
-    if(!isRetry){
-      if (user_uuid){
+
+    if (!isRetry) {
+      if (user_uuid) {
         await decreaseCredits({
           user_uuid,
           trans_type: CreditsTransType.Ping,
-          credits: taskCreditsConsuption, // Video generation costs more credits
+          credits: taskCreditsConsumption,
         });
-        console.log(`Generate video success with ${taskCreditsConsuption} credits consumption`);
-      }else{
-        increaseTaskTrialUsage({fingerPrint, ip, task_code, times:1});
-        console.log(`Device ${fingerPrint} ip ${ip} generate video success with free trial`);
+        console.log(
+          `Edit image success with ${taskCreditsConsumption} credits consumption`
+        );
+      } else {
+        await increaseTaskTrialUsage({
+          fingerPrint,
+          ip,
+          task_code: taskCode,
+          times: 1,
+        });
+        console.log(
+          `Device ${fingerPrint} ip ${ip} edit image success with free trial`
+        );
       }
     }
 
-    return NextResponse.json(Response);
-
+    return NextResponse.json(editResponse);
   } catch (error) {
-    console.error('Detection API error:', error);
-    
-    return NextResponse.json(
-      {
-        success: false,
-        error: {
-          code: 500,
-          message: 'Internal server error',
-          details: error instanceof Error ? error.message : 'Unknown error',
-        },
-      } as ApiErrorResponse,
-      { status: 500 }
+    console.error("Nano Banana edit API error:", error);
+
+    return buildErrorResponse(
+      500,
+      ErrorCode.APIError,
+      "Internal server error",
+      error instanceof Error ? error.message : "Unknown error"
     );
   }
 }

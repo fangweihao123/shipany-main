@@ -145,6 +145,31 @@ export const feedbacks = pgTable("feedbacks", {
   rating: integer(),
 });
 
+export const invite_codes = pgTable(
+  "invite_codes",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    invite_code: varchar({ length: 100 }).notNull(),
+    web_fingerprint: varchar({ length: 255 }).notNull(),
+    ip_address: varchar({ length: 45 }).notNull(),
+    voteup: integer().notNull().default(0),
+    votedown: integer().notNull().default(0),
+    created_at: timestamp({ withTimezone: true }),
+  }
+)
+
+export const invite_codes_vote = pgTable(
+  "invite_codes_votes",  
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    invite_code: varchar({ length: 100 }).notNull(),
+    web_fingerprint: varchar({ length: 255 }).notNull(),
+    ip_address: varchar({ length: 45 }).notNull(),
+    is_support: boolean("is_support").notNull(),
+    created_at: timestamp({ withTimezone: true }),
+  }
+)
+
 export const deviceTrialUsage = pgTable(
   "device_trial_usage",
   {

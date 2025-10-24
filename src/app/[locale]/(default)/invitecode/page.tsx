@@ -2,8 +2,7 @@ import { getPage } from "@/services/page";
 import InviteCodeListPageClient from "./invite-code-client";
 import { InviteCodePage } from "@/types/pages/invitecode";
 
-
-export async function getInviteCodePage(locale: string): Promise<InviteCodePage> {
+async function getInviteCodePage(locale: string): Promise<InviteCodePage> {
   return (await getPage("invitecode", locale)) as InviteCodePage;
 }
 
