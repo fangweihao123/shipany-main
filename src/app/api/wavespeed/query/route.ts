@@ -17,13 +17,94 @@ if (!API_KEY) {
   console.error('ERASE_WATERMARK_API_KEY is not set in environment variables');
 }
 
-function determineMimeType(entry: any): string {
-  return (
+function inferMimeTypeFromUrl(url: string | undefined): string | undefined {
+  if (!url) {
+    return undefined;
+  }
+  const clean = url.split("?")[0]?.toLowerCase();
+  if (!clean) {
+    return undefined;
+  }
+
+  if (clean.endsWith(".mp4")) return "video/mp4";
+  if (clean.endsWith(".webm")) return "video/webm";
+  if (clean.endsWith(".mov")) return "video/quicktime";
+  if (clean.endsWith(".m4v")) return "video/mp4";
+  if (clean.endsWith(".png")) return "image/png";
+  if (clean.endsWith(".jpg") || clean.endsWith(".jpeg")) return "image/jpeg";
+  if (clean.endsWith(".webp")) return "image/webp";
+  if (clean.endsWith(".gif")) return "image/gif";
+  if (clean.endsWith(".bmp")) return "image/bmp";
+  if (clean.endsWith(".tiff") || clean.endsWith(".tif")) return "image/tiff";
+  return undefined;
+}
+
+function determineMimeType(entry: any, fallbackUrl?: string): string {
+  const rawType =
     entry?.mime_type ||
     entry?.mimeType ||
-    (entry?.type && String(entry.type)) ||
-    "image/png"
+    entry?.content_type ||
+    entry?.contentType ||
+    entry?.type ||
+    entry?.format ||
+    entry?.output_format;
+
+  if (rawType) {
+    const value = String(rawType).toLowerCase();
+    if (value.includes("/")) {
+      return value;
+    }
+    const simpleMap: Record<string, string> = {
+      video: "video/mp4",
+      image: "image/png",
+      mp4: "video/mp4",
+      webm: "video/webm",
+      mov: "video/quicktime",
+      m4v: "video/mp4",
+      png: "image/png",
+      jpg: "image/jpeg",
+      jpeg: "image/jpeg",
+      webp: "image/webp",
+      gif: "image/gif",
+      bmp: "image/bmp",
+      tif: "image/tiff",
+      tiff: "image/tiff",
+    };
+    if (simpleMap[value]) {
+      return simpleMap[value];
+    }
+    const inferredFromRaw = inferMimeTypeFromUrl(`dummy.${value}`);
+    if (inferredFromRaw) {
+      return inferredFromRaw;
+    }
+  }
+
+  if (typeof fallbackUrl === "string" && fallbackUrl.startsWith("data:")) {
+    const match = fallbackUrl.match(/^data:(.+?);/);
+    if (match?.[1]) {
+      return match[1];
+    }
+  }
+
+  const urlCandidate =
+    fallbackUrl ||
+    entry?.url ||
+    entry?.video_url ||
+    entry?.videoUrl ||
+    entry?.image_url ||
+    entry?.imageUrl ||
+    entry?.public_url ||
+    entry?.publicUrl ||
+    entry?.signed_url;
+
+  const inferred = inferMimeTypeFromUrl(
+    typeof urlCandidate === "string" ? urlCandidate : undefined
   );
+  if (inferred) {
+    return inferred;
+  }
+
+  return "image/png";
 }
 
 function determineExtension(mimeType: string): string {
@@ -38,6 +119,7 @@ function determineExtension(mimeType: string): string {
     "image/tiff": "tiff",
     "video/mp4": "mp4",
     "video/webm": "webm",
+    "video/quicktime": "mov",
   };
 
   return mapping[mimeType.toLowerCase()] || "png";
@@ -125,68 +207,32 @@ async function convertOutputsToAssets(outputs: any[]): Promise<GenerationAsset[]
   const assets: GenerationAsset[] = [];
 
   for (const entry of outputs) {
-    const image = entry?.image ?? entry;
-    if (!image) {
+    const media =
+      entry?.video ??
+      entry?.image ??
+      entry?.media ??
+      entry?.asset ??
+      entry;
+
+    if (!media) {
       continue;
     }
 
-    const base64Payload =
-      image?.b64_json ||
-      image?.base64 ||
-      image?.b64 ||
-      image?.data ||
-      image?.image_base64 ||
-      null;
-    const explicitDataUrl = image?.data_url || image?.dataUrl;
     const remoteUrl =
-      image?.url ||
-      image?.public_url ||
-      image?.publicUrl ||
-      image?.image_url ||
-      image?.signed_url;
+      media?.url ||
+      media;
 
-    const mimeType = determineMimeType(image);
+    const mimeType = determineMimeType(media, remoteUrl);
     let uploaded: UploadedAsset | null = null;
-
-    try {
-      if (explicitDataUrl && explicitDataUrl.startsWith("data:")) {
-        const [, meta, payload] =
-          explicitDataUrl.match(/^data:(.+);base64,(.*)$/) || [];
-        if (payload) {
-          const contentType = meta || mimeType;
-          uploaded = await uploadAssetFromBase64(payload, contentType);
-        }
-      } else if (base64Payload) {
-        uploaded = await uploadAssetFromBase64(base64Payload, mimeType);
-      } else if (remoteUrl) {
-        uploaded = await uploadAssetFromUrl(remoteUrl, mimeType);
-      } else if (typeof image === "string" && image.startsWith("data:")) {
-        const [, meta, payload] = image.match(/^data:(.+);base64,(.*)$/) || [];
-        if (payload) {
-          uploaded = await uploadAssetFromBase64(payload, meta || mimeType);
-        }
-      } else if (typeof image === "string" && image.startsWith("http")) {
-        uploaded = await uploadAssetFromUrl(image, mimeType);
-      }
-    } catch (error) {
-      console.error("Failed to upload generation asset", error);
-      continue;
+    if (typeof media === "string" && media.startsWith("http")) {
+      uploaded = await uploadAssetFromUrl(media, mimeType);
     }
 
     if (uploaded) {
       const metadata: Record<string, unknown> = {};
-      if (typeof image?.width === "number") {
-        metadata.width = image.width;
-      }
-      if (typeof image?.height === "number") {
-        metadata.height = image.height;
-      }
-      if (typeof image?.duration === "number") {
-        metadata.duration = image.duration;
-      }
-
+      metadata.kind = mimeType.toLowerCase().startsWith("video/") ? "video" : "image";
       assets.push({
-        id: entry?.id || image?.id || undefined,
+        id: entry?.id || media?.id || undefined,
         mimeType,
         sourceUrl: remoteUrl || undefined,
         r2Key: uploaded.r2Key,

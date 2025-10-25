@@ -1,6 +1,7 @@
 import Showcase from "@/components/blocks/showcase";
 import Empty from "@/components/blocks/empty";
 import { cn } from "@/lib/utils";
+import { isVideoAsset, resolveAssetDisplayInfo } from "@/lib/assets";
 import { listGenerationsForIdentity } from "@/services/generation-task";
 import { getUserUuid } from "@/services/user";
 import type { GenerationAsset } from "@/types/generation";
@@ -8,7 +9,6 @@ import type { Section, SectionItem } from "@/types/blocks/section";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "next/navigation";
-import moment from "moment";
 import { MyCreationPageData } from "@/types/pages/mycreation";
 import { getPage } from "@/services/page";
 
@@ -38,33 +38,6 @@ function resolvePublicBase(): string {
 
   const base = candidates[0] || "";
   return base.endsWith("/") ? base.slice(0, -1) : base;
-}
-
-function buildAssetUrl(asset: GenerationAsset | undefined, publicBase: string) {
-  if (!asset) {
-    return "";
-  }
-
-  if (asset.r2Key && publicBase) {
-    const normalizedKey = asset.r2Key.startsWith("/")
-      ? asset.r2Key.slice(1)
-      : asset.r2Key;
-    return `${publicBase}/${normalizedKey}`;
-  }
-
-  if (asset.publicUrl) {
-    return asset.publicUrl;
-  }
-
-  if (asset.r2Url) {
-    return asset.r2Url;
-  }
-
-  if (asset.sourceUrl) {
-    return asset.sourceUrl;
-  }
-
-  return "";
 }
 
 export default async function MyCreationPage({
@@ -110,7 +83,11 @@ export default async function MyCreationPage({
   const showcaseItems: SectionItem[] = entries.map((generation) => {
     const assets = (generation.result_assets ?? []) as GenerationAsset[];
     const firstAsset = assets[0];
-    const imageUrl = buildAssetUrl(firstAsset, publicBase) || PLACEHOLDER_IMAGE;
+    const assetInfo = resolveAssetDisplayInfo(firstAsset, publicBase);
+    const mediaUrl = assetInfo.mediaUrl || "";
+    const displayUrl = mediaUrl || PLACEHOLDER_IMAGE;
+    const isExternal = mediaUrl.startsWith("http");
+    const bVideoAsset = isVideoAsset(assets[0], mediaUrl);
 
     const status = generation.status ?? "pending";
     let statusLabel:string = "";
@@ -123,24 +100,16 @@ export default async function MyCreationPage({
     }else if(status === "processing"){
       statusLabel = page.my_creations.status.processing ?? "";
     }
-    const createdAt = generation.created_at ?? generation.updated_at ?? null;
-    const createdText = createdAt
-      ? moment(createdAt).format("YYYY-MM-DD HH:mm:ss [GMT]Z")
-      : page.my_creations.table.created;
-
-    const model =
-      (generation.metadata as Record<string, unknown> | undefined)?.model ??
-      (generation.metadata as Record<string, unknown> | undefined)?.provider ??
-      generation.mode;
-
     return {
       title: generation.prompt || generation.task_id,
+      isVideo: bVideoAsset,
       image: {
-        src: imageUrl,
+        src: displayUrl,
         alt: generation.prompt || generation.task_id,
+        mimeType: assetInfo.mimeType,
       },
-      url: imageUrl.startsWith("http") ? imageUrl : undefined,
-      target: imageUrl.startsWith("http") ? "_blank" : undefined,
+      url: mediaUrl || undefined,
+      target: isExternal ? "_blank" : undefined,
       label: statusLabel,
     };
   });

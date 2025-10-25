@@ -4,8 +4,10 @@ import TableSlot from "@/components/console/slots/table";
 import Icon from "@/components/icon";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { resolveAssetDisplayInfo } from "@/lib/assets";
 import { listGenerationsForIdentity } from "@/services/generation-task";
 import { getUserUuid } from "@/services/user";
+import type { GenerationAsset } from "@/types/generation";
 import { Table as TableSlotType } from "@/types/slots/table";
 import { getTranslations } from "next-intl/server";
 import moment from "moment";
@@ -18,7 +20,8 @@ interface CreationRow {
   status: string;
   statusLabel: string;
   statusVariant: BadgeVariant;
-  imageUrl: string;
+  mediaUrl: string;
+  isVideo: boolean;
   createdAt: Date | string | null;
   raw: Record<string, unknown>;
 }
@@ -35,6 +38,8 @@ const defaultModelMap: Record<string, string> = {
   i2i: "google/nano-banana/image-to-image",
   i2v: "google/nano-banana/image-to-video",
 };
+
+const PLACEHOLDER_THUMBNAIL = "/nano-banana-icon.svg";
 
 export default async function MyCreationsPage() {
   const t = await getTranslations();
@@ -72,41 +77,12 @@ export default async function MyCreationsPage() {
     return base.endsWith("/") ? base.slice(0, -1) : base;
   })();
 
-  const resolveAssetUrl = (asset?: Record<string, unknown>) => {
-    if (!asset) return "";
-
-    const data = asset as Record<string, any>;
-    const key = data?.r2Key as string | undefined;
-    if (key && publicBase) {
-      const normalizedKey = key.startsWith("/") ? key.slice(1) : key;
-      return `${publicBase}/${normalizedKey}`;
-    }
-
-    const publicUrl = data?.publicUrl as string | undefined;
-    if (publicUrl) {
-      return publicUrl;
-    }
-
-    const r2Url = data?.r2Url as string | undefined;
-    if (r2Url) {
-      return r2Url;
-    }
-
-    const sourceUrl = data?.sourceUrl as string | undefined;
-    if (sourceUrl) {
-      return sourceUrl;
-    }
-
-    return "";
-  };
-
   const rows: CreationRow[] = generations.map((generation) => {
     const metadata = (generation.metadata ?? {}) as Record<string, unknown>;
-    const assets = (generation.result_assets ?? []) as Array<
-      Record<string, unknown>
-    >;
+    const assets = (generation.result_assets ?? []) as Array<GenerationAsset>;
     const firstAsset = assets[0];
-    const imageUrl = resolveAssetUrl(firstAsset);
+    const assetInfo = resolveAssetDisplayInfo(firstAsset, publicBase);
+    const mediaUrl = assetInfo.mediaUrl;
 
     const status = generation.status ?? "pending";
     const statusLabel =
@@ -128,7 +104,8 @@ export default async function MyCreationsPage() {
       status,
       statusLabel,
       statusVariant,
-      imageUrl,
+      mediaUrl,
+      isVideo: assetInfo.isVideo,
       createdAt: generation.created_at ?? generation.updated_at ?? null,
       raw: {
         ...generation,
@@ -169,14 +146,27 @@ export default async function MyCreationsPage() {
       },
       {
         title: t("my_creations.table.output"),
-        name: "imageUrl",
+        name: "mediaUrl",
         callback: (row: CreationRow) =>
-          row.imageUrl ? (
-            <img
-              src={row.imageUrl}
-              alt={row.taskId}
-              className="h-16 w-16 rounded-lg object-cover shadow"
-            />
+          row.mediaUrl ? (
+            row.isVideo ? (
+              <video
+                src={row.mediaUrl}
+                className="h-16 w-16 rounded-lg object-cover shadow"
+                playsInline
+                muted
+                preload="metadata"
+                controls
+              >
+                <track kind="captions" />
+              </video>
+            ) : (
+              <img
+                src={row.mediaUrl || PLACEHOLDER_THUMBNAIL}
+                alt={row.taskId}
+                className="h-16 w-16 rounded-lg object-cover shadow"
+              />
+            )
           ) : (
             <span className="text-sm text-muted-foreground">--</span>
           ),
@@ -193,7 +183,7 @@ export default async function MyCreationsPage() {
         title: t("my_creations.table.actions"),
         name: "actions",
         callback: (row: CreationRow) => {
-          const hasOutput = row.status === "completed" && !!row.imageUrl;
+          const hasOutput = row.status === "completed" && !!row.mediaUrl;
           const actionClass = cn(
             "text-lg transition-colors hover:text-primary",
             !hasOutput && "pointer-events-none opacity-40"
@@ -202,7 +192,7 @@ export default async function MyCreationsPage() {
           return (
             <div className="flex items-center gap-3 text-muted-foreground">
               <a
-                href={hasOutput ? row.imageUrl : undefined}
+                href={hasOutput ? row.mediaUrl : undefined}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={actionClass}
@@ -211,7 +201,7 @@ export default async function MyCreationsPage() {
                 <Icon name="RiShareBoxLine" />
               </a>
               <a
-                href={hasOutput ? row.imageUrl : undefined}
+                href={hasOutput ? row.mediaUrl : undefined}
                 download
                 className={actionClass}
                 title={t("my_creations.actions.download")}

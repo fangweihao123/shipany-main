@@ -5,6 +5,7 @@ export interface SectionItem {
   description?: string;
   label?: string;
   icon?: string;
+  isVideo?: boolean;
   image?: Image;
   buttons?: Button[];
   url?: string;

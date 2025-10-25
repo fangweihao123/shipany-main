@@ -26,12 +26,28 @@ export default function Showcase({ section }: { section: SectionType }) {
             <Card className="overflow-hidden transition-all hover:shadow-lg dark:hover:shadow-primary/10 p-0">
               <CardContent className="p-0">
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
-                  <Image
-                    src={item.image?.src || ""}
-                    alt={item.image?.alt || item.title || ""}
-                    fill
-                    className="object-cover rounded-t-lg transition-transform duration-300 hover:scale-110"
-                  />
+                  {
+                    item.isVideo ? (
+                      <video
+                        src={item.image?.src || ""}
+                        className="object-cover rounded-t-lg transition-transform duration-300 hover:scale-110"
+                        playsInline
+                        muted
+                        preload="metadata"
+                        controls
+                      >
+                        <track kind="captions" />
+                      </video>
+                    ) : (
+                    <Image
+                      src={item.image?.src || ""}
+                      alt={item.image?.alt || item.title || ""}
+                      fill
+                      className="object-cover rounded-t-lg transition-transform duration-300 hover:scale-110"
+                    />
+                    )
+                  }
+                  
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2 line-clamp-1">
